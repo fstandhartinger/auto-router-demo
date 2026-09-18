@@ -6,8 +6,11 @@ ARG ROUTER_REPO=https://github.com/fstandhartinger/auto-model-router.git
 ARG ROUTER_REF=6de8dca216f73f99c8fc6d464a7436b36f93f2b6
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends git ca-certificates \
+ && apt-get install -y --no-install-recommends git ca-certificates curl \
  && rm -rf /var/lib/apt/lists/*
+
+# curl stays in the image on purpose: the platform's container health check
+# execs it inside the container, and a slim image has neither curl nor wget.
 
 WORKDIR /srv
 
