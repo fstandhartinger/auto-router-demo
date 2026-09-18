@@ -1,10 +1,13 @@
 """The demo's wiring around the published router.
 
-Nothing about the routing logic lives here. The catalog, the cost model, the
-success model, the expected-cost policy and the decision record all come from
-the ``auto_router`` package pinned in the Dockerfile; this module builds the
-configuration, decides which routes exist right now, and turns one decision
-into the JSON the page draws.
+The catalog, the cost model, the success model, the expected-cost policy and
+the decision record all come from the ``auto_router`` package pinned in the
+Dockerfile; this module builds the configuration, decides which routes exist
+right now, and turns one decision into the JSON the page draws.
+
+One thing about the routing logic does live in this app, and it is worth being
+explicit about: the policy the router is given is the published one plus the
+visitor's time (``app/latency.py``). The money half is untouched.
 """
 
 from __future__ import annotations
@@ -241,7 +244,8 @@ class Engine:
                 "chosen": cand.model == chosen,
                 # What the visitor waits for, next to what the turn costs.
                 "expectedSeconds": round(
-                    latency.expected_seconds(model, decision.request, meta, plan), 1),
+                    latency.expected_seconds(model, decision.request, meta, plan,
+                                             output_tokens=SETTINGS.max_output_tokens), 1),
                 "thinking": plan.level,
                 "speedBasis": latency.BOOK.speed(
                     model.name, (meta.get("speed") or {}).get("health_key")).source,
@@ -367,7 +371,8 @@ def what_if(engine: "Engine", *, prompt_tokens: int, output_tokens: int, categor
         plan = latency.plan_reasoning(model.name, difficulty, meta)
         rows.append({
             **engine._model_basics(model),
-            "expectedSeconds": round(latency.expected_seconds(model, base, meta, plan), 1),
+            "expectedSeconds": round(latency.expected_seconds(
+                model, base, meta, plan, output_tokens=SETTINGS.max_output_tokens), 1),
             "thinking": plan.level,
             "capabilityHere": round(model.cap(category, evidence_discount=ctx.success.evidence_discount), 1),
             "pSuccess": round(p, 3),

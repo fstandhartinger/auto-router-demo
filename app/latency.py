@@ -294,8 +294,15 @@ def _dialect_extra(dialect: str, level: str, budget: int = 0) -> dict | None:
 # the objective
 # ---------------------------------------------------------------------------
 def expected_seconds(model: ModelInfo, req: TurnRequest, meta: dict,
-                     plan: ReasoningPlan | None = None) -> float:
-    """How long this route is expected to take to finish this turn."""
+                     plan: ReasoningPlan | None = None, output_tokens: int | None = None) -> float:
+    """How long this route is expected to take to finish this turn.
+
+    ``output_tokens`` overrides the request's estimate. The policy leaves it
+    alone, so its time term and its money term are priced on the same turn. The
+    page passes the demo's own output cap, because that is the number the
+    visitor is actually waiting for - showing the policy's 4000-token estimate
+    next to an answer that arrives in two seconds would just be untrue.
+    """
     speed = BOOK.speed(model.name, ((meta or {}).get("speed") or {}).get("health_key"))
     plan = plan or plan_reasoning(model.name, req.difficulty, meta)
     bucket = "easy" if req.difficulty < 0.34 else "medium" if req.difficulty < 0.67 else "hard"
@@ -308,7 +315,8 @@ def expected_seconds(model: ModelInfo, req: TurnRequest, meta: dict,
         # the pessimistic default if this route was never measured.
         thinking = int(speed.reasoning_tokens.get(bucket)
                        or DEFAULT_REASONING_TOKENS.get(bucket, 0))
-    seconds = speed.seconds(req.output_tokens, thinking)
+    out = req.output_tokens if output_tokens is None else min(req.output_tokens, output_tokens)
+    seconds = speed.seconds(out, thinking)
     return seconds * max(1, req.steps)
 
 
