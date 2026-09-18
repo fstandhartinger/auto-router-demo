@@ -128,12 +128,41 @@ function paintP2P(p2p) {
     ? `P2P live · ${p2p.providersReady} volunteer GPU${p2p.providersReady === 1 ? "" : "s"}`
     : "P2P network offline";
   pill.style.opacity = p2p.online ? "1" : ".6";
+  if (p2p.siteUrl) pill.href = p2p.siteUrl;
+}
+
+/* ------------------------------------------------------- copy to clipboard */
+/* Every block on this site that is meant to be pasted somewhere gets a button,
+ * because selecting eleven lines of JSON with a trackpad is a small misery. */
+function addCopyButtons(root) {
+  for (const block of root.querySelectorAll("pre.code")) {
+    if (block.parentElement.classList.contains("code-wrap")) continue;
+    const wrap = document.createElement("div");
+    wrap.className = "code-wrap";
+    block.replaceWith(wrap);
+    wrap.appendChild(block);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "copy-btn";
+    button.textContent = "copy";
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(block.textContent);
+        button.textContent = "copied";
+      } catch {
+        button.textContent = "select and copy";
+      }
+      setTimeout(() => { button.textContent = "copy"; }, 1800);
+    });
+    wrap.appendChild(button);
+  }
 }
 
 /* ------------------------------------------------------------ page router */
 const ROUTES = {
   "/": "playground", "/playground": "playground", "/cache": "cache",
-  "/results": "results", "/how": "how", "/privacy": "privacy", "/impressum": "impressum",
+  "/results": "results", "/how": "how", "/run": "run",
+  "/privacy": "privacy", "/impressum": "impressum",
 };
 
 function navigate(path, push = true) {
@@ -147,8 +176,9 @@ function navigate(path, push = true) {
     if (a.dataset.nav === name) a.setAttribute("aria-current", "page");
   });
   window.scrollTo({ top: 0, behavior: "instant" });
-  ({ playground: initPlayground, cache: initCache, results: initResults, how: initHow }[name]
-    || (() => {}))();
+  addCopyButtons(main);
+  ({ playground: initPlayground, cache: initCache, results: initResults, how: initHow,
+     run: initRun }[name] || (() => {}))();
 }
 
 document.addEventListener("click", (event) => {
@@ -935,4 +965,58 @@ function thinkTag(level) {
   if (level === "off") return ' <span class="think-tag" title="Thinking switched off for this request">no thinking</span>';
   if (level === "low") return ' <span class="think-tag" title="Thinking capped for this request">capped</span>';
   return "";
+}
+
+
+/* ---------------------------------------------------------- run it yourself */
+function initRun() {
+  paintSwarm(state.meta && state.meta.p2p);
+  loadMeta().then((meta) => paintSwarm(meta.p2p));
+  // The count on this page is the swarm's own live one, not a number from
+  // whenever the tab was opened: the server re-reads its public stats endpoint
+  // and this asks again while the page is on screen.
+  const tick = async () => {
+    if (!document.body.contains(el("#swarm-card"))) { clearInterval(timer); return; }
+    try {
+      const fresh = await (await fetch("/api/meta")).json();
+      state.meta = fresh;
+      paintSwarm(fresh.p2p);
+      paintP2P(fresh.p2p);
+    } catch { /* a blip is not worth a broken page */ }
+  };
+  const timer = setInterval(tick, 30000);
+  tick();
+  // The subscription-aware mode is a separate piece of work; the link only
+  // appears here if the server says it exists, so the page never promises it.
+  const slot = el("#subscription-link");
+  const url = state.meta && state.meta.subscriptionUrl;
+  if (slot && url) {
+    slot.innerHTML = `<a href="${escapeHtml(url)}" rel="noopener">How that is wired up here</a>.`;
+  }
+}
+
+function paintSwarm(p2p) {
+  const box = el("#swarm-status");
+  const chip = el("#swarm-chip");
+  if (!box || !chip) return;
+  if (!p2p) { chip.textContent = "checking…"; return; }
+  if (!p2p.configured) {
+    chip.textContent = "not wired up here";
+    chip.className = "chip chip-quiet";
+    box.innerHTML = `<div class="notice-box"><strong>This copy of the demo has no swarm
+      endpoint configured</strong>, so the route is not in its catalog. On the public demo
+      it is, and it competes like any other route.</div>`;
+    return;
+  }
+  const ready = p2p.providersReady || 0;
+  chip.textContent = p2p.online ? `${ready} GPU${ready === 1 ? "" : "s"} online` : "nobody online";
+  chip.className = "chip " + (p2p.online ? "chip-good" : "chip-quiet");
+  box.innerHTML = p2p.online
+    ? `<div class="notice-box p2p-on"><strong>${ready} volunteer GPU${ready === 1 ? "" : "s"} online right now.</strong>
+        The route is in the catalog for every decision this demo makes, and a request sent
+        there is answered on somebody else's computer.
+        ${p2p.tokensToday ? `${tokens(p2p.tokensToday)} tokens served today.` : ""}</div>`
+    : `<div class="notice-box"><strong>Nobody is online right now.</strong>
+        So the router drops the route instead of sending requests nobody will answer — open
+        the swarm in a tab with a GPU and it comes back within thirty seconds.</div>`;
 }

@@ -138,8 +138,9 @@ p { margin: 0 0 1rem; }
 .p2p-pill {
   font-size: .76rem; padding: .22rem .55rem; border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--p2p) 45%, transparent);
-  color: var(--p2p); white-space: nowrap;
+  color: var(--p2p); white-space: nowrap; text-decoration: none;
 }
+.p2p-pill:hover { border-color: var(--p2p); text-decoration: none; }
 
 main { flex: 1 0 auto; padding-bottom: 4rem; }
 
@@ -605,6 +606,59 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
 .footer { border-top: 1px solid var(--line); padding: 1.6rem 0 2.4rem; margin-top: auto; }
 .footer-inner { display: grid; gap: .3rem; }
 .credits { color: var(--muted); font-size: .82rem; margin: 0; }
+
+/* ------------------------------------------------------- run it yourself */
+.nav-cta { color: var(--accent) !important; }
+.nav-cta[aria-current] { color: var(--ink) !important; }
+
+.hero-cta {
+  display: flex; align-items: center; gap: .9rem; flex-wrap: wrap;
+  margin: 1.6rem 0 0;
+}
+.hero-cmd {
+  font-family: var(--mono); font-size: .8rem; color: var(--muted);
+  background: var(--plane-2); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: .5rem .7rem;
+}
+.inline-cta { display: inline-flex; }
+
+/* Anything meant to be pasted gets a button in its top-right corner. */
+.code-wrap { position: relative; }
+.code-wrap .code { margin: 0; padding-right: 3.8rem; }
+.copy-btn {
+  position: absolute; top: .45rem; right: .45rem;
+  background: var(--surface); color: var(--muted);
+  border: 1px solid var(--line); border-radius: 6px;
+  font: inherit; font-size: .72rem; padding: .15rem .5rem; cursor: pointer;
+  opacity: 0; transition: opacity .12s ease;
+}
+.code-wrap:hover .copy-btn, .copy-btn:focus-visible { opacity: 1; }
+.copy-btn:hover { color: var(--ink); border-color: var(--line-strong); }
+@media (hover: none) { .copy-btn { opacity: 1; } }
+
+.install-card .lead-code {
+  font-size: .95rem; padding: 1.1rem 1.1rem; color: var(--ink);
+  border-color: var(--line-strong);
+}
+.small { font-size: .84rem; }
+
+.tool-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem; margin-top: 1.2rem; align-items: start;
+}
+.tool-card .card-body p { color: var(--ink-2); font-size: .9rem; }
+/* In a narrow card a long baseURL must wrap rather than hide behind a scrollbar. */
+.tool-card .code { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .78rem; }
+.tool-card .card-head h3 { font-size: 1rem; margin: 0; }
+.prompt-code { max-height: 30rem; overflow-y: auto; font-size: .8rem; }
+
+.swarm-card .card-body p { color: var(--ink-2); max-width: 78ch; }
+.swarm-actions { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1.1rem; }
+
+@media (max-width: 560px) {
+  .hero-cmd { font-size: .72rem; overflow-x: auto; max-width: 100%; }
+  .tool-grid { grid-template-columns: 1fr; }
+}
 
 /* -------------------------------------------------------------- responsive */
 @media (max-width: 900px) {

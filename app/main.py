@@ -408,6 +408,9 @@ async def meta(request: Request):
         "repoUrl": SETTINGS.repo_url,
         "demoRepoUrl": SETTINGS.demo_repo_url,
         "benchErrors": ENGINE.bench_errors,
+        # Only set once there is a documented, permitted way to use a flat-rate
+        # plan from the router; the page stays silent about it until then.
+        "subscriptionUrl": SETTINGS.subscription_url or None,
         "pauseSteps": PAUSE_STEPS,
         "secondUsd": latency.SECOND_USD,
         "measuredSpeed": latency.BOOK.snapshot(),
@@ -711,8 +714,8 @@ async def reset_session(request: Request):
 app.mount("/assets", StaticFiles(directory=STATIC / "assets"), name="assets")
 
 PAGES = {"": "index.html", "playground": "index.html", "cache": "index.html",
-         "results": "index.html", "how": "index.html", "privacy": "index.html",
-         "impressum": "index.html"}
+         "results": "index.html", "how": "index.html", "run": "index.html",
+         "privacy": "index.html", "impressum": "index.html"}
 
 
 @app.get("/{path:path}")

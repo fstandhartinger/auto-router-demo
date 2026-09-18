@@ -84,6 +84,9 @@ class Settings:
     bonsai_site_url: str = "https://bonsai-swarm.app.mintapis.com"
     bonsai_poll_seconds: int = 30
 
+    #: Where the separate "a subscription through its own client" write-up lives.
+    #: Empty until that exists, and the page then says nothing about it.
+    subscription_url: str = ""
     site_url: str = ""
     repo_url: str = "https://github.com/fstandhartinger/auto-model-router"
     demo_repo_url: str = "https://github.com/fstandhartinger/auto-router-demo"
@@ -117,6 +120,7 @@ class Settings:
             bonsai_site_url=os.environ.get("BONSAI_SITE_URL") or cls.bonsai_site_url,
             bonsai_poll_seconds=_int("BONSAI_POLL_SECONDS", 30),
             site_url=(os.environ.get("DEMO_SITE_URL") or "").rstrip("/"),
+            subscription_url=(os.environ.get("DEMO_SUBSCRIPTION_URL") or "").strip(),
         )
 
 

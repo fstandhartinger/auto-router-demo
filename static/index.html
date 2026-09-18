@@ -30,9 +30,10 @@
       <a href="/cache" data-link data-nav="cache">Cache</a>
       <a href="/results" data-link data-nav="results">Results</a>
       <a href="/how" data-link data-nav="how">How it works</a>
+      <a href="/run" data-link data-nav="run" class="nav-cta">Run it yourself</a>
     </nav>
     <div class="topbar-actions">
-      <span class="p2p-pill" id="p2p-pill" hidden></span>
+      <a class="p2p-pill" id="p2p-pill" hidden href="https://bonsai-swarm.app.mintapis.com" rel="noopener" title="Free community GPUs — the Bonsai Swarm"></a>
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch theme">
         <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
       </button>
@@ -70,6 +71,11 @@
       <em>this</em> request at what it actually costs including the risk of having to
       redo it, and the cheapest expected total wins. Then the answer streams back
       from whichever model that turned out to be.
+    </p>
+    <p class="hero-cta">
+      <a class="primary-btn" href="/run" data-link><span class="btn-label">Run it on your own machine</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h12m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <code class="hero-cmd">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code>
     </p>
   </div>
 </section>
@@ -341,26 +347,18 @@
 
   <h2 id="use">Use it yourself</h2>
   <p>
-    The router is an OpenAI-compatible proxy. Point any tool that speaks
-    <code>/v1/chat/completions</code> at it and it routes per user turn:
+    The router is an OpenAI-compatible proxy — point any tool that speaks
+    <code>/v1/chat/completions</code> at it, or Claude Code at its Anthropic endpoint, and it
+    routes per user turn with your own keys and no caps. One command installs it:
   </p>
-<pre class="code"><code>git clone https://github.com/fstandhartinger/auto-model-router
-cd auto-model-router
-pip install -r requirements.txt
-
-cp examples/config.example.yaml config.local.yaml   # your endpoints, keys by env-var name
-export AUTO_ROUTER_CONFIG=config.local.yaml
-export TYPESAFE_API_KEY=...                         # the classifier
-uvicorn auto_router.server:app --port 8795</code></pre>
-  <p>Then point a coding agent at it:</p>
-<pre class="code"><code>export OPENAI_BASE_URL=http://127.0.0.1:8795/v1
-export OPENAI_API_KEY=anything
-
-opencode run -m "auto/auto"        # or any OpenAI-compatible client</code></pre>
+<pre class="code"><code>curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh</code></pre>
+  <p>
+    <a class="primary-btn inline-cta" href="/run" data-link><span class="btn-label">Run it yourself — the whole recipe</span></a>
+  </p>
   <p class="muted">
-    A flat-rate coding subscription may only be used through its own official client —
-    the router will price one as a tier if you configure it, but do not put a proxy in
-    front of someone else's plan.
+    Per-tool configuration for Claude Code, opencode, Cursor and the rest, a prompt you can
+    paste into a coding agent to have it set all of this up, and what is and is not possible
+    with a flat-rate subscription: all on that page.
   </p>
 
   <h2 id="p2p">The peer-to-peer network as a routing target</h2>
@@ -408,6 +406,239 @@ opencode run -m "auto/auto"        # or any OpenAI-compatible client</code></pre
     <li>Prompts are sent to the classifier and to the chosen model. Nothing is stored here.</li>
   </ul>
 </div>
+</template>
+
+<!-- ------------------------------------------------------------------ -->
+<template id="page-run">
+<section class="wrap page-head">
+  <p class="eyebrow">Run it yourself</p>
+  <h1>One command, and the router<br><em>is yours.</em></h1>
+  <p class="lede">
+    Everything on this site runs on your own machine: an OpenAI-compatible endpoint on
+    <code>127.0.0.1</code>, your keys, your bill, no limits and no demo caps. Jev
+    classifies each turn, Benchmark Heaven prices every candidate for it, and the
+    expected-cost rule picks one — in front of whatever tool you already use.
+  </p>
+</section>
+
+<section class="wrap">
+  <article class="card install-card">
+    <header class="card-head"><h2>Install</h2><span class="chip chip-quiet">macOS · Linux · WSL</span></header>
+    <div class="card-body">
+      <pre class="code lead-code"><code>curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh</code></pre>
+      <p class="muted small">
+        Piping an installer into a shell is a thing you should be suspicious of, so
+        <a href="/install.sh">read it first</a> — it is 150 lines. It needs Python 3.10+
+        and git, asks for no privileges, installs nothing system-wide, and touches only
+        these four things:
+      </p>
+      <ul class="limits">
+        <li><code>~/.auto-router/src</code> — a clone of
+          <a href="https://github.com/fstandhartinger/auto-model-router" rel="noopener">auto-model-router</a> (MIT).</li>
+        <li><code>~/.auto-router/venv</code> — a virtualenv with its four dependencies.</li>
+        <li><code>~/.auto-router/config.yaml</code> — a starter catalog of four models, if you have none.
+          Keys are referenced by environment-variable <em>name</em>; none is ever written to it.</li>
+        <li><code>~/.local/bin/auto-router</code> — one launcher.</li>
+      </ul>
+      <p>Then give it a key and start it:</p>
+<pre class="code"><code>export OPENROUTER_API_KEY=...     # or edit ~/.auto-router/config.yaml for your own providers
+export TYPESAFE_API_KEY=...       # optional: Jev. Without it a cautious default is used.
+
+auto-router                       # http://127.0.0.1:8787/v1</code></pre>
+      <p class="muted small">
+        <code>GET /health</code> answers when it is up, <code>GET /v1/models</code> shows what it
+        knows about each route, and <code>GET /v1/router/decisions</code> gives you the last
+        decisions with the numbers behind them — the same record this site draws.
+      </p>
+    </div>
+  </article>
+</section>
+
+<section class="wrap" style="margin-top:2.2rem">
+  <h2 class="wide-head">Point your tools at it</h2>
+  <p class="muted" style="max-width:74ch">
+    Every one of these was run against a router installed by the command above, on a clean
+    machine, on 18 September 2026. Where a tool does not work, it says so instead.
+  </p>
+
+  <div class="tool-grid">
+    <article class="card tool-card">
+      <header class="card-head"><h3>Claude Code</h3><span class="chip chip-good">works</span></header>
+      <div class="card-body">
+        <p>Claude Code's documented gateway configuration, plus a credential:</p>
+<pre class="code"><code>export ANTHROPIC_BASE_URL=http://127.0.0.1:8787
+export ANTHROPIC_API_KEY=local-router   # any value; it never leaves your machine
+claude</code></pre>
+        <p class="muted small">
+          The key matters, and not for security. Anthropic's gateway page: while a gateway
+          credential is active, “the credential replaces the subscription login for that
+          session, and the subscription's usage limits don't apply”. Set it, and your turns
+          go to whichever model the router picks. Leave it unset, and your claude.ai login
+          stays the active credential — see <a href="#subscriptions">subscriptions</a> below.
+        </p>
+      </div>
+    </article>
+
+    <article class="card tool-card">
+      <header class="card-head"><h3>opencode</h3><span class="chip chip-good">works</span></header>
+      <div class="card-body">
+        <p>Add a provider to <code>~/.config/opencode/opencode.json</code>:</p>
+<pre class="code"><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "autorouter/auto",
+  "provider": {
+    "autorouter": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Local auto-router",
+      "options": {
+        "baseURL": "http://127.0.0.1:8787/v1",
+        "apiKey": "not-needed"
+      },
+      "models": { "auto": { "name": "auto (the router picks)" } }
+    }
+  }
+}</code></pre>
+        <p class="muted small">Then <code>opencode run -m autorouter/auto "…"</code>.</p>
+      </div>
+    </article>
+
+    <article class="card tool-card">
+      <header class="card-head"><h3>Cursor, Continue, and anything OpenAI-shaped</h3><span class="chip chip-good">works</span></header>
+      <div class="card-body">
+        <p>Two settings, wherever that client keeps them:</p>
+<pre class="code"><code>base URL:  http://127.0.0.1:8787/v1
+API key:   anything
+model:     auto</code></pre>
+        <p class="muted small">
+          For a library or a script, the same two as environment variables:
+          <code>OPENAI_BASE_URL=http://127.0.0.1:8787/v1</code> and
+          <code>OPENAI_API_KEY=anything</code>. Every reply carries
+          <code>X-Router-Model</code>, <code>X-Router-Reason</code> and
+          <code>X-Router-Cache</code>, so you can see what happened without reading a log.
+        </p>
+      </div>
+    </article>
+
+    <article class="card tool-card">
+      <header class="card-head"><h3>Codex CLI</h3><span class="chip chip-warn">not yet</span></header>
+      <div class="card-body">
+        <p>
+          Codex removed chat-completions providers in February 2026: a custom
+          <code>model_provider</code> must now speak the Responses API, and
+          <code>wire_api = "chat"</code> is refused outright —
+          <em>“`wire_api = "chat"` is no longer supported”</em> (codex-cli 0.154.0). The router
+          speaks OpenAI chat-completions and the Anthropic Messages API, so there is nothing
+          honest to paste here yet. A Responses endpoint is
+          <a href="https://github.com/fstandhartinger/auto-model-router/issues" rel="noopener">tracked in the repo</a>;
+          when it lands the config will be:
+        </p>
+<pre class="code"><code># ~/.codex/config.toml — once the router speaks /v1/responses
+model = "auto"
+model_provider = "autorouter"
+
+[model_providers.autorouter]
+name = "Local auto-router"
+base_url = "http://127.0.0.1:8787/v1"
+env_key = "AUTO_ROUTER_KEY"
+wire_api = "responses"</code></pre>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="wrap" style="margin-top:2.4rem">
+  <h2 class="wide-head">Or have your coding agent do it</h2>
+  <p class="muted" style="max-width:74ch">
+    Paste this into Claude Code, opencode, Cursor or any agent with a shell. It installs the
+    router, starts it, proves it answers, and rewrites that tool's own configuration to use
+    it — and it is written to stop and tell you if a step does not hold.
+  </p>
+  <article class="card">
+    <div class="card-body">
+<pre class="code prompt-code"><code>Install the auto model router on this machine and make it my default model endpoint.
+
+1. Run: curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh
+   Read the script first and tell me in one line what it does. It needs Python 3.10+ and git.
+2. Open ~/.auto-router/config.yaml. It references API keys by environment-variable NAME only.
+   Tell me which variables it wants and which of them are already set in my shell; do not
+   print any key value. If OPENROUTER_API_KEY is missing, stop and ask me for it.
+3. Start the router in the background: `auto-router` (it serves http://127.0.0.1:8787/v1).
+   Wait until `curl -s http://127.0.0.1:8787/health` returns {"status":"ok",...}.
+4. Prove it routes. Send one request and show me the response headers:
+   curl -sD - http://127.0.0.1:8787/v1/chat/completions -H 'Content-Type: application/json' \
+     -d '{"model":"auto","messages":[{"role":"user","content":"Say OK"}],"max_tokens":20}' \
+     | grep -i '^x-router'
+   X-Router-Model is the model it chose, X-Router-Reason is why. If there is no answer,
+   stop and show me the router's output rather than changing any configuration.
+5. Now configure THIS tool - the one you are running inside - to use the router, backing up
+   the file you touch first and showing me the diff:
+   - Claude Code: ANTHROPIC_BASE_URL=http://127.0.0.1:8787 and any ANTHROPIC_API_KEY value,
+     in my shell profile. Note in one line that this means my Claude subscription is not
+     used for these turns.
+   - opencode: a provider "autorouter" in ~/.config/opencode/opencode.json with
+     npm "@ai-sdk/openai-compatible", baseURL http://127.0.0.1:8787/v1, model "auto",
+     and set the default model to autorouter/auto. Keep every existing provider.
+   - Cursor or another OpenAI-compatible client: base URL http://127.0.0.1:8787/v1,
+     key "anything", model "auto".
+   - Codex CLI: do NOT try. It requires a Responses-API provider since Feb 2026 and the
+     router does not speak that yet. Tell me so and skip this step.
+6. Finally: start a new session in the tool you just configured, ask it one trivial question,
+   and show me from `curl -s http://127.0.0.1:8787/v1/router/metrics` that the request went
+   through the router and which model answered.</code></pre>
+    </div>
+  </article>
+</section>
+
+<div class="wrap prose" style="margin-top:2.4rem">
+  <h2 id="subscriptions">What about my Claude Max or ChatGPT Pro subscription?</h2>
+  <p>
+    The honest answer is that a flat-rate plan can only be spent through its own official
+    client. Anthropic's own gateway documentation is explicit in both directions: set a
+    gateway credential and “the credential replaces the subscription login for that session,
+    and the subscription's usage limits don't apply”; set only
+    <code>ANTHROPIC_BASE_URL</code> and “a saved claude.ai login remains the active credential,
+    so its usage limits and billing apply” — but in that mode Anthropic
+    “doesn't support routing Claude Code to non-Claude models through any gateway”, so there is
+    nothing for a router to decide. Codex's ChatGPT plan is the same shape through the Codex CLI.
+  </p>
+  <p>
+    So the router does not pretend. It routes what it is allowed to route — metered APIs, free
+    tiers, your own hardware, the peer-to-peer network — and where a subscription is the right
+    place for a turn, the thing to start is that subscription's own client, with the task, from
+    outside. <span id="subscription-link"></span>
+  </p>
+  <p class="muted small">
+    And please do not put a proxy in front of somebody else's plan. Anthropic does not permit
+    developers “to route requests through Free, Pro, or Max plan credentials on behalf of their
+    users”, and the same goes for every other flat rate.
+  </p>
+</div>
+
+<section class="wrap" style="margin-top:2.4rem">
+  <article class="card swarm-card" id="swarm-card">
+    <header class="card-head">
+      <h2>Free community GPUs: the Bonsai Swarm</h2>
+      <span class="chip chip-quiet" id="swarm-chip">checking…</span>
+    </header>
+    <div class="card-body">
+      <p>
+        A peer-to-peer network of volunteered GPUs: people open a browser tab, it runs a
+        ternary 27B model on WebGPU, and that tab answers other people's requests. Free,
+        slow, best effort — which is exactly the shape of route an expected-cost rule is
+        good at placing. It is a candidate in this demo's catalog like any other, and when
+        nobody is online it is removed rather than sent requests nobody will answer.
+      </p>
+      <div id="swarm-status"></div>
+      <div class="swarm-actions">
+        <a class="primary-btn" id="swarm-link" href="https://bonsai-swarm.app.mintapis.com" rel="noopener">
+          <span class="btn-label">Open the Bonsai Swarm</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h12m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="ghost-btn" href="/how#p2p" data-link>How the router prices it</a>
+      </div>
+    </div>
+  </article>
+</section>
 </template>
 
 <!-- ------------------------------------------------------------------ -->
