@@ -223,6 +223,12 @@ async function runPlayground(text) {
       paintLimits(data.limits);
       return;
     }
+    if (resp.status === 503) {
+      el("#decide-body").innerHTML =
+        '<p class="notice">The demo is still reading the model catalog from the benchmark API. ' +
+        'Give it a few seconds and try again.</p>';
+      return;
+    }
     if (!resp.ok) {
       el("#decide-body").innerHTML = '<p class="notice">The demo could not start this run.</p>';
       return;

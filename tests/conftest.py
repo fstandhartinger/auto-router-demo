@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from pathlib import Path
 
 import pytest
@@ -64,6 +65,15 @@ def client(monkeypatch):
     main.LIMITER._day_spend = 0.0
     main.SESSIONS.clear()
     with TestClient(main.app) as test_client:
+        # The catalog is built in the background so a slow benchmark API cannot
+        # stop the server from booting; the tests wait for it deliberately.
+        from app.engine import ENGINE
+
+        for _ in range(200):
+            if ENGINE.ready():
+                break
+            time.sleep(0.01)
+        assert ENGINE.ready(), "the catalog never finished building"
         yield test_client
 
 

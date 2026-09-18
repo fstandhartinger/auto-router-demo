@@ -87,9 +87,25 @@ def _session(session_id: str | None) -> Session:
 @app.on_event("startup")
 async def _startup() -> None:
     app.state.client = httpx.AsyncClient(follow_redirects=False)
-    await asyncio.to_thread(ENGINE.build)
-    if ENGINE.ready():
-        await SWARM.status(app.state.client)
+    # Building the catalog means asking the benchmark API about every model, so
+    # it must not hold the server hostage: if that API is slow the process still
+    # comes up, answers its health check, and says "still starting" until it is
+    # ready. A retry loop handles a benchmark outage at boot.
+    app.state.builder = asyncio.create_task(_build_catalog())
+
+
+async def _build_catalog() -> None:
+    for delay in (0, 15, 60, 300):
+        if delay:
+            await asyncio.sleep(delay)
+        try:
+            await asyncio.to_thread(ENGINE.build)
+        except Exception:  # noqa: BLE001 - a bad boot must be retried, not fatal
+            log.exception("building the catalog failed")
+            continue
+        if ENGINE.ready():
+            await SWARM.status(app.state.client)
+            return
 
 
 @app.on_event("shutdown")
@@ -247,7 +263,9 @@ def _actual_cost(model_name: str, usage: providers.Usage, decision) -> float:
 # ---------------------------------------------------------------------------
 @app.get("/healthz")
 async def healthz():
-    return {"ok": ENGINE.ready(), "models": len(ENGINE.config.catalog.all()) if ENGINE.ready() else 0}
+    """The process is alive. ``ready`` says whether the catalog is built yet."""
+    return {"ok": True, "ready": ENGINE.ready(),
+            "models": len(ENGINE.config.catalog.all()) if ENGINE.ready() else 0}
 
 
 @app.get("/api/meta")
@@ -338,7 +356,7 @@ async def run(request: Request):
     if not prompt:
         return JSONResponse({"error": "empty prompt"}, status_code=400)
     if not ENGINE.ready():
-        return JSONResponse({"error": "the catalog is not built yet"}, status_code=503)
+        return JSONResponse({"error": "starting"}, status_code=503)
 
     key = client_key(_ip(request))
     verdict = LIMITER.check(key)
@@ -389,7 +407,7 @@ async def chat(request: Request):
     if not prompt:
         return JSONResponse({"error": "empty prompt"}, status_code=400)
     if not ENGINE.ready():
-        return JSONResponse({"error": "the catalog is not built yet"}, status_code=503)
+        return JSONResponse({"error": "starting"}, status_code=503)
     key = client_key(_ip(request))
     verdict = LIMITER.check(key)
     if not verdict.allowed:
