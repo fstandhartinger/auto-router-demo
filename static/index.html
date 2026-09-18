@@ -129,7 +129,8 @@
             <th scope="col" class="num">Price / 1M<span class="th-sub">in · out · cache read</span></th>
             <th scope="col" class="num">P(success)<span class="th-sub">measured</span></th>
             <th scope="col" class="num">This turn<span class="th-sub">call cost</span></th>
-            <th scope="col" class="num">Expected<span class="th-sub">incl. risk of a retry</span></th>
+            <th scope="col" class="num">Expected time<span class="th-sub">to a finished answer</span></th>
+            <th scope="col" class="num">Expected<span class="th-sub">incl. risk and waiting</span></th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -145,10 +146,10 @@
     </header>
     <div class="card-body">
       <p class="notice" id="answer-note" hidden></p>
-      <details class="reasoning" id="reasoning-box" hidden>
-        <summary>Model's reasoning</summary>
-        <pre id="reasoning"></pre>
-      </details>
+      <p class="thinking-line" id="thinking-box" hidden>
+        <span class="thinking-dot" aria-hidden="true"></span>
+        <span id="thinking-text">thinking…</span>
+      </p>
       <div class="answer" id="answer"></div>
       <p class="answer-foot" id="answer-foot"></p>
     </div>

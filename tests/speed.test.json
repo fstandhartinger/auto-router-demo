@@ -1,0 +1,33 @@
+{
+ "about": "Fixture speeds for the hermetic test catalog. No network.",
+ "measured_at": "2026-09-18T00:00:00Z",
+ "max_output_tokens": 900,
+ "routes": {
+  "tiny-free": {
+   "ttft_s": 0.5,
+   "decode_tps": 200.0,
+   "reasoning_tokens": {},
+   "reasoning": false
+  },
+  "mid-cheap": {
+   "ttft_s": 2.0,
+   "decode_tps": 30.0,
+   "reasoning_tokens": {
+    "easy": 300,
+    "medium": 600,
+    "hard": 900
+   },
+   "reasoning": true
+  },
+  "big-frontier": {
+   "ttft_s": 3.0,
+   "decode_tps": 50.0,
+   "reasoning_tokens": {
+    "easy": 100,
+    "medium": 400,
+    "hard": 700
+   },
+   "reasoning": true
+  }
+ }
+}

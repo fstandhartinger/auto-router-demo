@@ -28,6 +28,7 @@ from auto_router.policies import Context, Conversation, TurnRequest, turn_call_c
 from auto_router.router import Router
 
 from . import providers
+from . import latency
 from .bonsai import MODEL_NAME as BONSAI_MODEL
 from .settings import DATA, SETTINGS
 
@@ -73,6 +74,8 @@ class Decision:
     #: The uncalibrated char/4 estimate, kept so the estimator can learn from
     #: the provider's real token count once the answer comes back.
     raw_tokens: int = 0
+    #: How hard the chosen route is asked to think about this request.
+    reasoning: object = None
 
 
 class Engine:
@@ -123,7 +126,11 @@ class Engine:
                 providers=provider_objs, catalog=Catalog(models), subscriptions={},
                 policy={"name": "F_expected", "jev_difficulty_calibration": JEV_CALIBRATION},
                 raw={"models": raw_entries})
-            self.router = Router(self.config, success=_success_model(), classifier=None,
+            # The published expected-cost policy, plus the visitor's time. The
+            # money half is untouched; see app/latency.py for what is added and
+            # what a second is priced at.
+            self.router = Router(self.config, policy=latency.LatencyAwarePolicy(meta=meta),
+                                 success=_success_model(), classifier=None,
                                  quota_reader=lambda: {})
             self.built_at = time.time()
 
@@ -139,7 +146,16 @@ class Engine:
         return ctx
 
     def excluded(self, *, p2p_online: bool) -> set[str]:
-        return set() if p2p_online else {BONSAI_MODEL}
+        out = set() if p2p_online else {BONSAI_MODEL}
+        # A route the host's prober currently calls unhealthy is a wait, not a
+        # choice. Drop it - unless dropping it would leave the policy nothing,
+        # in which case a slow answer still beats no answer.
+        sick = {m.name for m in self.config.catalog.all()
+                if m.name not in out
+                and latency.route_is_skippable(m.name, self.catalog_meta.get(m.name, {}))}
+        if len(self.config.catalog.all()) - len(out | sick) >= latency.MIN_CANDIDATES:
+            out |= sick
+        return out
 
     def model_rows(self) -> list[dict]:
         """The whole catalog as the 'how it works' page shows it."""
@@ -190,7 +206,9 @@ class Engine:
         return Decision(model=model, request=req, classification=classification,
                         explanation=explanation, context=ctx, conversation_id=cid,
                         classification_ms=classification_ms, now=now, reason=choice.reason,
-                        raw_tokens=raw_tokens)
+                        raw_tokens=raw_tokens,
+                        reasoning=latency.plan_reasoning(
+                            model.name, req.difficulty, self.catalog_meta.get(model.name, {})))
 
     def commit(self, conv: Conversation, decision: Decision, prompt_tokens: int,
                output_tokens: int, raw_estimate: int | None = None) -> None:
@@ -210,6 +228,8 @@ class Engine:
             if model is None:
                 continue
             row = self._model_basics(model)
+            meta = self.catalog_meta.get(model.name, {})
+            plan = latency.plan_reasoning(model.name, decision.request.difficulty, meta)
             row.update({
                 "capabilityHere": round(cand.capability, 1),
                 "capabilityBasis": cand.capability_basis,
@@ -219,6 +239,12 @@ class Engine:
                 "expectedUsd": cand.est_expected_usd,
                 "warmTokens": cand.warm_tokens,
                 "chosen": cand.model == chosen,
+                # What the visitor waits for, next to what the turn costs.
+                "expectedSeconds": round(
+                    latency.expected_seconds(model, decision.request, meta, plan), 1),
+                "thinking": plan.level,
+                "speedBasis": latency.BOOK.speed(
+                    model.name, (meta.get("speed") or {}).get("health_key")).source,
             })
             rows.append(row)
         # Same order the policy ranks in: lowest expected cost first, and on a
@@ -337,8 +363,12 @@ def what_if(engine: "Engine", *, prompt_tokens: int, output_tokens: int, categor
     for model, call, p, value in scored:
         warm = conv.warm_tokens(model, now)
         cold = turn_call_cost(model, base, 0, ctx)
+        meta = engine.catalog_meta.get(model.name, {})
+        plan = latency.plan_reasoning(model.name, difficulty, meta)
         rows.append({
             **engine._model_basics(model),
+            "expectedSeconds": round(latency.expected_seconds(model, base, meta, plan), 1),
+            "thinking": plan.level,
             "capabilityHere": round(model.cap(category, evidence_discount=ctx.success.evidence_discount), 1),
             "pSuccess": round(p, 3),
             "warmTokens": warm,

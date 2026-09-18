@@ -8,8 +8,19 @@ stream the answer back from whichever model that turned out to be.
 
 It is not a mock-up. The page drives the published router package at a pinned commit — the same
 catalog, cost model, success model, expected-cost policy and decision record that produced the
-measured results. This repository only adds the web surface, the guard rails a public demo needs,
-and the peer-to-peer integration.
+measured results. This repository adds the web surface, the guard rails a public demo needs,
+the peer-to-peer integration, and one term in the objective: the visitor's time (`app/latency.py`).
+
+**Why time is in the objective.** The published policy minimises expected dollars. Almost every
+route here is free, so on an easy question the money half of the score is nearly flat and the tie
+falls to raw capability — which sent "What is the capital of Australia?" to a reasoning model that
+thought for fourteen seconds. The demo adds `value-of-a-second × expected seconds` to the score,
+priced at $0.002 a second, and asks an easy request to be answered without a thinking pass. That
+is enough to break a tie between routes equally likely to be right, and nowhere near enough to buy
+a wrong answer: at high stakes the failure term is dollars and no amount of waiting outweighs it.
+Expected time sits next to expected cost in the candidate table, built from measured first-token
+latency and decode speed per route (`app/data/speed.measured.json`, refreshed from live probes and
+from the demo's own timings as it runs).
 
 ## What it shows
 
@@ -26,6 +37,7 @@ and the peer-to-peer integration.
 browser ──SSE──► FastAPI (app/)
                    ├── classify.py   Jev, with a labelled free-model fallback
                    ├── engine.py     builds the catalog, drives the router's policy
+                   ├── latency.py    expected time per route; the reasoning plan per request
                    ├── providers.py  OpenAI-compatible streaming to whoever serves a model
                    ├── bonsai.py     the peer-to-peer network as one more route
                    └── limits.py     per-IP, per-day and per-dollar caps

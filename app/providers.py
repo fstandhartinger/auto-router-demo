@@ -76,7 +76,10 @@ def _headers(route: Route) -> dict:
     return head
 
 
-def _body(route: Route, messages: list[dict], max_tokens: int, stream: bool) -> dict:
+def _body(route: Route, messages: list[dict], max_tokens: int, stream: bool,
+          extra: dict | None = None) -> dict:
+    """The request body. ``extra`` is this turn's reasoning plan, which wins over
+    the route's standing request_extra because it was decided for this request."""
     return {
         "model": route.upstream_id,
         "messages": messages,
@@ -84,6 +87,7 @@ def _body(route: Route, messages: list[dict], max_tokens: int, stream: bool) -> 
         "stream": stream,
         **({"stream_options": {"include_usage": True}} if stream else {}),
         **route.request_extra,
+        **(extra or {}),
     }
 
 
@@ -105,14 +109,15 @@ def _usage_from(payload: dict) -> Usage:
 
 
 async def stream_answer(route: Route, messages: list[dict], max_tokens: int,
-                        client: httpx.AsyncClient) -> AsyncIterator[tuple[str, object]]:
+                        client: httpx.AsyncClient, extra: dict | None = None,
+                        timeout: httpx.Timeout | None = None) -> AsyncIterator[tuple[str, object]]:
     """Yield ``("delta", text)``, ``("reasoning", text)``, ``("usage", Usage)`` or ``("error", str)``."""
-    body = _body(route, messages, max_tokens, stream=True)
+    body = _body(route, messages, max_tokens, stream=True, extra=extra)
     usage = Usage()
     try:
         async with client.stream("POST", f"{route.base_url}/chat/completions",
                                  json=body, headers=_headers(route),
-                                 timeout=REQUEST_TIMEOUT) as resp:
+                                 timeout=timeout or REQUEST_TIMEOUT) as resp:
             if resp.status_code >= 400:
                 detail = (await resp.aread()).decode("utf-8", "replace")[:300]
                 yield "error", f"upstream {resp.status_code}: {detail}"

@@ -205,8 +205,8 @@ async function runPlayground(text) {
   el("#answer").classList.add("cursor");
   el("#answer-foot").textContent = "";
   el("#answer-note").hidden = true;
-  el("#reasoning-box").hidden = true;
-  el("#reasoning").textContent = "";
+  stopThinking();
+  el("#thinking-box").hidden = true;
   el("#answer-model").textContent = "…";
   el("#stage").scrollIntoView({ behavior: "smooth", block: "start" });
 
@@ -242,12 +242,18 @@ async function runPlayground(text) {
       } else if (event === "answering") {
         el("#answer-model").textContent = data.label;
         if (data.note) { el("#answer-note").hidden = false; el("#answer-note").textContent = data.note; }
+        if (data.thinkingNote) el("#answer-foot").textContent = data.thinkingNote;
       } else if (event === "delta") {
         answer += data.text;
         el("#answer").innerHTML = renderMarkdown(answer);
-      } else if (event === "reasoning") {
-        el("#reasoning-box").hidden = false;
-        el("#reasoning").textContent += data.text;
+      } else if (event === "thinking") {
+        startThinking();
+      } else if (event === "thinking_done") {
+        stopThinking(data);
+      } else if (event === "rerouted") {
+        el("#answer-note").hidden = false;
+        el("#answer-note").textContent =
+          `${data.from} did not start answering in time. The router moved this turn to ${data.to}.`;
       } else if (event === "answer_error") {
         el("#answer-note").hidden = false;
         el("#answer-note").textContent = data.message;
@@ -344,6 +350,7 @@ function paintCandidates(data) {
         <span>· ${row.prices.cacheRead === null ? "no cache" : perM(row.prices.cacheRead)}</span></span></td>
       <td class="num">${pct(row.pSuccess)}</td>
       <td class="num">${usd(row.callUsd)}</td>
+      <td class="num">${secs(row.expectedSeconds)}${thinkTag(row.thinking)}</td>
       <td class="num"><b>${usd(row.expectedUsd)}</b></td>`;
     return tr;
   }));
@@ -353,7 +360,9 @@ function paintCandidates(data) {
     `Capability is the score for <em>this</em> topic, from Benchmark Heaven where a benchmark ` +
     `measures it. P(success) is our own measurement on 78 graded tasks where we have one, ` +
     `otherwise a curve fitted on them. Expected cost adds what a failure would cost: a retry ` +
-    `on a stronger route, or the price of a wrong answer nobody notices.` +
+    `on a stronger route, or the price of a wrong answer nobody notices — and what the wait ` +
+    `is worth, at ${usd(data.secondUsd || 0.002, 4)} a second. Expected time is measured first-token ` +
+    `latency and decode speed for that route, plus the tokens it is expected to spend thinking.` +
     (weakCount ? ` ${weakCount} capability number${weakCount === 1 ? " rests" : "s rest"} on ` +
       `weak evidence and is pulled toward a neutral prior before it is used — hover it.` : "");
 }
@@ -734,3 +743,55 @@ function paintThemeIcon() {
 
 initTheme();
 navigate(location.pathname, false);
+
+
+// ---------------------------------------------------------------------------
+// "thinking…" with a clock
+//
+// Reasoning tokens used to be streamed into the page, which on an easy question
+// meant several hundred lines of a model talking to itself before a one-line
+// answer. The server now sends only the start and the end, and the visitor sees
+// how long it took.
+// ---------------------------------------------------------------------------
+let thinkingTimer = null;
+let thinkingStart = 0;
+
+function startThinking() {
+  const box = el("#thinking-box");
+  if (!box) return;
+  box.hidden = false;
+  box.classList.add("is-live");
+  thinkingStart = performance.now();
+  const tick = () => {
+    const s = (performance.now() - thinkingStart) / 1000;
+    el("#thinking-text").textContent = `thinking… ${s.toFixed(1)}s`;
+  };
+  tick();
+  clearInterval(thinkingTimer);
+  thinkingTimer = setInterval(tick, 100);
+}
+
+function stopThinking(data) {
+  clearInterval(thinkingTimer);
+  thinkingTimer = null;
+  const box = el("#thinking-box");
+  if (!box) return;
+  box.classList.remove("is-live");
+  if (!data) return;
+  box.hidden = false;
+  el("#thinking-text").textContent =
+    `thought for ${Number(data.seconds).toFixed(1)}s before answering`;
+}
+
+
+// One route's expected wall-clock, and whether it was allowed to think.
+function secs(value) {
+  if (value === null || value === undefined) return "—";
+  return value < 10 ? `${value.toFixed(1)}s` : `${Math.round(value)}s`;
+}
+
+function thinkTag(level) {
+  if (level === "off") return ' <span class="think-tag" title="Thinking switched off for this request">no thinking</span>';
+  if (level === "low") return ' <span class="think-tag" title="Thinking capped for this request">capped</span>';
+  return "";
+}

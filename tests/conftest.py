@@ -29,9 +29,17 @@ os.environ["AUTO_ROUTER_BENCH_OFFLINE"] = "1"
 os.environ["AUTO_ROUTER_CACHE_DIR"] = str(TESTS / ".bench-cache")
 os.environ["DEMO_CATALOG_FILE"] = str(TESTS / "catalog.test.json")
 os.environ["DEMO_ROUTES_JSON"] = json.dumps(ROUTES)
+os.environ["DEMO_SPEED_FILE"] = str(TESTS / "speed.test.json")
+# The host's health file must never be read by the suite: a healthy or sick
+# laptop would otherwise change what the tests decide.
+os.environ["DEMO_HEALTH_FILE"] = str(TESTS / "health.test.json")
 os.environ["FAKE_KEY"] = "not-a-real-key"
 os.environ.pop("BONSAI_BASE_URL", None)
 os.environ.pop("TYPESAFE_API_KEY", None)
+
+
+#: What the fake transport was asked to send, most recent run last.
+SENT: list[dict] = []
 
 
 @pytest.fixture()
@@ -52,7 +60,10 @@ def client(monkeypatch):
             needs_long_context=0.0, follow_up=0.1, stakes=0.5, latency_s=0.12,
             model="jev-test")
 
-    async def fake_stream(route, messages, max_tokens, http_client):
+    async def fake_stream(route, messages, max_tokens, http_client, extra=None, timeout=None):
+        # Record what the reasoning plan asked this route for, so a test can
+        # assert on the body instead of on the log.
+        SENT.append({"route": route.model, "extra": dict(extra or {})})
         yield "delta", "Hello from "
         yield "delta", route.upstream_id
         yield "usage", providers.Usage(prompt_tokens=4000, completion_tokens=8, cached_tokens=0)
@@ -64,6 +75,10 @@ def client(monkeypatch):
     main.LIMITER._day_runs = 0
     main.LIMITER._day_spend = 0.0
     main.SESSIONS.clear()
+    SENT.clear()
+    from app import latency
+    latency.BOOK._live.clear()
+    latency.BOOK._strikes.clear()
     with TestClient(main.app) as test_client:
         # The catalog is built in the background so a slow benchmark API cannot
         # stop the server from booting; the tests wait for it deliberately.

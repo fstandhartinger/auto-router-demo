@@ -26,7 +26,12 @@
     "label": "Bonsai 2 27B",
     "org": "community GPUs",
     "badge": "p2p",
-    "peer_to_peer": true
+    "peer_to_peer": true,
+    "speed": {
+     "reasoning": false,
+     "thinking_dialect": null,
+     "health_key": null
+    }
    }
   },
   {
@@ -52,7 +57,12 @@
    "demo": {
     "label": "Tiny Free",
     "org": "Test Co",
-    "badge": "free"
+    "badge": "free",
+    "speed": {
+     "reasoning": false,
+     "thinking_dialect": null,
+     "health_key": null
+    }
    }
   },
   {
@@ -82,7 +92,12 @@
    "demo": {
     "label": "Mid Metered",
     "org": "Test Co",
-    "badge": "cheap"
+    "badge": "cheap",
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "chat_template_kwargs",
+     "health_key": "mid-cheap"
+    }
    }
   },
   {
@@ -115,7 +130,12 @@
     "label": "Big Frontier",
     "org": "Test Co",
     "badge": "frontier",
-    "baseline": true
+    "baseline": true,
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "reasoning_effort",
+     "health_key": null
+    }
    }
   }
  ]

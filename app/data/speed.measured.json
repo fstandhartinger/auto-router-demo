@@ -1,0 +1,47 @@
+{
+ "about": "Measured against the live endpoints with one streamed request per difficulty bucket, thinking left at the provider's default. ttft_s and decode_tps are medians over the three; reasoning_tokens is what the model spent thinking before the answer. Refresh with measure_speed.py.",
+ "measured_at": "2026-09-18T14:43:39Z",
+ "max_output_tokens": 900,
+ "routes": {
+  "kimi-k3": {
+   "ttft_s": 1.5,
+   "decode_tps": 35.0,
+   "reasoning_tokens": {
+    "easy": 94,
+    "medium": 624,
+    "hard": 835
+   },
+   "reasoning": true
+  },
+  "qwen3.8-27b": {
+   "ttft_s": 1.23,
+   "decode_tps": 73.5,
+   "reasoning_tokens": {
+    "easy": 35,
+    "medium": 88,
+    "hard": 385
+   },
+   "reasoning": true
+  },
+  "dsv4-flash": {
+   "ttft_s": 1.21,
+   "decode_tps": 204.8,
+   "reasoning_tokens": {
+    "easy": 0,
+    "medium": 0,
+    "hard": 0
+   },
+   "reasoning": false
+  },
+  "glm-5.3-flash": {
+   "ttft_s": 2.71,
+   "decode_tps": 84.8,
+   "reasoning_tokens": {
+    "easy": 129,
+    "medium": 1085,
+    "hard": 699
+   },
+   "reasoning": true
+  }
+ }
+}

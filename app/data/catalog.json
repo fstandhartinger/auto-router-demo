@@ -31,7 +31,12 @@
     "badge": "p2p",
     "note": "A ternary 27B model running on WebGPU in volunteers' browsers. Free, slow, best effort.",
     "capability_basis": "Hand-set from the published model card and our own browser evaluation, not from a benchmark feed. Treated as weak evidence.",
-    "peer_to_peer": true
+    "peer_to_peer": true,
+    "speed": {
+     "reasoning": false,
+     "thinking_dialect": null,
+     "health_key": null
+    }
    }
   },
   {
@@ -47,7 +52,12 @@
     "label": "Qwen3.8 27B",
     "org": "Alibaba",
     "badge": "free",
-    "note": "Free tier, open weights. No prefix cache discount measured on this route."
+    "note": "Free tier, open weights. No prefix cache discount measured on this route.",
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "chat_template_kwargs",
+     "health_key": "qwen3.8-27b"
+    }
    }
   },
   {
@@ -63,7 +73,12 @@
     "label": "DeepSeek V4 Flash",
     "org": "DeepSeek",
     "badge": "free",
-    "note": "Free tier, open weights."
+    "note": "Free tier, open weights.",
+    "speed": {
+     "reasoning": false,
+     "thinking_dialect": null,
+     "health_key": null
+    }
    }
   },
   {
@@ -80,7 +95,12 @@
     "label": "Kimi K3",
     "org": "Moonshot AI",
     "badge": "free",
-    "note": "Free tier, open weights. Strongest of the free routes on our task set."
+    "note": "Free tier, open weights. Strongest of the free routes on our task set.",
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "chat_template_kwargs",
+     "health_key": "kimi-k3"
+    }
    }
   },
   {
@@ -95,7 +115,12 @@
     "label": "GLM-5.3 Flash",
     "org": "Z.ai",
     "badge": "cheap",
-    "note": "Metered, very cheap, high cache read share."
+    "note": "Metered, very cheap, high cache read share.",
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "reasoning_effort",
+     "health_key": "glm-5.3-flash"
+    }
    },
    "_offer": "no offer pinned: the cheapest public offer that publishes cache prices is used"
   },
@@ -116,7 +141,12 @@
     "label": "GPT-5.6 Luna",
     "org": "OpenAI",
     "badge": "cheap",
-    "note": "Metered. Solved 68 of 78 tasks for $0.25 - the best success per dollar we measured."
+    "note": "Metered. Solved 68 of 78 tasks for $0.25 - the best success per dollar we measured.",
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "reasoning_effort",
+     "health_key": null
+    }
    }
   },
   {
@@ -136,7 +166,12 @@
     "label": "GPT-5.6 Sol",
     "org": "OpenAI",
     "badge": "strong",
-    "note": "Solved the most tasks of any model we measured: 75 of 78."
+    "note": "Solved the most tasks of any model we measured: 75 of 78.",
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "reasoning_effort",
+     "health_key": null
+    }
    }
   },
   {
@@ -158,7 +193,12 @@
     "org": "Anthropic",
     "badge": "frontier",
     "note": "The frontier baseline the saving is measured against.",
-    "baseline": true
+    "baseline": true,
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": null,
+     "health_key": null
+    }
    }
   }
  ]

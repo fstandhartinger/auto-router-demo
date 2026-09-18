@@ -57,6 +57,10 @@ class Settings:
     max_call_usd: float = 0.03
     max_prompt_chars: int = 4000
     max_output_tokens: int = 900
+    #: How long one route may take to show its first token before the demo
+    #: moves on to the next candidate. A public playground that sits silent is
+    #: indistinguishable from a broken one.
+    first_token_deadline_s: float = 12.0
     #: Chat turns kept per browser session, and sessions kept at all.
     max_chat_turns: int = 12
     max_sessions: int = 500
@@ -90,6 +94,7 @@ class Settings:
             max_call_usd=_float("DEMO_MAX_CALL_USD", 0.03),
             max_prompt_chars=_int("DEMO_MAX_PROMPT_CHARS", 4000),
             max_output_tokens=_int("DEMO_MAX_OUTPUT_TOKENS", 900),
+            first_token_deadline_s=_float("DEMO_FIRST_TOKEN_DEADLINE_S", 12.0),
             bonsai_enabled=bool(base) and os.environ.get("BONSAI_ENABLED", "1") != "0",
             bonsai_base_url=base,
             bonsai_model=os.environ.get("BONSAI_MODEL") or cls.bonsai_model,
