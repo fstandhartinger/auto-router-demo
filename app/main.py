@@ -614,6 +614,13 @@ async def chat(request: Request):
                              headers={"Cache-Control": "no-store", "X-Accel-Buffering": "no"})
 
 
+def _deadline_for(execution: Execution) -> float:
+    """This route's own first-token deadline, from what it was measured to do."""
+    return latency.first_token_deadline(execution.model_name,
+                                        ENGINE.catalog_meta.get(execution.model_name, {}),
+                                        FIRST_TOKEN_DEADLINE_S)
+
+
 def _plan_for(execution: Execution, decision) -> latency.ReasoningPlan:
     """How hard the route that is about to answer should think about this turn."""
     return latency.plan_reasoning(execution.model_name, decision.request.difficulty,
@@ -670,37 +677,54 @@ async def _run_turn(conv, messages: list[dict], emit, keys: tuple[str, str],
                                   "substituted": execution.substituted, "note": execution.note,
                                   "thinking": getattr(plan, "level", "none"),
                                   "thinkingNote": getattr(plan, "note", "")}))
-    usage, error, answer, timing = await _stream_answer(execution, messages, emit, plan)
+    usage, error, answer, timing = await _stream_answer(execution, messages, emit, plan,
+                                                        deadline=_deadline_for(execution))
     tried = {execution.model_name}
-    # A route that produced nothing is not answering this turn, whether it went
-    # quiet until its deadline or the endpoint refused outright - a free public
-    # endpoint hitting its shared upstream rate limit is the common case. Take
-    # the next candidate by the same ranking rather than leaving the visitor
-    # with an apology, and keep anything the route did manage to say.
-    while error and not answer.strip():
+    # Whatever the turn cost on the way to an answer, including the attempts
+    # that produced nothing. Only the last call used to be counted, so a route
+    # that thought for two cents and then stopped was free as far as the daily
+    # budget was concerned.
+    spent = _actual_cost(execution.model_name, usage, decision)
+    # A route that produced no answer is not answering this turn, however it
+    # failed: it went quiet until its deadline, the endpoint refused outright -
+    # a free public endpoint hitting its shared upstream rate limit is the
+    # common case - or it spent the whole budget thinking and stopped. Take the
+    # next candidate by the same ranking rather than leaving the visitor with
+    # an apology.
+    while not answer.strip():
         nxt = next(_fallbacks(decision, conv, skip=tried), None)
         if nxt is None:
             break
         tried.add(nxt.model_name)
         await emit(_sse("rerouted", {"from": execution.label, "to": nxt.label,
-                                     "reason": error}))
+                                     "reason": error or (
+                                         f"spent all {_output_budget(plan)} tokens thinking"
+                                         if usage.reasoning_tokens else
+                                         "the route sent nothing")}))
         execution = nxt
         plan = _plan_for(execution, decision)
         await emit(_sse("answering", {"model": nxt.model_name, "label": nxt.label,
                                       "substituted": True, "note": "",
                                       "thinking": plan.level, "thinkingNote": plan.note}))
-        usage, error, answer, timing = await _stream_answer(execution, messages, emit, plan)
+        usage, error, answer, timing = await _stream_answer(execution, messages, emit, plan,
+                                                            deadline=_deadline_for(execution))
+        spent += _actual_cost(execution.model_name, usage, decision)
     if not answer.strip():
         # Every route the demo may use is exhausted, or the one that answered
         # spent its whole capped budget thinking and never started. Say which,
         # rather than showing an empty box.
-        await emit(_sse("answer_error", {
-            "message": (f"No route this demo may use answered this request: {error}. The routing "
-                        "above still ran and costs nothing.") if error else
-                       (f"{execution.label} used all {_output_budget(plan)} tokens this demo "
-                        "allows on its own reasoning and never got to the answer. That is a limit "
-                        "of the demo's output cap, not of the routing decision above.")}))
-    cost = _actual_cost(execution.model_name, usage, decision)
+        if error:
+            message = (f"No route this demo may use answered this request: {error}. The routing "
+                       "above still ran and costs nothing.")
+        elif usage.reasoning_tokens:
+            message = (f"{execution.label} used all {_output_budget(plan)} tokens this demo "
+                       "allows on its own reasoning and never got to the answer. That is a limit "
+                       "of the demo's output cap, not of the routing decision above.")
+        else:
+            message = (f"{execution.label} closed the connection without sending anything. "
+                       "The routing above still ran and costs nothing.")
+        await emit(_sse("answer_error", {"message": message}))
+    cost = spent
     LIMITER.record_spend(cost)
     if session is not None:
         session.spent_usd += cost

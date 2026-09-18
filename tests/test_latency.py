@@ -249,12 +249,87 @@ def test_a_route_that_says_nothing_is_replaced(client, monkeypatch):
 
     monkeypatch.setattr(providers, "stream_answer", stall)
     monkeypatch.setattr(main, "FIRST_TOKEN_DEADLINE_S", 0.2)
+    # The deadline is per route and derived from its measured first token, so
+    # the ceiling has to come down with the floor for the test to be quick.
+    monkeypatch.setattr(latency, "MAX_FIRST_TOKEN_DEADLINE_S", 0.2)
     events = sse(client.post("/api/run", json={"prompt": "Write a small function"}))
     kinds = [event for event, _ in events]
     assert "rerouted" in kinds, kinds
     rerouted = first(events, "rerouted")
     assert rerouted["from"] != rerouted["to"]
     assert "".join(d["text"] for e, d in events if e == "delta") == "the next route answered"
+
+
+def test_a_route_that_thinks_its_whole_budget_away_is_replaced(client, monkeypatch):
+    """Measured on Claude Opus 5 on 18 Sep 2026: on a hard question it spent
+    every token of the budget on reasoning and sent no answer at all. That is a
+    failed turn, not an answer, so the next route gets it."""
+    from app import providers
+
+    burned = []
+
+    async def think_only(route, messages, max_tokens, http_client, extra=None, timeout=None):
+        if not burned:
+            burned.append(route.model)
+            yield "reasoning", "thinking" * 50
+            yield "usage", providers.Usage(prompt_tokens=10, completion_tokens=900,
+                                           reasoning_tokens=900)
+            return
+        yield "delta", "the next route answered"
+        yield "usage", providers.Usage(prompt_tokens=10, completion_tokens=4)
+
+    monkeypatch.setattr(providers, "stream_answer", think_only)
+    events = sse(client.post("/api/run", json={"prompt": "Write a small function"}))
+    assert "rerouted" in [event for event, _ in events]
+    assert "thinking" in first(events, "rerouted")["reason"]
+    assert "".join(d["text"] for e, d in events if e == "delta") == "the next route answered"
+
+
+def test_every_attempt_is_charged_to_the_daily_budget(client, monkeypatch):
+    """Only the call that answered used to be counted, so a route that thought
+    for two cents and then stopped was free as far as the budget was concerned."""
+    from app import main, providers
+
+    seen = []
+
+    async def bill_then_answer(route, messages, max_tokens, http_client, extra=None, timeout=None):
+        seen.append(route.model)
+        if len(seen) == 1:
+            yield "usage", providers.Usage(prompt_tokens=10, completion_tokens=900,
+                                           reasoning_tokens=900, cost_usd=0.02)
+            return
+        yield "delta", "answer"
+        yield "usage", providers.Usage(prompt_tokens=10, completion_tokens=2, cost_usd=0.001)
+
+    monkeypatch.setattr(providers, "stream_answer", bill_then_answer)
+    from app.engine import ENGINE
+
+    before = main.LIMITER._day_spend
+    # A hard request, so the route that fails first is a metered one and the
+    # test is about money rather than about a free tier.
+    events = sse(client.post("/api/run", json={"prompt": "This one is hard"}))
+    assert len(seen) >= 2, "the first route was supposed to fail"
+    assert not ENGINE.context().catalog[seen[0]].prices.is_free, \
+        "a hard request should start on a metered route"
+    # A free route costs nothing whatever the provider reports, so the expected
+    # total depends on which routes the policy actually picked.
+    expected = sum(0.0 if ENGINE.context().catalog[name].prices.is_free
+                   else (0.02 if i == 0 else 0.001)
+                   for i, name in enumerate(seen))
+    assert first(events, "done")["costUsd"] == pytest.approx(expected)
+    assert main.LIMITER._day_spend == pytest.approx(before + expected)
+    assert expected > 0.001, "the failed attempt was not charged"
+
+
+def test_a_slow_starter_gets_longer_than_a_fast_one(client):
+    """A flat deadline bounced the strongest routes off the hard questions they
+    exist for: GPT-5.6 Sol needs five to forty seconds before it says anything."""
+    from app.engine import ENGINE
+
+    fast = latency.first_token_deadline("tiny-free", ENGINE.catalog_meta["tiny-free"], 12.0)
+    slow = latency.first_token_deadline("big-frontier", ENGINE.catalog_meta["big-frontier"], 12.0)
+    assert slow > fast >= 12.0
+    assert slow <= latency.MAX_FIRST_TOKEN_DEADLINE_S
 
 
 def test_a_route_whose_endpoint_refuses_is_replaced_too(client, monkeypatch):

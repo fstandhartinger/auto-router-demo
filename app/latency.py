@@ -53,6 +53,9 @@ MIN_CANDIDATES = 1
 #: when it keeps failing.
 COOLDOWN_S = float(os.environ.get("DEMO_ROUTE_COOLDOWN_S", "") or 120.0)
 MAX_COOLDOWN_S = 1800.0
+#: Ceiling on the per-route first-token deadline. Beyond this a visitor staring
+#: at a spinner is worse than an answer from the next route down.
+MAX_FIRST_TOKEN_DEADLINE_S = float(os.environ.get("DEMO_MAX_FIRST_TOKEN_DEADLINE_S", "") or 25.0)
 
 #: Difficulty at or below which the demo asks for no thinking at all. Jev's
 #: difficulty is already mapped onto 0..1 by the router's calibration.
@@ -380,6 +383,20 @@ def expected_seconds(model: ModelInfo, req: TurnRequest, meta: dict,
         out = min(out, output_tokens)
     seconds = speed.seconds(out, thinking)
     return seconds * max(1, req.steps)
+
+
+def first_token_deadline(model_name: str, meta: dict, floor: float) -> float:
+    """How long to wait for this route's first token before moving on.
+
+    One number for every route was wrong in both directions. GPT-5.6 Sol needs
+    five to forty seconds before it says anything on a hard question, so a flat
+    twelve-second deadline bounced the strongest routes off exactly the requests
+    they exist for - measured on 18 Sep 2026, when a hard bug report was handed
+    down three routes and ended with no answer. A route measured to start in one
+    second still gets the short deadline.
+    """
+    speed = BOOK.speed(model_name, ((meta or {}).get("speed") or {}).get("health_key"))
+    return max(floor, min(MAX_FIRST_TOKEN_DEADLINE_S, 2.5 * speed.ttft_s + 5.0))
 
 
 def route_is_skippable(model_name: str, meta: dict) -> bool:
