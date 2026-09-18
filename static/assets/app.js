@@ -409,7 +409,9 @@ function sentence(reason, chosen, data) {
       `${chosen.pSuccess >= 0.95 ? "it is very likely to get this right" :
         chosen.pSuccess >= 0.8 ? "it is likely enough to get this right" :
         "nothing here is safe, so the router buys the best chance per dollar"}` +
-      `, and paying more would buy less than the risk it removes.`;
+      `, and paying more — in money or in waiting — would buy less than the risk it removes` +
+      `${chosen.expectedSeconds ? `. Expected time to a finished answer: about ${secs(chosen.expectedSeconds)}` : ""}` +
+      `${chosen.thinking === "off" ? ", with the thinking pass switched off for a request this easy" : ""}.`;
   }
   return reason;
 }

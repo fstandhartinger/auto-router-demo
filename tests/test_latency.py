@@ -293,3 +293,11 @@ def test_a_substituted_route_gets_its_own_reasoning_plan(client, monkeypatch):
     # mid-cheap's dialect, not the chosen route's.
     assert SENT[-1]["extra"] == {"chat_template_kwargs": {"enable_thinking": False}}
     assert answering["thinking"] == "off"
+
+
+def test_the_reason_admits_that_time_is_in_the_score(client):
+    """The number in the reason has seconds in it; it must not claim to be only money."""
+    events = sse(client.post("/api/run", json={"prompt": "Write a small function"}))
+    reason = first(events, "decision")["selection"]["reason"]
+    assert "cost and time" in reason, reason
+    assert "s)" in reason, reason

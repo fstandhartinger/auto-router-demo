@@ -358,3 +358,16 @@ class LatencyAwarePolicy(ExpectedCostPolicy):
         if not math.isfinite(money):
             return money, p
         return money + self.second_usd * self.seconds_for(m, req), p
+
+    def choose(self, conv, req, ctx):
+        """The published choice, with a reason that admits what it minimised.
+
+        The score is no longer only money, so it must not keep calling itself
+        "min expected cost" - that number now has seconds in it.
+        """
+        choice = super().choose(conv, req, ctx)
+        model = ctx.catalog.get(choice.model)
+        if model is not None and choice.reason.startswith("min expected cost"):
+            choice.reason = (f"min expected cost and time ${choice.expected_cost:.4f} "
+                             f"(p={choice.p_success:.2f}, ~{self.seconds_for(model, req):.0f}s)")
+        return choice
