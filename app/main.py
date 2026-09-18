@@ -28,7 +28,7 @@ from . import classify, providers
 from .bonsai import MODEL_NAME as BONSAI_MODEL
 from .bonsai import SWARM
 from .engine import ENGINE, what_if
-from .limits import LIMITER, client_key
+from .limits import LIMITER, Limiter, client_key
 from auto_router.catalog import CATEGORIES
 
 from .settings import DATA, SETTINGS
@@ -40,6 +40,10 @@ STATIC = ROOT / "static"
 PAUSE_STEPS = [0, 60, 240, 290, 600, 1800, 3600]
 
 log = logging.getLogger("demo")
+
+#: The decision explorer costs nothing but CPU, so it gets its own, looser
+#: bucket rather than eating a visitor's playground runs.
+WHAT_IF_LIMITER = Limiter(per_ip_per_hour=600, global_per_day=200_000, daily_budget_usd=1e9)
 
 app = FastAPI(title="Auto-router playground", docs_url=None, redoc_url=None)
 
@@ -314,6 +318,10 @@ async def what_if_route(request: Request):
     """Ask the policy what it would do, without sending anything to a model."""
     if not ENGINE.ready():
         return JSONResponse({"error": "not ready"}, status_code=503)
+    key = client_key(_ip(request))
+    if not WHAT_IF_LIMITER.check(key).allowed:
+        return JSONResponse({"error": "per-ip"}, status_code=429)
+    WHAT_IF_LIMITER.record_run(key)
     body = await request.json()
     catalog_names = {m.name for m in ENGINE.config.catalog.all()}
     current = body.get("current") if body.get("current") in catalog_names else None

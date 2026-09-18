@@ -227,3 +227,22 @@ def test_every_page_serves_the_app_shell(client):
         resp = client.get(path)
         assert resp.status_code == 200
         assert "playground" in resp.text
+
+
+def test_the_decision_explorer_has_its_own_bucket(client):
+    from app import main
+
+    # It costs CPU, not money, so it must not spend a visitor's playground runs
+    # - and it must still be bounded.
+    before = client.get("/api/meta").json()["limits"]["perIpLeft"]
+    client.post("/api/what-if", json={"promptTokens": 20000})
+    assert client.get("/api/meta").json()["limits"]["perIpLeft"] == before
+
+    main.WHAT_IF_LIMITER.per_ip_per_hour = 1
+    try:
+        main.WHAT_IF_LIMITER._hits.clear()
+        assert client.post("/api/what-if", json={"promptTokens": 20000}).status_code == 200
+        assert client.post("/api/what-if", json={"promptTokens": 20000}).status_code == 429
+    finally:
+        main.WHAT_IF_LIMITER.per_ip_per_hour = 600
+        main.WHAT_IF_LIMITER._hits.clear()
