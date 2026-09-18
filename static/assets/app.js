@@ -312,7 +312,7 @@ function paintClassification(data) {
     <dl class="kv" style="margin-top:.9rem">
       <dt>Difficulty</dt>
       <dd><strong>${level} / 4</strong> — ${DIFFICULTY_WORDS[level]}
-        <div class="meter">${[0, 1, 2, 3, 4].map((i) =>
+        <div class="meter">${[1, 2, 3, 4].map((i) =>
           `<i class="${i <= level ? "on" : ""}"></i>`).join("")}</div></dd>
       <dt>Stakes</dt><dd>${usd(c.stakes_usd, 2)} if it is subtly wrong and nobody notices</dd>
       <dt>Latency</dt><dd>${Math.round(c.latency_ms)} ms</dd>
@@ -320,7 +320,7 @@ function paintClassification(data) {
     </dl>
     <div class="flags">${flags.map(([label, value]) => {
       const on = value === true || value > 0.5;
-      return `<span class="flag ${on ? "on" : ""}">${on ? "✓" : "·"} ${escapeHtml(label)}</span>`;
+      return `<span class="flag ${on ? "on" : "off"}">${on ? "✓ " : ""}${escapeHtml(label)}</span>`;
     }).join("")}</div>`;
 }
 
@@ -371,10 +371,13 @@ function paintDecision(data) {
     </div>
     <p class="decision-reason">${escapeHtml(sentence(sel.reason, chosen, data))}</p>
     ${saving ? `<div class="saving">
-      <span class="num">${saving.factor ? saving.factor + "×" : usd(saving.savedUsd)} cheaper</span>
-      <div class="sub">This turn: ${usd(saving.chosenUsd)} here versus
-        ${usd(saving.baseline.callUsd)} if every turn went to ${escapeHtml(saving.baseline.label)}
-        — at ${pct(chosen.pSuccess)} versus ${pct(saving.baseline.pSuccess)} chance of getting it right.</div>
+      <span class="num">${saving.chosenUsd === 0 ? "Free here"
+        : saving.factor ? saving.factor + "× cheaper" : usd(saving.savedUsd) + " cheaper"}</span>
+      <div class="sub">${usd(saving.savedUsd)} saved on this turn against sending every turn to
+        ${escapeHtml(saving.baseline.label)}, which would cost ${usd(saving.baseline.callUsd)}${
+        Math.abs(chosen.pSuccess - saving.baseline.pSuccess) < 0.02
+          ? " and is no more likely to get this right"
+          : `, at ${pct(chosen.pSuccess)} versus ${pct(saving.baseline.pSuccess)} chance of getting it right`}.</div>
     </div>` : ""}
     <dl class="kv" style="margin-top:.9rem">
       <dt>Cache</dt><dd>${cacheWords(data.cache)}</dd>
@@ -672,8 +675,8 @@ async function initHow() {
   const tbody = el("#catalog-table").querySelector("tbody");
   tbody.replaceChildren(...meta.models.map((m) => {
     const tr = document.createElement("tr");
-    const bases = Object.entries(m.capabilityBasis || {}).slice(0, 3)
-      .map(([k, v]) => `${k}: ${v}`).join("; ");
+    const all = Object.entries(m.capabilityBasis || {}).map(([k, v]) => `${k}: ${v}`).join("\n");
+    const one = (m.capabilityBasis || {}).coding || (m.capabilityBasis || {}).general || "";
     tr.innerHTML = `
       <td><span class="m-name"><i class="dot" style="background:${colorFor(m.name)}"></i>
         <span><b>${escapeHtml(m.label)}</b> ${badge(m)}<span class="m-org">${escapeHtml(m.org)}</span></span></span></td>
@@ -681,7 +684,7 @@ async function initHow() {
       <td class="num"><span class="price-stack">${perM(m.prices.input)} · ${perM(m.prices.output)}
         <span>· ${m.prices.cacheRead === null ? "no cache" : perM(m.prices.cacheRead)}</span></span></td>
       <td class="num">${m.cache.ttlSeconds ? duration(m.cache.ttlSeconds) : "none"} · ${pct(m.cache.hitRate)}</td>
-      <td class="muted" style="font-size:.8rem">${escapeHtml(bases || "set in the demo's own config")}</td>`;
+      <td class="basis" title="${escapeHtml(all)}">${escapeHtml(one || "set in the demo's own config")}</td>`;
     return tr;
   }));
 
@@ -710,11 +713,23 @@ function initTheme() {
   // Dark-first: the page ships dark and only a deliberate toggle changes it.
   const saved = localStorage.getItem("ar-theme");
   if (saved) document.documentElement.dataset.theme = saved;
+  paintThemeIcon();
   el("#theme-toggle").addEventListener("click", () => {
     const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next;
     localStorage.setItem("ar-theme", next);
+    paintThemeIcon();
   });
+}
+
+const SUN = '<path d="M12 5V3m0 18v-2m7-7h2M3 12h2m11.9-4.9 1.4-1.4M5.7 18.3l1.4-1.4m9.8 1.4 1.4 1.4M5.7 5.7 7.1 7.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="4" fill="currentColor"/>';
+const MOON = '<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="currentColor"/>';
+
+function paintThemeIcon() {
+  const dark = document.documentElement.dataset.theme !== "light";
+  const button = el("#theme-toggle");
+  button.querySelector("svg").innerHTML = dark ? SUN : MOON;
+  button.setAttribute("aria-label", dark ? "Switch to the light theme" : "Switch to the dark theme");
 }
 
 initTheme();

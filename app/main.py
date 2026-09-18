@@ -426,6 +426,11 @@ async def chat(request: Request):
     session = _session(body.get("session"))
     if not session.messages:
         _seed_scenario(session)
+    if session.messages[-1].get("role") == "user":
+        # The previous turn was abandoned (the browser went away mid-stream), so
+        # its question never got an answer. Drop it rather than send two user
+        # messages in a row.
+        session.messages.pop()
     pause = int(body.get("pauseSeconds") or 0)
     pause = max(0, min(pause, 24 * 3600))
     session.clock_offset += pause

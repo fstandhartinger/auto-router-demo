@@ -74,7 +74,7 @@ function tableView(headers, rows) {
     top of the scale: a bar chart would have to start at zero and then all the
     bars look identical, which hides the only thing worth seeing. */
 function dotPlot({ title, sub, rows, min, max, format, highlight, color }) {
-  const rowH = 30, L = 210, R = 62, T = 12;
+  const rowH = 30, L = 232, R = 62, T = 12;
   const H = T + rows.length * rowH + 40;
   const W = 620;
   const px = (v) => L + ((v - min) / (max - min)) * (W - L - R);
@@ -92,7 +92,8 @@ function dotPlot({ title, sub, rows, min, max, format, highlight, color }) {
         const pick = highlight && highlight(r);
         return `<g class="pt" data-tip="${esc(`<b>${r.label}</b><span class="t-sub">${r.tip || format(r.value)}</span>`)}">
           <rect x="0" y="${y - rowH / 2}" width="${W}" height="${rowH}" fill="transparent"/>
-          <text x="${L - 12}" y="${y + 4}" text-anchor="end" class="${pick ? "lbl-strong" : ""}">${esc(r.label)}</text>
+          <text x="${L - 12}" y="${y + 4}" text-anchor="end" class="${pick ? "lbl-strong" : ""}">${
+            esc(r.label.length > 33 ? r.label.slice(0, 32) + "…" : r.label)}</text>
           <line class="axis-line" x1="${L}" x2="${px(r.value)}" y1="${y}" y2="${y}" stroke-dasharray="2 3"/>
           <circle cx="${px(r.value)}" cy="${y}" r="${pick ? 7 : 5.5}" fill="${color || "var(--s3)"}"
                   stroke="var(--surface)" stroke-width="2"/>
@@ -111,7 +112,7 @@ function dotPlot({ title, sub, rows, min, max, format, highlight, color }) {
 
 /* -------------------------------------------------------------- scatter */
 function scatterChart({ title, sub, points, xLabel, yLabel }) {
-  const W = 680, H = 360, L = 46, R = 22, T = 16, B = 44;
+  const W = 680, H = 370, L = 58, R = 26, T = 16, B = 48;
   const xs = points.map((p) => p.x);
   const lo = Math.log10(Math.min(...xs) * 0.7), hi = Math.log10(Math.max(...xs) * 1.4);
   const yMin = Math.min(...points.map((p) => p.y)) - 4;
@@ -132,8 +133,8 @@ function scatterChart({ title, sub, points, xLabel, yLabel }) {
       <line class="axis-line" x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}"/>
       ${ticks.map((t) => `<text x="${px(t)}" y="${H - B + 18}" text-anchor="middle">${money(t)}</text>`).join("")}
       <text x="${W / 2}" y="${H - 6}" text-anchor="middle" class="lbl-strong">${esc(xLabel)}</text>
-      <text x="14" y="${(H - B) / 2}" text-anchor="middle" class="lbl-strong"
-            transform="rotate(-90 14 ${(H - B) / 2})">${esc(yLabel)}</text>
+      <text x="18" y="${(H - B) / 2}" text-anchor="middle" class="lbl-strong"
+            transform="rotate(-90 18 ${(H - B) / 2})">${esc(yLabel)}</text>
       ${points.map((p) => `
         <g class="pt" data-tip="${esc(p.tip)}">
           <circle cx="${px(p.x)}" cy="${py(p.y)}" r="7" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/>
@@ -265,7 +266,6 @@ export function renderResults(root, data) {
       })),
       format: (v) => v.toFixed(0) + " %",
       highlight: (r) => /one cheap metered/.test(r.label),
-      color: "var(--s2)",
     }),
     barChart({
       title: "API spend per week",
@@ -294,7 +294,8 @@ export function renderResults(root, data) {
     yLabel: "tasks solved of 78",
     points: qm.models.map((label, i) => ({
       label, x: qm.run_cost_usd[i], y: qm.solved[i],
-      right: qm.run_cost_usd[i] < 3,
+      right: !qm.run_cost_usd.some((x, j) => j !== i && x > qm.run_cost_usd[i]
+                                     && x < qm.run_cost_usd[i] * 3.2),
       dy: qm.solved.filter((v, j) => v === qm.solved[i] && j < i).length * 15,
       tip: `<b>${esc(label)}</b><span class="t-sub">${qm.solved[i]} of 78 solved · ` +
         `${money(qm.run_cost_usd[i])} for the run${qm.cost_estimated[i] ? " (estimated from tokens, it ran on a free tier)" : ""}</span>`,
@@ -334,7 +335,6 @@ export function renderResults(root, data) {
         tip: r.note ? `${pct1(r.read_share[0])} — ${r.note}` : pct1(r.read_share[0]),
       })),
       format: (v) => (v * 100).toFixed(0) + " %",
-      color: "var(--s3)",
     }),
     lineChart({
       title: "Read share by the gap since the previous call",
@@ -367,7 +367,6 @@ export function renderResults(root, data) {
     sub: esc(data.jev.auc_about) + " 0.5 would be a coin flip.",
     rows: data.jev.auc.map((r) => ({ label: r.model, value: r.auc, tip: `AUC ${r.auc}` })),
     format: (v) => v.toFixed(2),
-    color: "var(--s7)",
   }));
   root.append(s5);
 
@@ -381,7 +380,7 @@ export function renderResults(root, data) {
       tip: `${r.solved} of ${r.tasks} solved · ${money(r.usd)} total · ${r.calls} calls · ${r.switches} model switches`,
     })),
     format: (v) => "$" + v.toFixed(4),
-    color: "var(--s4)",
+    highlight: (r) => /minimise expected cost/.test(r.label),
   }));
   s6.append(tableView(["policy", "solved", "total cost", "calls", "mid-turn switches"],
     data.live.rows.map((r) => [r.policy, `${r.solved} / ${r.tasks}`, money(r.usd), r.calls, r.switches])));

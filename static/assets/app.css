@@ -67,7 +67,8 @@ html, body { height: 100%; }
 body {
   margin: 0;
   background:
-    radial-gradient(1100px 620px at 50% -180px, rgba(79, 151, 240, .16), transparent 70%),
+    radial-gradient(1100px 620px at 50% -180px, rgba(79, 151, 240, .16), transparent 70%)
+      no-repeat,
     var(--plane);
   color: var(--ink);
   font-family: var(--sans);
@@ -80,8 +81,10 @@ body {
 
 html[data-theme="light"] body {
   background:
-    radial-gradient(1100px 620px at 50% -200px, rgba(31, 111, 208, .10), transparent 70%),
+    radial-gradient(900px 420px at 50% -240px, rgba(31, 111, 208, .07), transparent 72%),
     var(--plane);
+  background-attachment: scroll, scroll;
+  background-repeat: no-repeat, repeat;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -117,7 +120,7 @@ p { margin: 0 0 1rem; }
 .brand-mark { width: 26px; height: 26px; color: var(--accent); flex: none; }
 .brand-text { font-size: .98rem; }
 .brand-dim { color: var(--muted); font-weight: 480; }
-.nav { display: flex; gap: .2rem; margin-left: auto; }
+.nav { display: flex; gap: .2rem; margin-left: auto; white-space: nowrap; }
 .nav a {
   color: var(--ink-2); padding: .4rem .66rem; border-radius: 8px; font-size: .92rem;
   font-weight: 520;
@@ -148,7 +151,7 @@ main { flex: 1 0 auto; padding-bottom: 4rem; }
   color: var(--muted); font-weight: 600; margin-bottom: .7rem;
 }
 .lede { color: var(--ink-2); font-size: 1.06rem; max-width: 68ch; }
-.lede em { font-style: normal; color: var(--ink); }
+.lede em { font-style: italic; color: var(--ink); }
 .page-head { padding: clamp(2rem, 6vw, 3.4rem) 0 1.2rem; }
 
 /* -------------------------------------------------------------- composer */
@@ -160,7 +163,7 @@ main { flex: 1 0 auto; padding-bottom: 4rem; }
 }
 .composer:focus-within { border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
 .composer textarea {
-  width: 100%; border: 0; background: transparent; color: var(--ink); resize: vertical;
+  width: 100%; border: 0; background: transparent; color: var(--ink); resize: none;
   font: inherit; padding: .7rem .75rem .2rem; outline: none; min-height: 84px;
 }
 .composer textarea::placeholder { color: var(--muted); }
@@ -233,6 +236,7 @@ main { flex: 1 0 auto; padding-bottom: 4rem; }
   color: var(--muted);
 }
 .flag.on { color: var(--ink); border-color: var(--line-strong); }
+.flag.off { opacity: .42; }
 
 /* decision */
 .decision-model { display: flex; align-items: center; gap: .6rem; margin-bottom: .2rem; }
@@ -247,7 +251,11 @@ main { flex: 1 0 auto; padding-bottom: 4rem; }
 .saving .sub { color: var(--ink-2); font-size: .85rem; }
 
 /* tables */
-.table-scroll { overflow-x: auto; }
+.table-scroll { overflow-x: auto; overscroll-behavior-x: contain; }
+/* A cut-off column has to look cut off, not broken. */
+@media (max-width: 900px) {
+  .table-scroll { mask-image: linear-gradient(to right, #000 calc(100% - 16px), transparent); }
+}
 table.candidates { width: 100%; border-collapse: collapse; font-size: .88rem; }
 table.candidates th, table.candidates td {
   padding: .6rem .85rem; text-align: left; border-bottom: 1px solid var(--line);
@@ -277,6 +285,11 @@ table.candidates tbody tr:last-child td { border-bottom: 0; }
 .badge-p2p { color: var(--p2p); border-color: color-mix(in srgb, var(--p2p) 45%, transparent); }
 .weak { color: var(--warn); cursor: help; border-bottom: 1px dotted currentColor; }
 .table-foot { color: var(--muted); font-size: .8rem; padding: .7rem 1rem 0; margin: 0 0 .8rem; }
+td.basis {
+  color: var(--muted); font-size: .78rem; max-width: 22rem; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap; cursor: help;
+}
+table.candidates td:first-child { min-width: 11rem; }
 .price-stack { display: block; font-variant-numeric: tabular-nums; }
 .price-stack span { color: var(--muted); }
 
@@ -320,7 +333,7 @@ table.candidates tbody tr:last-child td { border-bottom: 0; }
 .attachment p { color: var(--ink-2); font-size: .85rem; margin: .5rem 0 .4rem; }
 .attachment pre {
   font-family: var(--mono); font-size: .72rem; color: var(--muted); margin: 0;
-  max-height: 6.5rem; overflow: hidden; white-space: pre; overflow-x: auto;
+  max-height: 6.5rem; overflow: auto; white-space: pre; max-width: 100%;
   border-left: 2px solid var(--line); padding-left: .6rem;
   mask-image: linear-gradient(#000 55%, transparent);
 }
@@ -332,12 +345,42 @@ table.candidates tbody tr:last-child td { border-bottom: 0; }
 }
 .controls label { display: grid; gap: .3rem; font-size: .82rem; color: var(--muted); }
 .controls label.check { display: flex; align-items: center; gap: .45rem; align-self: end; }
-.controls input[type=range] { accent-color: var(--accent); width: 100%; }
-.controls input[type=checkbox] { accent-color: var(--accent); width: 16px; height: 16px; }
-.controls select {
-  background: var(--surface); color: var(--ink); border: 1px solid var(--line);
-  border-radius: 7px; padding: .35rem .45rem; font: inherit; font-size: .88rem;
+.controls input[type=range], .pause-control input[type=range] {
+  accent-color: var(--accent); width: 100%; height: 4px; background: var(--grid);
+  border-radius: 999px; appearance: none; -webkit-appearance: none; cursor: pointer;
 }
+.controls input[type=range]::-webkit-slider-thumb,
+.pause-control input[type=range]::-webkit-slider-thumb {
+  appearance: none; -webkit-appearance: none; width: 15px; height: 15px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--surface); cursor: grab;
+}
+.controls input[type=range]::-moz-range-thumb,
+.pause-control input[type=range]::-moz-range-thumb {
+  width: 13px; height: 13px; border-radius: 50%; background: var(--accent);
+  border: 2px solid var(--surface); cursor: grab;
+}
+.controls input[type=checkbox] {
+  appearance: none; -webkit-appearance: none; width: 17px; height: 17px; flex: none;
+  border: 1px solid var(--line-strong); border-radius: 5px; background: var(--surface);
+  display: grid; place-content: center; cursor: pointer;
+}
+.controls input[type=checkbox]::after {
+  content: ""; width: 9px; height: 9px; border-radius: 2px; background: var(--accent);
+  transform: scale(0); transition: transform .12s ease;
+}
+.controls input[type=checkbox]:checked::after { transform: scale(1); }
+.controls input[type=checkbox]:checked { border-color: var(--accent); }
+.controls select {
+  appearance: none; -webkit-appearance: none;
+  background: var(--surface) no-repeat right .55rem center/10px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+                    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: right 1rem top 1.05rem, right .65rem top 1.05rem;
+  background-size: 6px 6px, 6px 6px;
+  color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
+  padding: .45rem 2rem .45rem .6rem; font: inherit; font-size: .9rem; cursor: pointer;
+}
+.controls select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .controls output { color: var(--ink); font-size: .92rem; font-variant-numeric: tabular-nums; }
 .verdict-box {
   border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
@@ -347,7 +390,8 @@ table.candidates tbody tr:last-child td { border-bottom: 0; }
 .verdict-box .head { display: flex; align-items: center; gap: .55rem; margin-bottom: .25rem; }
 .verdict-box .head strong { font-size: 1.15rem; letter-spacing: -.02em; }
 .verdict-box .why { color: var(--ink-2); font-size: .9rem; margin: 0; }
-.chat-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.2rem; align-items: start; }
+.chat-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 1.2rem; align-items: start; }
+.chat-col, .chat-side { min-width: 0; }
 .chat { display: grid; gap: .8rem; }
 .chat:not(:empty) { margin-bottom: 1rem; }
 .msg { border: 1px solid var(--line); border-radius: var(--radius); padding: .8rem .95rem; background: var(--surface); }
@@ -373,11 +417,15 @@ table.candidates tbody tr:last-child td { border-bottom: 0; }
 .curve-row .t { color: var(--muted); font-variant-numeric: tabular-nums; }
 .curve-row .m { display: flex; align-items: center; gap: .4rem; }
 .curve-row .m .dot { width: 8px; height: 8px; border-radius: 50%; }
-.chat-side { display: grid; gap: 1rem; position: sticky; top: 76px; }
+.chat-side { display: grid; gap: 1rem; position: sticky; top: 76px; align-content: start; }
 
 /* --------------------------------------------------------------- results */
-.prose { max-width: 78ch; }
+/* The measure is set per block, not on the container: the container keeps the
+   page's normal gutters so prose starts where every other section starts,
+   instead of floating in the middle of the page. */
+.prose > * { max-width: 78ch; }
 .prose h2 { margin-top: 2.2rem; font-size: 1.35rem; }
+.wide-head { margin-top: 2.6rem; font-size: 1.35rem; }
 .prose ul, .prose ol { padding-left: 1.2rem; }
 .prose li { margin-bottom: .55rem; color: var(--ink-2); }
 .prose p { color: var(--ink-2); }
@@ -399,6 +447,7 @@ table.candidates tbody tr:last-child td { border-bottom: 0; }
   padding: .9rem 1rem; overflow-x: auto; font-family: var(--mono); font-size: .84rem;
   color: var(--ink-2); line-height: 1.6;
 }
+.limits { max-width: 78ch; }
 .limits li { color: var(--ink-2); }
 
 .section { margin: 2.6rem 0; }
@@ -425,7 +474,7 @@ table.candidates tbody tr:last-child td { border-bottom: 0; }
 .bar-row .lbl { color: var(--ink-2); }
 .bar-row .lbl.strong { color: var(--ink); font-weight: 600; }
 .bar-track { position: relative; height: 26px; display: block; }
-.bar-fill { display: block; height: 26px; border-radius: 0 4px 4px 0; background: var(--s1); position: relative; min-width: 3px; }
+.bar-fill { display: block; height: 26px; border-radius: 0 4px 4px 0; background: var(--s1); position: relative; min-width: 5px; }
 .bar-fill.alt { background: var(--s2); }
 .bar-fill.pick { background: var(--s3); }
 .bar-val { font-variant-numeric: tabular-nums; color: var(--ink); font-size: .82rem; white-space: nowrap; text-align: right; }
@@ -437,7 +486,16 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
 .tbl th, .tbl td { padding: .5rem .6rem; border-bottom: 1px solid var(--line); text-align: left; }
 .tbl td.num, .tbl th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .tbl thead th { color: var(--muted); font-weight: 560; font-size: .78rem; }
-details.table-view summary { color: var(--muted); font-size: .82rem; cursor: pointer; margin-top: .9rem; }
+.table-view { margin-top: .9rem; }
+.table-view summary {
+  color: var(--ink-2); font-size: .82rem; cursor: pointer; list-style: none;
+  display: inline-flex; align-items: center; gap: .35rem;
+  border: 1px solid var(--line); border-radius: 8px; padding: .3rem .65rem; width: max-content;
+}
+.table-view summary::-webkit-details-marker { display: none; }
+.table-view summary::before { content: "▸"; color: var(--muted); }
+.table-view[open] summary::before { content: "▾"; }
+.table-view summary:hover { border-color: var(--line-strong); color: var(--ink); }
 .svg-chart { width: 100%; height: auto; display: block; overflow: visible; margin-bottom: .4rem; }
 .svg-chart .grid-line { stroke: var(--grid); stroke-width: 1; }
 .svg-chart .axis-line { stroke: var(--axis); stroke-width: 1; }
@@ -471,11 +529,40 @@ details.table-view summary { color: var(--muted); font-size: .82rem; cursor: poi
   .chat-side { position: static; }
   .nav { order: 3; width: 100%; margin-left: 0; overflow-x: auto; }
 }
+@media (max-width: 760px) {
+  /* The SVG scales with the container, so its type has to grow in viewBox units
+     or it lands at 5px on a phone. */
+  .svg-chart text { font-size: 19px; }
+  .svg-chart text.lbl-strong { font-size: 19px; }
+  .code { white-space: pre-wrap; word-break: break-word; }
+  .example { text-align: left; }
+  .nav { flex-wrap: nowrap; }
+  .nav a { white-space: nowrap; }
+}
+
 @media (max-width: 720px) {
   .topbar-inner { height: auto; flex-wrap: wrap; padding-block: .5rem; gap: .5rem; }
   .nav { margin-left: 0; }
   .topbar-actions { margin-left: auto; }
   .prob { grid-template-columns: 6.5rem 1fr 2.6rem; }
+  /* A card title must not become a five-line column next to its own chip. */
+  .card-head { flex-wrap: wrap; }
+  .card-head h2 { width: 100%; }
+  .card-head .chip { margin-left: 0; }
+  table.candidates td:first-child { min-width: 7.5rem; }
+  /* The whole point of the table is the two cost columns; the inputs to them
+     move to the desktop view rather than pushing the conclusion off-screen. */
+  table.candidates th:nth-child(2), table.candidates td:nth-child(2),
+  table.candidates th:nth-child(3), table.candidates td:nth-child(3) { display: none; }
+  table.candidates th, table.candidates td { padding: .55rem .4rem; }
+  #catalog-table th:nth-child(2), #catalog-table td:nth-child(2),
+  #catalog-table th:nth-child(5), #catalog-table td:nth-child(5) { display: none; }
+  #catalog-table th:nth-child(3), #catalog-table td:nth-child(3) { display: table-cell; }
+}
+
+@media (max-width: 560px) {
+  /* Last to go is the success probability: the two cost columns are the point. */
+  table.candidates th:nth-child(4), table.candidates td:nth-child(4) { display: none; }
   .bar-row { grid-template-columns: 1fr auto; gap: .2rem .6rem; }
   .bar-row .lbl { grid-column: 1 / -1; }
   .hero { padding-top: 1.8rem; }

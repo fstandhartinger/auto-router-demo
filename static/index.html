@@ -105,7 +105,7 @@
 
     <article class="card card-decide" id="card-decide">
       <header class="card-head">
-        <h2>3 · Where it goes</h2>
+        <h2>2 · Where it goes</h2>
         <span class="chip chip-quiet">policy F · expected cost</span>
       </header>
       <div class="card-body" id="decide-body">
@@ -116,8 +116,8 @@
 
   <article class="card card-candidates" id="card-candidates">
     <header class="card-head">
-      <h2>2 · What every route would cost</h2>
-      <span class="chip chip-quiet" id="candidates-note">priced for this request</span>
+      <h2>3 · The numbers behind that decision</h2>
+      <span class="chip chip-quiet" id="candidates-note">every route, priced for this request</span>
     </header>
     <div class="table-scroll">
       <table class="candidates" id="candidates-table">
@@ -371,20 +371,29 @@ opencode run -m "auto/auto"        # or any OpenAI-compatible client</code></pre
   </p>
   <div id="p2p-status-box"></div>
 
-  <h2>The catalog right now</h2>
-  <div class="table-scroll">
+</div>
+
+<section class="wrap">
+  <h2 class="wide-head">The catalog right now</h2>
+  <p class="muted" style="font-size:.88rem;max-width:74ch">
+    Read live from the benchmark API when the demo started. The last column is the exact
+    basis of that model's coding capability — hover it for every other topic.
+  </p>
+  <div class="table-scroll card" style="padding:0">
     <table class="candidates" id="catalog-table">
       <caption class="sr-only">Every model in the demo catalog</caption>
       <thead><tr>
         <th scope="col">Model</th><th scope="col" class="num">Context</th>
         <th scope="col" class="num">Price / 1M in · out · cache read</th>
         <th scope="col" class="num">Cache TTL · hit rate</th>
-        <th scope="col">Where the capability comes from</th>
+        <th scope="col">Capability basis</th>
       </tr></thead>
       <tbody></tbody>
     </table>
   </div>
+</section>
 
+<div class="wrap prose">
   <h2>Limits of this demo</h2>
   <ul class="limits">
     <li>The demo only <em>runs</em> free and very cheap routes and caps the answer length. When
