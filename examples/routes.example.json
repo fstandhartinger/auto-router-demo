@@ -1,0 +1,24 @@
+{
+  "_about": "Which endpoint serves each model in app/data/catalog.json, and which environment variable holds that endpoint's key. Keys are referenced by variable name only, never by value. A model with no route here is still priced and can still be chosen - the demo just cannot run it, and says so.",
+  "providers": {
+    "openrouter": {
+      "base_url": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "cache": "openai"
+    },
+    "some-free-host": {
+      "base_url": "https://llm.example.com/v1",
+      "api_key_env": "EXAMPLE_API_KEY",
+      "cache": "generic",
+      "extra_headers": {"User-Agent": "auto-router-demo/1.0"}
+    }
+  },
+  "routes": {
+    "kimi-k3": {"provider": "some-free-host", "upstream_id": "vendor/some-open-model"},
+    "gpt-5.6-luna": {
+      "provider": "openrouter",
+      "upstream_id": "openai/gpt-5.6-luna",
+      "request_extra": {"reasoning": {"effort": "low"}}
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+ "about": "A hermetic catalog for the tests: explicit prices and capabilities, so nothing has to reach the benchmark API. The prices are chosen so that a warm frontier prefix can beat a cold cheaper route, which is the case the cache rule exists for.",
+ "models": [
+  {
+   "name": "bonsai-2-27b-p2p",
+   "free": true,
+   "context_tokens": 32000,
+   "tools": false,
+   "cache": {
+    "ttl_seconds": 0,
+    "min_tokens": 1000000000,
+    "hit_rate": 0.0
+   },
+   "capability": {
+    "general": 42,
+    "coding": 45,
+    "math": 40,
+    "knowledge": 38,
+    "long_context": 30,
+    "tool_use": 30,
+    "agentic": 25,
+    "design": 38,
+    "summarisation": 44
+   },
+   "demo": {
+    "label": "Bonsai 2 27B",
+    "org": "community GPUs",
+    "badge": "p2p",
+    "peer_to_peer": true
+   }
+  },
+  {
+   "name": "tiny-free",
+   "free": true,
+   "context_tokens": 128000,
+   "cache": {
+    "ttl_seconds": 300,
+    "min_tokens": 1024,
+    "hit_rate": 0.0
+   },
+   "capability": {
+    "general": 50,
+    "coding": 55,
+    "math": 48,
+    "knowledge": 50,
+    "long_context": 60,
+    "tool_use": 50,
+    "agentic": 45,
+    "design": 50,
+    "summarisation": 52
+   },
+   "demo": {
+    "label": "Tiny Free",
+    "org": "Test Co",
+    "badge": "free"
+   }
+  },
+  {
+   "name": "mid-cheap",
+   "prices": {
+    "input": 2.0,
+    "output": 3.0,
+    "cache_read": 0.2
+   },
+   "context_tokens": 256000,
+   "cache": {
+    "ttl_seconds": 300,
+    "min_tokens": 1024,
+    "hit_rate": 0.95
+   },
+   "capability": {
+    "general": 62,
+    "coding": 70,
+    "math": 60,
+    "knowledge": 62,
+    "long_context": 70,
+    "tool_use": 60,
+    "agentic": 58,
+    "design": 60,
+    "summarisation": 62
+   },
+   "demo": {
+    "label": "Mid Metered",
+    "org": "Test Co",
+    "badge": "cheap"
+   }
+  },
+  {
+   "name": "big-frontier",
+   "prices": {
+    "input": 5.0,
+    "output": 25.0,
+    "cache_read": 0.5,
+    "cache_write": 6.25
+   },
+   "context_tokens": 400000,
+   "cache_family": "anthropic",
+   "cache": {
+    "ttl_seconds": 300,
+    "min_tokens": 1024,
+    "hit_rate": 0.95
+   },
+   "capability": {
+    "general": 80,
+    "coding": 84,
+    "math": 82,
+    "knowledge": 80,
+    "long_context": 78,
+    "tool_use": 78,
+    "agentic": 80,
+    "design": 76,
+    "summarisation": 78
+   },
+   "demo": {
+    "label": "Big Frontier",
+    "org": "Test Co",
+    "badge": "frontier",
+    "baseline": true
+   }
+  }
+ ]
+}

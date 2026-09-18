@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Auto-router playground — watch a router pick the model</title>
+<meta name="description" content="A live demo of a cost-, cache- and quota-aware LLM router: Jev classifies the request, Benchmark Heaven prices every candidate, the expected-cost rule picks one, and the answer streams back.">
+<meta name="color-scheme" content="dark light">
+<meta property="og:title" content="Auto-router playground">
+<meta property="og:description" content="Type a prompt. Watch a router classify it, price every model, pick one, and answer — with the numbers it used.">
+<meta property="og:type" content="website">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/app.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/" data-link>
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M3 16h7c3 0 4-9 8-9h11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M10 16c3 0 4 9 8 9h11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".45"/>
+        <circle cx="10" cy="16" r="3.1" fill="currentColor"/>
+      </svg>
+      <span class="brand-text">auto&#8209;router<span class="brand-dim">/playground</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="/" data-link data-nav="playground">Playground</a>
+      <a href="/cache" data-link data-nav="cache">Cache</a>
+      <a href="/results" data-link data-nav="results">Results</a>
+      <a href="/how" data-link data-nav="how">How it works</a>
+    </nav>
+    <div class="topbar-actions">
+      <span class="p2p-pill" id="p2p-pill" hidden></span>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
+      </button>
+      <a class="ghost-btn" id="repo-link" href="https://github.com/fstandhartinger/auto-model-router" rel="noopener">Repo</a>
+    </div>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p class="credits">
+      Classifier: <a href="https://typesafe.ai" rel="noopener">Jev by TypeSafe AI</a> ·
+      Data: <a href="https://benchmarkheaven.com" rel="noopener">Benchmark Heaven</a>,
+      which serves numbers from <a href="https://artificialanalysis.ai" rel="noopener">Artificial Analysis</a>
+      and <a href="https://epoch.ai" rel="noopener">Epoch AI</a> ·
+      Router: <a href="https://github.com/fstandhartinger/auto-model-router" rel="noopener">auto-model-router</a> (MIT)
+    </p>
+    <p class="credits">
+      A free, non-commercial showcase. Rate-limited, capped, no prompt logging.
+      <a href="/privacy" data-link>Privacy</a> · <a href="/impressum" data-link>Impressum</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ------------------------------------------------------------------ -->
+<template id="page-playground">
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">A live router, not a mock-up</p>
+    <h1>Ask once. Watch the router<br><em>decide where it goes.</em></h1>
+    <p class="lede">
+      Every request is classified in about half a second, every model is priced for
+      <em>this</em> request at what it actually costs including the risk of having to
+      redo it, and the cheapest expected total wins. Then the answer streams back
+      from whichever model that turned out to be.
+    </p>
+  </div>
+</section>
+
+<section class="wrap composer-wrap">
+  <form class="composer" id="composer">
+    <label class="sr-only" for="prompt">Your prompt</label>
+    <textarea id="prompt" name="prompt" rows="4" maxlength="4000"
+              placeholder="Ask anything — or pick one of the examples below."></textarea>
+    <div class="composer-bar">
+      <span class="counter" id="counter">0 / 4000</span>
+      <button class="primary-btn" type="submit" id="run-btn">
+        <span class="btn-label">Route it</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h12m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </form>
+  <div class="examples" id="examples" role="group" aria-label="Example prompts"></div>
+  <p class="limit-note" id="limit-note"></p>
+</section>
+
+<section class="wrap stage" id="stage" hidden>
+  <div class="grid-decision">
+    <article class="card card-classify" id="card-classify" aria-live="polite">
+      <header class="card-head">
+        <h2>1 · What is this?</h2>
+        <span class="chip chip-quiet" id="classifier-chip">Jev</span>
+      </header>
+      <div class="card-body" id="classify-body">
+        <div class="skeleton-row"></div><div class="skeleton-row short"></div>
+      </div>
+    </article>
+
+    <article class="card card-decide" id="card-decide">
+      <header class="card-head">
+        <h2>3 · Where it goes</h2>
+        <span class="chip chip-quiet">policy F · expected cost</span>
+      </header>
+      <div class="card-body" id="decide-body">
+        <p class="muted">Waiting for the candidates…</p>
+      </div>
+    </article>
+  </div>
+
+  <article class="card card-candidates" id="card-candidates">
+    <header class="card-head">
+      <h2>2 · What every route would cost</h2>
+      <span class="chip chip-quiet" id="candidates-note">priced for this request</span>
+    </header>
+    <div class="table-scroll">
+      <table class="candidates" id="candidates-table">
+        <caption class="sr-only">Every model the router priced for this request</caption>
+        <thead>
+          <tr>
+            <th scope="col">Model</th>
+            <th scope="col" class="num">Capability<span class="th-sub">in this topic</span></th>
+            <th scope="col" class="num">Price / 1M<span class="th-sub">in · out · cache read</span></th>
+            <th scope="col" class="num">P(success)<span class="th-sub">measured</span></th>
+            <th scope="col" class="num">This turn<span class="th-sub">call cost</span></th>
+            <th scope="col" class="num">Expected<span class="th-sub">incl. risk of a retry</span></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="table-foot" id="candidates-foot"></p>
+  </article>
+
+  <article class="card card-answer" id="card-answer">
+    <header class="card-head">
+      <h2>4 · The answer</h2>
+      <span class="chip chip-quiet" id="answer-model">—</span>
+    </header>
+    <div class="card-body">
+      <p class="notice" id="answer-note" hidden></p>
+      <details class="reasoning" id="reasoning-box" hidden>
+        <summary>Model's reasoning</summary>
+        <pre id="reasoning"></pre>
+      </details>
+      <div class="answer" id="answer"></div>
+      <p class="answer-foot" id="answer-foot"></p>
+    </div>
+  </article>
+</section>
+</template>
+
+<!-- ------------------------------------------------------------------ -->
+<template id="page-cache">
+<section class="wrap page-head">
+  <p class="eyebrow">The part most routers get wrong</p>
+  <h1>A warm cache can be worth more<br>than a cheaper model.</h1>
+  <p class="lede">
+    A provider that has already read your conversation bills the next turn at roughly
+    a tenth of the input price. Move to another model and the whole prefix is written
+    again at full price. So the question at every turn is not "which model is best" but
+    <em>"is the better model worth leaving a warm cache for"</em> — and the answer changes
+    as the clock runs out on the cache.
+  </p>
+</section>
+
+<section class="wrap">
+  <article class="card">
+    <header class="card-head">
+      <h2>Ask the router what it would do</h2>
+      <span class="chip chip-quiet">nothing is sent to a model</span>
+    </header>
+    <div class="card-body">
+      <p class="muted" style="margin-top:0">
+        This is the live policy object answering a question instead of a request — the only
+        honest way to show what a 100k-token agent prefix does to a decision without paying
+        for one. Free tiers are hidden by default: a free route has no cache price, so with
+        them in the catalog there is nothing to trade off.
+      </p>
+      <div class="controls">
+        <label>Conversation so far
+          <input type="range" id="w-prefix" min="0" max="7" step="1" value="4">
+          <output id="w-prefix-out"></output></label>
+        <label>Currently on
+          <select id="w-current"></select></label>
+        <label>Difficulty of the next turn
+          <input type="range" id="w-diff" min="0" max="4" step="1" value="2">
+          <output id="w-diff-out"></output></label>
+        <label class="check">
+          <input type="checkbox" id="w-free"> also allow free tiers
+        </label>
+      </div>
+      <div id="w-verdict" class="verdict-box"></div>
+      <div class="table-scroll">
+        <table class="candidates" id="w-table">
+          <thead><tr>
+            <th scope="col">Route</th>
+            <th scope="col" class="num">Cache</th>
+            <th scope="col" class="num">This turn, staying</th>
+            <th scope="col" class="num">This turn, cold</th>
+            <th scope="col" class="num">The cache is worth</th>
+            <th scope="col" class="num">Expected total</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <h3 style="margin-top:1.4rem">And if you pause before the next message</h3>
+      <p class="muted" style="font-size:.86rem">
+        Only the clock changes between these rows. When the cache expires, staying stops
+        being worth anything and the decision flips.
+      </p>
+      <div id="w-curve" class="curve"></div>
+    </div>
+  </article>
+</section>
+
+<section class="wrap" style="margin-top:2.4rem">
+  <div class="section-head">
+    <h2>Now do it for real</h2>
+    <p>
+      A real conversation with a pasted document, routed turn by turn by the same router.
+      Every answer is really generated; the strip under each one is what the router decided
+      and why. Use the pause control to make the clock jump before you send.
+    </p>
+  </div>
+</section>
+
+<section class="wrap chat-layout">
+  <div class="chat-col">
+    <div class="attachment" id="attachment"></div>
+    <div class="chat" id="chat" aria-live="polite"></div>
+    <form class="composer composer-chat" id="chat-form">
+      <label class="sr-only" for="chat-prompt">Next message</label>
+      <textarea id="chat-prompt" rows="3" maxlength="4000" placeholder="Ask something about the log…"></textarea>
+      <div class="composer-bar">
+        <div class="pause-control">
+          <label for="pause">Pause before sending</label>
+          <input type="range" id="pause" min="0" max="6" step="1" value="0">
+          <output id="pause-out">none</output>
+        </div>
+        <div class="row-gap">
+          <button type="button" class="ghost-btn" id="chat-reset">Restart</button>
+          <button class="primary-btn" type="submit">Send</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <aside class="chat-side">
+    <article class="card">
+      <header class="card-head"><h2>This turn</h2></header>
+      <div class="card-body" id="cache-decision"><p class="muted">Send the first message.</p></div>
+    </article>
+    <article class="card">
+      <header class="card-head"><h2>If you waited…</h2><span class="chip chip-quiet">simulated clock</span></header>
+      <div class="card-body" id="cache-curve"><p class="muted">Appears after the first answer.</p></div>
+    </article>
+  </aside>
+</section>
+</template>
+
+<!-- ------------------------------------------------------------------ -->
+<template id="page-results">
+<section class="wrap page-head">
+  <p class="eyebrow">Measured, 17–18 September 2026</p>
+  <h1>What actually came out.</h1>
+  <p class="lede">
+    Eight models on 78 graded tasks, a replay of one week of real coding-agent traffic
+    (1,638 sessions, 57,696 calls, 8.7 billion input tokens of which 96 % were cache
+    reads), and a live run of the router itself. Read the dollar columns as
+    <em>arithmetic</em>: real traffic and measured success rates priced at public list
+    prices. No invoice was compared. No money was saved and none was measured.
+  </p>
+</section>
+<div class="wrap" id="results-root">
+  <p class="muted">Loading the numbers…</p>
+</div>
+</template>
+
+<!-- ------------------------------------------------------------------ -->
+<template id="page-how">
+<section class="wrap page-head">
+  <p class="eyebrow">How it works</p>
+  <h1>Four moving parts.</h1>
+</section>
+<div class="wrap prose">
+  <ol class="steps">
+    <li>
+      <h3>Jev says what the task is</h3>
+      <p>
+        One call to <a href="https://typesafe.ai" rel="noopener">Jev</a>, TypeSafe's
+        System One model, on a scrubbed and truncated summary of the turn — never the
+        raw prompt. It answers typed questions with calibrated probabilities: topic,
+        difficulty, whether tools or a long context are needed, whether this builds on
+        the previous turn, and how costly a subtly wrong answer would be. About 0.65 s.
+        On our 78 tasks it named the topic correctly every time, and its difficulty
+        score predicted which tasks a cheap model would fail better than the task's own
+        difficulty label did.
+      </p>
+    </li>
+    <li>
+      <h3>Benchmark Heaven says what each model is and costs</h3>
+      <p>
+        The catalog is not a hard-coded price list. Every model is looked up in the
+        <a href="https://benchmarkheaven.com" rel="noopener">Benchmark Heaven</a> API:
+        capability per topic, list price per offer <em>including the cache read and
+        cache write price</em>, context length, and a benchmaxxing penalty — each number
+        carrying its basis and how strong that basis is. Cached locally with a TTL, so a
+        benchmark site being down never takes routing down.
+      </p>
+    </li>
+    <li>
+      <h3>Measured success rates beat headline scores</h3>
+      <p>
+        Capability read from benchmark headlines mis-ranks specific models and effort
+        levels. Where we have measured a model on a topic and difficulty, the measurement
+        wins. That single change was worth three points of task success and cut spend to
+        a third in the replay.
+      </p>
+    </li>
+    <li>
+      <h3>The lowest expected total wins</h3>
+      <p>
+        For each candidate: what this turn costs there <em>given what it still holds in
+        cache</em>, times the chance it gets the turn right, plus what a failure would
+        cost — a retry on a stronger model if the failure is noticed, the price of a
+        wrong answer if it is not. Lowest total wins. Inside an agent's tool loop the
+        router never switches, because that throws away a cache that is seconds old.
+      </p>
+    </li>
+  </ol>
+
+  <h2 id="use">Use it yourself</h2>
+  <p>
+    The router is an OpenAI-compatible proxy. Point any tool that speaks
+    <code>/v1/chat/completions</code> at it and it routes per user turn:
+  </p>
+<pre class="code"><code>git clone https://github.com/fstandhartinger/auto-model-router
+cd auto-model-router
+pip install -r requirements.txt
+
+cp examples/config.example.yaml config.local.yaml   # your endpoints, keys by env-var name
+export AUTO_ROUTER_CONFIG=config.local.yaml
+export TYPESAFE_API_KEY=...                         # the classifier
+uvicorn auto_router.server:app --port 8795</code></pre>
+  <p>Then point a coding agent at it:</p>
+<pre class="code"><code>export OPENAI_BASE_URL=http://127.0.0.1:8795/v1
+export OPENAI_API_KEY=anything
+
+opencode run -m "auto/auto"        # or any OpenAI-compatible client</code></pre>
+  <p class="muted">
+    A flat-rate coding subscription may only be used through its own official client —
+    the router will price one as a tier if you configure it, but do not put a proxy in
+    front of someone else's plan.
+  </p>
+
+  <h2 id="p2p">The peer-to-peer network as a routing target</h2>
+  <p id="p2p-prose">
+    A router should not care whether a model runs in a data centre or in somebody's
+    browser. The <strong>Bonsai swarm</strong> is a set of volunteers running a ternary
+    27B model on WebGPU, reachable over the same OpenAI-compatible shape as every other
+    provider. It enters the catalog with a price of zero, a small context window, no
+    prefix cache and a modest capability — and then competes on those numbers. It wins
+    easy and medium turns and loses hard ones, which is exactly what an expected-cost
+    rule should do with a cheap, slow, best-effort route.
+  </p>
+  <div id="p2p-status-box"></div>
+
+  <h2>The catalog right now</h2>
+  <div class="table-scroll">
+    <table class="candidates" id="catalog-table">
+      <caption class="sr-only">Every model in the demo catalog</caption>
+      <thead><tr>
+        <th scope="col">Model</th><th scope="col" class="num">Context</th>
+        <th scope="col" class="num">Price / 1M in · out · cache read</th>
+        <th scope="col" class="num">Cache TTL · hit rate</th>
+        <th scope="col">Where the capability comes from</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <h2>Limits of this demo</h2>
+  <ul class="limits">
+    <li>The demo only <em>runs</em> free and very cheap routes and caps the answer length. When
+      the router picks something the demo may not run, it says so and answers from the best
+      route it may use — the decision above it is untouched.</li>
+    <li>Routing is measured on 78 graded tasks and one week of one team's traffic. Small samples.</li>
+    <li>Rate-limited per visitor and capped per day, so the demo cannot be used as free inference.</li>
+    <li>Prompts are sent to the classifier and to the chosen model. Nothing is stored here.</li>
+  </ul>
+</div>
+</template>
+
+<!-- ------------------------------------------------------------------ -->
+<template id="page-privacy">
+<section class="wrap page-head"><p class="eyebrow">Privacy</p><h1>What this demo does with what you type.</h1></section>
+<div class="wrap prose">
+  <h2>What is sent where</h2>
+  <p>
+    Your prompt is sent to two places: to <a href="https://typesafe.ai" rel="noopener">TypeSafe</a>
+    for classification (scrubbed of recognisable credentials and truncated first), and to
+    the model the router picks, which is hosted by a third-party inference provider. If
+    the peer-to-peer route is chosen, your prompt is processed <em>on a volunteer's
+    computer</em> and the page says so before you use it.
+  </p>
+  <h2>What is stored</h2>
+  <p>
+    Nothing that you typed. The server keeps counters — how many runs an address has
+    started this hour, how many runs and how many cents the demo has used today — and a
+    prompt-free routing record in memory for the page you are looking at. Your address
+    is only ever held as a salted hash that is thrown away when the process restarts,
+    and the salt changes with every restart.
+  </p>
+  <p>
+    Multi-turn conversations are kept in the server's memory for the length of your
+    session so the cache logic has something to be about. They are dropped when the
+    session falls out of the ring buffer or the process restarts, and they are never
+    written to disk.
+  </p>
+  <h2>Do not paste anything sensitive</h2>
+  <p>
+    This is a public playground running on third-party inference providers and, when it
+    is online, on strangers' GPUs. Treat everything you type as public.
+  </p>
+  <h2>Cookies and tracking</h2>
+  <p>No cookies, no analytics, no third-party scripts. The page stores one session id and your theme choice in your browser's local storage.</p>
+  <h2>Contact</h2>
+  <p>productivity-boost.com Betriebs UG (haftungsbeschränkt) &amp; Co. KG — see the <a href="/impressum" data-link>Impressum</a>.</p>
+</div>
+</template>
+
+<!-- ------------------------------------------------------------------ -->
+<template id="page-impressum">
+<section class="wrap page-head"><p class="eyebrow">Impressum</p><h1>Angaben gemäß § 5 DDG</h1></section>
+<div class="wrap prose">
+  <p>
+    productivity-boost.com Betriebs UG (haftungsbeschränkt) &amp; Co. KG<br>
+    Vertreten durch die productivity-boost.com Verwaltungs UG (haftungsbeschränkt),<br>
+    diese vertreten durch den Geschäftsführer Florian Standhartinger<br>
+    Kirschbaumweg 4<br>
+    94032 Passau<br>
+    Deutschland
+  </p>
+  <p>
+    E-Mail: <a href="mailto:florian.standhartinger@gmail.com">florian.standhartinger@gmail.com</a><br>
+    Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE296812612
+  </p>
+  <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+  <p>Florian Standhartinger, Anschrift wie oben.</p>
+  <h2>Haftung für Inhalte und Links</h2>
+  <p>
+    Diese Seite ist eine kostenlose, nicht-kommerzielle technische Demonstration. Die
+    Antworten stammen von Sprachmodellen Dritter und können falsch sein. Für Inhalte
+    externer Links sind deren Betreiber verantwortlich.
+  </p>
+  <h2>EU-Streitschlichtung</h2>
+  <p>
+    Plattform der EU-Kommission zur Online-Streitbeilegung:
+    <a href="https://ec.europa.eu/consumers/odr/" rel="noopener">ec.europa.eu/consumers/odr</a>.
+    Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer
+    Verbraucherschlichtungsstelle teilzunehmen.
+  </p>
+</div>
+</template>
+
+<script type="module" src="/assets/app.js"></script>
+</body>
+</html>

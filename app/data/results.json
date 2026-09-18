@@ -1,0 +1,509 @@
+{
+ "replay_list": {
+  "about": "Cross-validated replay of one week of real coding-agent traffic, every model at public list price, no subscription.",
+  "sessions": 1638,
+  "stakes_usd": 2.0,
+  "detect": 0.6,
+  "rows": [
+   {
+    "key": "A_static",
+    "label": "A — Claude Opus 5 for everything",
+    "success": 0.9276,
+    "usd_week": 12917.0,
+    "usd_per_solved": 6.4231
+   },
+   {
+    "key": "B_naive",
+    "label": "B — cheapest model predicted to succeed",
+    "success": 0.887,
+    "usd_week": 5472.0,
+    "usd_per_solved": 2.8456
+   },
+   {
+    "key": "C_ev_switch",
+    "label": "C — B plus the cache-aware switch rule",
+    "success": 0.887,
+    "usd_week": 5478.0,
+    "usd_per_solved": 2.8486
+   },
+   {
+    "key": "D_escalate",
+    "label": "D — start cheap, escalate on failure",
+    "success": 0.8766,
+    "usd_week": 2995.0,
+    "usd_per_solved": 1.5757
+   },
+   {
+    "key": "F_expected",
+    "label": "F — minimise expected cost (the router's default)",
+    "success": 0.8904,
+    "usd_week": 1341.0,
+    "usd_per_solved": 0.6945
+   },
+   {
+    "key": "F_stakes10",
+    "label": "F tuned for higher stakes (10x turn cost)",
+    "success": 0.8997,
+    "usd_week": 2236.0,
+    "usd_per_solved": null
+   }
+  ]
+ },
+ "replay_ours": {
+  "about": "The same replay under our own setup: free tiers, metered APIs, and a flat-rate coding plan that may only serve its own client.",
+  "rows": [
+   {
+    "key": "T_today",
+    "label": "today — plans plus free models, no router",
+    "success": 0.9163,
+    "usd_week": 0.1,
+    "quota_pct_week": 127.3
+   },
+   {
+    "key": "final-ours-luna-only.json",
+    "label": "F with free models plus one cheap metered model",
+    "success": 0.8999,
+    "usd_week": 147.4,
+    "quota_pct_week": 24.6
+   },
+   {
+    "key": "final-ours-all.json",
+    "label": "F with every model available",
+    "success": 0.9099,
+    "usd_week": 485.3,
+    "quota_pct_week": 23.6
+   },
+   {
+    "key": "final-ours-free-plan.json",
+    "label": "F with free models and the flat-rate plan only",
+    "success": 0.8829,
+    "usd_week": 0.0,
+    "quota_pct_week": 31.3
+   }
+  ]
+ },
+ "live": {
+  "about": "A live run of the router server itself: 30 graded tasks per policy against real providers.",
+  "rows": [
+   {
+    "policy": "F — minimise expected cost (the router's default)",
+    "key": "F_expected",
+    "solved": 23,
+    "tasks": 30,
+    "usd": 0.312,
+    "usd_per_solved": 0.0136,
+    "calls": 116,
+    "switches": 0,
+    "calls_by_model": {
+     "qwen3.8-27b": 62,
+     "kimi-k3": 42,
+     "gpt-5.6-sol": 12
+    }
+   },
+   {
+    "policy": "D — start cheap, escalate on failure",
+    "key": "D_escalate",
+    "solved": 24,
+    "tasks": 30,
+    "usd": 0.299,
+    "usd_per_solved": 0.0125,
+    "calls": 118,
+    "switches": 0,
+    "calls_by_model": {
+     "kimi-k3": 106,
+     "gpt-5.6-sol": 12
+    }
+   },
+   {
+    "policy": "C — B plus the cache-aware switch rule",
+    "key": "C_ev_switch",
+    "solved": 25,
+    "tasks": 30,
+    "usd": 0.297,
+    "usd_per_solved": 0.0119,
+    "calls": 118,
+    "switches": 0,
+    "calls_by_model": {
+     "kimi-k3": 106,
+     "gpt-5.6-sol": 12
+    }
+   }
+  ]
+ },
+ "quality_matrix": {
+  "about": "78 automatically graded tasks: five categories at three difficulty levels, graded by hidden tests, exact answers or final database state.",
+  "models": [
+   "Qwen3.8 27B",
+   "DeepSeek V4 Flash",
+   "GLM-5.3 Flash",
+   "GPT-5.6 Luna",
+   "Kimi K3",
+   "GLM-5.3",
+   "GPT-5.6 Sol",
+   "Claude Opus 5"
+  ],
+  "solved": [
+   61,
+   58,
+   64,
+   68,
+   71,
+   61,
+   75,
+   71
+  ],
+  "of": 78,
+  "run_cost_usd": [
+   1.26,
+   0.19,
+   0.24,
+   0.25,
+   4.8,
+   2.28,
+   1.98,
+   9.08
+  ],
+  "cost_estimated": [
+   true,
+   true,
+   false,
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "note": "Costs marked with a star ran on a free tier; the list price was estimated from the token counts. Claude Opus 5 ran with a 6k thinking budget, the GPT-5.6 models at their default effort.",
+  "cells": [
+   {
+    "cell": "coding easy",
+    "values": [
+     6,
+     6,
+     6,
+     5,
+     6,
+     6,
+     6,
+     6
+    ],
+    "of": 6
+   },
+   {
+    "cell": "coding medium",
+    "values": [
+     3,
+     3,
+     5,
+     3,
+     6,
+     3,
+     6,
+     6
+    ],
+    "of": 6
+   },
+   {
+    "cell": "coding hard",
+    "values": [
+     0,
+     2,
+     1,
+     3,
+     3,
+     1,
+     4,
+     2
+    ],
+    "of": 6
+   },
+   {
+    "cell": "math easy",
+    "values": [
+     5,
+     5,
+     6,
+     5,
+     6,
+     6,
+     6,
+     6
+    ],
+    "of": 6
+   },
+   {
+    "cell": "math medium",
+    "values": [
+     5,
+     6,
+     6,
+     6,
+     5,
+     6,
+     6,
+     6
+    ],
+    "of": 6
+   },
+   {
+    "cell": "math hard",
+    "values": [
+     5,
+     3,
+     4,
+     5,
+     5,
+     5,
+     6,
+     6
+    ],
+    "of": 6
+   },
+   {
+    "cell": "tool use easy+medium",
+    "values": [
+     12,
+     12,
+     12,
+     12,
+     12,
+     12,
+     12,
+     12
+    ],
+    "of": 12
+   },
+   {
+    "cell": "tool use hard",
+    "values": [
+     6,
+     4,
+     6,
+     6,
+     6,
+     5,
+     6,
+     6
+    ],
+    "of": 6
+   },
+   {
+    "cell": "long context easy",
+    "values": [
+     4,
+     4,
+     4,
+     4,
+     4,
+     3,
+     4,
+     2
+    ],
+    "of": 4
+   },
+   {
+    "cell": "long context medium",
+    "values": [
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "of": 4
+   },
+   {
+    "cell": "long context hard",
+    "values": [
+     3,
+     1,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "of": 4
+   },
+   {
+    "cell": "agentic easy",
+    "values": [
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "of": 4
+   },
+   {
+    "cell": "agentic medium",
+    "values": [
+     4,
+     3,
+     3,
+     4,
+     4,
+     2,
+     4,
+     4
+    ],
+    "of": 4
+   },
+   {
+    "cell": "agentic hard",
+    "values": [
+     0,
+     1,
+     0,
+     3,
+     2,
+     0,
+     3,
+     3
+    ],
+    "of": 4
+   }
+  ]
+ },
+ "cache": {
+  "about": "Prefix-cache read share measured on consecutive calls with a prefix of at least 1024 tokens.",
+  "routes": [
+   {
+    "route": "GPT-5.6 Sol / GPT-5.6 Luna (hosted API)",
+    "read_share": [
+     0.98,
+     0.99
+    ]
+   },
+   {
+    "route": "GLM-5.3 / GLM-5.3 Flash (hosted API)",
+    "read_share": [
+     0.92,
+     0.98
+    ]
+   },
+   {
+    "route": "DeepSeek V4 Flash (free tier)",
+    "read_share": [
+     0.78,
+     0.78
+    ]
+   },
+   {
+    "route": "Kimi K3 (free tier)",
+    "read_share": [
+     0.58,
+     0.58
+    ]
+   },
+   {
+    "route": "Qwen3.8 27B (free tier)",
+    "read_share": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "route": "Claude Opus 5 through an aggregator, no cache markers",
+    "read_share": [
+     0.0,
+     0.0
+    ],
+    "note": "1.00 once explicit cache markers are sent"
+   }
+  ],
+  "by_gap": {
+   "about": "Read share by the gap since the previous call, from one week of our own agent logs (metadata only).",
+   "buckets": [
+    "< 60 s",
+    "1-5 min",
+    "5-10 min",
+    "10-60 min"
+   ],
+   "series": [
+    {
+     "client": "a coding agent on a flat-rate plan",
+     "values": [
+      0.976,
+      0.975,
+      0.982,
+      0.984
+     ]
+    },
+    {
+     "client": "an agent on free-tier models",
+     "values": [
+      0.887,
+      0.821,
+      0.725,
+      0.57
+     ]
+    }
+   ]
+  }
+ },
+ "jev": {
+  "about": "Jev, TypeSafe's System One classifier, measured on the same 78 task prompts. One call, about 0.65 s, roughly 1.4k input tokens.",
+  "category_accuracy": "78 of 78 plausible; every category exact except agentic tasks, which Jev labels 'coding'.",
+  "difficulty_r": 0.74,
+  "calibration": "d_jev = 0.27 + 0.51 x level; the router maps it back before it routes.",
+  "auc": [
+   {
+    "model": "GPT-5.6 Luna",
+    "auc": 0.78
+   },
+   {
+    "model": "DeepSeek V4 Flash",
+    "auc": 0.82
+   },
+   {
+    "model": "GLM-5.3 Flash",
+    "auc": 0.85
+   },
+   {
+    "model": "Kimi K3",
+    "auc": 0.9
+   }
+  ],
+  "auc_about": "How well Jev's difficulty score predicts which tasks that cheap model will fail - better than the task's own difficulty label.",
+  "judge": [
+   {
+    "answers": "coding (36)",
+    "auc": 0.96,
+    "note": "catches 85 % of wrong answers, no false flags"
+   },
+   {
+    "answers": "math (36)",
+    "auc": 0.99,
+    "note": "catches 67 % of wrong answers, no false flags"
+   },
+   {
+    "answers": "long-document questions (24)",
+    "auc": null,
+    "note": "poor - the judge cannot see the document"
+   }
+  ]
+ },
+ "limits": [
+  "Every dollar figure in the replay is arithmetic, not an invoice: real traffic and measured success rates priced at public list prices. No money was saved and none was measured.",
+  "Cells hold 4 to 6 tasks. The numbers rank policies against each other under one set of assumptions; they are not a cash result.",
+  "Task difficulty for real traffic is a proxy (how many calls a turn took).",
+  "The simulator treats a failed turn as a whole-turn redo and assumes partially correlated retries.",
+  "Latency is not modelled well. Free-tier routes are slower, and the expected-cost policy's turns take noticeably longer.",
+  "Plan usage in percent rests on a single week's conversion from list-price dollars.",
+  "The live run of 30 tasks per policy is too small to rank the top three policies."
+ ],
+ "sources": {
+  "repo": "https://github.com/fstandhartinger/auto-model-router",
+  "experiments": "https://github.com/fstandhartinger/auto-model-router/blob/main/EXPERIMENTS.md",
+  "measured_on": "17-18 September 2026"
+ }
+}

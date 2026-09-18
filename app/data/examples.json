@@ -1,0 +1,50 @@
+[
+ {
+  "id": "fact",
+  "title": "A quick fact",
+  "hint": "trivial — everything solves this",
+  "prompt": "What is the capital of Australia?"
+ },
+ {
+  "id": "design",
+  "title": "A web page design",
+  "hint": "design — the router reads a design leaderboard, not a coding score",
+  "prompt": "Design the pricing page for a small note-taking app: three tiers (Free, Pro at 6 EUR a month, Team at 12 EUR per seat) and a monthly/yearly toggle, dark theme. Give me the layout and the visual hierarchy first, then a single self-contained HTML file with inline CSS."
+ },
+ {
+  "id": "refactor",
+  "title": "A refactor",
+  "hint": "coding, easy — a cheap model is enough",
+  "prompt": "Refactor this so it stops hitting the database inside the loop:\n\ndef order_totals(order_ids):\n    totals = []\n    for oid in order_ids:\n        order = db.query(\"SELECT * FROM orders WHERE id = ?\", oid)\n        items = db.query(\"SELECT * FROM items WHERE order_id = ?\", oid)\n        totals.append((order.id, sum(i.price * i.qty for i in items)))\n    return totals"
+ },
+ {
+  "id": "proof",
+  "title": "A proof",
+  "hint": "math, hard — difficulty pushes the choice upwards",
+  "prompt": "Let n be a positive integer. Prove that if 2^n - 1 is prime, then n is prime. Then show the converse is false with the smallest counterexample."
+ },
+ {
+  "id": "email",
+  "title": "A German email",
+  "hint": "general writing — cheap and fine",
+  "prompt": "Schreibe eine hoefliche E-Mail an einen Kunden, der seit sechs Wochen eine Rechnung ueber 480 Euro nicht bezahlt hat. Freundlich, aber mit einer klaren Frist von zehn Tagen. Maximal 120 Woerter."
+ },
+ {
+  "id": "bug",
+  "title": "A subtle bug",
+  "hint": "coding, hard — where the frontier models still separate",
+  "prompt": "This worker pool deadlocks about one run in fifty under load. Find the race and fix it:\n\nfunc (p *Pool) Submit(job Job) {\n    p.mu.Lock()\n    if p.closed { p.mu.Unlock(); return }\n    p.pending++\n    p.mu.Unlock()\n    p.queue <- job\n}\n\nfunc (p *Pool) Close() {\n    p.mu.Lock()\n    p.closed = true\n    for p.pending > 0 { p.cond.Wait() }\n    close(p.queue)\n    p.mu.Unlock()\n}"
+ },
+ {
+  "id": "longctx",
+  "title": "A long-context question",
+  "hint": "long context — the cheap routes are not all eligible",
+  "prompt": "I am going to paste a 90-page vendor contract and then ask you which clauses limit our liability if their API is down for more than four hours in a month, quoting each clause. Before I paste it: tell me exactly what you will look for and in which order."
+ },
+ {
+  "id": "summary",
+  "title": "A summary",
+  "hint": "summarisation — a category with no dedicated benchmark",
+  "prompt": "Summarise in five bullet points, for a non-technical founder: prompt caching means a provider keeps the tokens it has already processed, so sending the same prefix again is billed at roughly a tenth of the input price. The cache lives on one provider and one model, usually expires after five minutes, and needs a minimum prefix of about 1024 tokens. Switching model mid-conversation throws the cache away and the whole prefix is billed again at full price."
+ }
+]
