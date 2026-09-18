@@ -46,5 +46,11 @@
   "title": "A summary",
   "hint": "summarisation — a category with no dedicated benchmark",
   "prompt": "Summarise in five bullet points, for a non-technical founder: prompt caching means a provider keeps the tokens it has already processed, so sending the same prefix again is billed at roughly a tenth of the input price. The cache lives on one provider and one model, usually expires after five minutes, and needs a minimum prefix of about 1024 tokens. Switching model mid-conversation throws the cache away and the whole prefix is billed again at full price."
+ },
+ {
+  "id": "escalate",
+  "title": "One Jev rejects",
+  "hint": "instruction-following — a cheap answer that Jev usually rejects",
+  "prompt": "Write eight numbered lines about prompt caching. Every line must contain exactly nine words, the first word of each line must begin with A, B, C, D, F, G, H and J in that order, no line may contain the letter s, and every line must end with a two-syllable word."
  }
 ]

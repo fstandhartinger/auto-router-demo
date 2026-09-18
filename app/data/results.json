@@ -499,11 +499,83 @@
   "The simulator treats a failed turn as a whole-turn redo and assumes partially correlated retries.",
   "Latency is not modelled well. Free-tier routes are slower, and the expected-cost policy's turns take noticeably longer.",
   "Plan usage in percent rests on a single week's conversion from list-price dollars.",
-  "The live run of 30 tasks per policy is too small to rank the top three policies."
+  "The live run of 30 tasks per policy is too small to rank the top three policies.",
+  "The answer judge was calibrated on 192 answers and two categories; the maths threshold rests on 11 wrong answers and the fix rate on 35. The chain table is a simulation - no chain of three or four real routed calls was run end to end."
  ],
  "sources": {
   "repo": "https://github.com/fstandhartinger/auto-model-router",
   "experiments": "https://github.com/fstandhartinger/auto-model-router/blob/main/EXPERIMENTS.md",
   "measured_on": "17-18 September 2026"
+ },
+ "verify": {
+  "about": "18 September: 192 answers from four cheap routes on the same task set, graded against ground truth, then judged by Jev with one typed question - is this answer adequate, and if not, what kind of failure is it. Only cheap routes are checked: Jev is not stronger than a frontier model, and grading one would produce false alarms rather than quality.",
+  "rows": [
+   {
+    "answers": "coding",
+    "n": 72,
+    "wrong": 33,
+    "auc": 0.948,
+    "threshold": 0.25,
+    "catch": "85 % (28 of 33)",
+    "false": "10 % (4 of 39)"
+   },
+   {
+    "answers": "maths",
+    "n": 72,
+    "wrong": 11,
+    "auc": 0.955,
+    "threshold": 0.6,
+    "catch": "73 % (8 of 11)",
+    "false": "none (0 of 61)"
+   },
+   {
+    "answers": "questions about a pasted document",
+    "n": 48,
+    "wrong": 2,
+    "auc": 0.538,
+    "threshold": null,
+    "catch": "not checked at all",
+    "false": "96 % — the judge is not shown the document"
+   }
+  ],
+  "escalation": {
+   "before": 0.76,
+   "after": 0.854,
+   "escalations": 39,
+   "fixed": 18,
+   "of_wrong": 35,
+   "unnecessary": 4,
+   "broken": 0,
+   "usd_each": 0.027,
+   "judge_seconds": 0.7,
+   "escalation_seconds": 84,
+   "note": "Every flagged answer was re-run on the route the router itself escalates to and graded again. Handing the stronger model the failed answer fixed one more of 35, cost 18 % more and took 66 % longer, so the default is a clean second attempt."
+  },
+  "cascade": {
+   "about": "Simulated, not measured: chains of routed calls where each step builds on the one before, and a wrong step nobody catches is the whole chain. Per-model success, the catch and fix rates and the latencies are measured; the chain mechanics are assumed.",
+   "rows": [
+    {
+     "chain": "1 call",
+     "no_judge": 0.44,
+     "judge": 0.684
+    },
+    {
+     "chain": "2 calls",
+     "no_judge": 0.202,
+     "judge": 0.474
+    },
+    {
+     "chain": "3 calls",
+     "no_judge": 0.088,
+     "judge": 0.322
+    },
+    {
+     "chain": "4 calls",
+     "no_judge": 0.036,
+     "judge": 0.223
+    }
+   ],
+   "note": "Hard coding turns (difficulty 0.70), 6,000 chains per cell. Where the router already sends a turn to a route the judge may not grade, the judge changes nothing at all."
+  }
  }
 }

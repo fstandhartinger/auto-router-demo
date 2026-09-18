@@ -29,7 +29,17 @@ from the demo's own timings as it runs).
 | **Playground** | One turn end to end: the classification with its probabilities and latency, every candidate priced with its capability, cache price, measured success rate and expected cost, the decision with a reason and the saving against always using a frontier model, then the streamed answer with what it actually cost. |
 | **Cache** | The differentiator. A decision explorer that asks the policy what it would do at an agent-sized prefix — nothing is sent to a model — and shows what a warm cache is worth, plus where the decision flips once the cache expires. Below it, a real multi-turn conversation over a pasted document, with a slider that moves the clock. |
 | **Results** | The measured findings: policy comparison, price against quality, cache read share per route, how good the classifier is, and the limits of all of it. |
-| **How it works** | The four moving parts, how to run the router yourself, and the peer-to-peer network as a routing target. |
+| **How it works** | The five moving parts, how to run the router yourself, and the peer-to-peer network as a routing target. |
+
+**Cheap answers get checked.** After a cheap route answers, Jev is asked one typed question about
+what came back — is this adequate, and if not, what kind of failure is it — and an answer below the
+threshold for that topic is re-run on the cheapest route at least four capability points stronger.
+The page shows the verdict above the answer, keeps the replaced answer collapsed underneath it, and
+marks every route in the candidate table whose answer would be checked, because the check is
+already priced into that route's expected cost. A frontier route is never checked: Jev is not
+stronger than one, and grading one would produce false alarms rather than quality. Measured on 192
+cheap answers — 85 % of wrong coding answers caught at a 10 % false-alarm rate, correctness 76 % →
+85 % after escalating (`EXPERIMENTS.md` section 14 in the router repository).
 
 ## Architecture
 
@@ -38,6 +48,8 @@ browser ──SSE──► FastAPI (app/)
                    ├── classify.py   Jev, with a labelled free-model fallback
                    ├── engine.py     builds the catalog, drives the router's policy
                    ├── latency.py    expected time per route; the reasoning plan per request
+                   ├── verify.py     the answer check and what the page is told about it
+                   ├── meta.py       per-page head: title, description, link preview
                    ├── providers.py  OpenAI-compatible streaming to whoever serves a model
                    ├── bonsai.py     the peer-to-peer network as one more route
                    └── limits.py     per-IP, per-day and per-dollar caps

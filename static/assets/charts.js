@@ -370,6 +370,46 @@ export function renderResults(root, data) {
   }));
   root.append(s5);
 
+  /* 5b. the judge --------------------------------------------------------- */
+  if (data.verify) {
+    const v = data.verify;
+    const s5b = section("Checking a cheap answer before you see it", esc(v.about));
+    const vstats = document.createElement("div");
+    vstats.className = "stat-row";
+    vstats.innerHTML = `
+      <div class="stat"><span class="v">85 %</span><span class="k">of wrong coding answers caught</span>
+        <div class="s">at a 10 % false-alarm rate, in about 0.7 s</div></div>
+      <div class="stat"><span class="v">76 → 85 %</span><span class="k">answers correct, after escalating</span>
+        <div class="s">${v.escalation.fixed} of ${v.escalation.of_wrong} rejected answers fixed on the
+        second route, ${v.escalation.broken} good answers broken</div></div>
+      <div class="stat"><span class="v">$${v.escalation.usd_each.toFixed(3)}</span><span class="k">per rescue</span>
+        <div class="s">plus ${v.escalation.judge_seconds} s on every checked answer and about
+        ${v.escalation.escalation_seconds} s on the one in five that escalates</div></div>`;
+    s5b.append(vstats);
+    s5b.append(tableView(["answers", "n", "wrong", "AUC", "threshold", "catches", "false alarms"],
+      v.rows.map((r) => [r.answers, r.n, r.wrong, r.auc ?? "—",
+                         r.threshold === null ? "not checked" : r.threshold, r.catch, r.false])));
+    const esc1 = document.createElement("p");
+    esc1.className = "section-note";
+    esc1.textContent = v.escalation.note;
+    s5b.append(esc1);
+    s5b.append(barChart({
+      title: "Chains that finish entirely correct, hard coding turns",
+      sub: esc(v.cascade.about),
+      rows: v.cascade.rows.flatMap((r) => [
+        { label: `${r.chain} · no judge`, value: r.no_judge, tip: `${(r.no_judge * 100).toFixed(1)} %` },
+        { label: `${r.chain} · with the judge`, value: r.judge, tip: `${(r.judge * 100).toFixed(1)} %` },
+      ]),
+      format: (x) => (x * 100).toFixed(1) + " %",
+      highlight: (r) => /with the judge/.test(r.label),
+    }));
+    const note = document.createElement("p");
+    note.className = "section-note";
+    note.textContent = v.cascade.note;
+    s5b.append(note);
+    root.append(s5b);
+  }
+
   /* 6. live -------------------------------------------------------------- */
   const s6 = section("The router, run for real", esc(data.live.about));
   s6.append(barChart({

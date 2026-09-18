@@ -19,12 +19,13 @@ from pathlib import Path
 
 import httpx
 from fastapi import FastAPI, Request
-from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
 from auto_router.economics import turn_cost
 
-from . import classify, latency, providers
+from . import classify, latency, providers, verify
+from . import meta as page_meta   # `meta` is already an endpoint name
 from .bonsai import MODEL_NAME as BONSAI_MODEL
 from .bonsai import SWARM
 from .engine import ENGINE, what_if
@@ -265,6 +266,28 @@ def _fallbacks(decision, conv, skip: set[str]):
         yield Execution(route=route, model_name=name,
                         label=ENGINE.catalog_meta.get(name, {}).get("label", name),
                         est_usd=round(est, 6))
+
+
+def _escalations(decision, conv, failed_name: str, skip: set[str]):
+    """Routes for a second attempt after the judge rejected the first answer.
+
+    The same ranking ``_fallbacks`` uses - the policy's own expected score,
+    money and seconds - filtered to routes that are *meaningfully* stronger
+    than the one that failed. Without that bar a catalog of similar free routes
+    would answer a rejected answer with a route of the same tier, which is not
+    an escalation; the bar is the published router's
+    (``VerifyPolicy.min_capability_gain``).
+    """
+    catalog = decision.context.catalog
+    failed = catalog.get(failed_name)
+    if failed is None:
+        return
+    category = decision.request.category
+    bar = failed.cap(category) + ENGINE.verify_policy.min_capability_gain
+    for execution in _fallbacks(decision, conv, skip=skip):
+        model = catalog.get(execution.model_name)
+        if model is not None and model.cap(category) >= bar:
+            yield execution
 
 
 def _decision_payload(decision, conv, execution: Execution | None, p2p) -> dict:
@@ -731,6 +754,55 @@ async def _run_turn(conv, messages: list[dict], emit, keys: tuple[str, str],
             message = (f"{execution.label} closed the connection without sending anything. "
                        "The routing above still ran and costs nothing.")
         await emit(_sse("answer_error", {"message": message}))
+    # ------------------------------------------------------------------
+    # Check the answer - but only a cheap one. The gate is the published
+    # router's (auto_router/verify.py): a frontier route is not checked,
+    # because Jev is not stronger than one and would produce false alarms
+    # rather than quality.
+    # ------------------------------------------------------------------
+    catalog = decision.context.catalog
+    answered = catalog.get(execution.model_name)
+    check = await verify.check(
+        ENGINE.verify_policy, answered, decision.request.category,
+        request=prompt, answer=answer, label=execution.label,
+        evidence_discount=decision.context.success.evidence_discount,
+        needs_long_context=decision.request.needs_long_context) if answered is not None else None
+    escalated_to = None
+    if check is not None and check.escalate:
+        target = next(_escalations(decision, conv, execution.model_name, skip=tried), None)
+        if target is not None:
+            escalated_to = target.label
+    if check is not None:
+        await emit(_sse("verify", {**check.payload(), "escalatedTo": escalated_to,
+                                   "chip": verify.chip_text(check, escalated_to)}))
+    if escalated_to is not None:
+        # The conversation has now proved it is harder than it was routed for.
+        # Raising the floor is what stops the next turn from starting on the
+        # same too-cheap route and paying for the same failure again.
+        conv.floor = max(conv.floor, ENGINE.verify_policy.difficulty_floor)
+        conv.floor_set_at = now
+        first_answer, first_label = answer, execution.label
+        execution = target
+        tried.add(target.model_name)
+        await emit(_sse("escalated", {"from": first_label, "to": target.label,
+                                      "failure": verify.FAILURE_WORDS.get(check.failure, ""),
+                                      "p": round(check.p_adequate or 0.0, 2),
+                                      "firstAnswer": first_answer}))
+        plan = _plan_for(execution, decision)
+        await emit(_sse("answering", {"model": execution.model_name, "label": execution.label,
+                                      "substituted": False, "note": "",
+                                      "thinking": getattr(plan, "level", "none"),
+                                      "thinkingNote": getattr(plan, "note", "")}))
+        usage2, error2, answer2, timing = await _stream_answer(
+            execution, messages, emit, plan, deadline=_deadline_for(execution))
+        spent += _actual_cost(execution.model_name, usage2, decision)
+        if answer2.strip():
+            answer, usage, error = answer2, usage2, error2
+        else:
+            await emit(_sse("answer_error", {
+                "message": (f"{execution.label} did not answer the second attempt, so the first "
+                            "answer above stands.")}))
+
     cost = spent
     LIMITER.record_spend(cost)
     if session is not None:
@@ -769,12 +841,23 @@ PAGES = {"": "index.html", "playground": "index.html", "cache": "index.html",
          "results": "index.html", "how": "index.html", "run": "index.html",
          "privacy": "index.html", "impressum": "index.html"}
 
+#: Read once. Every page is this template with its own head block substituted
+#: in (app/meta.py): a crawler never runs the router that would otherwise
+#: decide which page it is looking at.
+TEMPLATE = (STATIC / "index.html").read_text()
+
+
+def _page(path: str) -> HTMLResponse:
+    return HTMLResponse(page_meta.render(TEMPLATE, path))
+
 
 @app.get("/{path:path}")
 async def site(path: str):
     if path in PAGES:
-        return FileResponse(STATIC / PAGES[path])
+        return _page("" if path == "playground" else path)
     candidate = (STATIC / path).resolve()
     if candidate.is_file() and STATIC in candidate.parents:
         return FileResponse(candidate)
-    return FileResponse(STATIC / "index.html")
+    # An unknown path still renders the app, which shows its own not-found
+    # view; the preview it gets is the site's, not a stale page's.
+    return _page("")

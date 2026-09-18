@@ -39,6 +39,18 @@ from .settings import DATA, SETTINGS
 #: the 78-task set (EXPERIMENTS.md section 4).
 JEV_CALIBRATION = [0.27, 0.51]
 
+#: Which answers get a second opinion, and against what. These are the
+#: published router's own calibrated numbers, written out here so the page can
+#: show a visitor exactly what it is applying rather than making them read a
+#: library default. ``max_capability`` is what keeps a frontier route out: Jev
+#: is not stronger than one, and grading one would produce false alarms.
+VERIFY_POLICY = {
+    "enabled": True,
+    "max_price_per_mtok": 1.0,
+    "max_capability": 72.0,
+    "skip_categories": ["long_context"],
+}
+
 
 def _load(name: str):
     """Read one data file, honouring an override so tests can run hermetically."""
@@ -127,7 +139,8 @@ class Engine:
             self.catalog_meta = meta
             self.config = RouterConfig(
                 providers=provider_objs, catalog=Catalog(models), subscriptions={},
-                policy={"name": "F_expected", "jev_difficulty_calibration": JEV_CALIBRATION},
+                policy={"name": "F_expected", "jev_difficulty_calibration": JEV_CALIBRATION,
+                        "verify": VERIFY_POLICY},
                 raw={"models": raw_entries})
             # The published expected-cost policy, plus the visitor's time. The
             # money half is untouched; see app/latency.py for what is added and
@@ -139,6 +152,17 @@ class Engine:
 
     def ready(self) -> bool:
         return self.router is not None and len(self.config.catalog.all()) > 0
+
+    @property
+    def verify_policy(self):
+        """Which answers are checked. The router's own object, not a copy.
+
+        Read through the router rather than rebuilt here so the page, the cost
+        model and the runtime gate can never drift apart: the same object
+        decides what is checked and prices the check into every candidate.
+        """
+        from auto_router.verify import VerifyPolicy
+        return self.router.verify if self.router is not None else VerifyPolicy()
 
     # -- catalog views -----------------------------------------------------
     def context(self, *, exclude: set[str] | None = None) -> Context:
@@ -256,6 +280,12 @@ class Engine:
                     latency.expected_seconds(model, decision.request, meta, plan,
                                              output_tokens=SETTINGS.max_output_tokens), 1),
                 "thinking": plan.level,
+                # Whether this route's answer would be judged before the
+                # visitor sees it. It belongs in the table because the
+                # "Expected" column already contains the consequence: a route
+                # whose failures are caught cheaply is priced as if they were.
+                "checked": self.router is not None
+                and self.router.policy.checks(model, decision.request, decision.context),
                 "speedBasis": latency.BOOK.speed(
                     model.name, (meta.get("speed") or {}).get("health_key")).source,
             })

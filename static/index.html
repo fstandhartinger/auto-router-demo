@@ -3,13 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Auto-router playground — watch a router pick the model</title>
-<meta name="description" content="A live demo of a cost-, cache- and quota-aware LLM router: Jev classifies the request, Benchmark Heaven prices every candidate, the expected-cost rule picks one, and the answer streams back.">
 <meta name="color-scheme" content="dark light">
-<meta property="og:title" content="Auto-router playground">
-<meta property="og:description" content="Type a prompt. Watch a router classify it, price every model, pick one, and answer — with the numbers it used.">
-<meta property="og:type" content="website">
-<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<!--page-meta-->
 <link rel="stylesheet" href="/assets/app.css">
 </head>
 <body>
@@ -69,8 +64,9 @@
     <p class="lede">
       Every request is classified in about half a second, every model is priced for
       <em>this</em> request at what it actually costs including the risk of having to
-      redo it, and the cheapest expected total wins. Then the answer streams back
-      from whichever model that turned out to be.
+      redo it, and the cheapest expected total wins.<span class="lede-rest"> Then the answer
+      streams back from whichever model that turned out to be — and if it came from a cheap
+      one, Jev checks it before you see it.</span>
     </p>
     <p class="hero-cta">
       <a class="primary-btn" href="/run" data-link><span class="btn-label">Run it on your own machine</span>
@@ -142,7 +138,10 @@
         <tbody></tbody>
       </table>
     </div>
-    <p class="table-foot" id="candidates-foot"></p>
+    <details class="table-legend">
+      <summary>How to read this table</summary>
+      <p class="table-foot" id="candidates-foot"></p>
+    </details>
   </article>
 
   <article class="card card-answer" id="card-answer">
@@ -158,6 +157,13 @@
           <span id="thinking-text">thinking…</span>
         </summary>
         <div class="thinking-body" id="thinking-stream" aria-live="off"></div>
+      </details>
+      <p class="verify-chip" id="verify-chip" hidden></p>
+      <details class="first-answer" id="first-answer" hidden>
+        <summary class="first-answer-line">
+          <span id="first-answer-label">the answer it replaced</span>
+        </summary>
+        <div class="answer answer-quiet" id="first-answer-body"></div>
       </details>
       <div class="answer" id="answer"></div>
       <p class="answer-foot" id="answer-foot"></p>
@@ -296,7 +302,7 @@
 <template id="page-how">
 <section class="wrap page-head">
   <p class="eyebrow">How it works</p>
-  <h1>Four moving parts.</h1>
+  <h1>Five moving parts.</h1>
 </section>
 <div class="wrap prose">
   <ol class="steps">
@@ -341,6 +347,26 @@
         cost — a retry on a stronger model if the failure is noticed, the price of a
         wrong answer if it is not. Lowest total wins. Inside an agent's tool loop the
         router never switches, because that throws away a cache that is seconds old.
+      </p>
+    </li>
+    <li>
+      <h3>A cheap answer gets checked before you see it</h3>
+      <p>
+        Only a cheap one. Jev is not stronger than a frontier model, so grading one
+        would produce false alarms rather than quality — and a question about a
+        document Jev was never shown cannot be graded at all. But a small model's
+        answer to a self-contained request is a different question, and a measured one:
+        one typed question, about 0.7 s, <strong>85 % of wrong coding answers caught</strong>
+        at a 10 % false-alarm rate and <strong>73 % of wrong maths answers</strong> at none.
+        A rejected answer is re-run on the cheapest route at least four capability points
+        stronger; you see the first answer collapsed above the second, and the chip says
+        what Jev objected to. Across 192 cheap answers that lifted correctness from
+        <strong>76 % to 85 %</strong> at about $0.03 a rescue.
+      </p>
+      <p>
+        This is also why the candidate table marks some rows <span class="checked-tag">judged</span>:
+        a route whose failures get caught for a fraction of a cent is worth more than one
+        whose failures reach you, and that is already priced into its expected cost.
       </p>
     </li>
   </ol>

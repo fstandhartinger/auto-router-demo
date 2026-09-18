@@ -79,6 +79,16 @@ function streamInto(node, text, final) {
   node.innerHTML = renderMarkdown(text);
 }
 
+function checkedTag(checked) {
+  // The judge is already inside the number next to this tag: a checked route's
+  // failures cost a retry instead of a wrong answer, and the check and its
+  // false alarms are charged for. The tag says which rows that applies to.
+  if (!checked) return "";
+  return '<span class="checked-tag" title="A cheap route: Jev checks this answer before you ' +
+         'see it, and the expected cost already includes the check and the escalation it ' +
+         'sometimes buys.">judged</span>';
+}
+
 function badge(row) {
   if (!row.badge) return "";
   return `<span class="badge badge-${row.badge}">${escapeHtml(row.badge)}</span>`;
@@ -304,6 +314,11 @@ async function runPlayground(text) {
   el("#answer").classList.add("cursor");
   el("#answer-foot").textContent = "";
   el("#answer-note").hidden = true;
+  el("#verify-chip").hidden = true;
+  el("#verify-chip").className = "verify-chip";
+  el("#first-answer").hidden = true;
+  el("#first-answer").open = false;
+  el("#first-answer-body").textContent = "";
   stopThinking();
   el("#thinking-box").hidden = true;
   el("#answer-model").textContent = "…";
@@ -356,6 +371,20 @@ async function runPlayground(text) {
         el("#answer-note").hidden = false;
         el("#answer-note").textContent =
           `${data.from} did not start answering in time. The router moved this turn to ${data.to}.`;
+      } else if (event === "verify") {
+        paintVerdict(data);
+      } else if (event === "escalated") {
+        // The first answer does not disappear - it moves into a collapsed
+        // block under the verdict, struck through, and the second answer
+        // streams into the empty space below it.
+        streamInto(el("#answer"), answer, true);
+        el("#first-answer-body").innerHTML = el("#answer").innerHTML;
+        el("#first-answer-label").innerHTML =
+          `<s>${escapeHtml(data.from)}'s answer</s> — replaced`;
+        el("#first-answer").hidden = false;
+        el("#answer").innerHTML = "";
+        answer = "";
+        el("#answer-model").textContent = data.to;
       } else if (event === "answer_error") {
         el("#answer-note").hidden = false;
         el("#answer-note").textContent = data.message;
@@ -380,6 +409,43 @@ async function runPlayground(text) {
     button.disabled = false;
     state.running = false;
   }
+}
+
+function paintVerdict(data) {
+  const chip = el("#verify-chip");
+  if (!data.chip && !data.reason) { chip.hidden = true; return; }
+  chip.hidden = false;
+  const scale = "0 to 1, where 1 means Jev is sure the answer fully and correctly " +
+                "answers the request. Below the threshold for this topic, the turn escalates.";
+  if (!data.checked) {
+    // Not every answer can be checked, and the reason is worth reading: a
+    // frontier model is not graded by a classifier, and a question about a
+    // pasted document cannot be graded without the document.
+    chip.className = "verify-chip is-skipped";
+    chip.title = "";
+    chip.textContent = `Not checked — ${data.reason}.`;
+    return;
+  }
+  chip.title = `P(adequate) = ${data.p} on a scale of ${scale}`;
+  if (data.escalate) {
+    // Said once, above the answer it explains: this answer is the second one.
+    chip.className = "verify-chip is-flagged";
+    chip.innerHTML =
+      `<b>${escapeHtml(data.label)} failed Jev's check</b> — ${escapeHtml(data.failure)}, ` +
+      `${fixed(data.p, 2)} of 1 against a threshold of ${fixed(data.threshold, 2)}` +
+      (data.escalatedTo
+        ? `. The answer below is ${escapeHtml(data.escalatedTo)}'s.`
+        : `, and no stronger route was available, so its answer stands.`);
+  } else {
+    chip.className = "verify-chip";
+    chip.textContent =
+      `Checked by Jev: adequate — ${fixed(data.p, 2)} of 1, and this topic escalates below ` +
+      `${fixed(data.threshold, 2)} · ${Math.round(data.latencyMs)} ms`;
+  }
+}
+
+function fixed(value, digits) {
+  return Number(value || 0).toFixed(digits);
 }
 
 function limitMessage(data) {
@@ -444,7 +510,8 @@ function paintClassification(data) {
       <dt>Latency</dt><dd>${Math.round(c.latency_ms)} ms</dd>
       <dt>Prompt</dt><dd>${data.promptTokens} tokens · a whole turn is priced at ${data.outputTokensAssumed} out</dd>
     </dl>
-    <div class="flags">${flags.map(([label, value]) => {
+    <div class="flags">${flags.every(([, v]) => !(v === true || v > 0.5))
+        ? '<span class="flags-label">none of these:</span>' : ""}${flags.map(([label, value]) => {
       const on = value === true || value > 0.5;
       return `<span class="flag ${on ? "on" : "off"}">${on ? "✓ " : ""}${escapeHtml(label)}</span>`;
     }).join("")}</div>`;
@@ -471,7 +538,7 @@ function paintCandidates(data) {
       <td class="num">${pct(row.pSuccess)}</td>
       <td class="num">${usd(row.callUsd)}</td>
       <td class="num">${secs(row.expectedSeconds)}${thinkTag(row.thinking)}</td>
-      <td class="num"><b>${usd(row.expectedUsd)}</b></td>`;
+      <td class="num"><b>${usd(row.expectedUsd)}</b>${checkedTag(row.checked)}</td>`;
     return tr;
   }));
   const weakCount = data.candidates.filter((c) =>
@@ -485,7 +552,10 @@ function paintCandidates(data) {
     `latency and decode speed for that route, plus the length of answer it was measured to ` +
     `write for a request like this and the tokens it is expected to spend thinking. Every route ` +
     `here is one you could use yourself: an OpenRouter public endpoint at its public price — the ` +
-    `<span class="chip chip-quiet">free</span> ones included — or the peer-to-peer swarm.` +
+    `<span class="chip chip-quiet">free</span> ones included — or the peer-to-peer swarm. ` +
+    `A route marked <span class="checked-tag">judged</span> is cheap enough that Jev checks its ` +
+    `answer before you see it, so its expected cost is priced with the check in it — the failures ` +
+    `it catches cost a second call rather than a wrong answer.` +
     (weakCount ? ` ${weakCount} capability number${weakCount === 1 ? " rests" : "s rest"} on ` +
       `weak evidence and is pulled toward a neutral prior before it is used — hover it.` : "");
 }
@@ -673,7 +743,7 @@ async function runWhatIf() {
       <td class="num">${usd(row.warmUsd)}</td>
       <td class="num">${usd(row.coldUsd)}</td>
       <td class="num">${row.cacheSavesUsd ? usd(row.cacheSavesUsd) : "—"}</td>
-      <td class="num"><b>${usd(row.expectedUsd)}</b></td>`;
+      <td class="num"><b>${usd(row.expectedUsd)}</b>${checkedTag(row.checked)}</td>`;
     return tr;
   }));
 

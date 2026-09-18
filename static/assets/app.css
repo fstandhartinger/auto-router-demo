@@ -145,7 +145,7 @@ p { margin: 0 0 1rem; }
 main { flex: 1 0 auto; padding-bottom: 4rem; }
 
 /* ------------------------------------------------------------------ hero */
-.hero { padding: clamp(2.4rem, 7vw, 4.6rem) 0 1.4rem; }
+.hero { padding: clamp(1.6rem, 4vw, 2.8rem) 0 1.2rem; }
 .hero h1 em { font-style: normal; color: var(--accent); }
 .eyebrow {
   text-transform: uppercase; letter-spacing: .14em; font-size: .72rem;
@@ -157,6 +157,11 @@ main { flex: 1 0 auto; padding-bottom: 4rem; }
 
 /* -------------------------------------------------------------- composer */
 .composer-wrap { margin-top: .6rem; }
+/* One measure for the whole hero. The prose stops at ~68ch; a prompt box that
+   runs 400px further right reads as a layout accident, not as emphasis. */
+@media (min-width: 1100px) {
+  .composer-wrap .composer, .composer-wrap .examples, .composer-wrap .limit-note { max-width: 62rem; }
+}
 .composer {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   padding: .5rem .5rem .5rem; box-shadow: 0 18px 46px -30px rgba(0, 0, 0, .9);
@@ -194,7 +199,12 @@ main { flex: 1 0 auto; padding-bottom: 4rem; }
 
 /* ----------------------------------------------------------------- cards */
 .stage { margin-top: 2.2rem; display: grid; gap: 1rem; }
-.grid-decision { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; align-items: start; }
+/* stretch, not start: card 1 is short and card 2 is tall, and the gap under
+   the short one read as a rendering fault rather than as a layout. */
+.grid-decision { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; align-items: stretch; }
+.grid-decision > .card { display: flex; flex-direction: column; }
+.grid-decision > .card > .card-body { flex: 1; }
+.card-classify .flags { margin-top: auto; padding-top: .8rem; }
 .card {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   overflow: hidden;
@@ -237,7 +247,11 @@ main { flex: 1 0 auto; padding-bottom: 4rem; }
   color: var(--muted);
 }
 .flag.on { color: var(--ink); border-color: var(--line-strong); }
-.flag.off { opacity: .42; }
+/* An absent trait is information ("none of these apply"), so it has to be
+   readable. It was dimmed to 0.42 opacity, which put it under 3:1 in both
+   themes; quiet now means colour, not near-invisibility. */
+.flag.off { color: var(--muted); border-style: dashed; }
+.flags-label { color: var(--muted); font-size: .78rem; margin-right: .1rem; align-self: center; }
 
 /* decision */
 .decision-model { display: flex; align-items: center; gap: .6rem; margin-bottom: .2rem; }
@@ -285,7 +299,20 @@ table.candidates tbody tr:last-child td { border-bottom: 0; }
 .badge-frontier { color: var(--frontier); border-color: color-mix(in srgb, var(--frontier) 40%, transparent); }
 .badge-p2p { color: var(--p2p); border-color: color-mix(in srgb, var(--p2p) 45%, transparent); }
 .weak { color: var(--warn); cursor: help; border-bottom: 1px dotted currentColor; }
-.table-foot { color: var(--muted); font-size: .8rem; padding: .7rem 1rem 0; margin: 0 0 .8rem; }
+.table-foot { color: var(--muted); font-size: .8rem; padding: .7rem 1rem 0; margin: 0 0 .8rem;
+  max-width: 78ch; }
+/* Seven lines of legend between the numbers and the answer they explain is
+   twenty lines on a phone. It is worth reading once, not every time. */
+.table-legend > summary {
+  color: var(--muted); font-size: .8rem; padding: .7rem 1rem .8rem; cursor: pointer;
+  list-style: none; user-select: none;
+}
+.table-legend > summary::-webkit-details-marker { display: none; }
+.table-legend > summary::after {
+  content: " ▸"; color: var(--line-strong);
+}
+.table-legend[open] > summary::after { content: " ▾"; }
+.table-legend > summary:hover { color: var(--ink-2); }
 td.basis {
   color: var(--muted); font-size: .78rem; max-width: 22rem; overflow: hidden;
   text-overflow: ellipsis; white-space: nowrap; cursor: help;
@@ -352,6 +379,44 @@ table.candidates td:first-child { min-width: 11rem; }
 .hljs-emphasis { font-style: italic; }
 .hljs-strong { font-weight: 700; }
 .answer-foot { color: var(--muted); font-size: .8rem; margin: .9rem 0 0; }
+
+/* the answer judge: a chip under a cheap answer, and the answer it replaced */
+.verify-chip {
+  display: flex; align-items: baseline; gap: .5rem; margin: 0 0 .8rem;
+  font-size: .84rem; line-height: 1.45; padding: .42rem .7rem; border-radius: var(--radius-sm);
+  border: 1px solid var(--line); color: var(--ink-2); background: var(--surface-2);
+}
+.verify-chip b { color: var(--ink); font-weight: 600; }
+.verify-chip::before { content: "✓"; color: var(--good); font-weight: 700; flex: none; }
+.verify-chip.is-flagged {
+  border-color: color-mix(in srgb, var(--warn) 38%, transparent);
+  background: color-mix(in srgb, var(--warn) 9%, transparent);
+}
+.verify-chip.is-flagged::before { content: "✗"; color: var(--warn); }
+.verify-chip.is-skipped { color: var(--muted); }
+.verify-chip.is-skipped::before { content: "·"; color: var(--muted); }
+.first-answer {
+  margin: 0 0 .9rem; padding: 0 0 .4rem .7rem;
+  border-left: 2px solid color-mix(in srgb, var(--warn) 45%, transparent);
+}
+.first-answer s { color: var(--muted); }
+.first-answer-line {
+  display: flex; align-items: center; gap: .5rem; color: var(--muted); font-size: .84rem;
+  cursor: pointer; list-style: none; user-select: none; padding: .25rem 0;
+}
+.first-answer-line::-webkit-details-marker { display: none; }
+.first-answer-line::after {
+  content: "show"; margin-left: auto; font-size: .76rem;
+  color: var(--muted); border-bottom: 1px dotted var(--line-strong);
+}
+.first-answer[open] > .first-answer-line::after { content: "hide"; }
+.first-answer-line:hover { color: var(--ink-2); }
+.answer-quiet { color: var(--muted); font-size: .9rem; margin-top: .4rem; }
+.checked-tag {
+  margin-left: .4rem; font-size: .68rem; font-weight: 500; letter-spacing: .02em;
+  color: var(--good); border: 1px solid color-mix(in srgb, var(--good) 35%, transparent);
+  border-radius: 999px; padding: .04rem .34rem; vertical-align: 1px; cursor: help;
+}
 .limit-note.is-paused { color: var(--warn); }
 .notice {
   background: color-mix(in srgb, var(--warn) 12%, transparent);
@@ -551,6 +616,7 @@ table.candidates td:first-child { min-width: 11rem; }
 .chart { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.1rem; }
 .chart h3 { margin-bottom: .15rem; }
 .chart .sub { color: var(--muted); font-size: .84rem; margin-bottom: 1rem; }
+.section-note { color: var(--muted); font-size: .84rem; margin: .8rem 0 0; max-width: 72ch; }
 .legend { display: flex; flex-wrap: wrap; gap: .8rem; font-size: .82rem; color: var(--ink-2); margin-bottom: .8rem; }
 .legend span { display: inline-flex; align-items: center; gap: .35rem; }
 .legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
@@ -658,6 +724,17 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
 @media (max-width: 560px) {
   .hero-cmd { font-size: .72rem; overflow-x: auto; max-width: 100%; }
   .tool-grid { grid-template-columns: 1fr; }
+  /* On a phone the prompt box is the page, and it was starting 660px down: a
+     four-line headline, a six-line paragraph and an install line for a visitor
+     who has not decided anything yet. The headline shrinks, the paragraph
+     keeps its first sentence, and the box comes up to meet the fold. */
+  .hero h1 { font-size: clamp(1.75rem, 8vw, 2.15rem); line-height: 1.08; }
+  .hero { padding-top: 1.1rem; }
+  .hero .lede { font-size: .98rem; }
+  .hero .lede-rest { display: none; }
+  .hero-cta { margin-top: 1rem; gap: .6rem; }
+  .composer-wrap { margin-top: .9rem; }
+  .composer textarea { min-height: 5.2rem; }
 }
 
 /* -------------------------------------------------------------- responsive */
@@ -679,6 +756,7 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
 }
 
 @media (max-width: 720px) {
+  .stat-row { grid-template-columns: 1fr 1fr; }
   .topbar-inner { height: auto; flex-wrap: wrap; padding-block: .5rem; gap: .5rem; }
   .nav { margin-left: 0; }
   .topbar-actions { margin-left: auto; }
@@ -699,11 +777,23 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
 }
 
 @media (max-width: 560px) {
-  /* Last to go is the success probability: the two cost columns are the point. */
-  table.candidates th:nth-child(4), table.candidates td:nth-child(4) { display: none; }
+  /* Last to go is the success probability, and then the raw call cost: what is
+     left is the route, the wait and the expected total - the three things the
+     decision is actually made on. The call cost is an input to the last one. */
+  table.candidates th:nth-child(4), table.candidates td:nth-child(4),
+  table.candidates th:nth-child(5), table.candidates td:nth-child(5) { display: none; }
+  table.candidates td:first-child .m-name > span > b { white-space: nowrap; }
+  /* The column headers carry a second explanatory line that costs more width
+     than it is worth on a phone; the legend under the table says the same. */
+  table.candidates .th-sub { display: none; }
+}
+
+@media (max-width: 480px) {
+  /* At this width the conclusion itself starts to slide off the right edge, so
+     the wait goes too. It is still in card 2 for the route that was chosen. */
+  table.candidates th:nth-child(6), table.candidates td:nth-child(6) { display: none; }
   .bar-row { grid-template-columns: 1fr auto; gap: .2rem .6rem; }
   .bar-row .lbl { grid-column: 1 / -1; }
-  .hero { padding-top: 1.8rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

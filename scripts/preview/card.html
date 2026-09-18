@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  /* The link-preview card. Same palette, type and hairlines as the page it
+     previews, so a shared link looks like the thing it opens - and nothing
+     here is loaded from a network: system fonts only, no images, no webfonts. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --plane: #0c0d0f; --surface: #16181b; --surface-2: #1c1f23;
+    --ink: #f3f4f5; --ink-2: #b6bcc4; --muted: #838b95;
+    --line: rgba(255,255,255,.09); --line-strong: rgba(255,255,255,.16);
+    --accent: #4f97f0; --accent-soft: rgba(79,151,240,.14);
+    --good: #23b37d; --p2p: #9085e9; --frontier: #d7688f;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  body {
+    width: 1200px; height: 630px; background: var(--plane); color: var(--ink);
+    font-family: var(--sans); -webkit-font-smoothing: antialiased;
+    display: flex; flex-direction: column; overflow: hidden;
+    background-image:
+      radial-gradient(900px 420px at 88% -12%, rgba(79,151,240,.16), transparent 62%),
+      radial-gradient(700px 380px at -8% 108%, rgba(144,133,233,.12), transparent 60%);
+  }
+  .bar { display: flex; align-items: center; gap: 12px; padding: 34px 56px 0; }
+  .mark { width: 34px; height: 34px; color: var(--accent); }
+  .brand { font-weight: 640; font-size: 25px; letter-spacing: -.02em; }
+  .brand span { color: var(--muted); font-weight: 500; }
+  .host { margin-left: auto; color: var(--muted); font-size: 20px; font-family: var(--mono); }
+
+  .body { display: grid; grid-template-columns: 1fr 470px; gap: 44px; padding: 26px 56px 0; flex: 1; }
+  h1 { font-size: 57px; line-height: 1.04; letter-spacing: -.035em; font-weight: 660; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { margin-top: 20px; color: var(--ink-2); font-size: 25px; line-height: 1.4; max-width: 19em; }
+  .flow { margin-top: 30px; display: flex; align-items: center; gap: 12px; }
+  .step {
+    border: 1px solid var(--line); background: var(--surface); border-radius: 11px;
+    padding: 10px 15px; font-size: 19px; color: var(--ink-2);
+  }
+  .step b { color: var(--ink); font-weight: 600; }
+  .arrow { color: var(--muted); font-size: 19px; }
+
+  .panel { border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 22px 24px; }
+  .panel h2 { font-size: 16px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 20px; }
+  th { text-align: left; font-weight: 500; color: var(--muted); font-size: 16px; padding-bottom: 8px; }
+  th.num, td.num { text-align: right; font-family: var(--mono); }
+  td { padding: 9px 0; border-top: 1px solid var(--line); }
+  tr.pick td { color: var(--ink); font-weight: 600; }
+  tr.pick td:first-child::before {
+    content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); margin-right: 10px; vertical-align: middle;
+  }
+  td:first-child { color: var(--ink-2); }
+  .chip {
+    margin-top: 22px; display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(35,179,125,.4); background: rgba(35,179,125,.12);
+    color: var(--good); border-radius: 999px; padding: 9px 16px; font-size: 19px; font-weight: 600;
+  }
+  .chip .tick { font-size: 21px; }
+  .foot {
+    display: flex; align-items: center; gap: 14px; padding: 26px 56px 32px;
+    color: var(--muted); font-size: 19px; border-top: 1px solid var(--line); margin-top: 26px;
+  }
+  .foot .dot { color: var(--line-strong); }
+  .foot b { color: var(--ink-2); font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M3 16h7c3 0 4-9 8-9h11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M10 16c3 0 4 9 8 9h11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".45"/>
+      <circle cx="10" cy="16" r="3.1" fill="currentColor"/>
+    </svg>
+    <div class="brand">auto&#8209;router<span>/playground</span></div>
+    <div class="host">whichmodel.app.mintapis.com</div>
+  </div>
+
+  <div class="body">
+    <div>
+      <h1>Watch a router<br>pick the <em>model</em>.</h1>
+      <p class="lede">Every candidate priced for your prompt — then checked, and escalated when the cheap answer does not hold.</p>
+      <div class="flow">
+        <div class="step"><b>classify</b></div>
+        <div class="arrow">→</div>
+        <div class="step"><b>decide</b></div>
+        <div class="arrow">→</div>
+        <div class="step"><b>answer</b></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Candidates for this turn</h2>
+      <table>
+        <tr><th>route</th><th class="num">p(ok)</th><th class="num">exp. cost</th></tr>
+        <tr class="pick"><td>Bonsai 2 27B (P2P)</td><td class="num">0.94</td><td class="num">$0.0001</td></tr>
+        <tr><td>Nex N2.5 Pro (free)</td><td class="num">0.93</td><td class="num">$0.0004</td></tr>
+        <tr><td>GLM-5.3 Flash</td><td class="num">0.95</td><td class="num">$0.0021</td></tr>
+        <tr><td>GPT-5.6 Luna</td><td class="num">0.97</td><td class="num">$0.0189</td></tr>
+        <tr><td>GPT-5.6 Sol</td><td class="num">0.98</td><td class="num">$0.0642</td></tr>
+      </table>
+      <div class="chip"><span class="tick">✓</span> Checked by Jev: adequate (0.93)</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>Jev</b> by TypeSafe AI classifies and checks
+    <span class="dot">·</span>
+    Data: <b>Benchmark Heaven</b>
+    <span class="dot">·</span>
+    open source, run it on your own keys
+  </div>
+</body>
+</html>
