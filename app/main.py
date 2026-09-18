@@ -557,6 +557,12 @@ async def chat(request: Request):
                              headers={"Cache-Control": "no-store", "X-Accel-Buffering": "no"})
 
 
+def _plan_for(execution: Execution, decision) -> latency.ReasoningPlan:
+    """How hard the route that is about to answer should think about this turn."""
+    return latency.plan_reasoning(execution.model_name, decision.request.difficulty,
+                                  ENGINE.catalog_meta.get(execution.model_name, {}))
+
+
 async def _run_turn(conv, messages: list[dict], emit, key: str, session: Session | None) -> None:
     prompt = messages[-1]["content"]
     context = ""
@@ -593,7 +599,11 @@ async def _run_turn(conv, messages: list[dict], emit, key: str, session: Session
         await emit(_sse("done", {"limits": LIMITER.snapshot(key), "costUsd": None}))
         return
 
-    plan = decision.reasoning
+    # The plan has to follow the route that actually answers. When the demo
+    # substitutes a cheaper route for the one the router chose, the chosen
+    # route's dialect means nothing to it - and sending the wrong one reads as
+    # "thinking off" while the model thinks at full length.
+    plan = _plan_for(execution, decision)
     await emit(_sse("answering", {"model": execution.model_name, "label": execution.label,
                                   "substituted": execution.substituted, "note": execution.note,
                                   "thinking": getattr(plan, "level", "none"),
@@ -611,8 +621,7 @@ async def _run_turn(conv, messages: list[dict], emit, key: str, session: Session
         await emit(_sse("rerouted", {"from": execution.label, "to": nxt.label,
                                      "reason": error}))
         execution = nxt
-        plan = latency.plan_reasoning(nxt.model_name, decision.request.difficulty,
-                                      ENGINE.catalog_meta.get(nxt.model_name, {}))
+        plan = _plan_for(execution, decision)
         await emit(_sse("answering", {"model": nxt.model_name, "label": nxt.label,
                                       "substituted": True, "note": "",
                                       "thinking": plan.level, "thinkingNote": plan.note}))

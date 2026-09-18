@@ -260,3 +260,36 @@ def test_the_cooldown_is_bounded(monkeypatch):
     monkeypatch.setattr(latency.time, "time", lambda: at + latency.MAX_COOLDOWN_S + 1)
     assert not latency.BOOK.cooling_off("mid-cheap")
     latency.BOOK.forgive("mid-cheap")
+
+
+def test_a_substituted_route_gets_its_own_reasoning_plan(client, monkeypatch):
+    """The dialect must follow the route that answers, not the one that was chosen.
+
+    The demo only runs free and very cheap routes, so the router's choice is
+    often replaced. Sending the chosen route's dialect to the replacement reads
+    as "thinking off" on the page while the model thinks at full length.
+    """
+    from app import main
+
+    chosen = {"name": None}
+    real_pick = main._pick_execution
+
+    def substitute(decision, conv):
+        chosen["name"] = decision.model.name
+        execution = real_pick(decision, conv)
+        # Force the answer onto a route with a different dialect.
+        other = next(m for m in decision.context.catalog.all()
+                     if m.name == "mid-cheap")
+        execution.model_name = other.name
+        execution.route = main._route_for(other.name)
+        execution.substituted = True
+        return execution
+
+    monkeypatch.setattr(main, "_pick_execution", substitute)
+    events = sse(client.post("/api/run", json={"prompt": "Write a small function"}))
+    answering = first(events, "answering")
+    assert answering["model"] == "mid-cheap"
+    assert chosen["name"] != "mid-cheap", "the test did not actually substitute"
+    # mid-cheap's dialect, not the chosen route's.
+    assert SENT[-1]["extra"] == {"chat_template_kwargs": {"enable_thinking": False}}
+    assert answering["thinking"] == "off"
