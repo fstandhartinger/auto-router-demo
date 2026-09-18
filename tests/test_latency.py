@@ -321,6 +321,26 @@ def test_every_attempt_is_charged_to_the_daily_budget(client, monkeypatch):
     assert expected > 0.001, "the failed attempt was not charged"
 
 
+def test_a_reported_cost_of_zero_on_a_metered_route_is_not_believed(client, monkeypatch):
+    """OpenRouter returns cost: 0 for the GPT-5.6 routes while publishing $2 and
+    $10 per million for them. Taking that at face value put the most expensive
+    half of the catalog outside the daily cap."""
+    from app import providers
+
+    async def free_lunch(route, messages, max_tokens, http_client, extra=None, timeout=None):
+        yield "delta", "answer"
+        yield "usage", providers.Usage(prompt_tokens=1000, completion_tokens=500, cost_usd=0.0)
+
+    monkeypatch.setattr(providers, "stream_answer", free_lunch)
+    events = sse(client.post("/api/run", json={"prompt": "This one is hard"}))
+    answered = first(events, "answering")["model"]
+    from app.engine import ENGINE
+
+    if ENGINE.context().catalog[answered].prices.is_free:
+        pytest.skip("a free route answered; nothing to price")
+    assert first(events, "done")["costUsd"] > 0
+
+
 def test_a_slow_starter_gets_longer_than_a_fast_one(client):
     """A flat deadline bounced the strongest routes off the hard questions they
     exist for: GPT-5.6 Sol needs five to forty seconds before it says anything."""

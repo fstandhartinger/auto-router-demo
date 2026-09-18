@@ -389,11 +389,18 @@ async def _stream_answer(execution: Execution, messages: list[dict], emit, plan=
 
 
 def _actual_cost(model_name: str, usage: providers.Usage, decision) -> float:
-    """What this call cost, from the provider's own accounting where it gives it."""
+    """What this call cost, from the provider's own accounting where it gives it.
+
+    A reported cost of exactly zero for a metered model is not an accounting,
+    it is a gap in one - OpenRouter returns ``cost: 0`` for the GPT-5.6 routes
+    while publishing $2 and $10 per million for them. Believing it would let
+    the most expensive half of the catalog run outside the daily cap, so a zero
+    falls back to list-price arithmetic.
+    """
     model = decision.context.catalog.get(model_name)
     if model is None or model.prices.is_free:
         return 0.0
-    if usage.cost_usd is not None and usage.cost_usd >= 0:
+    if usage.cost_usd is not None and usage.cost_usd > 0:
         return usage.cost_usd
     prompt = usage.prompt_tokens or decision.request.prompt_tokens
     cached = min(usage.cached_tokens, prompt)
