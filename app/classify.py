@@ -22,7 +22,7 @@ from auto_router import jev
 from . import providers
 
 #: Which route answers when Jev does not. Free and small on purpose.
-FALLBACK_MODELS = ("dsv4-flash", "glm-5.3-flash", "kimi-k3", "qwen3.8-27b")
+FALLBACK_MODELS = ("dsv4-flash", "glm-5.3-flash", "nex-n2.5-pro", "glm-5.2-free")
 
 CATEGORIES = tuple(jev.CATEGORY_OPTIONS)
 

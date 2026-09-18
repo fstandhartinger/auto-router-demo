@@ -68,6 +68,32 @@ def test_the_weight_is_exactly_the_seconds_surcharge(client):
     assert priced > money
 
 
+def test_a_short_answer_is_not_advertised_as_a_long_wait(client):
+    """18 Sep 2026, second round: "What is the capital of Australia?" was shown
+    as a 27-second wait because every route was priced at the demo's 900-token
+    output cap. The wait must be the answer this route actually writes."""
+    from auto_router.policies import TurnRequest
+
+    from app.engine import ENGINE
+
+    model = ENGINE.context().catalog["tiny-free"]
+    meta = ENGINE.catalog_meta["tiny-free"]
+    easy = TurnRequest(category="knowledge", difficulty=0.1, prompt_tokens=40,
+                       output_tokens=900, now=0.0)
+    measured = latency.expected_answer_tokens("tiny-free", 0.1, meta)
+    assert measured < 900, "the fixture must measure a short answer, not the cap"
+    # 0.5s to the first token and 200 tok/s in the fixture.
+    assert latency.expected_seconds(model, easy, meta) == pytest.approx(
+        0.5 + measured / 200.0, abs=0.01)
+
+
+def test_a_harder_request_is_expected_to_produce_a_longer_answer():
+    meta = {"speed": {"reasoning": False, "thinking_dialect": None}}
+    easy = latency.expected_answer_tokens("tiny-free", 0.1, meta)
+    hard = latency.expected_answer_tokens("tiny-free", 0.9, meta)
+    assert hard > easy
+
+
 def test_an_unmeasured_route_is_not_assumed_to_be_fast():
     speed = latency.BOOK.speed("a-route-nobody-has-timed")
     assert speed.source == "default"
@@ -116,6 +142,35 @@ def test_a_reasoning_route_we_cannot_steer_is_still_priced_as_thinking():
     plan = latency.plan_reasoning("big-frontier", 0.1, UNCONTROLLED)
     assert plan.level == "full"
     assert plan.request_extra == {}
+
+
+def test_openrouters_own_reasoning_block_is_sent_where_it_was_measured():
+    """Measured on five OpenRouter routes on 18 Sep 2026: this body, and only
+    this body, actually stops them thinking."""
+    meta = {"speed": {"reasoning": True, "thinking_dialect": "openrouter_reasoning"}}
+    assert latency.plan_reasoning("x", 0.1, meta).request_extra == {
+        "reasoning": {"enabled": False}}
+    # ... at every difficulty: these endpoints were measured to ignore a smaller
+    # thinking budget and think until they are cut off, so there is no honest
+    # middle setting to send them.
+    harder = latency.plan_reasoning("x", 0.9, meta)
+    assert harder.level == "off"
+    assert harder.request_extra == {"reasoning": {"enabled": False}}
+    assert harder.note
+
+
+def test_a_thinking_turn_gets_room_for_the_answer_on_top_of_the_thinking():
+    """Several endpoints accept a reasoning effort and then ignore it. Without
+    headroom the budget is spent thinking and the visitor gets an empty box."""
+    from app import main
+    from app.settings import SETTINGS
+
+    off = latency.ReasoningPlan("off", 0, {}, "")
+    thinking = latency.ReasoningPlan("low", 256, {"reasoning": {"effort": "low"}}, "")
+    assert main._output_budget(off) == SETTINGS.max_output_tokens
+    assert (main._output_budget(thinking)
+            == SETTINGS.max_output_tokens + SETTINGS.reasoning_headroom_tokens)
+    assert SETTINGS.reasoning_headroom_tokens > 0
 
 
 def test_only_measured_dialects_are_ever_sent():
@@ -199,6 +254,29 @@ def test_a_route_that_says_nothing_is_replaced(client, monkeypatch):
     assert "rerouted" in kinds, kinds
     rerouted = first(events, "rerouted")
     assert rerouted["from"] != rerouted["to"]
+    assert "".join(d["text"] for e, d in events if e == "delta") == "the next route answered"
+
+
+def test_a_route_whose_endpoint_refuses_is_replaced_too(client, monkeypatch):
+    """Not only a route that goes quiet: a free public endpoint that answers
+    429 from its shared upstream must hand the turn on as well. Caught on
+    18 Sep 2026, when a rate-limited free route ended the turn with an apology
+    while seven usable routes sat in the catalog."""
+    from app import providers
+
+    refused = []
+
+    async def refuse_once(route, messages, max_tokens, http_client, extra=None, timeout=None):
+        if not refused:
+            refused.append(route.model)
+            yield "error", "upstream 429: rate-limited upstream"
+            return
+        yield "delta", "the next route answered"
+        yield "usage", providers.Usage(prompt_tokens=10, completion_tokens=4, cached_tokens=0)
+
+    monkeypatch.setattr(providers, "stream_answer", refuse_once)
+    events = sse(client.post("/api/run", json={"prompt": "Write a small function"}))
+    assert "rerouted" in [event for event, _ in events]
     assert "".join(d["text"] for e, d in events if e == "delta") == "the next route answered"
 
 

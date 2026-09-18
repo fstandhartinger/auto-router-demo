@@ -172,8 +172,22 @@ class Execution:
     note: str = ""
 
 
+def _output_budget(plan) -> int:
+    """The token budget one answer may use, thinking included.
+
+    The answer cap is what the visitor is promised; the headroom on top is what
+    keeps a route that ignores a reasoning-effort hint from spending the whole
+    budget thinking and never reaching the answer.
+    """
+    if getattr(plan, "level", "none") in ("off", "none"):
+        return SETTINGS.max_output_tokens
+    return SETTINGS.max_output_tokens + SETTINGS.reasoning_headroom_tokens
+
+
 def _estimate(model, prompt_tokens: int, warm_tokens: int) -> float:
-    cost = turn_cost(model, prompt_tokens, warm_tokens, SETTINGS.max_output_tokens)
+    """The worst this call can cost: the answer cap plus the thinking headroom."""
+    cost = turn_cost(model, prompt_tokens, warm_tokens,
+                     SETTINGS.max_output_tokens + SETTINGS.reasoning_headroom_tokens)
     return 0.0 if not math.isfinite(cost) else cost
 
 
@@ -313,7 +327,7 @@ async def _stream_answer(execution: Execution, messages: list[dict], emit, plan=
     thinking_started = None
     thinking_chars = 0
     extra = dict(getattr(plan, "request_extra", None) or {})
-    stream = providers.stream_answer(execution.route, messages, SETTINGS.max_output_tokens,
+    stream = providers.stream_answer(execution.route, messages, _output_budget(plan),
                                      app.state.client, extra=extra)
     limit = deadline if deadline is not None else FIRST_TOKEN_DEADLINE_S
     while True:
@@ -352,7 +366,9 @@ async def _stream_answer(execution: Execution, messages: list[dict], emit, plan=
         elif kind == "error":
             error = value
             latency.BOOK.penalise(execution.model_name, str(value)[:120])
-            await emit(_sse("answer_error", {"message": "the route did not answer"}))
+            # No notice here: the caller still has the next candidate to try,
+            # and an error box that is replaced by an answer a second later
+            # reads as if the demo were broken when it is doing its job.
     if first_token_at is not None and not error:
         latency.BOOK.forgive(execution.model_name)
     if thinking_started is not None and first_token_at is None:
@@ -656,10 +672,12 @@ async def _run_turn(conv, messages: list[dict], emit, keys: tuple[str, str],
                                   "thinkingNote": getattr(plan, "note", "")}))
     usage, error, answer, timing = await _stream_answer(execution, messages, emit, plan)
     tried = {execution.model_name}
-    # A route that has said nothing at all by its deadline is not answering this
-    # turn. Take the next candidate by the same ranking rather than leaving the
-    # visitor with a spinner.
-    while timing is None and error:
+    # A route that produced nothing is not answering this turn, whether it went
+    # quiet until its deadline or the endpoint refused outright - a free public
+    # endpoint hitting its shared upstream rate limit is the common case. Take
+    # the next candidate by the same ranking rather than leaving the visitor
+    # with an apology, and keep anything the route did manage to say.
+    while error and not answer.strip():
         nxt = next(_fallbacks(decision, conv, skip=tried), None)
         if nxt is None:
             break
@@ -672,13 +690,16 @@ async def _run_turn(conv, messages: list[dict], emit, keys: tuple[str, str],
                                       "substituted": True, "note": "",
                                       "thinking": plan.level, "thinkingNote": plan.note}))
         usage, error, answer, timing = await _stream_answer(execution, messages, emit, plan)
-    if not error and not answer.strip():
-        # A reasoning model can spend the whole capped budget thinking and never
-        # start the answer. Say that, rather than showing an empty box.
+    if not answer.strip():
+        # Every route the demo may use is exhausted, or the one that answered
+        # spent its whole capped budget thinking and never started. Say which,
+        # rather than showing an empty box.
         await emit(_sse("answer_error", {
-            "message": f"{execution.label} used all {SETTINGS.max_output_tokens} tokens this demo "
-                       "allows on its own reasoning and never got to the answer. That is a limit of "
-                       "the demo's output cap, not of the routing decision above."}))
+            "message": (f"No route this demo may use answered this request: {error}. The routing "
+                        "above still ran and costs nothing.") if error else
+                       (f"{execution.label} used all {_output_budget(plan)} tokens this demo "
+                        "allows on its own reasoning and never got to the answer. That is a limit "
+                        "of the demo's output cap, not of the routing decision above.")}))
     cost = _actual_cost(execution.model_name, usage, decision)
     LIMITER.record_spend(cost)
     if session is not None:

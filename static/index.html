@@ -190,8 +190,8 @@
       <p class="muted" style="margin-top:0">
         This is the live policy object answering a question instead of a request — the only
         honest way to show what a 100k-token agent prefix does to a decision without paying
-        for one. Free tiers are hidden by default: a free route has no cache price, so with
-        them in the catalog there is nothing to trade off.
+        for one. The free endpoints are hidden by default: a free route has no cache price, so
+        with them in the catalog there is nothing to trade off.
       </p>
       <div class="controls">
         <label>Conversation so far
@@ -379,7 +379,10 @@
   <h2 class="wide-head">The catalog right now</h2>
   <p class="muted" style="font-size:.88rem;max-width:74ch">
     Read live from the benchmark API when the demo started. The last column is the exact
-    basis of that model's coding capability — hover it for every other topic.
+    basis of that model's coding capability — hover it for every other topic. Every route in
+    here is one you could use yourself today: an OpenRouter public endpoint at its public
+    price, including the <code>:free</code> ones, or the peer-to-peer swarm. There is nothing
+    in this catalog that depends on an account you cannot get.
   </p>
   <div class="table-scroll card" style="padding:0">
     <table class="candidates" id="catalog-table">
@@ -529,7 +532,7 @@ model:     auto</code></pre>
           <em>“`wire_api = "chat"` is no longer supported”</em> (codex-cli 0.154.0). The router
           speaks OpenAI chat-completions and the Anthropic Messages API, so there is nothing
           honest to paste here yet. A Responses endpoint is
-          <a href="https://github.com/fstandhartinger/auto-model-router/issues" rel="noopener">tracked in the repo</a>;
+          <a href="https://github.com/fstandhartinger/auto-model-router/issues/1" rel="noopener">tracked in the repo</a>;
           when it lands the config will be:
         </p>
 <pre class="code"><code># ~/.codex/config.toml — once the router speaks /v1/responses

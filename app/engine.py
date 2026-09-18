@@ -18,7 +18,7 @@ import math
 import os
 import threading
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 from auto_router import jev
@@ -201,6 +201,15 @@ class Engine:
         raw_tokens = estimate_tokens(messages, None, None)
         prompt_tokens = router.estimator.estimate(raw_tokens)
         req = router._turn_request(classification, prompt_tokens, None, now, False, messages)
+        # The published router prices a turn at up to 4000 output tokens. This
+        # playground caps the answer far below that and, for an easy question,
+        # gets a two-line one - so both halves of the objective are priced on
+        # what this turn will actually produce. The length is the same for every
+        # candidate, so it moves the absolute numbers, not the ranking; the time
+        # half uses each route's own measured verbosity on top of it.
+        req = replace(req, output_tokens=min(req.output_tokens,
+                                             latency.DEFAULT_ANSWER_TOKENS[
+                                                 latency.bucket_of(req.difficulty)]))
         choice = router.policy.choose(conv, req, ctx)
         model = ctx.catalog[choice.model]
         explanation = router.explain(ctx, conv, cid, model, choice.reason, req, classification,

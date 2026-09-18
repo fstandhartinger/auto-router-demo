@@ -1,47 +1,164 @@
 {
- "about": "Measured against the live endpoints with one streamed request per difficulty bucket, thinking left at the provider's default. ttft_s and decode_tps are medians over the three; reasoning_tokens is what the model spent thinking before the answer. Refresh with measure_speed.py.",
- "measured_at": "2026-09-18T14:43:39Z",
- "max_output_tokens": 900,
+ "about": "Measured against the live endpoints on 18 Sep 2026: five streamed calls per route, the demo's own example prompts, sent the way the demo sends them - thinking off where the endpoint honours it, the smallest thinking it accepts otherwise. The bucket of each prompt is the one Jev's difficulty puts it in on the live demo (0.00, 0.00, 0.28, 0.65, 0.93), not a hand-assigned one. ttft_s and decode_tps are medians over the calls that answered. reasoning_tokens is what the route still spent thinking; answer_tokens is how long the answer itself was, and is what the expected-time estimate uses. Where a route spent its whole budget thinking and never reached the answer, that bucket falls back to a default length rather than recording an answer of zero tokens, which would advertise it as instant. Refresh with scripts/measure_speed.py.",
+ "measured_at": "2026-09-18T16:55:50Z",
+ "answer_cap_tokens": 900,
+ "default_answer_tokens": {
+  "easy": 120,
+  "medium": 350,
+  "hard": 550
+ },
  "routes": {
-  "kimi-k3": {
-   "ttft_s": 1.5,
-   "decode_tps": 35.0,
+  "nex-n2.5-pro": {
+   "ttft_s": 1.35,
+   "decode_tps": 58.4,
    "reasoning_tokens": {
-    "easy": 94,
-    "medium": 624,
-    "hard": 835
+    "easy": 0,
+    "medium": 554,
+    "hard": 2086
    },
-   "reasoning": true
-  },
-  "qwen3.8-27b": {
-   "ttft_s": 1.23,
-   "decode_tps": 73.5,
-   "reasoning_tokens": {
-    "easy": 35,
-    "medium": 88,
-    "hard": 385
+   "answer_tokens": {
+    "easy": 120,
+    "medium": 618,
+    "hard": 550
    },
-   "reasoning": true
+   "reasoning": true,
+   "calls": 5,
+   "answered": 5
   },
   "dsv4-flash": {
+   "ttft_s": 0.99,
+   "decode_tps": 31.9,
+   "reasoning_tokens": {
+    "easy": 0,
+    "medium": 285,
+    "hard": 1924
+   },
+   "answer_tokens": {
+    "easy": 120,
+    "medium": 380,
+    "hard": 550
+   },
+   "reasoning": true,
+   "calls": 5,
+   "answered": 5
+  },
+  "glm-5.2-free": {
+   "ttft_s": 0.92,
+   "decode_tps": 48.4,
+   "reasoning_tokens": {
+    "easy": 0
+   },
+   "answer_tokens": {
+    "easy": 179,
+    "medium": 350,
+    "hard": 550
+   },
+   "reasoning": true,
+   "calls": 5,
+   "answered": 3
+  },
+  "dsv4.1-flash": {
    "ttft_s": 1.21,
-   "decode_tps": 204.8,
+   "decode_tps": 50.4,
+   "reasoning_tokens": {
+    "easy": 0,
+    "medium": 247,
+    "hard": 1924
+   },
+   "answer_tokens": {
+    "easy": 120,
+    "medium": 312,
+    "hard": 550
+   },
+   "reasoning": true,
+   "calls": 5,
+   "answered": 5
+  },
+  "glm-5.3-flash": {
+   "ttft_s": 1.25,
+   "decode_tps": 80.5,
+   "reasoning_tokens": {
+    "easy": 0,
+    "medium": 77,
+    "hard": 131
+   },
+   "answer_tokens": {
+    "easy": 226,
+    "medium": 533,
+    "hard": 627
+   },
+   "reasoning": true,
+   "calls": 5,
+   "answered": 5
+  },
+  "gpt-5.6-luna": {
+   "ttft_s": 3.11,
+   "decode_tps": 216.2,
+   "reasoning_tokens": {
+    "easy": 50,
+    "medium": 238,
+    "hard": 516
+   },
+   "answer_tokens": {
+    "easy": 191,
+    "medium": 302,
+    "hard": 495
+   },
+   "reasoning": true,
+   "calls": 5,
+   "answered": 5
+  },
+  "gpt-5.6-sol": {
+   "ttft_s": 5.43,
+   "decode_tps": 125.0,
+   "reasoning_tokens": {
+    "easy": 55,
+    "medium": 156,
+    "hard": 941
+   },
+   "answer_tokens": {
+    "easy": 158,
+    "medium": 289,
+    "hard": 516
+   },
+   "reasoning": true,
+   "calls": 5,
+   "answered": 5
+  },
+  "claude-opus-5": {
+   "ttft_s": 5.03,
+   "decode_tps": 80.9,
+   "reasoning_tokens": {
+    "easy": 0,
+    "medium": 789,
+    "hard": 1924
+   },
+   "answer_tokens": {
+    "easy": 406,
+    "medium": 1135,
+    "hard": 550
+   },
+   "reasoning": true,
+   "calls": 5,
+   "answered": 5
+  },
+  "bonsai-2-27b-p2p": {
+   "ttft_s": 1.36,
+   "decode_tps": 33.9,
    "reasoning_tokens": {
     "easy": 0,
     "medium": 0,
     "hard": 0
    },
-   "reasoning": false
-  },
-  "glm-5.3-flash": {
-   "ttft_s": 2.71,
-   "decode_tps": 84.8,
-   "reasoning_tokens": {
-    "easy": 129,
-    "medium": 1085,
-    "hard": 699
+   "answer_tokens": {
+    "easy": 75,
+    "medium": 350,
+    "hard": 550
    },
-   "reasoning": true
+   "reasoning": false,
+   "calls": 5,
+   "answered": 2,
+   "note": "Only the two short requests came back; the three long ones never produced a token."
   }
  }
 }

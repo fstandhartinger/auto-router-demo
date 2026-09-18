@@ -1,5 +1,5 @@
 {
- "about": "Fixture speeds for the hermetic test catalog. No network.",
+ "about": "Fixture speeds for the hermetic test catalog: first token, decode rate, the thinking each route does per bucket and the length of answer it writes. No network.",
  "measured_at": "2026-09-18T00:00:00Z",
  "max_output_tokens": 900,
  "routes": {
@@ -7,7 +7,12 @@
    "ttft_s": 0.5,
    "decode_tps": 200.0,
    "reasoning_tokens": {},
-   "reasoning": false
+   "reasoning": false,
+   "answer_tokens": {
+    "easy": 60,
+    "medium": 300,
+    "hard": 500
+   }
   },
   "mid-cheap": {
    "ttft_s": 2.0,
@@ -17,7 +22,12 @@
     "medium": 600,
     "hard": 900
    },
-   "reasoning": true
+   "reasoning": true,
+   "answer_tokens": {
+    "easy": 120,
+    "medium": 350,
+    "hard": 550
+   }
   },
   "big-frontier": {
    "ttft_s": 3.0,
@@ -27,7 +37,12 @@
     "medium": 400,
     "hard": 700
    },
-   "reasoning": true
+   "reasoning": true,
+   "answer_tokens": {
+    "easy": 200,
+    "medium": 400,
+    "hard": 600
+   }
   }
  }
 }

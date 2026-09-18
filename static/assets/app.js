@@ -482,7 +482,10 @@ function paintCandidates(data) {
     `otherwise a curve fitted on them. Expected cost adds what a failure would cost: a retry ` +
     `on a stronger route, or the price of a wrong answer nobody notices — and what the wait ` +
     `is worth, at ${usd(data.secondUsd || 0.002, 4)} a second. Expected time is measured first-token ` +
-    `latency and decode speed for that route, plus the tokens it is expected to spend thinking.` +
+    `latency and decode speed for that route, plus the length of answer it was measured to ` +
+    `write for a request like this and the tokens it is expected to spend thinking. Every route ` +
+    `here is one you could use yourself: an OpenRouter public endpoint at its public price — the ` +
+    `<span class="chip chip-quiet">free</span> ones included — or the peer-to-peer swarm.` +
     (weakCount ? ` ${weakCount} capability number${weakCount === 1 ? " rests" : "s rest"} on ` +
       `weak evidence and is pulled toward a neutral prior before it is used — hover it.` : "");
 }

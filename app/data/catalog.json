@@ -1,5 +1,5 @@
 {
- "about": "The models the demo router reasons about. Prices, context length and per-topic capability are read live from the Benchmark Heaven API through bench_id; cache hit rates are our own measurements (EXPERIMENTS.md section 2). Which endpoint actually serves a model, and under which account, is supplied at runtime through DEMO_ROUTES_JSON and never stored here.",
+ "about": "The models the demo router reasons about. Every route here is one a visitor could use themselves: an OpenRouter public endpoint at its public price (the :free ones included) or the peer-to-peer Bonsai swarm. Prices, context length and per-topic capability are read live from the Benchmark Heaven API through bench_id; cache hit rates are our own measurements (EXPERIMENTS.md section 2). Which endpoint actually serves a model, and under which account, is supplied at runtime through DEMO_ROUTES_JSON and never stored here.",
  "models": [
   {
    "name": "bonsai-2-27b-p2p",
@@ -8,7 +8,7 @@
    "context_tokens": 32000,
    "max_output_tokens": 2048,
    "tools": false,
-   "latency_s": 25.0,
+   "latency_s": 6.0,
    "cache": {
     "ttl_seconds": 0,
     "min_tokens": 1000000000,
@@ -29,7 +29,7 @@
     "label": "Bonsai 2 27B",
     "org": "community GPUs (peer-to-peer)",
     "badge": "p2p",
-    "note": "A ternary 27B model running on WebGPU in volunteers' browsers. Free, slow, best effort.",
+    "note": "A ternary 27B model running on WebGPU in volunteers' browsers. Free, best effort, short requests only - and the only route here that needs no account anywhere.",
     "capability_basis": "Hand-set from the published model card and our own browser evaluation, not from a benchmark feed. Treated as weak evidence.",
     "peer_to_peer": true,
     "speed": {
@@ -40,23 +40,28 @@
    }
   },
   {
-   "name": "qwen3.8-27b",
-   "bench_id": "qwen3.8-27b::xhigh",
+   "name": "nex-n2.5-pro",
+   "bench_id": "nex-n2.5-pro::default",
+   "bench_offer": {
+    "platform": "OpenRouter"
+   },
    "free": true,
-   "latency_s": 12.0,
+   "latency_s": 3.0,
    "cache": {
-    "ttl_seconds": 300,
+    "ttl_seconds": 0,
+    "min_tokens": 1000000000,
     "hit_rate": 0.0
    },
    "demo": {
-    "label": "Qwen3.8 27B",
-    "org": "Alibaba",
+    "label": "Nex-N2.5 Pro",
+    "org": "Nex AGI",
     "badge": "free",
-    "note": "Free tier, open weights. No prefix cache discount measured on this route.",
+    "note": "OpenRouter's public :free endpoint - no cost, shared upstream rate limit.",
+    "capability_basis": "Benchmark Heaven lists the model and its price but has no scores for it yet, so every category falls back to the neutral prior of 50 and the evidence discount applies in full.",
     "speed": {
      "reasoning": true,
-     "thinking_dialect": "chat_template_kwargs",
-     "health_key": "qwen3.8-27b"
+     "thinking_dialect": "openrouter_reasoning",
+     "health_key": null
     }
    }
   },
@@ -64,49 +69,79 @@
    "name": "dsv4-flash",
    "bench_id": "deepseek-v4-flash-0731::max",
    "free": true,
-   "latency_s": 8.0,
+   "latency_s": 3.0,
    "cache": {
-    "ttl_seconds": 3600,
-    "hit_rate": 0.78
+    "ttl_seconds": 0,
+    "min_tokens": 1000000000,
+    "hit_rate": 0.0
    },
    "demo": {
     "label": "DeepSeek V4 Flash",
     "org": "DeepSeek",
     "badge": "free",
-    "note": "Free tier, open weights.",
+    "note": "OpenRouter's public :free endpoint for DeepSeek V4 Flash - the same weights as the metered route, with a shared upstream rate limit and no prefix cache.",
     "speed": {
-     "reasoning": false,
-     "thinking_dialect": null,
+     "reasoning": true,
+     "thinking_dialect": "openrouter_reasoning",
+     "health_key": null
+    }
+   },
+   "bench_offer": {
+    "platform": "OpenRouter"
+   }
+  },
+  {
+   "name": "glm-5.2-free",
+   "bench_id": "glm-5.2::max",
+   "bench_offer": {
+    "platform": "OpenRouter"
+   },
+   "free": true,
+   "latency_s": 4.0,
+   "cache": {
+    "ttl_seconds": 0,
+    "min_tokens": 1000000000,
+    "hit_rate": 0.0
+   },
+   "demo": {
+    "label": "GLM-5.2 (free)",
+    "org": "Z.ai",
+    "badge": "free",
+    "note": "OpenRouter's public :free endpoint. Strong for a free route, and the one that hit an upstream rate limit most often in our measurements (3 of 5 calls answered).",
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "openrouter_reasoning",
      "health_key": null
     }
    }
   },
   {
-   "name": "kimi-k3",
-   "bench_id": "kimi-k3::max",
-   "free": true,
-   "vision": true,
-   "latency_s": 14.0,
+   "name": "dsv4.1-flash",
+   "bench_id": "deepseek-v4.1-flash::max",
+   "bench_offer": {
+    "platform": "OpenRouter"
+   },
+   "latency_s": 4.0,
    "cache": {
     "ttl_seconds": 300,
-    "hit_rate": 0.58
+    "hit_rate": 0.6
    },
    "demo": {
-    "label": "Kimi K3",
-    "org": "Moonshot AI",
-    "badge": "free",
-    "note": "Free tier, open weights. Strongest of the free routes on our task set.",
+    "label": "DeepSeek V4.1 Flash",
+    "org": "DeepSeek",
+    "badge": "cheap",
+    "note": "Metered at OpenRouter's public price. Fast to the first token, cheap per answer.",
     "speed": {
      "reasoning": true,
-     "thinking_dialect": "chat_template_kwargs",
-     "health_key": "kimi-k3"
+     "thinking_dialect": "openrouter_reasoning",
+     "health_key": null
     }
    }
   },
   {
    "name": "glm-5.3-flash",
    "bench_id": "glm-5.3-flash::default",
-   "latency_s": 6.0,
+   "latency_s": 4.0,
    "cache": {
     "ttl_seconds": 300,
     "hit_rate": 0.95
@@ -132,7 +167,7 @@
     "provider": "OpenAI"
    },
    "vision": true,
-   "latency_s": 7.0,
+   "latency_s": 6.0,
    "cache": {
     "ttl_seconds": 300,
     "hit_rate": 0.98
@@ -157,7 +192,7 @@
     "provider": "OpenAI"
    },
    "vision": true,
-   "latency_s": 11.0,
+   "latency_s": 9.0,
    "cache": {
     "ttl_seconds": 300,
     "hit_rate": 0.99
@@ -183,7 +218,7 @@
    },
    "cache_family": "anthropic",
    "vision": true,
-   "latency_s": 16.0,
+   "latency_s": 10.0,
    "cache": {
     "ttl_seconds": 300,
     "hit_rate": 0.95
@@ -196,7 +231,7 @@
     "baseline": true,
     "speed": {
      "reasoning": true,
-     "thinking_dialect": null,
+     "thinking_dialect": "openrouter_reasoning",
      "health_key": null
     }
    }

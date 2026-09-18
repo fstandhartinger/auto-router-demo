@@ -65,9 +65,16 @@ class Settings:
     #: A single answer may not be estimated to cost more than this, which is
     #: what keeps the demo on free and cheap routes without having to hard-code
     #: a list of "allowed" models.
-    max_call_usd: float = 0.03
+    max_call_usd: float = 0.05
     max_prompt_chars: int = 4000
     max_output_tokens: int = 900
+    #: Extra tokens a turn may use *on top of* the answer cap when the route is
+    #: allowed to think. Several endpoints accept a reasoning effort and then
+    #: ignore it, so without headroom a hard question is answered entirely
+    #: inside the thinking budget and the visitor gets an empty box. Measured on
+    #: 18 Sep 2026: with no headroom, 6 of 14 medium/hard calls produced no
+    #: answer at all.
+    reasoning_headroom_tokens: int = 900
     #: How long one route may take to show its first token before the demo
     #: moves on to the next candidate. A public playground that sits silent is
     #: indistinguishable from a broken one.
@@ -110,9 +117,10 @@ class Settings:
             daily_budget_usd=_float("DEMO_DAILY_BUDGET_USD", 4.0),
             state_file=os.environ.get("DEMO_STATE_FILE", cls.state_file),
             test_key=os.environ.get("DEMO_TEST_KEY", ""),
-            max_call_usd=_float("DEMO_MAX_CALL_USD", 0.03),
+            max_call_usd=_float("DEMO_MAX_CALL_USD", 0.05),
             max_prompt_chars=_int("DEMO_MAX_PROMPT_CHARS", 4000),
             max_output_tokens=_int("DEMO_MAX_OUTPUT_TOKENS", 900),
+            reasoning_headroom_tokens=_int("DEMO_REASONING_HEADROOM_TOKENS", 900),
             first_token_deadline_s=_float("DEMO_FIRST_TOKEN_DEADLINE_S", 12.0),
             bonsai_enabled=bool(base) and os.environ.get("BONSAI_ENABLED", "1") != "0",
             bonsai_base_url=base,

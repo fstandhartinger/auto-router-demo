@@ -69,6 +69,11 @@ DEFAULT_DECODE_TPS = 40.0
 #: ... and what an unmeasured reasoning model is assumed to spend thinking, by
 #: difficulty bucket. Near the low end of what the measured ones actually did.
 DEFAULT_REASONING_TOKENS = {"easy": 100, "medium": 400, "hard": 700}
+#: How long an answer is expected to be, by difficulty bucket, for a route we
+#: have not measured. The measured lengths live in speed.measured.json; these
+#: are the fallback and the floor for a bucket whose sample never reached the
+#: answer at all.
+DEFAULT_ANSWER_TOKENS = {"easy": 120, "medium": 350, "hard": 550}
 
 
 # ---------------------------------------------------------------------------
@@ -82,6 +87,9 @@ class Speed:
     decode_tps: float = DEFAULT_DECODE_TPS
     #: Expected reasoning tokens when thinking is left on, by difficulty bucket.
     reasoning_tokens: dict[str, int] = field(default_factory=dict)
+    #: How long this route's *answer* was, by difficulty bucket. Not the output
+    #: cap: a route that answers "Canberra." is not waited on for 900 tokens.
+    answer_tokens: dict[str, int] = field(default_factory=dict)
     source: str = "default"
     #: Extra queue wait the health prober is currently reporting.
     wait_s: float = 0.0
@@ -187,6 +195,7 @@ class SpeedBook:
             ttft_s=float(entry.get("ttft_s") or DEFAULT_TTFT_S),
             decode_tps=float(entry.get("decode_tps") or DEFAULT_DECODE_TPS),
             reasoning_tokens=dict(entry.get("reasoning_tokens") or {}),
+            answer_tokens=dict(entry.get("answer_tokens") or {}),
             source="measured" if entry else "default",
         )
         health = self._health_models().get(health_key or model_name) or {}
@@ -258,6 +267,16 @@ def plan_reasoning(model_name: str, difficulty: float, meta: dict) -> ReasoningP
                                  "easy request: answered without a thinking pass")
     budget = MAX_REASONING_TOKENS if difficulty > LOW_THINKING_MAX_DIFFICULTY \
         else MAX_REASONING_TOKENS // 4
+    if dialect in IGNORES_A_SMALLER_BUDGET:
+        # This endpoint honours "stop thinking" but was measured to ignore a
+        # smaller thinking budget: left to itself it thinks until the demo's cap
+        # is reached and never writes an answer. None is the only setting it
+        # keeps, so that is what this playground asks for - and says so.
+        off = _dialect_extra(dialect, "off")
+        if off is not None:
+            return ReasoningPlan("off", 0, off,
+                                 "this endpoint ignores a smaller thinking budget, so the demo "
+                                 "asks it not to think rather than let it run out of room")
     low = _dialect_extra(dialect, "low", budget)
     if low is None:
         return ReasoningPlan("full", budget, {}, "")
@@ -282,7 +301,29 @@ DIALECTS = {
     # endpoint", so this family only ever gets an effort string.
     "reasoning_effort": {"off": {"reasoning": {"effort": "low"}},
                          "low": {"reasoning": {"effort": "low"}}},
+    # OpenRouter's own reasoning block, which it translates per upstream family.
+    # ``enabled: false`` was measured on five routes (DeepSeek V4 Flash and
+    # V4.1 Flash, Nex-N2.5 Pro, GLM-5.2 free, Claude Opus 5) on 18 Sep 2026:
+    # zero reasoning tokens and an answer in one to three seconds, against ten
+    # to thirty-six seconds with thinking left on. ``effort`` is passed through
+    # for the harder buckets; several upstreams ignore it and think until the
+    # budget runs out, which is why the budget now has room for the answer on
+    # top of it (settings.reasoning_headroom_tokens).
+    # Only "off" is listed on purpose. ``enabled: false`` is honoured exactly:
+    # zero reasoning tokens and an answer in one to three seconds. A smaller
+    # thinking *budget* is not: given ``effort: low`` these routes thought until
+    # the budget ran out and four of nine medium and hard calls never reached
+    # the answer at all. Offering a "low" here would price a route as thinking
+    # briefly when it will in fact think until it is cut off.
+    "openrouter_reasoning": {"off": {"reasoning": {"enabled": False}}},
 }
+
+#: Dialects measured to ignore anything short of "off". Given ``effort: low``
+#: these routes thought until the budget ran out, and four of nine medium and
+#: hard calls never reached the answer at all. Sending them a small budget would
+#: price them as thinking briefly when they will in fact think until they are
+#: cut off, so at every difficulty they are asked not to think.
+IGNORES_A_SMALLER_BUDGET = {"openrouter_reasoning"}
 
 
 def _dialect_extra(dialect: str, level: str, budget: int = 0) -> dict | None:
@@ -293,19 +334,38 @@ def _dialect_extra(dialect: str, level: str, budget: int = 0) -> dict | None:
 # ---------------------------------------------------------------------------
 # the objective
 # ---------------------------------------------------------------------------
+def bucket_of(difficulty: float) -> str:
+    return "easy" if difficulty < 0.34 else "medium" if difficulty < 0.67 else "hard"
+
+
+def expected_answer_tokens(model_name: str, difficulty: float, meta: dict) -> int:
+    """How long this route's answer to a request of this difficulty is expected to be.
+
+    Measured, per route and per bucket, because verbosity is a property of the
+    model: asked for the capital of Australia, one route says "Canberra." and
+    another writes a paragraph about Sydney and Melbourne. Using the demo's
+    900-token output cap here instead - which is what this used to do - priced
+    every route as if it would write the longest answer it is allowed to, and
+    that is how a one-line answer came to be advertised as a 27-second wait.
+    """
+    speed = BOOK.speed(model_name, ((meta or {}).get("speed") or {}).get("health_key"))
+    bucket = bucket_of(difficulty)
+    return int(speed.answer_tokens.get(bucket) or DEFAULT_ANSWER_TOKENS[bucket])
+
+
 def expected_seconds(model: ModelInfo, req: TurnRequest, meta: dict,
                      plan: ReasoningPlan | None = None, output_tokens: int | None = None) -> float:
     """How long this route is expected to take to finish this turn.
 
-    ``output_tokens`` overrides the request's estimate. The policy leaves it
-    alone, so its time term and its money term are priced on the same turn. The
-    page passes the demo's own output cap, because that is the number the
-    visitor is actually waiting for - showing the policy's 4000-token estimate
-    next to an answer that arrives in two seconds would just be untrue.
+    The length used is the answer this route is measured to write for a request
+    of this difficulty, not the output cap and not the policy's generic 4000
+    tokens - the visitor waits for the answer that arrives, not for the one the
+    budget would allow. ``output_tokens`` still caps it, so a caller that wants
+    the estimate for a shorter budget gets one.
     """
     speed = BOOK.speed(model.name, ((meta or {}).get("speed") or {}).get("health_key"))
     plan = plan or plan_reasoning(model.name, req.difficulty, meta)
-    bucket = "easy" if req.difficulty < 0.34 else "medium" if req.difficulty < 0.67 else "hard"
+    bucket = bucket_of(req.difficulty)
     if plan.level in ("off", "none"):
         thinking = 0
     elif plan.budget_tokens:
@@ -315,7 +375,9 @@ def expected_seconds(model: ModelInfo, req: TurnRequest, meta: dict,
         # the pessimistic default if this route was never measured.
         thinking = int(speed.reasoning_tokens.get(bucket)
                        or DEFAULT_REASONING_TOKENS.get(bucket, 0))
-    out = req.output_tokens if output_tokens is None else min(req.output_tokens, output_tokens)
+    out = int(speed.answer_tokens.get(bucket) or DEFAULT_ANSWER_TOKENS[bucket])
+    if output_tokens is not None:
+        out = min(out, output_tokens)
     seconds = speed.seconds(out, thinking)
     return seconds * max(1, req.steps)
 
