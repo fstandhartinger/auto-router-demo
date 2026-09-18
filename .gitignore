@@ -7,3 +7,4 @@ auto_router/
 *.local.json
 *.local.yaml
 .cache/
+.limits.test.json

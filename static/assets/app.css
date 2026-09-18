@@ -293,26 +293,95 @@ table.candidates td:first-child { min-width: 11rem; }
 .price-stack { display: block; font-variant-numeric: tabular-nums; }
 .price-stack span { color: var(--muted); }
 
-/* answer */
+/* answer — real markdown, so block spacing comes from the elements, not from
+   preserved newlines. Only the fallback renderer needs pre-wrap, and it emits
+   <br> instead. */
 .answer {
-  font-size: .96rem; white-space: pre-wrap; word-break: break-word;
-  min-height: 2rem;
+  font-size: .96rem; overflow-wrap: break-word;
+  min-height: 2rem; line-height: 1.62;
 }
+.answer > :first-child { margin-top: 0; }
+.answer > :last-child { margin-bottom: 0; }
+.answer p, .answer ul, .answer ol, .answer blockquote, .answer pre, .answer .table-scroll {
+  margin: 0 0 .85rem;
+}
+.answer h1, .answer h2, .answer h3, .answer h4 {
+  margin: 1.3rem 0 .55rem; line-height: 1.25; font-weight: 650; letter-spacing: -.01em;
+}
+.answer h1 { font-size: 1.28rem; }
+.answer h2 { font-size: 1.12rem; }
+.answer h3 { font-size: 1rem; }
+.answer h4 { font-size: .94rem; color: var(--ink-2); }
+.answer ul, .answer ol { padding-left: 1.25rem; }
+.answer li { margin: .22rem 0; }
+.answer li > ul, .answer li > ol { margin: .2rem 0; }
+.answer blockquote {
+  border-left: 2px solid var(--line-strong); padding: .1rem 0 .1rem .8rem;
+  color: var(--ink-2);
+}
+.answer hr { border: 0; border-top: 1px solid var(--line); margin: 1.2rem 0; }
+.answer a { color: var(--accent); }
+.answer table { border-collapse: collapse; font-size: .88rem; width: 100%; }
+.answer th, .answer td {
+  border-bottom: 1px solid var(--line); padding: .4rem .6rem; text-align: left;
+  vertical-align: top;
+}
+.answer thead th { color: var(--muted); font-weight: 600; white-space: nowrap; }
 .answer code { font-family: var(--mono); font-size: .88em; background: var(--surface-2); padding: .08rem .3rem; border-radius: 5px; }
 .answer pre { background: var(--plane-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: .8rem; overflow-x: auto; }
-.answer pre code { background: transparent; padding: 0; }
+.answer pre code { background: transparent; padding: 0; font-size: .84em; line-height: 1.55; }
+
+/* Maths. A long display formula scrolls rather than widening the page — the
+   phone layout was lost to exactly this once already. */
+.answer .katex { font-size: 1.04em; }
+.answer .katex-display { margin: .9rem 0; overflow-x: auto; overflow-y: hidden; padding: .2rem 0; }
+.answer li .katex-display { margin: .45rem 0; }
+.answer .katex-error { color: var(--hot); }
+
+/* Highlighting, in the page's own palette rather than a stock theme, so the
+   two themes stay one system. */
+.hljs-comment, .hljs-quote { color: var(--muted); font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-type { color: var(--s7); }
+.hljs-string, .hljs-regexp, .hljs-addition { color: var(--good); }
+.hljs-number, .hljs-symbol, .hljs-bullet { color: var(--warn); }
+.hljs-title, .hljs-title.function_, .hljs-section, .hljs-name { color: var(--accent); }
+.hljs-attr, .hljs-attribute, .hljs-variable, .hljs-template-variable { color: var(--s2); }
+.hljs-built_in, .hljs-class .hljs-title { color: var(--frontier); }
+.hljs-meta, .hljs-deletion { color: var(--hot); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
 .answer-foot { color: var(--muted); font-size: .8rem; margin: .9rem 0 0; }
+.limit-note.is-paused { color: var(--warn); }
 .notice {
   background: color-mix(in srgb, var(--warn) 12%, transparent);
   border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent);
   color: var(--ink-2); border-radius: var(--radius-sm); padding: .6rem .75rem; font-size: .86rem;
 }
-/* One line while a model thinks, with a clock; never a transcript. */
+/* One line while a model thinks, with a clock and a token count. The
+   transcript is behind it, folded away the moment the answer starts. */
+.thinking { margin: 0 0 .8rem; }
 .thinking-line {
   display: flex; align-items: center; gap: .5rem;
-  margin: 0 0 .8rem; color: var(--muted); font-size: .84rem;
+  color: var(--muted); font-size: .84rem;
   font-variant-numeric: tabular-nums;
+  cursor: pointer; list-style: none; user-select: none;
+  padding: .25rem 0;
 }
+.thinking-line::-webkit-details-marker { display: none; }
+.thinking-line::after {
+  content: "show"; margin-left: auto; font-size: .76rem;
+  color: var(--muted); border-bottom: 1px dotted var(--line-strong);
+}
+.thinking[open] > .thinking-line::after { content: "hide"; }
+.thinking-line:hover { color: var(--ink-2); }
+.thinking-body {
+  margin: .4rem 0 0; padding: .7rem .8rem; max-height: 17rem; overflow-y: auto;
+  background: var(--plane-2); border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-family: var(--mono); font-size: .78rem; line-height: 1.55;
+  color: var(--muted); white-space: pre-wrap; overflow-wrap: break-word;
+}
+.thinking-body:empty { display: none; }
 .thinking-dot {
   width: .5rem; height: .5rem; border-radius: 50%;
   background: var(--muted); flex: none;

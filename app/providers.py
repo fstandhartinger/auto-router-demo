@@ -30,6 +30,15 @@ class Route:
     upstream_id: str
     extra_headers: dict
     request_extra: dict
+    #: Fields every request to this provider carries - e.g. asking a provider
+    #: that supports it to report what the call cost. Not every OpenAI-compatible
+    #: endpoint tolerates an unknown field, so this is configured per provider
+    #: rather than sent to all of them.
+    provider_extra: dict = None  # type: ignore[assignment]
+
+    def __post_init__(self):
+        if self.provider_extra is None:
+            object.__setattr__(self, "provider_extra", {})
 
     @property
     def usable(self) -> bool:
@@ -62,11 +71,12 @@ def route_for(model: str) -> Route | None:
         upstream_id=str(entry.get("upstream_id") or ""),
         extra_headers=provider.get("extra_headers") or {},
         request_extra=entry.get("request_extra") or {},
+        provider_extra=provider.get("request_extra") or {},
     )
 
 
 def executable_models() -> set[str]:
-    return {name for name in _route_entries() if (route_for(name) or Route("", "", "", None, "", {}, {})).usable}
+    return {name for name in _route_entries() if (route_for(name) or Route("", "", "", None, "", {}, {}, {})).usable}
 
 
 def _headers(route: Route) -> dict:
@@ -86,6 +96,7 @@ def _body(route: Route, messages: list[dict], max_tokens: int, stream: bool,
         "max_tokens": max_tokens,
         "stream": stream,
         **({"stream_options": {"include_usage": True}} if stream else {}),
+        **route.provider_extra,
         **route.request_extra,
         **(extra or {}),
     }
@@ -96,15 +107,27 @@ class Usage:
     prompt_tokens: int = 0
     completion_tokens: int = 0
     cached_tokens: int = 0
+    #: Reasoning tokens, when the provider separates them out. They are part of
+    #: ``completion_tokens``; they are counted apart only so the page can say
+    #: how much of the answer's budget went into thinking.
+    reasoning_tokens: int = 0
+    #: What the provider itself says the call cost, when it says anything.
+    #: Preferred over our own arithmetic, because it is the number that will
+    #: appear on the invoice.
+    cost_usd: float | None = None
 
 
 def _usage_from(payload: dict) -> Usage:
     usage = payload.get("usage") or {}
     details = usage.get("prompt_tokens_details") or {}
+    out_details = usage.get("completion_tokens_details") or {}
+    cost = usage.get("cost")
     return Usage(
         prompt_tokens=int(usage.get("prompt_tokens") or 0),
         completion_tokens=int(usage.get("completion_tokens") or 0),
         cached_tokens=int(details.get("cached_tokens") or usage.get("prompt_cache_hit_tokens") or 0),
+        reasoning_tokens=int(out_details.get("reasoning_tokens") or 0),
+        cost_usd=float(cost) if isinstance(cost, (int, float)) else None,
     )
 
 

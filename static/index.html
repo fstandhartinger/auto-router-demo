@@ -146,10 +146,13 @@
     </header>
     <div class="card-body">
       <p class="notice" id="answer-note" hidden></p>
-      <p class="thinking-line" id="thinking-box" hidden>
-        <span class="thinking-dot" aria-hidden="true"></span>
-        <span id="thinking-text">thinking…</span>
-      </p>
+      <details class="thinking" id="thinking-box" hidden>
+        <summary class="thinking-line">
+          <span class="thinking-dot" aria-hidden="true"></span>
+          <span id="thinking-text">thinking…</span>
+        </summary>
+        <div class="thinking-body" id="thinking-stream" aria-live="off"></div>
+      </details>
       <div class="answer" id="answer"></div>
       <p class="answer-foot" id="answer-foot"></p>
     </div>

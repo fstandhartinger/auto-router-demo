@@ -139,7 +139,7 @@ def test_the_plan_reaches_the_provider_request(client):
 
 
 # ------------------------------------------------- what the browser sees --
-def test_reasoning_tokens_are_not_streamed_to_the_browser(client, monkeypatch):
+def test_reasoning_goes_to_its_own_block_and_never_into_the_answer(client, monkeypatch):
     from app import providers
 
     async def thinker(route, messages, max_tokens, http_client, extra=None, timeout=None):
@@ -151,12 +151,29 @@ def test_reasoning_tokens_are_not_streamed_to_the_browser(client, monkeypatch):
     monkeypatch.setattr(providers, "stream_answer", thinker)
     events = sse(client.post("/api/run", json={"prompt": "Write a small function"}))
     kinds = [event for event, _ in events]
-    # Not one of the two hundred reasoning chunks reaches the page...
-    assert "reasoning" not in kinds
-    # ... but the visitor is told that it happened, and for how long.
+    # The thinking is forwarded, but as its own kind of event, so the page can
+    # keep it out of the answer column.
     assert kinds.count("thinking") == 1
+    assert "reasoning" in kinds
+    assert "".join(payload["text"] for event, payload in events if event == "delta") == "42"
     done = first(events, "thinking_done")
     assert done["chars"] > 0 and done["seconds"] >= 0
+
+
+def test_a_very_long_think_is_cut_off_rather_than_shipped_whole(client, monkeypatch):
+    from app import main, providers
+
+    async def thinker(route, messages, max_tokens, http_client, extra=None, timeout=None):
+        for _ in range(400):
+            yield "reasoning", "x" * 200
+        yield "delta", "42"
+        yield "usage", providers.Usage(prompt_tokens=10, completion_tokens=2, cached_tokens=0)
+
+    monkeypatch.setattr(providers, "stream_answer", thinker)
+    events = sse(client.post("/api/run", json={"prompt": "Write a small function"}))
+    sent = sum(len(payload["text"]) for event, payload in events if event == "reasoning")
+    assert sent <= main.MAX_REASONING_CHARS + 200
+    assert first(events, "thinking_done")["truncated"] is True
 
 
 def test_a_route_that_says_nothing_is_replaced(client, monkeypatch):

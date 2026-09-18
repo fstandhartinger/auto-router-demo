@@ -46,11 +46,22 @@ class Settings:
     #:  "routes": {model_name: {provider, upstream_id, request_extra}}}
     routes: dict = field(default_factory=dict)
 
-    #: Playground runs per IP per hour, and for the whole demo per day.
-    per_ip_per_hour: int = 20
+    #: Playground runs per address per hour and per day, per /24/-/64 network,
+    #: and for the whole demo per day.
+    per_ip_per_hour: int = 10
+    per_ip_per_day: int = 30
+    per_subnet_per_hour: int = 30
+    per_subnet_per_day: int = 100
     global_per_day: int = 1200
-    #: Dollars of metered provider spend the demo may use per day.
-    daily_budget_usd: float = 3.0
+    #: Dollars of metered provider spend the demo may use per day. Reaching it
+    #: pauses paid routes for the rest of the day; free routes keep answering.
+    daily_budget_usd: float = 4.0
+    #: Where the counters survive a restart. A container without a volume gets
+    #: a path inside the container, which still survives a crash-restart.
+    state_file: str = "/srv/state/limits.json"
+    #: When set, a request may carry ``X-Demo-Test-Key``/``X-Demo-Test-IP`` to
+    #: exercise the caps from one machine without pretending to be a visitor.
+    test_key: str = ""
     #: A single answer may not be estimated to cost more than this, which is
     #: what keeps the demo on free and cheap routes without having to hard-code
     #: a list of "allowed" models.
@@ -88,9 +99,14 @@ class Settings:
         base = (os.environ.get("BONSAI_BASE_URL") or "").rstrip("/")
         return cls(
             routes=routes or {},
-            per_ip_per_hour=_int("DEMO_RUNS_PER_IP_PER_HOUR", 20),
+            per_ip_per_hour=_int("DEMO_RUNS_PER_IP_PER_HOUR", 10),
+            per_ip_per_day=_int("DEMO_RUNS_PER_IP_PER_DAY", 30),
+            per_subnet_per_hour=_int("DEMO_RUNS_PER_SUBNET_PER_HOUR", 30),
+            per_subnet_per_day=_int("DEMO_RUNS_PER_SUBNET_PER_DAY", 100),
             global_per_day=_int("DEMO_RUNS_PER_DAY", 1200),
-            daily_budget_usd=_float("DEMO_DAILY_BUDGET_USD", 3.0),
+            daily_budget_usd=_float("DEMO_DAILY_BUDGET_USD", 4.0),
+            state_file=os.environ.get("DEMO_STATE_FILE", cls.state_file),
+            test_key=os.environ.get("DEMO_TEST_KEY", ""),
             max_call_usd=_float("DEMO_MAX_CALL_USD", 0.03),
             max_prompt_chars=_int("DEMO_MAX_PROMPT_CHARS", 4000),
             max_output_tokens=_int("DEMO_MAX_OUTPUT_TOKENS", 900),

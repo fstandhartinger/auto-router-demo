@@ -133,7 +133,7 @@ def test_per_ip_rate_limit(client):
         assert blocked.json()["error"] == "per-ip"
         assert blocked.json()["retryAfter"] > 0
     finally:
-        main.LIMITER.per_ip_per_hour = 20
+        main.LIMITER.per_ip_per_hour = 10
 
 
 def test_daily_run_cap(client):
@@ -149,13 +149,117 @@ def test_daily_run_cap(client):
         main.LIMITER.global_per_day = 1200
 
 
-def test_budget_cap_blocks_runs(client):
+def test_per_ip_daily_cap(client):
+    from app import main
+
+    main.LIMITER.per_ip_per_day = 2
+    try:
+        for _ in range(2):
+            assert client.post("/api/run", json={"prompt": "hi"}).status_code == 200
+        blocked = client.post("/api/run", json={"prompt": "hi"})
+        assert blocked.status_code == 429
+        assert blocked.json()["error"] == "per-ip-day"
+    finally:
+        main.LIMITER.per_ip_per_day = 30
+
+
+def test_rotating_addresses_inside_one_network_hits_the_subnet_cap(client):
+    """Changing the last octet is not a way past the per-address limit."""
+    from app import main
+
+    main.LIMITER.per_ip_per_hour = 1
+    main.LIMITER.per_subnet_per_hour = 3
+    head = {"x-demo-test-key": "test-key"}
+    try:
+        for n in range(3):
+            got = client.post("/api/run", json={"prompt": "hi"},
+                              headers={**head, "x-demo-test-ip": f"203.0.113.{n}"})
+            assert got.status_code == 200, got.text
+        blocked = client.post("/api/run", json={"prompt": "hi"},
+                              headers={**head, "x-demo-test-ip": "203.0.113.9"})
+        assert blocked.status_code == 429
+        assert blocked.json()["error"] == "per-subnet"
+        # A different network is unaffected.
+        assert client.post("/api/run", json={"prompt": "hi"},
+                           headers={**head, "x-demo-test-ip": "198.51.100.7"}).status_code == 200
+    finally:
+        main.LIMITER.per_ip_per_hour = 10
+        main.LIMITER.per_subnet_per_hour = 30
+
+
+def test_ipv6_rotation_is_capped_per_64(client):
+    from app.limits import subnet_of
+
+    assert subnet_of("2001:db8:1:2:3:4:5:6") == subnet_of("2001:db8:1:2:ffff::1")
+    assert subnet_of("2001:db8:1:2::1") != subnet_of("2001:db8:1:3::1")
+    assert subnet_of("203.0.113.4") == "203.0.113.0/24"
+
+
+def test_the_test_header_is_ignored_without_the_key(client):
+    """The address override exists for our own probing, not for visitors."""
+    from app import main
+
+    main.LIMITER.per_ip_per_hour = 1
+    try:
+        assert client.post("/api/run", json={"prompt": "hi"}).status_code == 200
+        blocked = client.post("/api/run", json={"prompt": "hi"},
+                              headers={"x-demo-test-ip": "203.0.113.55"})
+        assert blocked.status_code == 429
+    finally:
+        main.LIMITER.per_ip_per_hour = 10
+
+
+def test_a_spent_budget_pauses_paid_routes_but_keeps_the_demo_answering(client):
     from app import main
 
     main.LIMITER.record_spend(main.LIMITER.daily_budget_usd)
-    blocked = client.post("/api/run", json={"prompt": "hi"})
-    assert blocked.status_code == 429
-    assert blocked.json()["error"] == "budget"
+    try:
+        assert main.LIMITER.paid_paused() is True
+        events = sse(client.post("/api/run", json={"prompt": "a hard concurrency bug"}))
+        decision = first(events, "decision")
+        # The routing itself is free, so it still happens and is still shown.
+        assert decision["selection"]["selected"]
+        execution = decision["execution"]
+        assert execution["model"] == "tiny-free", "only a free route may answer now"
+        assert execution["substituted"] is True
+        assert "budget" in execution["note"].lower()
+        assert first(events, "done")["limits"]["paidPaused"] is True
+    finally:
+        main.LIMITER._day_spend = 0.0
+
+
+def test_counters_survive_a_restart(tmp_path):
+    """A restart must not hand everyone a fresh allowance."""
+    from app.limits import Limiter
+
+    state = tmp_path / "limits.json"
+    first_run = Limiter(per_ip_per_hour=3, state_path=str(state))
+    key = first_run.client_key("203.0.113.1")
+    first_run.record_run(key, first_run.subnet_key("203.0.113.1"))
+    first_run.record_run(key, first_run.subnet_key("203.0.113.1"))
+    first_run.record_spend(1.25)
+    first_run.flush()
+
+    after = Limiter(per_ip_per_hour=3, daily_budget_usd=4.0, state_path=str(state))
+    # The same address is recognised, so it has one run left, not three.
+    assert after.client_key("203.0.113.1") == key
+    assert after.snapshot(key)["perIpUsed"] == 2
+    assert round(after.budget_left(), 2) == 2.75
+    assert after.check(key).allowed is True
+    after.record_run(key)
+    assert after.check(key).allowed is False
+
+
+def test_the_state_file_holds_no_addresses(tmp_path):
+    from app.limits import Limiter
+
+    state = tmp_path / "limits.json"
+    limiter = Limiter(state_path=str(state))
+    limiter.record_run(limiter.client_key("203.0.113.44"),
+                       limiter.subnet_key("203.0.113.44"))
+    limiter.flush()
+    written = state.read_text()
+    assert "203.0.113" not in written
 
 
 def test_an_answer_too_expensive_for_the_demo_is_substituted_not_run(client):

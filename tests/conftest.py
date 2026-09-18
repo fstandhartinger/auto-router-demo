@@ -34,6 +34,9 @@ os.environ["DEMO_SPEED_FILE"] = str(TESTS / "speed.test.json")
 # laptop would otherwise change what the tests decide.
 os.environ["DEMO_HEALTH_FILE"] = str(TESTS / "health.test.json")
 os.environ["FAKE_KEY"] = "not-a-real-key"
+# The counters must never be written to (or read from) a real deployment path.
+os.environ["DEMO_STATE_FILE"] = str(TESTS / ".limits.test.json")
+os.environ["DEMO_TEST_KEY"] = "test-key"
 os.environ.pop("BONSAI_BASE_URL", None)
 os.environ.pop("TYPESAFE_API_KEY", None)
 
@@ -74,6 +77,12 @@ def client(monkeypatch):
     main.LIMITER._hits.clear()
     main.LIMITER._day_runs = 0
     main.LIMITER._day_spend = 0.0
+    main.LIMITER.per_ip_per_hour = 10
+    main.LIMITER.per_ip_per_day = 30
+    main.LIMITER.per_subnet_per_hour = 30
+    main.LIMITER.per_subnet_per_day = 100
+    main.LIMITER.global_per_day = 1200
+    main.LIMITER.daily_budget_usd = 4.0
     main.SESSIONS.clear()
     SENT.clear()
     from app import latency

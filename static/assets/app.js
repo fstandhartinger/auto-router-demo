@@ -1,11 +1,13 @@
 /* Auto-router playground — page router, playground, cache chat, catalog. */
 import { renderResults } from "/assets/charts.js";
+import { escapeHtml, renderPlain, renderRich, renderersReady, warmRenderers } from "/assets/render.js";
 
 const state = {
   meta: null,
   colors: new Map(),
   session: localStorage.getItem("ar-session") || null,
   running: false,
+  limits: null,
 };
 
 const SERIES = ["--s1", "--s2", "--s3", "--s4", "--s5", "--s6", "--s7", "--s8"];
@@ -52,19 +54,29 @@ function duration(s) {
   return (s / 3600).toFixed(s % 3600 ? 1 : 0) + " h";
 }
 
-function escapeHtml(text) {
-  return String(text).replace(/[&<>"']/g, (c) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+/** Markdown, maths and highlighted code once the renderers are in; escaped
+ *  text with fenced code until then, and for good if the CDN never answers. */
+function renderMarkdown(text) {
+  return renderersReady() ? renderRich(text) : renderPlain(text);
 }
 
-/** Minimal, safe markdown: fenced code, inline code, bold. Everything escaped first. */
-function renderMarkdown(text) {
-  let html = escapeHtml(text);
-  html = html.replace(/```([a-z]*)\n([\s\S]*?)(?:```|$)/g,
-    (_m, _lang, code) => `<pre><code>${code}</code></pre>`);
-  html = html.replace(/`([^`\n]+)`/g, "<code>$1</code>");
-  html = html.replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
-  return html;
+/** Paint an answer that is still arriving.
+ *
+ * Re-parsing markdown and typesetting maths on every token is wasted work on a
+ * fast route, so a stream repaints on a short timer and once more when it ends.
+ */
+function streamInto(node, text, final) {
+  const now = performance.now();
+  if (!final && node._paintedAt && now - node._paintedAt < 120) {
+    clearTimeout(node._paintTimer);
+    node._paintTimer = setTimeout(() => streamInto(node, node._pending ?? text, false), 130);
+    node._pending = text;
+    return;
+  }
+  clearTimeout(node._paintTimer);
+  node._paintedAt = now;
+  node._pending = null;
+  node.innerHTML = renderMarkdown(text);
 }
 
 function badge(row) {
@@ -178,6 +190,13 @@ async function initPlayground() {
   el("#composer").addEventListener("submit", (event) => {
     event.preventDefault();
     if (!prompt.value.trim() || state.running) return;
+    const soft = localLimitMessage();
+    if (soft) {
+      el("#stage").hidden = false;
+      el("#decide-body").innerHTML = `<p class="notice">${escapeHtml(soft)}</p>`;
+      el("#stage").scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
     runPlayground(prompt.value.trim());
   });
 }
@@ -185,10 +204,60 @@ async function initPlayground() {
 function paintLimits(limits) {
   const note = el("#limit-note");
   if (!note || !limits) return;
+  state.limits = limits;
+  note.classList.toggle("is-paused", Boolean(limits.paidPaused));
   note.textContent =
-    `${limits.perIpLeft} of ${limits.perIpPerHour} runs left for you this hour · ` +
+    `${limits.perIpLeft} of ${limits.perIpPerHour} runs left for you this hour ` +
+    `(${limits.perIpPerDay} a day) · ` +
     `answers are capped at ${limits.maxOutputTokens} tokens · ` +
-    `${usd(limits.budgetLeftUsd, 2)} of today's ${usd(limits.budgetUsd, 2)} demo budget left.`;
+    (limits.paidPaused
+      ? `today's ${usd(limits.budgetUsd, 2)} budget for paid routes is spent — the routing still ` +
+        "runs and free routes still answer, until midnight UTC."
+      : `${usd(limits.budgetLeftUsd, 2)} of today's ${usd(limits.budgetUsd, 2)} demo budget left.`);
+}
+
+/* --------------------------------------------------------- local counter */
+/* A courtesy check in the browser, so someone who has used up their runs is
+ * told so at once instead of watching a request go out and come back refused.
+ * It is not a security boundary - the server counts independently and is the
+ * only counter that decides anything. Clearing site data resets this one and
+ * changes nothing about that. */
+const RUNS_KEY = "ar-runs";
+
+function localRuns() {
+  let list;
+  try { list = JSON.parse(localStorage.getItem(RUNS_KEY) || "[]"); } catch { list = []; }
+  const cutoff = Date.now() - 86400e3;
+  const kept = Array.isArray(list) ? list.filter((t) => typeof t === "number" && t > cutoff) : [];
+  return kept;
+}
+
+function recordLocalRun() {
+  const kept = localRuns();
+  kept.push(Date.now());
+  try { localStorage.setItem(RUNS_KEY, JSON.stringify(kept.slice(-400))); } catch { /* private mode */ }
+}
+
+/** A friendly refusal if this browser is already over a cap, else null. */
+function localLimitMessage() {
+  const limits = state.limits;
+  if (!limits) return null;
+  const runs = localRuns();
+  const hour = Date.now() - 3600e3;
+  const inHour = runs.filter((t) => t > hour).length;
+  if (inHour >= limits.perIpPerHour) {
+    const oldest = runs.filter((t) => t > hour)[0];
+    const mins = Math.max(1, Math.ceil((oldest + 3600e3 - Date.now()) / 60000));
+    return `You have used all ${limits.perIpPerHour} runs this hour. This demo pays for every ` +
+           `answer, so it keeps the limit low — try again in about ${mins} minute${mins === 1 ? "" : "s"}. ` +
+           "Everything except the answer is free: the cache explorer below still works.";
+  }
+  if (runs.length >= limits.perIpPerDay) {
+    return `You have used all ${limits.perIpPerDay} runs this demo allows one visitor per day. ` +
+           "Run the router locally instead — it is one command, and then it is your own keys " +
+           "and no limit at all.";
+  }
+  return null;
 }
 
 async function runPlayground(text) {
@@ -211,6 +280,7 @@ async function runPlayground(text) {
   el("#stage").scrollIntoView({ behavior: "smooth", block: "start" });
 
   let answer = "";
+  recordLocalRun();
   try {
     const resp = await fetch("/api/run", {
       method: "POST", headers: { "Content-Type": "application/json" },
@@ -245,9 +315,11 @@ async function runPlayground(text) {
         if (data.thinkingNote) el("#answer-foot").textContent = data.thinkingNote;
       } else if (event === "delta") {
         answer += data.text;
-        el("#answer").innerHTML = renderMarkdown(answer);
+        streamInto(el("#answer"), answer, false);
       } else if (event === "thinking") {
         startThinking();
+      } else if (event === "reasoning") {
+        appendThinking(data.text);
       } else if (event === "thinking_done") {
         stopThinking(data);
       } else if (event === "rerouted") {
@@ -259,7 +331,9 @@ async function runPlayground(text) {
         el("#answer-note").textContent = data.message;
       } else if (event === "done") {
         paintLimits(data.limits);
+        streamInto(el("#answer"), answer, true);
         const usage = data.usage || {};
+        if (usage.reasoningTokens) noteThinkingTokens(usage.reasoningTokens);
         el("#answer-foot").textContent = data.costUsd === null ? "" :
           `This answer cost ${data.costUsd === 0 ? "nothing (a free route)" : usd(data.costUsd, 5)} · ` +
           `${usage.promptTokens || 0} prompt tokens` +
@@ -271,6 +345,7 @@ async function runPlayground(text) {
     el("#answer-note").hidden = false;
     el("#answer-note").textContent = "The connection dropped before the answer finished.";
   } finally {
+    streamInto(el("#answer"), answer, true);
     el("#answer").classList.remove("cursor");
     button.disabled = false;
     state.running = false;
@@ -278,14 +353,29 @@ async function runPlayground(text) {
 }
 
 function limitMessage(data) {
-  if (data.error === "budget")
-    return "The demo's budget for today is used up. It resets at midnight UTC — " +
-           "the routing decision above still works, only the answers are paused.";
-  if (data.error === "daily-cap")
-    return "The demo has hit its daily run cap. Please come back tomorrow.";
-  const mins = Math.ceil((data.retryAfter || 0) / 60);
-  return `That is ${data.limits?.perIpPerHour ?? 20} runs this hour from your address. ` +
-         `Try again in about ${mins} minute${mins === 1 ? "" : "s"}.`;
+  const limits = data.limits || {};
+  const mins = Math.max(1, Math.ceil((data.retryAfter || 0) / 60));
+  const later = mins < 90 ? `about ${mins} minute${mins === 1 ? "" : "s"}`
+                          : `about ${Math.round(mins / 60)} hours`;
+  const selfHost = " You can run the router locally with your own keys instead — " +
+                   "one command, no limits; see “Run it yourself”.";
+  switch (data.error) {
+    case "budget":
+      return "The demo's budget for today is used up. It resets at midnight UTC — the routing " +
+             "decision still works and free routes still answer.";
+    case "daily-cap":
+      return "The whole demo has hit its daily run cap. Please come back tomorrow." + selfHost;
+    case "per-ip-day":
+      return `That is all ${limits.perIpPerDay ?? 30} runs this demo allows one visitor per day.` +
+             selfHost;
+    case "per-subnet":
+    case "per-subnet-day":
+      return "That is the limit for your whole network — this demo pays for every answer, so it " +
+             `counts the network as well as the address. Try again in ${later}.` + selfHost;
+    default:
+      return `That is ${limits.perIpPerHour ?? 10} runs this hour from your address. ` +
+             `Try again in ${later}.` + selfHost;
+  }
 }
 
 const DIFFICULTY_WORDS = ["trivial", "easy", "moderate", "hard", "frontier"];
@@ -608,7 +698,7 @@ async function sendChat(text, pauseSeconds) {
         paintP2P(data.p2p);
       } else if (event === "delta") {
         answer += data.text;
-        body.innerHTML = renderMarkdown(answer);
+        streamInto(body, answer, false);
       } else if (event === "answer_error") {
         body.textContent = data.message;
       }
@@ -616,6 +706,7 @@ async function sendChat(text, pauseSeconds) {
   } catch {
     body.textContent = "The connection dropped.";
   } finally {
+    if (answer) streamInto(body, answer, true);
     body.classList.remove("cursor");
     state.running = false;
   }
@@ -744,33 +835,70 @@ function paintThemeIcon() {
 }
 
 initTheme();
+// Markdown, KaTeX and the highlighter are fetched while the visitor is still
+// reading the page, so the first answer is already typeset when it arrives.
+// If they never arrive, answers render as escaped text and nothing else breaks.
+warmRenderers();
 navigate(location.pathname, false);
 
 
 // ---------------------------------------------------------------------------
-// "thinking…" with a clock
+// "thinking…" — a collapsible block with a clock and a token count
 //
-// Reasoning tokens used to be streamed into the page, which on an easy question
-// meant several hundred lines of a model talking to itself before a one-line
-// answer. The server now sends only the start and the end, and the visitor sees
-// how long it took.
+// A model's private reasoning is not an answer and must never be the page's
+// main column: it opens as one line with a running timer, expands if the
+// visitor wants to read it, and closes itself the moment the answer starts.
 // ---------------------------------------------------------------------------
 let thinkingTimer = null;
 let thinkingStart = 0;
+let thinkingChars = 0;
+let thinkingSeconds = 0;
+let thinkingExactTokens = null;
+
+/** Tokens, near enough: providers that report the real count overwrite this. */
+function approxTokens(chars) {
+  return Math.max(1, Math.round(chars / 4));
+}
+
+function thinkingLabel(live) {
+  const count = thinkingExactTokens ?? approxTokens(thinkingChars);
+  const size = thinkingChars ? ` · ${thinkingExactTokens ? "" : "~"}${tokens(count)} tokens` : "";
+  return live
+    ? `thinking… ${thinkingSeconds.toFixed(1)}s${size}`
+    : `thought for ${thinkingSeconds.toFixed(1)}s${size}`;
+}
+
+function paintThinkingLabel(live) {
+  const text = el("#thinking-text");
+  if (text) text.textContent = thinkingLabel(live);
+}
 
 function startThinking() {
   const box = el("#thinking-box");
   if (!box) return;
   box.hidden = false;
+  box.open = true;          // while it is the only thing happening, show it
   box.classList.add("is-live");
+  const stream = el("#thinking-stream");
+  if (stream) stream.textContent = "";
   thinkingStart = performance.now();
-  const tick = () => {
-    const s = (performance.now() - thinkingStart) / 1000;
-    el("#thinking-text").textContent = `thinking… ${s.toFixed(1)}s`;
-  };
-  tick();
+  thinkingChars = 0;
+  thinkingSeconds = 0;
+  thinkingExactTokens = null;
+  paintThinkingLabel(true);
   clearInterval(thinkingTimer);
-  thinkingTimer = setInterval(tick, 100);
+  thinkingTimer = setInterval(() => {
+    thinkingSeconds = (performance.now() - thinkingStart) / 1000;
+    paintThinkingLabel(true);
+  }, 100);
+}
+
+function appendThinking(text) {
+  const stream = el("#thinking-stream");
+  if (!stream) return;
+  thinkingChars += text.length;
+  stream.textContent += text;
+  if (el("#thinking-box").open) stream.scrollTop = stream.scrollHeight;
 }
 
 function stopThinking(data) {
@@ -779,10 +907,21 @@ function stopThinking(data) {
   const box = el("#thinking-box");
   if (!box) return;
   box.classList.remove("is-live");
-  if (!data) return;
+  if (!data) { box.hidden = true; return; }
   box.hidden = false;
-  el("#thinking-text").textContent =
-    `thought for ${Number(data.seconds).toFixed(1)}s before answering`;
+  // The answer is what the visitor came for: once it starts, this folds away.
+  box.open = false;
+  thinkingSeconds = Number(data.seconds) || 0;
+  if (data.truncated) {
+    const stream = el("#thinking-stream");
+    if (stream) stream.textContent += "\n\n[…the rest of the thinking is not sent to the browser]";
+  }
+  paintThinkingLabel(false);
+}
+
+function noteThinkingTokens(count) {
+  thinkingExactTokens = count;
+  paintThinkingLabel(false);
 }
 
 
