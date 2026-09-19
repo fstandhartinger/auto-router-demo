@@ -39,6 +39,16 @@
 
 <main id="main"></main>
 
+<aside class="install-bar" id="install-bar" hidden aria-label="Run the router yourself">
+  <div class="wrap install-bar-inner">
+    <p class="install-bar-text"><strong>Run this router on your own machine</strong>
+      <span class="install-bar-sub">— in front of Claude Code, Codex, opencode or Cursor, on your own keys, without spending your plan's limits.</span></p>
+    <code class="install-bar-cmd copyable" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" title="Click to copy">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code>
+    <a class="primary-btn small-btn" href="/run" data-link><span class="btn-label">Setup guide</span></a>
+    <button class="icon-btn install-bar-close" id="install-bar-close" type="button" aria-label="Hide this bar">&times;</button>
+  </div>
+</aside>
+
 <footer class="footer">
   <div class="wrap footer-inner">
     <p class="credits">
@@ -50,7 +60,7 @@
     </p>
     <p class="credits">
       A free, non-commercial showcase. Rate-limited, capped, no prompt logging.
-      <a href="/privacy" data-link>Privacy</a> · <a href="/impressum" data-link>Impressum</a>
+      <a href="/privacy" data-link>Privacy</a> · <a href="/impressum" data-link>Legal notice</a>
     </p>
   </div>
 </footer>
@@ -71,7 +81,12 @@
     <p class="hero-cta">
       <a class="primary-btn" href="/run" data-link><span class="btn-label">Run it on your own machine</span>
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h12m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <code class="hero-cmd">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code>
+      <code class="hero-cmd copyable" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" title="Click to copy">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code>
+    </p>
+    <p class="hero-note">
+      Free and MIT-licensed. Put it in front of Claude Code, Codex, opencode or Cursor: easy
+      turns go to cheap models on your own key, and your Claude or ChatGPT plan's limits are
+      left for the work that needs them. <a href="/run" data-link>Setup for each tool</a>.
     </p>
   </div>
 </section>
@@ -457,23 +472,31 @@
       <pre class="code lead-code"><code>curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh</code></pre>
       <p class="muted small">
         Piping an installer into a shell is a thing you should be suspicious of, so
-        <a href="/install.sh">read it first</a> — it is 150 lines. It needs Python 3.10+
-        and git, asks for no privileges, installs nothing system-wide, and touches only
-        these four things:
+        <a href="/install.sh">read it first</a> — it is about 360 lines, most of them the two
+        starter configs. It needs Python 3.10+ and git, asks for no privileges, installs
+        nothing system-wide, and touches only these five things:
       </p>
       <ul class="limits">
         <li><code>~/.auto-router/src</code> — a clone of
           <a href="https://github.com/fstandhartinger/auto-model-router" rel="noopener">auto-model-router</a> (MIT).</li>
         <li><code>~/.auto-router/venv</code> — a virtualenv with its four dependencies.</li>
-        <li><code>~/.auto-router/config.yaml</code> — a starter catalog of four models, if you have none.
+        <li><code>~/.auto-router/config.yaml</code> — a starter catalog, if you have none: cheap and
+          free routes, Claude Opus 5, and the two frontier models (Claude Fable 5.1, GPT-6 Astra).
           Keys are referenced by environment-variable <em>name</em>; none is ever written to it.</li>
-        <li><code>~/.local/bin/auto-router</code> — one launcher.</li>
+        <li><code>~/.auto-router/launcher.yaml</code> — the job launcher's config (Codex on your
+          ChatGPT plan, Claude Code on your Claude plan, a cheap model through opencode).</li>
+        <li><code>~/.local/bin/auto-router</code> — one command.</li>
       </ul>
       <p>Then give it a key and start it:</p>
 <pre class="code"><code>export OPENROUTER_API_KEY=...     # or edit ~/.auto-router/config.yaml for your own providers
 export TYPESAFE_API_KEY=...       # optional: Jev. Without it a cautious default is used.
 
-auto-router                       # http://127.0.0.1:8787/v1</code></pre>
+auto-router                       # serves http://127.0.0.1:8787/v1
+auto-router check                 # in a second terminal: proves it answers and routes</code></pre>
+      <p class="muted small">
+        <code>auto-router check</code> sends one tiny request and prints the model the router
+        chose and why. If it says <code>OK</code>, every tool below will work.
+      </p>
       <p class="muted small">
         <code>GET /health</code> answers when it is up, <code>GET /v1/models</code> shows what it
         knows about each route, and <code>GET /v1/router/decisions</code> gives you the last
@@ -483,18 +506,80 @@ auto-router                       # http://127.0.0.1:8787/v1</code></pre>
   </article>
 </section>
 
+
+<section class="wrap" style="margin-top:2.2rem">
+  <h2 class="wide-head">Claude Code and Codex, without spending your plan's limits</h2>
+  <p class="muted" style="max-width:78ch">
+    Two ways, and they do different things. Both are within what Anthropic and OpenAI document
+    for their clients; what neither allows is also said below, so nobody gets surprised.
+  </p>
+  <div class="tool-grid">
+    <article class="card tool-card">
+      <header class="card-head"><h3>Every turn through the router</h3><span class="chip chip-good">Claude Code · opencode · Cursor</span></header>
+      <div class="card-body">
+<pre class="code"><code>auto-router claude</code></pre>
+        <p>
+          Starts Claude Code with the router as its gateway and a local gateway credential.
+          Each turn goes to whichever model the router picks — a free or cheap model for the
+          easy ones, Opus 5 or Fable 5.1 for the hard ones — and is paid per token on
+          <em>your</em> OpenRouter key.
+        </p>
+        <p class="muted small">
+          Your Claude plan is not used for that session at all, so its usage limits stay
+          untouched. Anthropic's gateway page: “the credential replaces the subscription login
+          for that session, and the subscription's usage limits don't apply”. Anthropic does
+          not support routing Claude Code to non-Claude models, so if a Claude Code update
+          breaks something, that is ours to fix, not theirs.
+        </p>
+      </div>
+    </article>
+    <article class="card tool-card">
+      <header class="card-head"><h3>Whole jobs, on the plan you already pay for</h3><span class="chip chip-good">Codex · Claude Code · opencode</span></header>
+      <div class="card-body">
+<pre class="code"><code>auto-router run --dry-run "fix the flaky upload test"   # which tool, and why
+auto-router run "fix the flaky upload test"             # then start it</code></pre>
+        <p>
+          The router picks which <em>program</em> does the job and starts it as its vendor
+          ships it: <code>codex exec</code> signed in to your ChatGPT plan,
+          <code>claude -p</code> signed in to your Claude plan, or a cheap model through
+          opencode. It never touches their traffic, never reads a login token, and clears
+          <code>OPENAI_API_KEY</code> / <code>ANTHROPIC_API_KEY</code> for the child so a
+          stray key cannot silently turn a plan run into a per-token bill.
+        </p>
+        <p class="muted small">
+          It paces the plans: a plan is only used below a weekly reserve and never above 80 %
+          of the week, so easy jobs go to cheap models and the plan is kept for the jobs that
+          need it. Codex reports its own usage, so that plan works out of the box; for
+          Claude, point <code>usage_command</code> in <code>~/.auto-router/launcher.yaml</code>
+          at something that prints your usage, or the Claude plan stays closed.
+        </p>
+      </div>
+    </article>
+  </div>
+  <p class="muted small" style="max-width:78ch;margin-top:1rem">
+    Not allowed, and not done here: taking a plan's login token out of the official client
+    to use it from other software, or serving anyone else's requests from your personal plan.
+    Anthropic does not permit developers “to route requests through Free, Pro, or Max plan
+    credentials on behalf of their users”. Your plan, your machine, your own work.
+    <a href="#subscriptions">The details, with the vendors' own words</a>.
+  </p>
+</section>
+
 <section class="wrap" style="margin-top:2.2rem">
   <h2 class="wide-head">Point your tools at it</h2>
   <p class="muted" style="max-width:74ch">
-    Every one of these was run against a router installed by the command above, on a clean
-    machine, on 18 September 2026. Where a tool does not work, it says so instead.
+    Each configuration was run against a router installed by the command above on a clean
+    machine (18 September 2026); the installer, <code>auto-router check</code> and the job
+    launcher were re-run on a clean container on 19 September. Where a tool does not work,
+    it says so instead.
   </p>
 
   <div class="tool-grid">
     <article class="card tool-card">
       <header class="card-head"><h3>Claude Code</h3><span class="chip chip-good">works</span></header>
       <div class="card-body">
-        <p>Claude Code's documented gateway configuration, plus a credential:</p>
+        <p>The short way is <code>auto-router claude</code>. It is the same as Claude Code's
+          documented gateway configuration, plus a credential:</p>
 <pre class="code"><code>export ANTHROPIC_BASE_URL=http://127.0.0.1:8787
 export ANTHROPIC_API_KEY=local-router   # any value; it never leaves your machine
 claude</code></pre>
@@ -549,8 +634,12 @@ model:     auto</code></pre>
     </article>
 
     <article class="card tool-card">
-      <header class="card-head"><h3>Codex CLI</h3><span class="chip chip-warn">not yet</span></header>
+      <header class="card-head"><h3>Codex CLI</h3><span class="chip chip-warn">whole jobs: yes · per turn: not yet</span></header>
       <div class="card-body">
+        <p>
+          For whole jobs, <code>auto-router run "…"</code> starts Codex on your ChatGPT plan
+          whenever the router picks it (see above). Routing each single turn is not possible yet:
+        </p>
         <p>
           Codex removed chat-completions providers in February 2026: a custom
           <code>model_provider</code> must now speak the Responses API, and
@@ -593,24 +682,23 @@ wire_api = "responses"</code></pre>
    print any key value. If OPENROUTER_API_KEY is missing, stop and ask me for it.
 3. Start the router in the background: `auto-router` (it serves http://127.0.0.1:8787/v1).
    Wait until `curl -s http://127.0.0.1:8787/health` returns {"status":"ok",...}.
-4. Prove it routes. Send one request and show me the response headers:
-   curl -sD - http://127.0.0.1:8787/v1/chat/completions -H 'Content-Type: application/json' \
-     -d '{"model":"auto","messages":[{"role":"user","content":"Say OK"}],"max_tokens":20}' \
-     | grep -i '^x-router'
-   X-Router-Model is the model it chose, X-Router-Reason is why. If there is no answer,
-   stop and show me the router's output rather than changing any configuration.
+4. Prove it routes: run `auto-router check` and show me its output. It prints the model the
+   router chose and why, and ends with "OK". If it does not, stop and show me the router's
+   output rather than changing any configuration.
 5. Now configure THIS tool - the one you are running inside - to use the router, backing up
    the file you touch first and showing me the diff:
-   - Claude Code: ANTHROPIC_BASE_URL=http://127.0.0.1:8787 and any ANTHROPIC_API_KEY value,
-     in my shell profile. Note in one line that this means my Claude subscription is not
-     used for these turns.
+   - Claude Code: do not change my shell profile. Tell me to start it with `auto-router claude`
+     instead, and note in one line that those sessions are paid on my OpenRouter key and do
+     not use my Claude plan's limits.
    - opencode: a provider "autorouter" in ~/.config/opencode/opencode.json with
      npm "@ai-sdk/openai-compatible", baseURL http://127.0.0.1:8787/v1, model "auto",
      and set the default model to autorouter/auto. Keep every existing provider.
    - Cursor or another OpenAI-compatible client: base URL http://127.0.0.1:8787/v1,
      key "anything", model "auto".
-   - Codex CLI: do NOT try. It requires a Responses-API provider since Feb 2026 and the
-     router does not speak that yet. Tell me so and skip this step.
+   - Codex CLI: do NOT edit ~/.codex/config.toml. Codex needs a Responses-API provider and
+     the router does not speak that yet. Instead run
+     `auto-router run --dry-run "write a unit test for the parser"` and show me which tool
+     the router would start for that job, and why.
 6. Finally: start a new session in the tool you just configured, ask it one trivial question,
    and show me from `curl -s http://127.0.0.1:8787/v1/router/metrics` that the request went
    through the router and which model answered.</code></pre>
@@ -702,42 +790,43 @@ wire_api = "responses"</code></pre>
     is online, on strangers' GPUs. Treat everything you type as public.
   </p>
   <h2>Cookies and tracking</h2>
-  <p>No cookies, no analytics, no third-party scripts. The page stores one session id and your theme choice in your browser's local storage.</p>
+  <p>No cookies, no analytics, no third-party scripts. The page keeps a session id, your theme choice, whether you hid the install bar, and your own recent runs in your browser's local storage; none of it is sent anywhere but this site. The server counts page views, runs and installer downloads per day as plain totals — no address, no identifier, nothing per visitor.</p>
   <h2>Contact</h2>
-  <p>productivity-boost.com Betriebs UG (haftungsbeschränkt) &amp; Co. KG — see the <a href="/impressum" data-link>Impressum</a>.</p>
+  <p>productivity-boost.com Betriebs UG (haftungsbeschränkt) &amp; Co. KG — see the <a href="/impressum" data-link>Legal notice</a>.</p>
 </div>
 </template>
 
 <!-- ------------------------------------------------------------------ -->
 <template id="page-impressum">
-<section class="wrap page-head"><p class="eyebrow">Impressum</p><h1>Angaben gemäß § 5 DDG</h1></section>
+<section class="wrap page-head"><p class="eyebrow">Legal notice</p><h1>Legal notice (Impressum)</h1></section>
 <div class="wrap prose">
+  <p>Information pursuant to § 5 of the German Digital Services Act (DDG):</p>
   <p>
     productivity-boost.com Betriebs UG (haftungsbeschränkt) &amp; Co. KG<br>
-    Vertreten durch die productivity-boost.com Verwaltungs UG (haftungsbeschränkt),<br>
-    diese vertreten durch den Geschäftsführer Florian Standhartinger<br>
+    represented by its general partner, productivity-boost.com Verwaltungs UG (haftungsbeschränkt),<br>
+    itself represented by its managing director, Florian Standhartinger<br>
     Kirschbaumweg 4<br>
     94032 Passau<br>
-    Deutschland
+    Germany
   </p>
   <p>
-    E-Mail: <a href="mailto:florian.standhartinger@gmail.com">florian.standhartinger@gmail.com</a><br>
-    Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE296812612
+    Email: <a href="mailto:florian.standhartinger@gmail.com">florian.standhartinger@gmail.com</a><br>
+    VAT ID (§ 27a UStG): DE296812612
   </p>
-  <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-  <p>Florian Standhartinger, Anschrift wie oben.</p>
-  <h2>Haftung für Inhalte und Links</h2>
+  <h2>Responsible for content (§ 18 (2) MStV)</h2>
+  <p>Florian Standhartinger, address as above.</p>
+  <h2>Liability for content and links</h2>
   <p>
-    Diese Seite ist eine kostenlose, nicht-kommerzielle technische Demonstration. Die
-    Antworten stammen von Sprachmodellen Dritter und können falsch sein. Für Inhalte
-    externer Links sind deren Betreiber verantwortlich.
+    This site is a free, non-commercial technical demonstration. The answers come from
+    third-party language models and can be wrong. The operators of linked external sites
+    are responsible for their content.
   </p>
-  <h2>EU-Streitschlichtung</h2>
+  <h2>EU dispute resolution</h2>
   <p>
-    Plattform der EU-Kommission zur Online-Streitbeilegung:
+    The European Commission's online dispute resolution platform:
     <a href="https://ec.europa.eu/consumers/odr/" rel="noopener">ec.europa.eu/consumers/odr</a>.
-    Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer
-    Verbraucherschlichtungsstelle teilzunehmen.
+    We are neither obliged nor willing to take part in dispute resolution proceedings before
+    a consumer arbitration board.
   </p>
 </div>
 </template>

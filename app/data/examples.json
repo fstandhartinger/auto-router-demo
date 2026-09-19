@@ -6,6 +6,12 @@
   "prompt": "What is the capital of Australia?"
  },
  {
+  "id": "frontier",
+  "title": "A frontier-level task",
+  "hint": "coding, very hard — the router picks Fable 5.1 or GPT-6 Astra; see what a free demo does then",
+  "prompt": "Implement a lock-free multi-producer multi-consumer bounded queue in C++20 using only std::atomic, explain the memory ordering of every atomic operation, and argue why it is linearizable and free of the ABA problem."
+ },
+ {
   "id": "design",
   "title": "A web page design",
   "hint": "design — the router reads a design leaderboard, not a coding score",
@@ -25,9 +31,9 @@
  },
  {
   "id": "email",
-  "title": "A German email",
+  "title": "A polite payment reminder",
   "hint": "general writing — cheap and fine",
-  "prompt": "Schreibe eine hoefliche E-Mail an einen Kunden, der seit sechs Wochen eine Rechnung ueber 480 Euro nicht bezahlt hat. Freundlich, aber mit einer klaren Frist von zehn Tagen. Maximal 120 Woerter."
+  "prompt": "Write a polite email to a customer who has not paid a 480 euro invoice for six weeks. Friendly, but with a clear deadline of ten days. At most 120 words."
  },
  {
   "id": "bug",

@@ -8,3 +8,5 @@ auto_router/
 *.local.yaml
 .cache/
 .limits.test.json
+tests/.usage.test.json
+tests/launch-stats.json

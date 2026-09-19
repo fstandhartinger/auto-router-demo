@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Launch stats · whichmodel</title>
+<link rel="stylesheet" href="/assets/app.css">
+<style>
+  body { padding: 1.5rem 0 4rem; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .9rem; margin: 1rem 0 2rem; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1rem; }
+  .tile h3 { margin: 0 0 .15rem; font-size: .78rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .tile .big { font-size: 1.7rem; font-weight: 650; letter-spacing: -.02em; }
+  .tile .sub { color: var(--ink-2); font-size: .82rem; }
+  table.plain { width: 100%; border-collapse: collapse; font-size: .86rem; margin: .4rem 0 1.6rem; }
+  table.plain th, table.plain td { text-align: right; padding: .35rem .5rem; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  table.plain th:first-child, table.plain td:first-child { text-align: left; }
+  table.plain th { color: var(--muted); font-weight: 500; }
+  .gate { max-width: 34rem; }
+  .gate input { width: 100%; padding: .6rem .7rem; border-radius: var(--radius-sm); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font: inherit; }
+  h2 { margin-top: 2rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">Launch stats — private</p>
+  <h1>Who is using what.</h1>
+  <p class="muted small" id="about">
+    Aggregate daily totals only. whichmodel counts page loads it serves anyway — no cookie,
+    no storage, no address, no identifier; unique visitors are deliberately not measured.
+    GitHub numbers come from its traffic API (last 14 days, kept daily by the collector);
+    Bonsai Swarm numbers from its own operator report.
+  </p>
+  <form class="gate" id="gate" hidden>
+    <label for="tok">Token</label>
+    <input id="tok" type="password" autocomplete="off" placeholder="paste the stats token">
+    <p class="muted small">Or open this page as <code>/stats#token=…</code>. The part after <code>#</code> never leaves your browser.</p>
+  </form>
+  <div id="out"></div>
+</main>
+<script>
+(function () {
+  const out = document.getElementById("out");
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const n = (v) => (v === null || v === undefined) ? "—" : Number(v).toLocaleString("en");
+  const usd = (v) => (v === null || v === undefined) ? "—" : "$" + Number(v).toFixed(v < 1 ? 4 : 2);
+  const tile = (title, big, sub) => `<div class="tile"><h3>${esc(title)}</h3><div class="big">${big}</div><div class="sub">${sub || ""}</div></div>`;
+  const table = (cols, rows) => `<div class="table-scroll"><table class="plain"><thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+
+  function token() {
+    const m = location.hash.match(/token=([^&]+)/);
+    if (m) { sessionStorage.setItem("wm-stats", decodeURIComponent(m[1])); history.replaceState(null, "", "/stats"); }
+    return sessionStorage.getItem("wm-stats");
+  }
+
+  function render(data) {
+    const c = data.collected || {};
+    const wm = c.whichmodel || {};
+    const live = data.live || {};
+    const today = (live.daily || []).slice(-1)[0] || {};
+    const sum = (rows, k) => rows.reduce((a, r) => a + (r[k] || 0), 0);
+    const wmDaily = wm.daily || live.daily || [];
+    const last7 = wmDaily.slice(-7);
+    let html = "";
+    html += `<p class="muted small">Collected ${esc(c.generatedAt || "never — the collector has not pushed yet")} · live counters since boot ${esc(live.boot)}</p>`;
+    html += `<h2>whichmodel.app.mintapis.com</h2><div class="stats-grid">`;
+    html += tile("Visits, 7 days", n(sum(last7, "visits")), `${n(sum(last7, "views"))} page loads`);
+    html += tile("Playground runs, 7 days", n(sum(last7, "runs") + sum(last7, "chats")), `${n(sum(last7, "runs"))} runs · ${n(sum(last7, "chats"))} chat turns`);
+    html += tile("Frontier picks, 7 days", n(sum(last7, "frontierPicks")), "turns the router sent to a frontier model");
+    html += tile("install.sh downloads, 7 days", n(sum(last7, "installs")), `${n(sum(wmDaily, "installs"))} since counting began`);
+    html += tile("Metered spend today", usd(today.spendUsd || 0), `cap ${usd((data.budget || {}).dailyUsd)} · left ${usd((data.budget || {}).leftTodayUsd)}`);
+    html += `</div>`;
+    html += table(["Day", "Visits", "Page loads", "Runs", "Chat turns", "Frontier picks", "Installs", "Spend"],
+      wmDaily.slice().reverse().slice(0, 30).map((r) => [esc(r.day), n(r.visits), n(r.views), n(r.runs), n(r.chats), n(r.frontierPicks), n(r.installs), usd(r.spendUsd)]));
+    if ((live.referrers || []).length) html += `<h3>Referring sites (live, ≥3 visits)</h3>` + table(["Host", "Visits"], live.referrers.map((r) => [esc(r.name), n(r.count)]));
+
+    const repos = c.github || {};
+    html += `<h2>GitHub</h2>`;
+    html += table(["Repository", "Stars", "Forks", "Views 14 d", "Unique viewers", "Clones 14 d", "Unique cloners"],
+      Object.entries(repos).map(([name, r]) => [
+        `<a href="https://github.com/${esc(name)}" rel="noopener">${esc(name)}</a>`, n(r.stars), n(r.forks),
+        n(r.views14), n(r.viewUniques14), n(r.clones14), n(r.cloneUniques14)]));
+
+    const b = c.bonsai || {};
+    html += `<h2>Bonsai Swarm</h2><div class="stats-grid">`;
+    html += tile("Accounts", n(b.accounts), `${n(b.returning7)} returning within 7 days · house accounts excluded`);
+    html += tile("Active today", n(b.activeToday), `${n(b.active7)} active-days in 7 days`);
+    html += tile("Jobs today", n(b.jobsToday), `${n(b.jobs7)} in 7 days`);
+    html += tile("Tokens today", n(b.tokensToday), `community ${n(b.communityTokens7)} · house ${n(b.houseTokens7)} · fallback ${n(b.fallbackTokens7)} (7 d)`);
+    html += tile("GPUs online now", n(b.providersOnline), "");
+    html += `</div>`;
+    if (c.digest) html += `<p class="muted small">Digest line: ${esc(c.digest)}</p>`;
+    out.innerHTML = html;
+  }
+
+  async function load(tok) {
+    const r = await fetch("/api/launch-stats", { headers: { Authorization: "Bearer " + tok } });
+    if (!r.ok) { sessionStorage.removeItem("wm-stats"); out.innerHTML = '<p class="notice">That token was not accepted.</p>'; gate(); return; }
+    render(await r.json());
+  }
+  function gate() {
+    const f = document.getElementById("gate");
+    f.hidden = false;
+    f.onsubmit = (e) => { e.preventDefault(); const t = document.getElementById("tok").value.trim(); if (t) { sessionStorage.setItem("wm-stats", t); f.hidden = true; load(t); } };
+  }
+  const t = token();
+  if (t) load(t); else gate();
+})();
+</script>
+</body>
+</html>

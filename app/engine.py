@@ -130,7 +130,10 @@ class Engine:
                 continue
             models.append(model)
             raw_entries.append(config_entry)
-            demo["executable"] = bool(providers.route_for(model.name))
+            # A frontier route is a candidate like any other - priced, ranked,
+            # able to win - but this free demo never runs it, route or no route.
+            demo["executable"] = (bool(providers.route_for(model.name))
+                                  and not demo.get("frontier"))
             meta[model.name] = demo
             if demo.get("baseline"):
                 self.baseline = model.name
@@ -149,6 +152,10 @@ class Engine:
                                  success=_success_model(), classifier=None,
                                  quota_reader=lambda: {})
             self.built_at = time.time()
+
+    def is_frontier(self, name: str) -> bool:
+        """A route the router may choose but this demo never runs."""
+        return bool(self.catalog_meta.get(name, {}).get("frontier"))
 
     def ready(self) -> bool:
         return self.router is not None and len(self.config.catalog.all()) > 0
@@ -204,6 +211,7 @@ class Engine:
             "note": demo.get("note", ""),
             "peerToPeer": bool(demo.get("peer_to_peer")),
             "baseline": bool(demo.get("baseline")),
+            "frontier": bool(demo.get("frontier")),
             "executable": bool(demo.get("executable")),
             "benchId": m.bench_id,
             "contextTokens": m.context_tokens,

@@ -799,3 +799,50 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
+
+/* A frontier route won the decision: say it first, and say what to do about it. */
+.frontier-callout {
+  margin: 0 0 1rem; padding: .85rem .95rem; border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--frontier) 11%, transparent);
+  border: 1px solid color-mix(in srgb, var(--frontier) 40%, transparent);
+}
+.frontier-kicker {
+  margin: 0 0 .25rem; font-size: .72rem; font-weight: 600; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--frontier);
+}
+.frontier-line { margin: 0; font-size: 1.02rem; }
+.frontier-sub { margin: .35rem 0 0; color: var(--ink-2); font-size: .88rem; }
+.frontier-actions { margin: .7rem 0 0; display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.frontier-tag { color: var(--frontier); border-color: color-mix(in srgb, var(--frontier) 40%, transparent); cursor: help; }
+.small-btn { padding: .4rem .8rem; font-size: .85rem; }
+
+/* The install line, on every page but the setup guide, until dismissed. */
+.install-bar {
+  position: sticky; bottom: 0; z-index: 20;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line-strong);
+}
+.install-bar-inner {
+  display: flex; align-items: center; gap: .8rem; flex-wrap: wrap;
+  padding-top: .6rem; padding-bottom: .6rem;
+}
+.install-bar-text { margin: 0; flex: 1 1 18rem; font-size: .88rem; }
+.install-bar-sub { color: var(--muted); }
+.install-bar-cmd {
+  font-family: var(--mono); font-size: .8rem; color: var(--ink);
+  background: var(--plane-2); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: .4rem .65rem;
+}
+.copyable { cursor: copy; }
+.copyable:hover { border-color: var(--line-strong); }
+.install-bar-close { font-size: 1.2rem; line-height: 1; }
+.hero-note { margin: .7rem 0 0; color: var(--muted); font-size: .88rem; max-width: 70ch; }
+@media (max-width: 560px) {
+  /* One row on a phone: the command, the guide, the close button. */
+  .install-bar-text, .hero-note { display: none; }
+  .install-bar-inner { flex-wrap: nowrap; gap: .45rem; padding-top: .45rem; padding-bottom: .45rem; }
+  .install-bar-cmd { flex: 1 1 auto; min-width: 0; font-size: .68rem; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; }
+  .install-bar .small-btn { white-space: nowrap; }
+}

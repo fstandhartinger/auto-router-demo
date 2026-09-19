@@ -168,6 +168,41 @@ function addCopyButtons(root) {
   }
 }
 
+/* One-line commands (the install line) copy on click, wherever they appear. */
+document.addEventListener("click", async (event) => {
+  const code = event.target.closest("[data-copy]");
+  if (!code) return;
+  const text = code.textContent;
+  try {
+    await navigator.clipboard.writeText(code.dataset.copy);
+    code.textContent = "copied — paste it into a terminal";
+  } catch {
+    const range = document.createRange();
+    range.selectNodeContents(code);
+    getSelection().removeAllRanges();
+    getSelection().addRange(range);
+    return;
+  }
+  setTimeout(() => { code.textContent = text; }, 1600);
+});
+
+/* ------------------------------------------------------------ install bar */
+/* The router is the product; this page is its demo. Every page but the setup
+ * guide itself carries the one line that installs it, until it is dismissed. */
+const BAR_KEY = "ar-install-bar-hidden";
+function paintInstallBar(page) {
+  const bar = el("#install-bar");
+  if (!bar) return;
+  let dismissed = false;
+  try { dismissed = localStorage.getItem(BAR_KEY) === "1"; } catch { /* private mode */ }
+  bar.hidden = dismissed || page === "run";
+  document.body.classList.toggle("has-install-bar", !bar.hidden);
+}
+el("#install-bar-close")?.addEventListener("click", () => {
+  try { localStorage.setItem(BAR_KEY, "1"); } catch { /* private mode */ }
+  paintInstallBar("");
+});
+
 /* ------------------------------------------------------------ page router */
 const ROUTES = {
   "/": "playground", "/playground": "playground", "/cache": "cache",
@@ -187,6 +222,7 @@ function navigate(path, push = true) {
   });
   window.scrollTo({ top: 0, behavior: "instant" });
   addCopyButtons(main);
+  paintInstallBar(name);
   ({ playground: initPlayground, cache: initCache, results: initResults, how: initHow,
      run: initRun }[name] || (() => {}))();
 }
@@ -527,7 +563,8 @@ function paintCandidates(data) {
       <td>
         <span class="m-name">
           <i class="dot" style="background:${colorFor(row.name)}"></i>
-          <span><b>${escapeHtml(row.label)}</b> ${badge(row)}
+          <span><b>${escapeHtml(row.label)}</b> ${badge(row)}${row.frontier
+            ? '<span class="checked-tag frontier-tag" title="Priced and choosable; this free demo does not run it">not run here</span>' : ""}
             <span class="m-org">${escapeHtml(row.org)}</span></span>
         </span>
       </td>
@@ -566,7 +603,20 @@ function paintDecision(data) {
   const saving = data.saving;
   const exec = data.execution;
   const notes = (data.notes || []).map((n) => `<li>${escapeHtml(n)}</li>`).join("");
-  el("#decide-body").innerHTML = `
+  const fr = data.frontier;
+  const frontierBox = fr ? `<div class="frontier-callout">
+      <p class="frontier-kicker">Frontier pick — not run on this free demo</p>
+      <p class="frontier-line">The router would send this to <strong>${escapeHtml(fr.label)}</strong>
+        <span class="muted">(expected cost ${usd(fr.callUsd)} for this answer)</span>.</p>
+      <p class="frontier-sub">That is too expensive for a free page to give away${
+        exec && exec.model !== fr.model ? `, so the answer below is from <b>${escapeHtml(exec.label)}</b>,
+        the best affordable route` : ""}. Run the router on your own machine and
+        ${escapeHtml(fr.label)} answers requests like this one — on your key, at that price.</p>
+      <p class="frontier-actions"><a class="primary-btn small-btn" href="/run" data-link>
+        <span class="btn-label">Run it yourself</span></a>
+        <code class="hero-cmd copyable" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code></p>
+    </div>` : "";
+  el("#decide-body").innerHTML = `${frontierBox}
     <div class="decision-model">
       <i class="dot" style="background:${colorFor(sel.selected)}"></i>
       <strong>${escapeHtml(chosen.label || sel.selected)}</strong> ${badge(chosen)}
@@ -585,7 +635,7 @@ function paintDecision(data) {
       <dt>Cache</dt><dd>${cacheWords(data.cache)}</dd>
       <dt>Second choice</dt><dd>${escapeHtml(labelOf(data, sel.fallback) || "—")}</dd>
       <dt>Considered</dt><dd>${sel.candidates_considered} routes · confidence in the evidence ${pct(sel.evidence_confidence)}</dd>
-      ${exec && exec.substituted ? `<dt>Ran on</dt><dd>${escapeHtml(exec.label)} <span class="muted">(demo limit)</span></dd>` : ""}
+      ${exec && exec.substituted ? `<dt>Ran on</dt><dd>${escapeHtml(exec.label)} <span class="muted">(${fr ? "frontier routes are not run here" : "demo limit"})</span></dd>` : ""}
     </dl>
     ${notes ? `<ul class="limits" style="margin-top:.6rem;font-size:.84rem">${notes}</ul>` : ""}`;
 }
@@ -682,7 +732,8 @@ async function initWhatIf(meta) {
     select.replaceChildren(...[{ name: "", label: "nothing yet (cold start)" }, ...usable]
       .map((m) => new Option(m.label, m.name)));
     select.value = usable.some((m) => m.name === keep) ? keep
-      : (usable.find((m) => m.badge === "strong") || usable[0] || { name: "" }).name;
+      : (usable.find((m) => m.name === "gpt-5.6-sol") || usable.find((m) => m.badge === "strong")
+        || usable[0] || { name: "" }).name;
   };
   el("#w-free").addEventListener("change", () => { fill(); runWhatIf(); });
   fill();

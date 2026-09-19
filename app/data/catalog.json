@@ -1,5 +1,5 @@
 {
- "about": "The models the demo router reasons about. Every route here is one a visitor could use themselves: an OpenRouter public endpoint at its public price (the :free ones included) or the peer-to-peer Bonsai swarm. Prices, context length and per-topic capability are read live from the Benchmark Heaven API through bench_id; cache hit rates are our own measurements (EXPERIMENTS.md section 2). Which endpoint actually serves a model, and under which account, is supplied at runtime through DEMO_ROUTES_JSON and never stored here.",
+ "about": "The models the demo router reasons about. Every route here is one a visitor could use themselves: an OpenRouter public endpoint at its public price (the :free ones included) or the peer-to-peer Bonsai swarm. Routes marked demo.frontier are priced on every request and can win the decision, but this free demo never runs them; when one wins, the page says so and the answer comes from the best affordable route. Prices, context length and per-topic capability are read live from the Benchmark Heaven API through bench_id; cache hit rates are our own measurements (EXPERIMENTS.md section 2). Which endpoint actually serves a model, and under which account, is supplied at runtime through DEMO_ROUTES_JSON and never stored here.",
  "models": [
   {
    "name": "bonsai-2-27b-p2p",
@@ -200,13 +200,14 @@
    "demo": {
     "label": "GPT-5.6 Sol",
     "org": "OpenAI",
-    "badge": "strong",
-    "note": "Solved the most tasks of any model we measured: 75 of 78.",
+    "badge": "frontier",
+    "note": "Solved the most tasks of any model we measured: 75 of 78. Priced and considered on every request, never run here: one answer from a frontier model costs more than this free demo can give away.",
     "speed": {
      "reasoning": true,
      "thinking_dialect": "reasoning_effort",
      "health_key": null
-    }
+    },
+    "frontier": true
    }
   },
   {
@@ -227,11 +228,65 @@
     "label": "Claude Opus 5",
     "org": "Anthropic",
     "badge": "frontier",
-    "note": "The frontier baseline the saving is measured against.",
+    "note": "The frontier baseline the saving is measured against. Priced and considered on every request, never run here: one answer from a frontier model costs more than this free demo can give away.",
     "baseline": true,
     "speed": {
      "reasoning": true,
      "thinking_dialect": "openrouter_reasoning",
+     "health_key": null
+    },
+    "frontier": true
+   }
+  },
+  {
+   "name": "claude-fable-5.1",
+   "bench_id": "claude-fable-5.1::medium",
+   "bench_offer": {
+    "platform": "OpenRouter",
+    "provider": "Anthropic"
+   },
+   "cache_family": "anthropic",
+   "vision": true,
+   "latency_s": 10.0,
+   "cache": {
+    "ttl_seconds": 300,
+    "hit_rate": 0.95
+   },
+   "demo": {
+    "label": "Claude Fable 5.1",
+    "org": "Anthropic",
+    "badge": "frontier",
+    "frontier": true,
+    "note": "Anthropic's strongest model, at $10 / $50 per million tokens. Priced and considered on every request, never run here: one answer from a frontier model costs more than this free demo can give away.",
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "openrouter_reasoning",
+     "health_key": null
+    }
+   }
+  },
+  {
+   "name": "gpt-6-astra",
+   "bench_id": "gpt-6-astra::medium",
+   "bench_offer": {
+    "platform": "OpenRouter",
+    "provider": "OpenAI"
+   },
+   "vision": true,
+   "latency_s": 10.0,
+   "cache": {
+    "ttl_seconds": 300,
+    "hit_rate": 0.95
+   },
+   "demo": {
+    "label": "GPT-6 Astra",
+    "org": "OpenAI",
+    "badge": "frontier",
+    "frontier": true,
+    "note": "OpenAI's strongest model, at $10 / $50 per million tokens. Priced and considered on every request, never run here: one answer from a frontier model costs more than this free demo can give away.",
+    "speed": {
+     "reasoning": true,
+     "thinking_dialect": "reasoning_effort",
      "health_key": null
     }
    }

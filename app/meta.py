@@ -80,7 +80,7 @@ PAGES: dict[str, PageMeta] = {
         "What this demo stores, what it does not, and who sees a prompt.",
     ),
     "impressum": PageMeta(
-        "Impressum — auto-router playground",
+        "Legal notice — auto-router playground",
         "Provider identification under German law.",
     ),
 }

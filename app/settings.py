@@ -98,6 +98,8 @@ class Settings:
     repo_url: str = "https://github.com/fstandhartinger/auto-model-router"
     demo_repo_url: str = "https://github.com/fstandhartinger/auto-router-demo"
     bench_url: str = "https://benchmarkheaven.com"
+    #: Bearer token for the launch-stats endpoints and page. Unset: they 404.
+    stats_token: str = ""
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -129,6 +131,7 @@ class Settings:
             bonsai_poll_seconds=_int("BONSAI_POLL_SECONDS", 30),
             site_url=(os.environ.get("DEMO_SITE_URL") or "").rstrip("/"),
             subscription_url=(os.environ.get("DEMO_SUBSCRIPTION_URL") or "").strip(),
+            stats_token=(os.environ.get("DEMO_STATS_TOKEN") or "").strip(),
         )
 
 

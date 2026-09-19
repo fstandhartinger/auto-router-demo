@@ -37,6 +37,8 @@ os.environ["FAKE_KEY"] = "not-a-real-key"
 # The counters must never be written to (or read from) a real deployment path.
 os.environ["DEMO_STATE_FILE"] = str(TESTS / ".limits.test.json")
 os.environ["DEMO_TEST_KEY"] = "test-key"
+os.environ["DEMO_USAGE_FILE"] = str(TESTS / ".usage.test.json")
+os.environ["DEMO_STATS_TOKEN"] = "stats-test-token"
 os.environ.pop("BONSAI_BASE_URL", None)
 os.environ.pop("TYPESAFE_API_KEY", None)
 
