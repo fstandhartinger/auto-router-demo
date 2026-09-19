@@ -128,6 +128,14 @@ classification, the candidate table and its ordering, the saving against the bas
 peer-to-peer route being dropped when nobody is online, the cache arithmetic and where it flips,
 the three rate limits, the budget cap, and that a prompt never reaches the decision record.
 
+## Support
+
+This demo and the router behind it are a one-person hobby project, and the servers and model
+calls are paid out of pocket. If it is useful to you, you can
+**[support this project](https://donate.stripe.com/fZu00i9ro0wmdF88sg1Jm01)** with whatever amount you like. Payments go to
+productivity-boost.com Betriebs UG (haftungsbeschränkt) & Co. KG, the one-person company
+behind these projects.
+
 ## Credit
 
 Classifier: **Jev** by [TypeSafe AI](https://typesafe.ai). Model data: **Benchmark Heaven**, which
