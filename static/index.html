@@ -510,10 +510,50 @@ auto-router check                 # in a second terminal: proves it answers and 
 <section class="wrap" style="margin-top:2.2rem">
   <h2 class="wide-head">Claude Code and Codex, without spending your plan's limits</h2>
   <p class="muted" style="max-width:78ch">
-    Two ways, and they do different things. Both are within what Anthropic and OpenAI document
+    Four ways, and they do different things. All are within what Anthropic and OpenAI document
     for their clients; what neither allows is also said below, so nobody gets surprised.
   </p>
   <div class="tool-grid">
+    <article class="card tool-card">
+      <header class="card-head"><h3>Cheap by default, your plan when it matters</h3><span class="chip chip-good">Claude Code · recommended</span></header>
+      <div class="card-body">
+<pre class="code"><code>auto-router            # terminal 1: the router
+auto-router switch     # terminal 2: instead of `claude`</code></pre>
+        <p>
+          Claude Code starts on cheap models through the router. Before each prompt the router
+          decides; when your Claude plan is the better choice, Claude Code restarts signed in with
+          your plan, straight to Anthropic, and resumes the same conversation. A cheap model that
+          gets stuck mid-task is handed over the same way. <code>~plan</code> / <code>~cheap</code>
+          at the start of a prompt decides it yourself.
+        </p>
+        <p class="muted small">
+          The router never sees your plan's login: in plan mode it is not in the path at all.
+          Automatic switching to the plan needs a usage reader (<code>usage_command</code> in
+          <code>~/.auto-router/config.yaml</code>), so the router knows how full your plan is;
+          until then <code>~plan</code> works. Switching is not free (the new side reads the
+          conversation cold), so it stays on the plan once there unless a prompt is clearly easy.
+        </p>
+      </div>
+    </article>
+    <article class="card tool-card">
+      <header class="card-head"><h3>Your plan in charge, cheap models do the legwork</h3><span class="chip chip-good">Claude Code · Codex</span></header>
+      <div class="card-body">
+<pre class="code"><code>claude mcp add auto-router-delegate -- auto-router delegate
+codex mcp add auto-router-delegate -- auto-router delegate</code></pre>
+        <p>
+          Adds one tool, <code>delegate</code>, to Claude Code or Codex running normally on your
+          plan. The model hands a self-contained sub-task to the cheapest route that can do it and
+          checks the result itself.
+        </p>
+        <p class="muted small">
+          Measured: it pays off for big, separable sub-tasks. On small ones the plan model's own
+          overhead dominates and plan use stays about the same. Tell the model to use it
+          (“you are the orchestrator; delegate the implementation”): with a soft hint it rarely
+          does. For <code>codex exec</code>, set <code>default_tools_approval_mode = "approve"</code>
+          on the server.
+        </p>
+      </div>
+    </article>
     <article class="card tool-card">
       <header class="card-head"><h3>Every turn through the router</h3><span class="chip chip-good">Claude Code · opencode · Cursor</span></header>
       <div class="card-body">
@@ -687,9 +727,10 @@ wire_api = "responses"</code></pre>
    output rather than changing any configuration.
 5. Now configure THIS tool - the one you are running inside - to use the router, backing up
    the file you touch first and showing me the diff:
-   - Claude Code: do not change my shell profile. Tell me to start it with `auto-router claude`
-     instead, and note in one line that those sessions are paid on my OpenRouter key and do
-     not use my Claude plan's limits.
+   - Claude Code: do not change my shell profile. If I have a Claude Pro/Max plan, tell me to
+     start it with `auto-router switch` (cheap routes by default, my plan when the router or I
+     choose it with `~plan`); otherwise with `auto-router claude`. Note in one line which of my
+     accounts pays in each mode.
    - opencode: a provider "autorouter" in ~/.config/opencode/opencode.json with
      npm "@ai-sdk/openai-compatible", baseURL http://127.0.0.1:8787/v1, model "auto",
      and set the default model to autorouter/auto. Keep every existing provider.
@@ -709,25 +750,48 @@ wire_api = "responses"</code></pre>
 <div class="wrap prose" style="margin-top:2.4rem">
   <h2 id="subscriptions">What about my Claude Max or ChatGPT Pro subscription?</h2>
   <p>
-    The honest answer is that a flat-rate plan can only be spent through its own official
-    client. Anthropic's own gateway documentation is explicit in both directions: set a
-    gateway credential and “the credential replaces the subscription login for that session,
-    and the subscription's usage limits don't apply”; set only
-    <code>ANTHROPIC_BASE_URL</code> and “a saved claude.ai login remains the active credential,
-    so its usage limits and billing apply” — but in that mode Anthropic
-    “doesn't support routing Claude Code to non-Claude models through any gateway”, so there is
-    nothing for a router to decide. Codex's ChatGPT plan is the same shape through the Codex CLI.
+    Keep it, and use the router anyway: your plan's limits are only spent on the turns
+    that actually go to the plan. We tested four ways on 19 September 2026 with a real Claude
+    Max login, and read the vendors' current terms for each.
   </p>
+  <ul>
+    <li><strong>Switch mode, for Claude Code (recommended):</strong> <code>auto-router switch</code>.
+      Claude Code starts on cheap models through the router, using the router's own
+      credential. Anthropic's gateway page says “the credential replaces the subscription login
+      for that session, and the subscription's usage limits don't apply”, so nothing goes to
+      your plan. Before each prompt the router decides. When your plan's model is the better
+      choice, Claude Code restarts in its normal plan mode (your own login, straight to
+      Anthropic, no router in between) and resumes the same conversation. If the cheap model
+      gets stuck in the middle of a task, the router hands the conversation over the same way.
+      Start a prompt with <code>~plan</code> or <code>~cheap</code> to decide yourself.</li>
+    <li><strong>The delegate tool, for Claude Code and Codex:</strong> your plan's model stays in
+      charge in its official client and gets one extra tool, <code>delegate</code>, which hands a
+      sub-task (tests, boilerplate, a mechanical refactor) to a cheap model and returns the result
+      for checking. This is ordinary use of MCP, which both clients document.</li>
+    <li><strong>Whole jobs:</strong> <code>auto-router run "…"</code> picks the tool for a task and
+      starts it unmodified: Codex on your ChatGPT plan, Claude Code on your Claude plan, or a cheap
+      model.</li>
+    <li><strong>A gateway in front of your plan login (possible, not recommended):</strong> with only
+      <code>ANTHROPIC_BASE_URL</code> set, “a saved claude.ai login remains the active credential,
+      so its usage limits and billing apply”. Forwarding those requests unchanged is documented.
+      Answering some of them with other models also works, but Anthropic “doesn't support routing
+      Claude Code to non-Claude models through any gateway”, and your plan's token passes through
+      the router on every request. So this mode is off by default and is for your own login on
+      your own machine only.</li>
+  </ul>
   <p>
-    So the router does not pretend. It routes what it is allowed to route — metered APIs, free
-    tiers, your own hardware, the peer-to-peer network — and where a subscription is the right
-    place for a turn, the thing to start is that subscription's own client, with the task, from
-    outside. <span id="subscription-link"></span>
+    <strong>What a switch costs.</strong> The side you switch to reads the whole conversation
+    without a warm cache. Moving one of our test conversations to the plan half-way used
+    3.4× the plan quota of simply staying on the plan. So the router decides at the start,
+    switches rarely, and only leaves the plan for a clearly easy prompt. <span id="subscription-link"></span>
   </p>
   <p class="muted small">
-    And please do not put a proxy in front of somebody else's plan. Anthropic does not permit
-    developers “to route requests through Free, Pro, or Max plan credentials on behalf of their
-    users”, and the same goes for every other flat rate.
+    Not allowed, and not done here: taking a plan's login token out of the official client, or
+    serving anyone else's requests from your plan. Anthropic does not permit developers “to route
+    requests through Free, Pro, or Max plan credentials on behalf of their users”, and OpenAI's
+    terms say you “may not share your account credentials or make your account available to
+    anyone else”. For Codex, whole jobs and the delegate tool work today. A per-turn cheap mode for
+    Codex needs an OpenAI Responses API, which the router does not have yet.
   </p>
 </div>
 

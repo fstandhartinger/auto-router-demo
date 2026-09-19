@@ -103,6 +103,20 @@ providers:
     base_url: https://openrouter.ai/api/v1
     api_key_env: OPENROUTER_API_KEY
     cache: openai
+  anthropic:
+    base_url: https://api.anthropic.com/v1
+    api: anthropic
+    cache: anthropic
+
+# Your Claude plan, for switch mode (auto-router switch). The plan opens for
+# automatic switching only once usage_command reports how full it is - a
+# command printing {"claude": {"week_percent": 12, "session_percent": 30}}.
+# Until then, start a prompt with ~plan to send it to the plan yourself.
+subscriptions:
+  claude:
+    # usage_command: [/path/to/your/usage-reader]
+    weekly_reserve: 0.65
+    hard_stop: 0.80
 
 policy:
   name: F_expected
@@ -164,6 +178,18 @@ models:
     bench_id: gpt-6-astra::medium
     bench_offer: {platform: OpenRouter, provider: OpenAI}
     cache: {ttl_seconds: 300, hit_rate: 0.95}
+    vision: true
+
+  # Your Claude plan. Only reachable in switch mode, where Claude Code talks to
+  # Anthropic directly with your own login - the router never sees it.
+  - name: claude-plan
+    provider: anthropic
+    upstream_id: claude-opus-5
+    bench_id: claude-opus-5::medium
+    bench_offer: {platform: OpenRouter, provider: Anthropic}
+    subscription: claude
+    list_price_model: claude-opus-5
+    cache_family: anthropic
     vision: true
 YAML
 fi
@@ -281,7 +307,9 @@ cat > "$BIN/auto-router" <<LAUNCHER
 #   auto-router                 start the router on http://127.0.0.1:$PORT/v1
 #   auto-router check           prove a running router answers and routes
 #   auto-router claude [args]   Claude Code through the router (API-key mode)
+#   auto-router switch [args]   Claude Code, cheap by default, on your Claude plan when needed
 #   auto-router run "<task>"    job-level: choose Codex / Claude / opencode, start it
+#   auto-router delegate        MCP server: lets a plan session hand sub-tasks to cheap models
 #   auto-router update          re-run the installer
 set -eu
 export AUTO_ROUTER_CACHE_DIR="\${AUTO_ROUTER_CACHE_DIR:-$ROOT/cache}"
@@ -323,6 +351,19 @@ PY
     # "the credential replaces the subscription login for that session, and the
     # subscription's usage limits don't apply". The value never leaves this machine.
     ANTHROPIC_BASE_URL="\$URL" ANTHROPIC_API_KEY="\${AUTO_ROUTER_CLAUDE_KEY:-local-router}" exec claude "\$@" ;;
+  switch)
+    shift
+    # Cheap mode: Claude Code through the router with its own credential (your
+    # plan is not used). Plan mode: Claude Code with your own login, straight
+    # to Anthropic, no router in between. One conversation moves between them.
+    export AUTO_ROUTER_CONFIG="\${AUTO_ROUTER_CONFIG:-$CONFIG}" AUTO_ROUTER_URL="\$URL"
+    export PYTHONPATH="$SRC\${PYTHONPATH:+:\$PYTHONPATH}"
+    exec "$VENV/bin/python" -m auto_router.switch "\$@" ;;
+  delegate)
+    shift
+    export AUTO_ROUTER_CONFIG="\${AUTO_ROUTER_LAUNCHER_CONFIG:-$LAUNCHER_CONFIG}"
+    export PYTHONPATH="$SRC\${PYTHONPATH:+:\$PYTHONPATH}"
+    exec "$VENV/bin/python" -m auto_router.delegate ;;
   run)
     shift
     export AUTO_ROUTER_CONFIG="\${AUTO_ROUTER_LAUNCHER_CONFIG:-$LAUNCHER_CONFIG}"
@@ -330,7 +371,7 @@ PY
   update)
     exec sh -c "curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" ;;
   -h|--help|help)
-    sed -n '2,8p' "\$0" ;;
+    sed -n '2,10p' "\$0" ;;
   *)
     export AUTO_ROUTER_CONFIG="\${AUTO_ROUTER_CONFIG:-$CONFIG}"
     cd "$SRC"
@@ -350,6 +391,7 @@ say "export TYPESAFE_API_KEY=...        # optional: the Jev classifier"
 say "auto-router                        # serves http://127.0.0.1:$PORT/v1"
 say "auto-router check                  # (second terminal) proves it routes"
 say "auto-router claude                 # Claude Code through the router"
+say "auto-router switch                 # Claude Code: cheap routes, your plan when needed"
 say "auto-router run --dry-run \"a task\" # job-level: which tool would do it"
 printf '\n'
 case ":$PATH:" in
