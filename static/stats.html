@@ -20,6 +20,7 @@
   .gate { max-width: 34rem; }
   .gate input { width: 100%; padding: .6rem .7rem; border-radius: var(--radius-sm); border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font: inherit; }
   h2 { margin-top: 2rem; }
+  #tok.masked { -webkit-text-security: disc; text-security: disc; letter-spacing: .12em; }
 </style>
 </head>
 <body>
@@ -34,7 +35,7 @@
   </p>
   <form class="gate" id="gate" hidden>
     <label for="tok">Token</label>
-    <input id="tok" type="password" autocomplete="off" placeholder="paste the stats token">
+    <input id="tok" type="text" class="masked" name="whichmodel-stats-code" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-form-type="other" data-1p-ignore data-lpignore="true" data-bwignore placeholder="paste the stats token" aria-label="Stats token">
     <p class="muted small">Or open this page as <code>/stats#token=…</code>. The part after <code>#</code> never leaves your browser.</p>
   </form>
   <div id="out"></div>
@@ -103,6 +104,13 @@
     const f = document.getElementById("gate");
     f.hidden = false;
     f.onsubmit = (e) => { e.preventDefault(); const t = document.getElementById("tok").value.trim(); if (t) { sessionStorage.setItem("wm-stats", t); f.hidden = true; load(t); } };
+  }
+  // A shared-secret gate stays out of the password manager (every *.app.mintapis.com
+  // app shares one registrable domain); fall back to a password field only where
+  // CSS cannot mask.
+  const tokInput = document.getElementById("tok");
+  if (!(window.CSS && CSS.supports && (CSS.supports("-webkit-text-security", "disc") || CSS.supports("text-security", "disc")))) {
+    tokInput.type = "password"; tokInput.classList.remove("masked");
   }
   const t = token();
   if (t) load(t); else gate();
