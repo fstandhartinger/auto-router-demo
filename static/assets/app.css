@@ -877,8 +877,8 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
   .install-bar-inner { display: grid; grid-template-columns: 1fr auto auto; gap: .45rem;
     padding-top: .45rem; padding-bottom: max(.45rem, env(safe-area-inset-bottom)); }
   .install-bar-command { grid-column: 1 / -1; width: 100%; }
-  .install-bar-cmd { flex: 1 1 auto; min-width: 0; font-size: .69rem; white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis; }
+  .install-bar-cmd { flex: 1 1 auto; min-width: 0; font-size: .69rem; line-height: 1.35;
+    white-space: normal; overflow-wrap: anywhere; }
   .install-copy-btn { flex: none; }
   .install-bar .small-btn { grid-column: 2; white-space: nowrap; justify-content: center; }
   .install-bar-close { grid-column: 3; }
