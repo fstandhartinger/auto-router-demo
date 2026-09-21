@@ -42,7 +42,7 @@
 <aside class="install-bar" id="install-bar" hidden aria-label="Run the router yourself">
   <div class="wrap install-bar-inner">
     <p class="install-bar-text"><strong>Run this router on your own machine</strong>
-      <span class="install-bar-sub">— in front of Claude Code, Codex, opencode or Cursor, on your own keys, without spending your plan's limits.</span></p>
+      <span class="install-bar-sub">— in front of Claude Code, Codex, opencode or Cursor. It uses requests included with your plans when they fit, and sends easy turns to cheaper models on your own keys.</span></p>
     <div class="install-bar-command">
       <code class="install-bar-cmd copyable" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" title="Click to copy">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code>
       <button class="install-copy-btn" type="button" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" aria-label="Copy install command">Copy</button>
@@ -88,9 +88,9 @@
       <code class="hero-cmd copyable" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" title="Click to copy">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code>
     </p>
     <p class="hero-note">
-      Free and MIT-licensed. Put it in front of Claude Code, Codex, opencode or Cursor: easy
-      turns go to cheap models on your own key, and your Claude or ChatGPT plan's limits are
-      left for the work that needs them. <a href="/run" data-link>Setup for each tool</a>.
+      Free and MIT-licensed. Put it in front of Claude Code, Codex, opencode or Cursor. It uses
+      requests included with your plans when they fit, and sends easy turns to cheaper models on
+      your own keys. <a href="/run" data-link>Setup for each tool</a>.
     </p>
   </div>
 </section>
@@ -520,7 +520,7 @@ auto-router check                 # in a second terminal: proves it answers and 
 
 
 <section class="wrap" style="margin-top:2.2rem">
-  <h2 class="wide-head">Claude Code and Codex, without spending your plan's limits</h2>
+  <h2 class="wide-head">Use your included requests, and cheaper models where they fit</h2>
   <p class="muted" style="max-width:78ch">
     Four ways, and they do different things. All are within what Anthropic and OpenAI document
     for their clients; what neither allows is also said below, so nobody gets surprised.
@@ -548,21 +548,19 @@ auto-router switch     # terminal 2: instead of `claude`</code></pre>
       </div>
     </article>
     <article class="card tool-card">
-      <header class="card-head"><h3>Your plan in charge, cheap models do the legwork</h3><span class="chip chip-good">Claude Code · Codex</span></header>
+      <header class="card-head"><h3>Use it as a subagent layer</h3><span class="chip chip-good">Claude Code · Codex · opencode · Cursor</span></header>
       <div class="card-body">
-<pre class="code"><code>claude mcp add auto-router-delegate -- auto-router delegate
-codex mcp add auto-router-delegate -- auto-router delegate</code></pre>
+<pre class="code"><code>curl -fsSL https://raw.githubusercontent.com/fstandhartinger/auto-model-router/main/scripts/install-delegation.sh | sh -s -- claude
+# replace claude with codex, opencode, or cursor</code></pre>
         <p>
-          Adds one tool, <code>delegate</code>, to Claude Code or Codex running normally on your
-          plan. The model hands a self-contained sub-task to the cheapest route that can do it and
-          checks the result itself.
+          Adds <code>delegate</code> and <code>delegate_many</code>, plus a planner skill. The main
+          model keeps judgement and final review; routed workers handle self-contained mechanical
+          work, in parallel when the tasks are independent.
         </p>
         <p class="muted small">
-          Measured: it pays off for big, separable sub-tasks. On small ones the plan model's own
-          overhead dominates and plan use stays about the same. Tell the model to use it
-          (“you are the orchestrator; delegate the implementation”): with a soft hint it rarely
-          does. For <code>codex exec</code>, set <code>default_tools_approval_mode = "approve"</code>
-          on the server.
+          Worker briefs are cold context, so the skill sends only what each worker needs. Results
+          include model, wall time, brief size, and measured cost when the worker exposes usage;
+          estimates stay labeled as estimates. The main model verifies every result.
         </p>
       </div>
     </article>

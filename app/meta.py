@@ -72,8 +72,8 @@ PAGES: dict[str, PageMeta] = {
     ),
     "run": PageMeta(
         "Run the router on your own machine — auto-router",
-        "One command, your own keys, an OpenAI-compatible endpoint on localhost. Point Claude "
-        "Code, Codex, opencode or Cursor at it and every request gets routed.",
+        "Run it locally in front of Claude Code, Codex, opencode or Cursor. Use requests included "
+        "with your plans when they fit, and cheaper models on your own keys for easy turns.",
     ),
     "privacy": PageMeta(
         "Privacy — auto-router playground",
