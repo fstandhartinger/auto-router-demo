@@ -43,8 +43,11 @@
   <div class="wrap install-bar-inner">
     <p class="install-bar-text"><strong>Run this router on your own machine</strong>
       <span class="install-bar-sub">— in front of Claude Code, Codex, opencode or Cursor, on your own keys, without spending your plan's limits.</span></p>
-    <code class="install-bar-cmd copyable" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" title="Click to copy">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code>
-    <a class="primary-btn small-btn" href="/run" data-link><span class="btn-label">Setup guide</span></a>
+    <div class="install-bar-command">
+      <code class="install-bar-cmd copyable" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" title="Click to copy">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code>
+      <button class="install-copy-btn" type="button" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" aria-label="Copy install command">Copy</button>
+    </div>
+    <a class="primary-btn small-btn install-guide-btn" href="/run" data-link><span class="btn-label">Setup guide</span></a>
     <button class="icon-btn install-bar-close" id="install-bar-close" type="button" aria-label="Hide this bar">&times;</button>
   </div>
 </aside>

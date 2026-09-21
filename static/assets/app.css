@@ -19,6 +19,14 @@
   --hot: #e07a4a;
   --frontier: #d7688f;
   --p2p: #9085e9;
+  --install-bg: #172b4d;
+  --install-ink: #f7faff;
+  --install-muted: #c9d8ee;
+  --install-line: #69aaf7;
+  --install-command-bg: #0c1729;
+  --install-command-line: #5077a8;
+  --install-guide: #ffd166;
+  --install-guide-ink: #241b00;
 
   /* chart roles, from the validated categorical palette (dark steps) */
   --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
@@ -52,6 +60,14 @@ html[data-theme="light"] {
   --hot: #b1521f;
   --frontier: #a8305c;
   --p2p: #5b4bc4;
+  --install-bg: #e7f0ff;
+  --install-ink: #111d30;
+  --install-muted: #3e536f;
+  --install-line: #1f6fd0;
+  --install-command-bg: #ffffff;
+  --install-command-line: #7798c1;
+  --install-guide: #145fb8;
+  --install-guide-ink: #ffffff;
   --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
   --s5: #e87ba4; --s6: #008300; --s7: #4a3aa7; --s8: #e34948;
   --grid: #e1e0d9;
@@ -819,30 +835,51 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
 /* The install line, on every page but the setup guide, until dismissed. */
 .install-bar {
   position: sticky; bottom: 0; z-index: 20;
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  color: var(--install-ink);
+  background: color-mix(in srgb, var(--install-bg) 96%, transparent);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  border-top: 1px solid var(--line-strong);
+  border-top: 2px solid var(--install-line);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, .22);
 }
 .install-bar-inner {
   display: flex; align-items: center; gap: .8rem; flex-wrap: wrap;
   padding-top: .6rem; padding-bottom: .6rem;
 }
 .install-bar-text { margin: 0; flex: 1 1 18rem; font-size: .88rem; }
-.install-bar-sub { color: var(--muted); }
+.install-bar-sub { color: var(--install-muted); }
+.install-bar-command {
+  display: flex; align-items: stretch; min-width: 0;
+  border: 1px solid var(--install-command-line); border-radius: var(--radius-sm);
+  overflow: hidden; background: var(--install-command-bg);
+}
 .install-bar-cmd {
-  font-family: var(--mono); font-size: .8rem; color: var(--ink);
-  background: var(--plane-2); border: 1px solid var(--line);
-  border-radius: var(--radius-sm); padding: .4rem .65rem;
+  font-family: var(--mono); font-size: .8rem; color: var(--install-ink);
+  background: transparent; border: 0; padding: .45rem .65rem;
+}
+.install-copy-btn {
+  border: 0; border-left: 1px solid var(--install-command-line); padding: .4rem .62rem;
+  background: color-mix(in srgb, var(--install-bg) 72%, var(--install-command-bg));
+  color: var(--install-ink); font: 600 .76rem var(--sans); cursor: pointer;
+}
+.install-copy-btn:hover { background: var(--install-bg); }
+.install-guide-btn {
+  background: var(--install-guide); color: var(--install-guide-ink);
+  padding-inline: 1rem; box-shadow: 0 4px 14px rgba(0, 0, 0, .2);
 }
 .copyable { cursor: copy; }
-.copyable:hover { border-color: var(--line-strong); }
-.install-bar-close { font-size: 1.2rem; line-height: 1; }
+.copyable:hover { background: color-mix(in srgb, var(--install-bg) 35%, transparent); }
+.install-bar-close { font-size: 1.2rem; line-height: 1; color: var(--install-ink); border-color: var(--install-command-line); }
 .hero-note { margin: .7rem 0 0; color: var(--muted); font-size: .88rem; max-width: 70ch; }
 @media (max-width: 560px) {
-  /* One row on a phone: the command, the guide, the close button. */
+  /* Two short rows keep the bar out of the composer while leaving the full
+     command readable and the guide easy to tap. */
   .install-bar-text, .hero-note { display: none; }
-  .install-bar-inner { flex-wrap: nowrap; gap: .45rem; padding-top: .45rem; padding-bottom: .45rem; }
-  .install-bar-cmd { flex: 1 1 auto; min-width: 0; font-size: .68rem; white-space: nowrap;
+  .install-bar-inner { display: grid; grid-template-columns: 1fr auto auto; gap: .45rem;
+    padding-top: .45rem; padding-bottom: max(.45rem, env(safe-area-inset-bottom)); }
+  .install-bar-command { grid-column: 1 / -1; width: 100%; }
+  .install-bar-cmd { flex: 1 1 auto; min-width: 0; font-size: .69rem; white-space: nowrap;
     overflow: hidden; text-overflow: ellipsis; }
-  .install-bar .small-btn { white-space: nowrap; }
+  .install-copy-btn { flex: none; }
+  .install-bar .small-btn { grid-column: 2; white-space: nowrap; justify-content: center; }
+  .install-bar-close { grid-column: 3; }
 }
