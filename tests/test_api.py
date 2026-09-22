@@ -340,6 +340,12 @@ def test_playground_puts_the_answer_before_the_detailed_candidate_table(client):
     assert "4 · The numbers behind that decision" in page
 
 
+def test_mobile_install_bar_stays_out_of_the_viewport(client):
+    css = client.get("/assets/app.css").text
+    mobile = css[css.rindex("@media (max-width: 560px)") :]
+    assert ".install-bar { position: static; }" in mobile
+
+
 def test_the_decision_explorer_has_its_own_bucket(client):
     from app import main
 

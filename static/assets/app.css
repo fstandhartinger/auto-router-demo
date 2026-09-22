@@ -871,8 +871,10 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
 .install-bar-close { font-size: 1.2rem; line-height: 1; color: var(--install-ink); border-color: var(--install-command-line); }
 .hero-note { margin: .7rem 0 0; color: var(--muted); font-size: .88rem; max-width: 70ch; }
 @media (max-width: 560px) {
-  /* Two short rows keep the bar out of the composer while leaving the full
-     command readable and the guide easy to tap. */
+  /* The hero already carries the install CTA. On a phone this full-width bar
+     must stay in the document flow: a sticky version covers the composer's
+     Route button and whichever result the visitor is trying to read. */
+  .install-bar { position: static; }
   .install-bar-text, .hero-note { display: none; }
   .install-bar-inner { display: grid; grid-template-columns: 1fr auto auto; gap: .45rem;
     padding-top: .45rem; padding-bottom: max(.45rem, env(safe-area-inset-bottom)); }
