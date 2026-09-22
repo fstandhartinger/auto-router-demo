@@ -135,9 +135,35 @@
     </article>
   </div>
 
+  <article class="card card-answer" id="card-answer">
+    <header class="card-head">
+      <h2>3 · The answer</h2>
+      <span class="chip chip-quiet" id="answer-model">—</span>
+    </header>
+    <div class="card-body">
+      <p class="notice" id="answer-note" hidden></p>
+      <details class="thinking" id="thinking-box" hidden>
+        <summary class="thinking-line">
+          <span class="thinking-dot" aria-hidden="true"></span>
+          <span id="thinking-text">thinking…</span>
+        </summary>
+        <div class="thinking-body" id="thinking-stream" aria-live="off"></div>
+      </details>
+      <p class="verify-chip" id="verify-chip" hidden></p>
+      <details class="first-answer" id="first-answer" hidden>
+        <summary class="first-answer-line">
+          <span id="first-answer-label">the answer it replaced</span>
+        </summary>
+        <div class="answer answer-quiet" id="first-answer-body"></div>
+      </details>
+      <div class="answer" id="answer"></div>
+      <p class="answer-foot" id="answer-foot"></p>
+    </div>
+  </article>
+
   <article class="card card-candidates" id="card-candidates">
     <header class="card-head">
-      <h2>3 · The numbers behind that decision</h2>
+      <h2>4 · The numbers behind that decision</h2>
       <span class="chip chip-quiet" id="candidates-note">every route, priced for this request</span>
     </header>
     <div class="table-scroll">
@@ -161,32 +187,6 @@
       <summary>How to read this table</summary>
       <p class="table-foot" id="candidates-foot"></p>
     </details>
-  </article>
-
-  <article class="card card-answer" id="card-answer">
-    <header class="card-head">
-      <h2>4 · The answer</h2>
-      <span class="chip chip-quiet" id="answer-model">—</span>
-    </header>
-    <div class="card-body">
-      <p class="notice" id="answer-note" hidden></p>
-      <details class="thinking" id="thinking-box" hidden>
-        <summary class="thinking-line">
-          <span class="thinking-dot" aria-hidden="true"></span>
-          <span id="thinking-text">thinking…</span>
-        </summary>
-        <div class="thinking-body" id="thinking-stream" aria-live="off"></div>
-      </details>
-      <p class="verify-chip" id="verify-chip" hidden></p>
-      <details class="first-answer" id="first-answer" hidden>
-        <summary class="first-answer-line">
-          <span id="first-answer-label">the answer it replaced</span>
-        </summary>
-        <div class="answer answer-quiet" id="first-answer-body"></div>
-      </details>
-      <div class="answer" id="answer"></div>
-      <p class="answer-foot" id="answer-foot"></p>
-    </div>
   </article>
 </section>
 </template>

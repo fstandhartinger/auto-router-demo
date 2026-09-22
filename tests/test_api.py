@@ -333,6 +333,13 @@ def test_every_page_serves_the_app_shell(client):
         assert "playground" in resp.text
 
 
+def test_playground_puts_the_answer_before_the_detailed_candidate_table(client):
+    page = client.get("/").text
+    assert page.index('id="card-answer"') < page.index('id="card-candidates"')
+    assert "3 · The answer" in page
+    assert "4 · The numbers behind that decision" in page
+
+
 def test_the_decision_explorer_has_its_own_bucket(client):
     from app import main
 
