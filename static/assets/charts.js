@@ -440,3 +440,6 @@ export function renderResults(root, data) {
   s7.append(src);
   root.append(s7);
 }
+
+/* Shared with the evidence page, so both pages draw with one hand. */
+export { showTip, hideTip, esc, money, section, barChart, tableView };

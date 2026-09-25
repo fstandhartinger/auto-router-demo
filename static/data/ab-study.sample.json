@@ -1,0 +1,796 @@
+{
+ "sample": true,
+ "generated_at": "2026-09-25T00:00:00Z",
+ "method": {
+  "summary": "SAMPLE DATA for page development \u2014 invented numbers, not a measurement. The real study replaces this file.",
+  "arms": {
+   "A": {
+    "label": "Always Claude Opus 5.5 (sample)"
+   },
+   "B": {
+    "label": "auto-router picks per turn (sample)"
+   }
+  },
+  "judges": [
+   "judge-model-1 (sample)",
+   "judge-model-2 (sample)"
+  ],
+  "pricing": {
+   "basis": "public list prices per 1M tokens incl. cache read/write (sample)",
+   "as_of": "2026-09-25"
+  },
+  "limitations": [
+   "This is sample data: every number on this page is invented until the real study is dropped in.",
+   "Twelve tasks is a small sample; a difference of a few tenths of a point is noise.",
+   "Costs are list-price equivalents computed from token counts, not invoices.",
+   "Scores come from model judges plus automated tests; judges can be wrong."
+  ]
+ },
+ "tasks": [
+  {
+   "id": "t01",
+   "title": "Fix an off-by-one in a pagination helper",
+   "difficulty": "easy",
+   "category": "coding",
+   "prompt": "SAMPLE: Fix an off-by-one in a pagination helper.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.4,
+    "score_judges": [
+     8.4,
+     8.2
+    ],
+    "tests_passed": 8,
+    "tests_total": 8,
+    "renders": null,
+    "cost_list_usd": 0.431,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 3879,
+     "output": 1120,
+     "cache_read": 68960,
+     "cache_write": 5172
+    },
+    "seconds": 65,
+    "screenshot": null
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.1,
+    "score_judges": [
+     8.1,
+     8.2
+    ],
+    "tests_passed": 8,
+    "tests_total": 8,
+    "renders": null,
+    "cost_list_usd": 0.013,
+    "cost_metered_usd": 0.0104,
+    "tokens": {
+     "input": 117,
+     "output": 33,
+     "cache_read": 2080,
+     "cache_write": 156
+    },
+    "seconds": 103,
+    "screenshot": null,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 1,
+      "cost_list_usd": 0.013
+     }
+    ],
+    "escalations": 0
+   }
+  },
+  {
+   "id": "t02",
+   "title": "Add a dark-mode toggle to a static page",
+   "difficulty": "easy",
+   "category": "frontend",
+   "prompt": "SAMPLE: Add a dark-mode toggle to a static page.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.3,
+    "score_judges": [
+     8.3,
+     8.1
+    ],
+    "tests_passed": 6,
+    "tests_total": 6,
+    "renders": true,
+    "cost_list_usd": 0.404,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 3636,
+     "output": 1050,
+     "cache_read": 64640,
+     "cache_write": 4848
+    },
+    "seconds": 72,
+    "screenshot": "/data/sample-shots/sample-A.svg"
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.5,
+    "score_judges": [
+     8.5,
+     8.6
+    ],
+    "tests_passed": 6,
+    "tests_total": 6,
+    "renders": true,
+    "cost_list_usd": 0.0,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 0,
+     "output": 0,
+     "cache_read": 0,
+     "cache_write": 0
+    },
+    "seconds": 65,
+    "screenshot": "/data/sample-shots/sample-B.svg",
+    "routes": [
+     {
+      "model": "bonsai-2-local",
+      "turns": 2,
+      "cost_list_usd": 0.0
+     }
+    ],
+    "escalations": 0
+   }
+  },
+  {
+   "id": "t03",
+   "title": "Write unit tests for a date parser",
+   "difficulty": "easy",
+   "category": "coding",
+   "prompt": "SAMPLE: Write unit tests for a date parser.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.1,
+    "score_judges": [
+     9.1,
+     8.9
+    ],
+    "tests_passed": 6,
+    "tests_total": 6,
+    "renders": null,
+    "cost_list_usd": 0.406,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 3654,
+     "output": 1055,
+     "cache_read": 64960,
+     "cache_write": 4872
+    },
+    "seconds": 64,
+    "screenshot": null
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.1,
+    "score_judges": [
+     9.1,
+     9.2
+    ],
+    "tests_passed": 6,
+    "tests_total": 6,
+    "renders": null,
+    "cost_list_usd": 0.017,
+    "cost_metered_usd": 0.0136,
+    "tokens": {
+     "input": 153,
+     "output": 44,
+     "cache_read": 2720,
+     "cache_write": 204
+    },
+    "seconds": 66,
+    "screenshot": null,
+    "routes": [
+     {
+      "model": "glm-5.3-flash",
+      "turns": 1,
+      "cost_list_usd": 0.017
+     }
+    ],
+    "escalations": 0
+   }
+  },
+  {
+   "id": "t04",
+   "title": "Rename a config key across a small repo",
+   "difficulty": "easy",
+   "category": "refactor",
+   "prompt": "SAMPLE: Rename a config key across a small repo.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.0,
+    "score_judges": [
+     9.0,
+     8.8
+    ],
+    "tests_passed": 6,
+    "tests_total": 6,
+    "renders": null,
+    "cost_list_usd": 0.455,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 4095,
+     "output": 1183,
+     "cache_read": 72800,
+     "cache_write": 5460
+    },
+    "seconds": 65,
+    "screenshot": null
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.7,
+    "score_judges": [
+     8.7,
+     8.8
+    ],
+    "tests_passed": 6,
+    "tests_total": 6,
+    "renders": null,
+    "cost_list_usd": 0.016,
+    "cost_metered_usd": 0.0128,
+    "tokens": {
+     "input": 144,
+     "output": 41,
+     "cache_read": 2560,
+     "cache_write": 192
+    },
+    "seconds": 90,
+    "screenshot": null,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 1,
+      "cost_list_usd": 0.016
+     }
+    ],
+    "escalations": 0
+   }
+  },
+  {
+   "id": "t05",
+   "title": "Build a sortable, filterable table component",
+   "difficulty": "medium",
+   "category": "frontend",
+   "prompt": "SAMPLE: Build a sortable, filterable table component.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.0,
+    "score_judges": [
+     9.0,
+     8.8
+    ],
+    "tests_passed": 11,
+    "tests_total": 11,
+    "renders": true,
+    "cost_list_usd": 0.975,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 8775,
+     "output": 2535,
+     "cache_read": 156000,
+     "cache_write": 11700
+    },
+    "seconds": 140,
+    "screenshot": "/data/sample-shots/sample-A.svg"
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.7,
+    "score_judges": [
+     8.7,
+     8.8
+    ],
+    "tests_passed": 11,
+    "tests_total": 11,
+    "renders": true,
+    "cost_list_usd": 0.122,
+    "cost_metered_usd": 0.0976,
+    "tokens": {
+     "input": 1098,
+     "output": 317,
+     "cache_read": 19520,
+     "cache_write": 1464
+    },
+    "seconds": 214,
+    "screenshot": "/data/sample-shots/sample-B.svg",
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.0854
+     },
+     {
+      "model": "glm-5.3-flash",
+      "turns": 2,
+      "cost_list_usd": 0.0366
+     }
+    ],
+    "escalations": 0
+   }
+  },
+  {
+   "id": "t06",
+   "title": "Add retry with backoff to an HTTP client",
+   "difficulty": "medium",
+   "category": "coding",
+   "prompt": "SAMPLE: Add retry with backoff to an HTTP client.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.5,
+    "score_judges": [
+     9.5,
+     9.3
+    ],
+    "tests_passed": 12,
+    "tests_total": 12,
+    "renders": null,
+    "cost_list_usd": 1.026,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 9234,
+     "output": 2667,
+     "cache_read": 164160,
+     "cache_write": 12312
+    },
+    "seconds": 121,
+    "screenshot": null
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.0,
+    "score_judges": [
+     9.0,
+     9.1
+    ],
+    "tests_passed": 12,
+    "tests_total": 12,
+    "renders": null,
+    "cost_list_usd": 0.108,
+    "cost_metered_usd": 0.0864,
+    "tokens": {
+     "input": 972,
+     "output": 280,
+     "cache_read": 17280,
+     "cache_write": 1296
+    },
+    "seconds": 192,
+    "screenshot": null,
+    "routes": [
+     {
+      "model": "claude-sonnet-5",
+      "turns": 8,
+      "cost_list_usd": 0.108
+     }
+    ],
+    "escalations": 0
+   }
+  },
+  {
+   "id": "t07",
+   "title": "Turn a CSV export into a streaming endpoint",
+   "difficulty": "medium",
+   "category": "backend",
+   "prompt": "SAMPLE: Turn a CSV export into a streaming endpoint.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.4,
+    "score_judges": [
+     9.4,
+     9.2
+    ],
+    "tests_passed": 6,
+    "tests_total": 6,
+    "renders": null,
+    "cost_list_usd": 1.059,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 9531,
+     "output": 2753,
+     "cache_read": 169440,
+     "cache_write": 12708
+    },
+    "seconds": 139,
+    "screenshot": null
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.1,
+    "score_judges": [
+     9.1,
+     9.2
+    ],
+    "tests_passed": 6,
+    "tests_total": 6,
+    "renders": null,
+    "cost_list_usd": 0.123,
+    "cost_metered_usd": 0.0984,
+    "tokens": {
+     "input": 1107,
+     "output": 319,
+     "cache_read": 19680,
+     "cache_write": 1476
+    },
+    "seconds": 149,
+    "screenshot": null,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 3,
+      "cost_list_usd": 0.123
+     }
+    ],
+    "escalations": 0
+   }
+  },
+  {
+   "id": "t08",
+   "title": "Landing page from a one-paragraph brief",
+   "difficulty": "medium",
+   "category": "frontend",
+   "prompt": "SAMPLE: Landing page from a one-paragraph brief.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.5,
+    "score_judges": [
+     9.5,
+     9.3
+    ],
+    "tests_passed": 10,
+    "tests_total": 10,
+    "renders": true,
+    "cost_list_usd": 0.958,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 8622,
+     "output": 2490,
+     "cache_read": 153280,
+     "cache_write": 11496
+    },
+    "seconds": 143,
+    "screenshot": "/data/sample-shots/sample-A.svg"
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.1,
+    "score_judges": [
+     9.1,
+     9.2
+    ],
+    "tests_passed": 10,
+    "tests_total": 10,
+    "renders": true,
+    "cost_list_usd": 0.083,
+    "cost_metered_usd": 0.0664,
+    "tokens": {
+     "input": 747,
+     "output": 215,
+     "cache_read": 13280,
+     "cache_write": 996
+    },
+    "seconds": 224,
+    "screenshot": "/data/sample-shots/sample-B.svg",
+    "routes": [
+     {
+      "model": "claude-sonnet-5",
+      "turns": 9,
+      "cost_list_usd": 0.083
+     }
+    ],
+    "escalations": 0
+   }
+  },
+  {
+   "id": "t09",
+   "title": "Find and fix a race in a job queue",
+   "difficulty": "hard",
+   "category": "debugging",
+   "prompt": "SAMPLE: Find and fix a race in a job queue.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.9,
+    "score_judges": [
+     8.9,
+     8.7
+    ],
+    "tests_passed": 12,
+    "tests_total": 12,
+    "renders": null,
+    "cost_list_usd": 1.928,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 17352,
+     "output": 5012,
+     "cache_read": 308480,
+     "cache_write": 23136
+    },
+    "seconds": 228,
+    "screenshot": null
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.0,
+    "score_judges": [
+     8.0,
+     8.1
+    ],
+    "tests_passed": 11,
+    "tests_total": 12,
+    "renders": null,
+    "cost_list_usd": 0.673,
+    "cost_metered_usd": 0.5384,
+    "tokens": {
+     "input": 6057,
+     "output": 1749,
+     "cache_read": 107680,
+     "cache_write": 8076
+    },
+    "seconds": 328,
+    "screenshot": null,
+    "routes": [
+     {
+      "model": "claude-sonnet-5",
+      "turns": 2,
+      "cost_list_usd": 0.5384
+     },
+     {
+      "model": "gpt-6-luna",
+      "turns": 1,
+      "cost_list_usd": 0.1346
+     }
+    ],
+    "escalations": 1
+   }
+  },
+  {
+   "id": "t10",
+   "title": "Implement an LRU cache with TTL and tests",
+   "difficulty": "hard",
+   "category": "coding",
+   "prompt": "SAMPLE: Implement an LRU cache with TTL and tests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.0,
+    "score_judges": [
+     8.0,
+     7.8
+    ],
+    "tests_passed": 12,
+    "tests_total": 12,
+    "renders": null,
+    "cost_list_usd": 2.359,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 21231,
+     "output": 6133,
+     "cache_read": 377440,
+     "cache_write": 28308
+    },
+    "seconds": 276,
+    "screenshot": null
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 7.3,
+    "score_judges": [
+     7.3,
+     7.4
+    ],
+    "tests_passed": 11,
+    "tests_total": 12,
+    "renders": null,
+    "cost_list_usd": 0.925,
+    "cost_metered_usd": 0.74,
+    "tokens": {
+     "input": 8325,
+     "output": 2405,
+     "cache_read": 148000,
+     "cache_write": 11100
+    },
+    "seconds": 424,
+    "screenshot": null,
+    "routes": [
+     {
+      "model": "claude-sonnet-5",
+      "turns": 6,
+      "cost_list_usd": 0.74
+     },
+     {
+      "model": "gpt-6-luna",
+      "turns": 2,
+      "cost_list_usd": 0.185
+     }
+    ],
+    "escalations": 1
+   }
+  },
+  {
+   "id": "t11",
+   "title": "Migrate a callback API to async/await",
+   "difficulty": "hard",
+   "category": "refactor",
+   "prompt": "SAMPLE: Migrate a callback API to async/await.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.4,
+    "score_judges": [
+     8.4,
+     8.2
+    ],
+    "tests_passed": 6,
+    "tests_total": 6,
+    "renders": null,
+    "cost_list_usd": 2.573,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 23157,
+     "output": 6689,
+     "cache_read": 411680,
+     "cache_write": 30876
+    },
+    "seconds": 245,
+    "screenshot": null
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 7.8,
+    "score_judges": [
+     7.8,
+     7.9
+    ],
+    "tests_passed": 5,
+    "tests_total": 6,
+    "renders": null,
+    "cost_list_usd": 0.822,
+    "cost_metered_usd": 0.6576,
+    "tokens": {
+     "input": 7398,
+     "output": 2137,
+     "cache_read": 131520,
+     "cache_write": 9864
+    },
+    "seconds": 332,
+    "screenshot": null,
+    "routes": [
+     {
+      "model": "gpt-6-astra",
+      "turns": 6,
+      "cost_list_usd": 0.822
+     }
+    ],
+    "escalations": 0
+   }
+  },
+  {
+   "id": "t12",
+   "title": "Interactive chart dashboard from a JSON feed",
+   "difficulty": "hard",
+   "category": "frontend",
+   "prompt": "SAMPLE: Interactive chart dashboard from a JSON feed.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.5,
+    "score_judges": [
+     8.5,
+     8.3
+    ],
+    "tests_passed": 8,
+    "tests_total": 8,
+    "renders": true,
+    "cost_list_usd": 2.406,
+    "cost_metered_usd": 0.0,
+    "tokens": {
+     "input": 21654,
+     "output": 6255,
+     "cache_read": 384960,
+     "cache_write": 28872
+    },
+    "seconds": 335,
+    "screenshot": "/data/sample-shots/sample-A.svg"
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.1,
+    "score_judges": [
+     8.1,
+     8.2
+    ],
+    "tests_passed": 8,
+    "tests_total": 8,
+    "renders": true,
+    "cost_list_usd": 0.63,
+    "cost_metered_usd": 0.504,
+    "tokens": {
+     "input": 5670,
+     "output": 1638,
+     "cache_read": 100800,
+     "cache_write": 7560
+    },
+    "seconds": 446,
+    "screenshot": "/data/sample-shots/sample-B.svg",
+    "routes": [
+     {
+      "model": "gpt-6-astra",
+      "turns": 7,
+      "cost_list_usd": 0.63
+     }
+    ],
+    "escalations": 0
+   }
+  }
+ ],
+ "summary": {
+  "A": {
+   "mean_score": 8.83,
+   "total_cost_list_usd": 14.98
+  },
+  "B": {
+   "mean_score": 8.46,
+   "total_cost_list_usd": 3.532,
+   "total_cost_metered_usd": 2.826
+  },
+  "cost_ratio_A_over_B": 4.24,
+  "score_delta_B_minus_A": -0.37,
+  "by_difficulty": {
+   "easy": {
+    "n": 4,
+    "A_mean_score": 8.7,
+    "B_mean_score": 8.6,
+    "A_cost_list_usd": 1.696,
+    "B_cost_list_usd": 0.046
+   },
+   "medium": {
+    "n": 4,
+    "A_mean_score": 9.35,
+    "B_mean_score": 8.97,
+    "A_cost_list_usd": 4.018,
+    "B_cost_list_usd": 0.436
+   },
+   "hard": {
+    "n": 4,
+    "A_mean_score": 8.45,
+    "B_mean_score": 7.8,
+    "A_cost_list_usd": 9.266,
+    "B_cost_list_usd": 3.05
+   }
+  }
+ },
+ "what_if": [
+  {
+   "scenario": "As measured (sample)",
+   "description": "The sample tasks at list price.",
+   "A_cost": 14.98,
+   "B_cost": 3.532,
+   "ratio": 4.2
+  },
+  {
+   "scenario": "Cold cache every turn (sample)",
+   "description": "No prefix-cache reads on either arm.",
+   "A_cost": 38.95,
+   "B_cost": 7.42,
+   "ratio": 5.3
+  },
+  {
+   "scenario": "No local model (sample)",
+   "description": "Easy turns go to the cheapest hosted model instead of the local one.",
+   "A_cost": 14.98,
+   "B_cost": 4.06,
+   "ratio": 3.7
+  },
+  {
+   "scenario": "Frontier at half price (sample)",
+   "description": "If the frontier model's list price halved.",
+   "A_cost": 7.49,
+   "B_cost": 3.0,
+   "ratio": 2.5
+  }
+ ]
+}

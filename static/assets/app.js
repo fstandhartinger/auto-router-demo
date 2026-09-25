@@ -1,5 +1,6 @@
 /* Auto-router playground — page router, playground, cache chat, catalog. */
 import { renderResults } from "/assets/charts.js";
+import { renderEvidence } from "/assets/evidence.js";
 import { escapeHtml, renderPlain, renderRich, renderersReady, warmRenderers } from "/assets/render.js";
 
 const state = {
@@ -175,7 +176,7 @@ document.addEventListener("click", async (event) => {
   const text = code.textContent;
   try {
     await navigator.clipboard.writeText(code.dataset.copy);
-    code.textContent = "copied — paste it into a terminal";
+    code.textContent = code.dataset.copied || "copied — paste it into a terminal";
   } catch {
     const range = document.createRange();
     range.selectNodeContents(code);
@@ -208,11 +209,13 @@ const ROUTES = {
   "/": "playground", "/playground": "playground", "/cache": "cache",
   "/results": "results", "/how": "how", "/run": "run",
   "/privacy": "privacy", "/impressum": "impressum",
+  "/evidence": "evidence", "/claims": "evidence",
 };
 
-function navigate(path, push = true) {
+function navigate(path, push = true, hash = location.hash) {
   const name = ROUTES[path] || "playground";
-  if (push && location.pathname !== path) history.pushState({}, "", path);
+  state.path = path;
+  if (push && location.pathname + location.hash !== path + hash) history.pushState({}, "", path + hash);
   const tpl = el(`#page-${name}`);
   const main = el("#main");
   main.replaceChildren(tpl.content.cloneNode(true));
@@ -220,11 +223,17 @@ function navigate(path, push = true) {
     a.toggleAttribute("aria-current", a.dataset.nav === name);
     if (a.dataset.nav === name) a.setAttribute("aria-current", "page");
   });
-  window.scrollTo({ top: 0, behavior: "instant" });
   addCopyButtons(main);
   paintInstallBar(name);
-  ({ playground: initPlayground, cache: initCache, results: initResults, how: initHow,
-     run: initRun }[name] || (() => {}))();
+  const ready = ({ playground: initPlayground, cache: initCache, results: initResults, how: initHow,
+     run: initRun, evidence: initEvidence }[name] || (() => {}))();
+  // A deep link (/evidence#claims, /how#models, or /claims) lands on its section,
+  // once the page has drawn whatever it loads; otherwise the page starts at the top.
+  const anchor = path === "/claims" ? "claims" : decodeURIComponent(hash.slice(1));
+  window.scrollTo({ top: 0, behavior: "instant" });
+  if (anchor) Promise.resolve(ready).catch(() => {}).then(() => {
+    document.getElementById(anchor)?.scrollIntoView({ behavior: "instant", block: "start" });
+  });
 }
 
 document.addEventListener("click", (event) => {
@@ -233,9 +242,14 @@ document.addEventListener("click", (event) => {
   const url = new URL(link.href);
   if (url.origin !== location.origin) return;
   event.preventDefault();
-  navigate(url.pathname);
+  navigate(url.pathname, true, url.hash);
 });
-addEventListener("popstate", () => navigate(location.pathname, false));
+// A same-page fragment link (#claims) fires popstate too; the page is already
+// drawn, so let the browser scroll instead of rebuilding it.
+addEventListener("popstate", () => {
+  if (location.pathname === state.path && location.hash) return;
+  navigate(location.pathname, false);
+});
 
 /* ------------------------------------------------------------- playground */
 async function initPlayground() {
@@ -923,6 +937,36 @@ function paintChatCurve(data) {
 async function initResults() {
   const resp = await fetch("/api/results");
   renderResults(el("#results-root"), await resp.json());
+}
+
+/* -------------------------------------------------------------- evidence */
+/* The study file is dropped in when the study is done. Until then the page draws
+ * the sample file and says so, rather than showing nothing or passing an
+ * invented number off as a measured one. */
+async function loadJson(url) {
+  const resp = await fetch(url, { cache: "no-cache" });
+  if (!resp.ok) throw new Error(`${url}: ${resp.status}`);
+  return resp.json();
+}
+
+async function initEvidence() {
+  const root = el("#evidence-root");
+  let data, sample = false;
+  try {
+    data = await loadJson("/data/ab-study.json");
+  } catch {
+    try {
+      data = await loadJson("/data/ab-study.sample.json");
+      sample = true;
+    } catch {
+      root.innerHTML = '<p class="muted">The study data could not be loaded.</p>';
+      return;
+    }
+  }
+  if (data.sample === true) sample = true;
+  const replay = await loadJson("/api/results").then((r) => r.replay_list).catch(() => null);
+  if (!root.isConnected) return;
+  renderEvidence(root, data, { sample, replay });
 }
 
 /* ------------------------------------------------------------------- how */

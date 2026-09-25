@@ -885,3 +885,91 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
   .install-bar .small-btn { grid-column: 2; white-space: nowrap; justify-content: center; }
   .install-bar-close { grid-column: 3; }
 }
+
+/* ------------------------------------------------------ repo link, agents */
+main [id] { scroll-margin-top: 76px; }
+.repo-btn { white-space: nowrap; color: var(--ink); border-color: var(--line-strong); font-weight: 560; }
+.repo-btn .gh-mark { flex: none; }
+.hero-repo { padding: .5rem .8rem; }
+.agents-block { margin-top: 2.2rem; }
+@media (min-width: 1100px) { .agents-block .card { max-width: 62rem; } }
+.agents-lede { color: var(--ink-2); font-size: .95rem; margin-bottom: .8rem; }
+.agent-prompt {
+  display: flex; align-items: stretch; max-width: 100%;
+  border: 1px solid var(--line-strong); border-radius: var(--radius-sm); overflow: hidden;
+  background: var(--plane-2);
+}
+.agent-prompt-text {
+  flex: 1 1 auto; min-width: 0; font-family: var(--mono); font-size: .84rem; color: var(--ink);
+  padding: .6rem .75rem; overflow-wrap: anywhere;
+}
+.agent-copy-btn { border-left-color: var(--line-strong); background: var(--surface-2); color: var(--ink); }
+.agent-copy-btn:hover { background: var(--accent-soft); }
+.agents-links { margin: .8rem 0 0; }
+
+/* -------------------------------------------------------------- evidence */
+.sample-banner {
+  margin: .4rem 0 1.4rem; padding: .8rem 1rem; border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--warn) 13%, transparent);
+  border: 1px solid color-mix(in srgb, var(--warn) 45%, transparent);
+  color: var(--ink-2); font-size: .92rem;
+}
+.sample-banner strong { color: var(--warn); text-transform: uppercase; letter-spacing: .06em; font-size: .82rem; margin-right: .3rem; }
+.sim-tag {
+  display: inline-block; vertical-align: .25em; font-size: .68rem; letter-spacing: .12em; font-weight: 700;
+  color: var(--warn); border: 1px solid color-mix(in srgb, var(--warn) 50%, transparent);
+  border-radius: 6px; padding: .12rem .45rem; margin-right: .3rem;
+}
+#evidence-root .section:first-of-type { margin-top: 1rem; }
+.pair-groups { display: grid; gap: 1rem; }
+.pair-group { display: grid; gap: .3rem; }
+.pair-head { display: flex; justify-content: space-between; gap: .6rem; font-size: .86rem; color: var(--ink-2); }
+.pair-ratio { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pair-row { display: grid; grid-template-columns: 1.2rem 1fr minmax(3.6rem, auto); gap: .6rem; align-items: center; font-size: .82rem; }
+.pair-row .bar-track, .pair-row .bar-fill { height: 18px; }
+.pair-arm { color: var(--muted); font-weight: 600; }
+.pair-note { color: var(--muted); font-size: .78rem; margin: .1rem 0 0; }
+.evidence-tasks { padding: 0; }
+table.ev-table td { vertical-align: top; }
+.ev-sub { display: block; color: var(--muted); font-size: .76rem; margin-top: .15rem; }
+.ev-score { font-weight: 600; font-variant-numeric: tabular-nums; }
+.shots { white-space: nowrap; }
+.shot-link { display: inline-flex; flex-direction: column; align-items: center; gap: .1rem; margin-right: .35rem;
+  font-size: .7rem; color: var(--muted); }
+.shot-thumb { width: 72px; height: 45px; object-fit: cover; border-radius: 5px; border: 2px solid var(--line); background: var(--plane-2); }
+.method-kv { max-width: 78ch; margin-bottom: 1rem; }
+.method-kv dd { color: var(--ink-2); overflow-wrap: anywhere; }
+.claims { list-style: none; padding: 0; margin: 0; display: grid; gap: .8rem; max-width: 62rem; counter-reset: claim; }
+.claim {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: .9rem 1rem .8rem;
+}
+.claim-quote { font-weight: 600; color: var(--ink); margin: 0 0 .35rem; }
+.claim-true { color: var(--ink-2); font-size: .92rem; margin: 0 0 .45rem; }
+.claim-links { font-size: .82rem; color: var(--muted); margin: 0; overflow-wrap: anywhere; }
+.claim-links code { font-size: .8rem; }
+/* These two tables are narrow by design; the candidate table's phone rules
+   (which hide its input columns) must not reach them. */
+table.models-table th, table.models-table td,
+table.ev-table th, table.ev-table td { display: table-cell !important; }
+@media (max-width: 720px) {
+  .agent-prompt { flex-direction: column; }
+  .agent-copy-btn { border-left: 0; border-top: 1px solid var(--line-strong); padding: .5rem; }
+  .shot-thumb { width: 54px; height: 34px; }
+  table.ev-table td:first-child, table.models-table td:first-child { min-width: 9rem; }
+}
+@media (max-width: 420px) {
+  /* The label's first half goes; the mark and "GitHub" stay on every phone. */
+  .topbar .repo-long { display: none; }
+  /* ...and the brand drops its "/playground" suffix so the GitHub link stays on
+     the brand's row instead of pushing the top bar to three rows. */
+  .brand-dim { display: none; }
+}
+@media (max-width: 600px) {
+  /* Four columns on a phone: the two screenshots stack instead of widening the table. */
+  table.ev-table th, table.ev-table td { padding: .55rem .35rem; }
+  table.ev-table td:first-child { min-width: 7.5rem; }
+  .shots { white-space: normal; width: 3.4rem; }
+  .shot-link { display: flex; margin: 0 0 .3rem; }
+  .shot-thumb { width: 46px; height: 30px; }
+}

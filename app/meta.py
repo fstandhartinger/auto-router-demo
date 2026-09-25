@@ -75,6 +75,16 @@ PAGES: dict[str, PageMeta] = {
         "Run it locally in front of Claude Code, Codex, opencode or Cursor. Use requests included "
         "with your plans when they fit, and cheaper models on your own keys for easy turns.",
     ),
+    "evidence": PageMeta(
+        "Evidence: does the router save money without losing quality? — auto-router",
+        "An A/B study on real tasks (always the frontier model against the router), the older "
+        "replay simulation labelled as one, and every claim linked to the code that implements it.",
+    ),
+    "claims": PageMeta(
+        "What's true: each claim, and the code behind it — auto-router",
+        "Plan pass-through, switch mode, route-run, the MCP delegate tool, the local classifier, "
+        "local models, cache pricing, Benchmark Heaven data and the answer check — with links.",
+    ),
     "privacy": PageMeta(
         "Privacy — auto-router playground",
         "What this demo stores, what it does not, and who sees a prompt.",

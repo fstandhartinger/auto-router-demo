@@ -20,7 +20,8 @@ from pathlib import Path
 
 import httpx
 from fastapi import FastAPI, Request
-from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, StreamingResponse
+from fastapi.responses import (FileResponse, HTMLResponse, JSONResponse, PlainTextResponse,
+                               StreamingResponse)
 from fastapi.staticfiles import StaticFiles
 
 from auto_router.economics import turn_cost
@@ -948,6 +949,68 @@ async def install_script():
                         headers={"Cache-Control": "no-store"})
 
 
+@app.get("/install.ps1")
+async def install_script_windows():
+    """The Windows installer, when the router ships one; counted like install.sh."""
+    script = STATIC / "install.ps1"
+    if not script.is_file():
+        return PlainTextResponse("No Windows installer yet.\n", status_code=404)
+    USAGE.event("installs")
+    return FileResponse(script, media_type="text/plain; charset=utf-8",
+                        headers={"Cache-Control": "no-store"})
+
+
+#: The install guide written for coding agents. One file, two names: people link
+#: ``/install.md``, agent conventions look for ``/agents.md``.
+AGENTS_DOC = STATIC / "agents.md"
+
+
+@app.get("/agents.md")
+@app.get("/install.md")
+async def agents_doc():
+    return FileResponse(AGENTS_DOC, media_type="text/markdown; charset=utf-8",
+                        headers={"Cache-Control": "public, max-age=300"})
+
+
+def llms_txt() -> str:
+    """The llms.txt index (llmstxt.org): what an agent should read, in order."""
+    site = page_meta.SITE_URL
+    lines = [
+        "# auto-router",
+        "",
+        "> A free, MIT-licensed LLM router. It classifies each request with Jev (TypeSafe) or a "
+        "local Jev-class model, prices every model for that request from Benchmark Heaven data "
+        "including warm and cold prompt-cache prices, and sends it to the route with the lowest "
+        "expected cost. It runs locally in front of Claude Code, Codex, opencode or Cursor.",
+        "",
+        "## Install",
+        "",
+        f"- [Install guide for AI agents]({site}/agents.md): read this first; the same file is "
+        f"also served as {site}/install.md",
+        f"- [install.sh]({site}/install.sh): macOS, Linux, WSL",
+    ]
+    if (STATIC / "install.ps1").is_file():
+        lines.append(f"- [install.ps1]({site}/install.ps1): Windows PowerShell")
+    lines += [
+        f"- [Setup guide for people]({site}/run)",
+        "",
+        "## Source and evidence",
+        "",
+        f"- [Router repository]({SETTINGS.repo_url}): code, README, TERMS.md, EXPERIMENTS.md",
+        f"- [Evidence]({site}/evidence): the A/B study, the replay simulation, and each claim "
+        "linked to the code that implements it",
+        f"- [Results]({site}/results): the measured 78-task run and the replay",
+        f"- [How it works]({site}/how)",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+@app.get("/llms.txt")
+async def llms():
+    return PlainTextResponse(llms_txt(), media_type="text/plain; charset=utf-8")
+
+
 @app.get("/stats")
 async def stats_page():
     # The page is public; the numbers need the token, which the page reads from
@@ -960,10 +1023,15 @@ async def stats_page():
 # static site
 # ---------------------------------------------------------------------------
 app.mount("/assets", StaticFiles(directory=STATIC / "assets"), name="assets")
+# Data files the evidence page loads. A mount, not the catch-all below: a data
+# file that is not there must be a 404, never the app shell with a 200, or the
+# page could not tell a missing study from a broken one.
+app.mount("/data", StaticFiles(directory=STATIC / "data", check_dir=False), name="data")
 
 PAGES = {"": "index.html", "playground": "index.html", "cache": "index.html",
          "results": "index.html", "how": "index.html", "run": "index.html",
-         "privacy": "index.html", "impressum": "index.html"}
+         "privacy": "index.html", "impressum": "index.html",
+         "evidence": "index.html", "claims": "index.html"}
 
 #: Read once. Every page is this template with its own head block substituted
 #: in (app/meta.py): a crawler never runs the router that would otherwise

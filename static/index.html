@@ -24,6 +24,7 @@
       <a href="/" data-link data-nav="playground">Playground</a>
       <a href="/cache" data-link data-nav="cache">Cache</a>
       <a href="/results" data-link data-nav="results">Results</a>
+      <a href="/evidence" data-link data-nav="evidence">Evidence</a>
       <a href="/how" data-link data-nav="how">How it works</a>
       <a href="/run" data-link data-nav="run" class="nav-cta">Run it yourself</a>
     </nav>
@@ -32,7 +33,7 @@
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch theme">
         <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>
       </button>
-      <a class="ghost-btn" id="repo-link" href="https://github.com/fstandhartinger/auto-model-router" rel="noopener">Repo</a>
+      <a class="ghost-btn repo-btn" id="repo-link" href="https://github.com/fstandhartinger/auto-model-router" rel="noopener" aria-label="Open source: the router on GitHub"><svg class="gh-mark" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span class="repo-long">Open source · </span>GitHub</a>
     </div>
   </div>
 </header>
@@ -86,6 +87,7 @@
       <a class="primary-btn" href="/run" data-link><span class="btn-label">Run it on your own machine</span>
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h12m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <code class="hero-cmd copyable" data-copy="curl -fsSL https://whichmodel.app.mintapis.com/install.sh | sh" title="Click to copy">curl -fsSL whichmodel.app.mintapis.com/install.sh | sh</code>
+      <a class="ghost-btn repo-btn hero-repo" href="https://github.com/fstandhartinger/auto-model-router" rel="noopener"><svg class="gh-mark" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Open source · GitHub</a>
     </p>
     <p class="hero-note">
       Free and MIT-licensed. Put it in front of Claude Code, Codex, opencode or Cursor. It uses
@@ -187,6 +189,28 @@
       <summary>How to read this table</summary>
       <p class="table-foot" id="candidates-foot"></p>
     </details>
+  </article>
+</section>
+
+<section class="wrap agents-block" id="for-agents" aria-labelledby="for-agents-title">
+  <article class="card">
+    <header class="card-head">
+      <h2 id="for-agents-title">For AI agents: how to install this router</h2>
+      <span class="chip chip-quiet">Claude Code · Codex · opencode · Cursor</span>
+    </header>
+    <div class="card-body">
+      <p class="agents-lede">Give your coding agent this one line. It reads the install guide, asks you
+        how you want to use the router, installs it and proves it routes.</p>
+      <div class="agent-prompt">
+        <code class="agent-prompt-text copyable" data-copy="Read https://whichmodel.app.mintapis.com/agents.md and install the auto router for me." data-copied="copied — paste it into your agent" title="Click to copy">Read https://whichmodel.app.mintapis.com/agents.md and install the auto router for me.</code>
+        <button class="install-copy-btn agent-copy-btn" type="button" data-copy="Read https://whichmodel.app.mintapis.com/agents.md and install the auto router for me." data-copied="copied — paste it into your agent" aria-label="Copy the prompt for your agent">Copy</button>
+      </div>
+      <p class="muted small agents-links">
+        The guide itself: <a href="/agents.md">/agents.md</a> (also at <a href="/install.md">/install.md</a>) ·
+        an index for crawlers and agents: <a href="/llms.txt">/llms.txt</a> ·
+        by hand: <a href="/run" data-link>setup for each tool</a>
+      </p>
+    </div>
   </article>
 </section>
 </template>
@@ -419,6 +443,37 @@
   <div id="p2p-status-box"></div>
 
 </div>
+
+<section class="wrap" id="models">
+  <h2 class="wide-head">The model list the router ships with</h2>
+  <p class="muted" style="font-size:.88rem;max-width:74ch">
+    A starting point, not a fixed list: every entry is a few lines in
+    <code>~/.auto-router/config.yaml</code>, and you add, remove or re-point routes there.
+    Prices and capability are not typed in; they come from Benchmark Heaven at runtime, and
+    measured success rates override them where they exist.
+  </p>
+  <div class="table-scroll card" style="padding:0">
+    <table class="candidates models-table">
+      <caption class="sr-only">Models in the router's default configuration</caption>
+      <thead><tr><th scope="col">Model · role</th><th scope="col">Where it runs</th></tr></thead>
+      <tbody>
+        <tr><td><b>Claude Opus 5.5</b><span class="m-org">Anthropic</span> <span class="badge">frontier</span></td><td>Anthropic API, or your Claude plan through switch mode / route-run</td></tr>
+        <tr><td><b>Claude Sonnet 5</b><span class="m-org">Anthropic</span> <span class="badge">strong</span></td><td>Anthropic API, or your Claude plan</td></tr>
+        <tr><td><b>GPT-6 Astra</b><span class="m-org">OpenAI</span> <span class="badge">frontier</span></td><td>OpenAI API, or your ChatGPT plan through route-run</td></tr>
+        <tr><td><b>GPT-6 Luna</b><span class="m-org">OpenAI</span> <span class="badge">lower-priced</span></td><td>OpenAI API, or your ChatGPT plan through route-run</td></tr>
+        <tr><td><b>GLM-5.3 Flash</b><span class="m-org">Z.ai open weights, hosted</span> <span class="badge">cheap</span></td><td>a hosted OpenAI-compatible provider, your own key</td></tr>
+        <tr><td><b>Bonsai 2 (local)</b><span class="m-org">open weights</span> <span class="badge">free · local</span></td><td>your own machine; capability <em>assumed</em> ≈ Qwen3.8-27B</td></tr>
+        <tr><td><b>Local Jev-class model</b><span class="m-org">open weights, CPU</span> <span class="badge">decides</span></td>
+          <td>Never answers: it classifies each turn so the router can decide, on your machine. Hosted Jev is the alternative, with your own key.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted small" style="max-width:74ch;margin-top:.7rem">
+    <strong>Assumption, labelled:</strong> Bonsai 2 has no benchmark results of its own yet, so the
+    router treats it as roughly as capable as Qwen3.8-27B until it is measured. The demo catalog
+    below is a different, smaller list: the routes this public page is allowed to run.
+  </p>
+</section>
 
 <section class="wrap">
   <h2 class="wide-head">The catalog right now</h2>
@@ -829,6 +884,82 @@ wire_api = "responses"</code></pre>
       </div>
     </div>
   </article>
+</section>
+</template>
+
+<!-- ------------------------------------------------------------------ -->
+<template id="page-evidence">
+<section class="wrap page-head">
+  <p class="eyebrow">Evidence</p>
+  <h1>Does it save money<br><em>without losing quality?</em></h1>
+  <p class="lede">
+    Three kinds of evidence, labelled for what they are: an <a href="#ab">A/B study</a> of real
+    tasks run twice, once always on the frontier model and once through the router; the older
+    <a href="#simulation">replay simulation</a>; and <a href="#claims">each claim</a> linked to the
+    code that implements it, so you can check it instead of believing it.
+  </p>
+</section>
+<div class="wrap" id="evidence-root">
+  <p class="muted">Loading the study…</p>
+</div>
+<section class="wrap section" id="claims">
+  <div class="section-head">
+    <h2>What's true, and where to check it</h2>
+    <p>Each promise from the announcement, what the router actually does, and the file or README
+      section that does it. Links go to the router repository's main branch.</p>
+  </div>
+  <ol class="claims">
+    <li class="claim">
+      <p class="claim-quote">“Saves me ~9× token cost while usually no noticeable quality degradation.”</p>
+      <p class="claim-true">Two separate pieces of evidence, both on this page: the A/B study above (real tasks run twice, list-price equivalents, small sample) and the older replay, where 9.6× is a <strong>simulation</strong> result, not a measurement. The cost ratio you get depends on your mix of easy and hard work.</p>
+      <p class="claim-links"><a href="#ab">A/B study</a> · <a href="#simulation">simulation</a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/EXPERIMENTS.md" rel="noopener"><code>EXPERIMENTS.md</code></a></p>
+    </li>
+    <li class="claim">
+      <p class="claim-quote">“It's free and open source.”</p>
+      <p class="claim-true">MIT licence, no account, no hosted service in between. You run it on your own machine with your own keys.</p>
+      <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/LICENSE" rel="noopener"><code>LICENSE</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router" rel="noopener">repository</a></p>
+    </li>
+    <li class="claim">
+      <p class="claim-quote">“Can even make use of your Claude Code / Codex quota.”</p>
+      <p class="claim-true">Four ways, three of which never let the router see a plan login. <strong>Switch mode</strong> (recommended for Claude Code): cheap routes by default, and Claude Code restarts on your own plan, direct to Anthropic, when the plan is the better choice. <strong>route-run</strong>: picks which official CLI (Codex on your ChatGPT plan, Claude Code on your Claude plan, or a cheap model) runs a whole job. <strong>MCP delegate tool</strong>: your plan model stays in charge and hands sub-tasks to cheap models.</p>
+      <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/switch.py" rel="noopener"><code>auto_router/switch.py</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router#3-switch-mode-cheap-by-default-your-plan-when-it-matters" rel="noopener">README: switch mode</a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/launcher.py" rel="noopener"><code>auto_router/launcher.py</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/scripts/route-run" rel="noopener"><code>scripts/route-run</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router#1-route-the-job-not-the-request-route-run" rel="noopener">README: route-run</a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/delegate.py" rel="noopener"><code>auto_router/delegate.py</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router#4-use-it-as-a-subagent-layer" rel="noopener">README: delegate tool</a></p>
+    </li>
+    <li class="claim">
+      <p class="claim-quote">… and a gateway in front of your own Claude Code login.</p>
+      <p class="claim-true">Opt-in, off by default: <strong>own login, own machine</strong>. Plan turns are forwarded unchanged to Anthropic; the router never stores or logs the token, and a subscription credential is only ever sent to Anthropic. Anthropic doesn't support routing Claude Code to non-Claude models, so answering plan turns with other models is at your own risk.</p>
+      <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/plan_auth.py" rel="noopener"><code>auto_router/plan_auth.py</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router#2-a-gateway-in-front-of-claude-code-anthropic_base_url" rel="noopener">README: A gateway in front of Claude Code</a> · <a href="https://code.claude.com/docs/en/llm-gateway" rel="noopener">Anthropic: LLM gateway</a> · <a href="https://code.claude.com/docs/en/legal-and-compliance" rel="noopener">Anthropic: legal and compliance</a></p>
+    </li>
+    <li class="claim">
+      <p class="claim-quote">“Can use a local Jev-class model for decision.”</p>
+      <p class="claim-true">The classifier has three backends: <code>hosted</code> (Jev by TypeSafe, with your own <code>TYPESAFE_API_KEY</code>), <code>local</code> (a small open model on your CPU, so the routing input never leaves the machine) and <code>heuristic</code>. If local inference fails, routing falls back cautiously instead of failing your call.</p>
+      <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/jev.py" rel="noopener"><code>auto_router/jev.py</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/examples/config.example.yaml" rel="noopener"><code>examples/config.example.yaml</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router#running" rel="noopener">README: Running</a></p>
+    </li>
+    <li class="claim">
+      <p class="claim-quote">“Route to free local models.”</p>
+      <p class="claim-true">A route is any OpenAI-compatible endpoint, so a model served on your own machine is a route like any other: price zero, its own context window and capability, and it wins the turns it can do. The shipped model list includes a local Bonsai 2; its capability is an assumption (see below).</p>
+      <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/examples/config.example.yaml" rel="noopener"><code>examples/config.example.yaml</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/catalog.py" rel="noopener"><code>auto_router/catalog.py</code></a> · <a href="/how#models" data-link>the model list</a></p>
+    </li>
+    <li class="claim">
+      <p class="claim-quote">“Of course takes cold/warm cache into account.”</p>
+      <p class="claim-true">The router tracks which model holds a warm prefix cache for the conversation, with provider-specific lifetimes, and prices every candidate for this turn at cache-read or cache-write prices accordingly. Leaving a warm cache is a cost it weighs, not an accident.</p>
+      <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/cache_index.py" rel="noopener"><code>auto_router/cache_index.py</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/economics.py" rel="noopener"><code>auto_router/economics.py</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/pricing.py" rel="noopener"><code>auto_router/pricing.py</code></a> · <a href="/cache" data-link>try it on the Cache page</a></p>
+    </li>
+    <li class="claim">
+      <p class="claim-quote">“Takes all the actual LLM benchmarks and cost per task data from Benchmark Heaven into account.”</p>
+      <p class="claim-true">Capability per topic, list price per offer including cache prices, context length and a benchmaxxing penalty come from the Benchmark Heaven API, cached locally with a TTL so the router keeps working when the site is down. Measured success rates override benchmark headlines where they exist.</p>
+      <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/bench.py" rel="noopener"><code>auto_router/bench.py</code></a> · <a href="https://benchmarkheaven.com" rel="noopener">benchmarkheaven.com</a></p>
+    </li>
+    <li class="claim">
+      <p class="claim-quote">… and checks cheap answers.</p>
+      <p class="claim-true">After a cheap route answers, one typed question asks whether the answer is adequate; a rejected answer is re-run on a stronger route. Measured on 192 cheap answers: 85 % of wrong coding answers caught at a 10 % false-alarm rate.</p>
+      <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/verify.py" rel="noopener"><code>auto_router/verify.py</code></a> · <a href="/results" data-link>results</a></p>
+    </li>
+    <li class="claim">
+      <p class="claim-quote">“Just point your agent to that URL and tell it to install.”</p>
+      <p class="claim-true">The page an agent should read is plain Markdown at a fixed address.</p>
+      <p class="claim-links"><a href="/agents.md"><code>/agents.md</code></a> · <a href="/install.md"><code>/install.md</code></a> · <a href="/llms.txt"><code>/llms.txt</code></a></p>
+    </li>
+  </ol>
 </section>
 </template>
 
