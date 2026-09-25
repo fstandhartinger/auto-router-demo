@@ -20,12 +20,13 @@ from pathlib import Path
 
 import httpx
 from fastapi import FastAPI, Request
-from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, StreamingResponse
+from fastapi.responses import (FileResponse, HTMLResponse, JSONResponse, PlainTextResponse,
+                               Response, StreamingResponse)
 from fastapi.staticfiles import StaticFiles
 
 from auto_router.economics import turn_cost
 
-from . import classify, latency, providers, verify
+from . import classify, latency, providers, seo, verify
 from . import meta as page_meta   # `meta` is already an endpoint name
 from .bonsai import MODEL_NAME as BONSAI_MODEL
 from .bonsai import SWARM
@@ -971,8 +972,19 @@ PAGES = {"": "index.html", "playground": "index.html", "cache": "index.html",
 TEMPLATE = (STATIC / "index.html").read_text()
 
 
-def _page(path: str) -> HTMLResponse:
-    return HTMLResponse(page_meta.render(TEMPLATE, path))
+def _page(path: str, *, not_found: bool = False) -> HTMLResponse:
+    return HTMLResponse(page_meta.render(TEMPLATE, path, not_found=not_found),
+                        status_code=404 if not_found else 200)
+
+
+@app.get("/robots.txt")
+async def robots():
+    return PlainTextResponse(seo.robots_txt())
+
+
+@app.get("/sitemap.xml")
+async def sitemap():
+    return Response(seo.sitemap_xml(), media_type="application/xml")
 
 
 @app.get("/{path:path}")
@@ -984,5 +996,7 @@ async def site(path: str, request: Request):
     if candidate.is_file() and STATIC in candidate.parents:
         return FileResponse(candidate)
     # An unknown path still renders the app, which shows its own not-found
-    # view; the preview it gets is the site's, not a stale page's.
-    return _page("")
+    # view; the preview it gets is the site's, not a stale page's. It answers
+    # 404 with noindex so a search engine never files it as a copy of the home
+    # page.
+    return _page("", not_found=True)

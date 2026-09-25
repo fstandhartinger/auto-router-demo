@@ -49,7 +49,7 @@ class PageMeta:
 #: *that* page does rather than repeating the site's tagline.
 PAGES: dict[str, PageMeta] = {
     "": PageMeta(
-        "Auto-router playground — watch a router pick the model",
+        "Auto-router: an open-source LLM router — watch it pick the model",
         "Type a prompt. Jev classifies it in about 0.6 s, every candidate model is priced for "
         "that exact request from Benchmark Heaven data, the expected-cost rule picks one, and "
         "the answer streams back — with a Jev check on the cheap answers.",
@@ -90,7 +90,7 @@ def _tag(name: str, value: str, *, attr: str = "property") -> str:
     return f'<meta {attr}="{name}" content="{html.escape(value, quote=True)}">'
 
 
-def head_for(path: str) -> str:
+def head_for(path: str, *, not_found: bool = False) -> str:
     """The full per-page head block: title, description, Open Graph, Twitter, icons."""
     page = PAGES.get(path.strip("/"), PAGES[""])
     url = f"{SITE_URL}/{path.strip('/')}".rstrip("/")
@@ -120,13 +120,18 @@ def head_for(path: str) -> str:
     ]
     if TWITTER_SITE:
         lines.append(_tag("twitter:site", TWITTER_SITE, attr="name"))
-    return "\n".join(lines)
+    if not_found:
+        lines.append(_tag("robots", "noindex", attr="name"))
+    else:
+        from .seo import json_ld   # seo reads PAGES from this module
+        lines.append(json_ld(path))
+    return "\n".join(line for line in lines if line)
 
 
 #: Where ``head_for`` output goes in the template.
 MARKER = "<!--page-meta-->"
 
 
-def render(template: str, path: str) -> str:
+def render(template: str, path: str, *, not_found: bool = False) -> str:
     """``index.html`` with this path's head block in place of the marker."""
-    return template.replace(MARKER, head_for(path))
+    return template.replace(MARKER, head_for(path, not_found=not_found))
