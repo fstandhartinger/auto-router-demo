@@ -173,8 +173,8 @@ function simulation(replay) {
   const a = rows.find((r) => r.key === "A_static");
   const f = rows.find((r) => r.key === "F_expected");
   const s = section("Analyzed on real traffic",
-    "One week of one team's real coding-agent traffic was analyzed in a replay: " +
-    "(1,638 sessions, 57,696 calls), re-priced as if each policy had routed it, using measured " +
+    "One week of one team's real coding-agent traffic " +
+    "(1,638 sessions, 57,696 calls) was analyzed in a replay, re-priced as if each policy had routed it, using measured " +
     "per-model success rates and public list prices.");
   s.id = "simulation";
   s.querySelector("h2").insertAdjacentHTML("afterbegin", '<span class="sim-tag">SIMULATION</span> ');
