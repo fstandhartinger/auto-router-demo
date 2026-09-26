@@ -616,7 +616,7 @@ table.candidates td:first-child { min-width: 11rem; }
 .limits { max-width: 78ch; }
 .limits li { color: var(--ink-2); }
 
-.section { margin: 2.6rem 0; }
+.section { margin-block: 2.6rem; }
 .section-head { margin-bottom: 1rem; }
 .section-head h2 { font-size: 1.45rem; }
 .section-head p { color: var(--ink-2); max-width: 74ch; margin-bottom: 0; }
