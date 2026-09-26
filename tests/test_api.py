@@ -329,7 +329,7 @@ def test_resetting_a_session_starts_a_new_one(client):
 def test_every_page_serves_the_app_shell(client):
     for path in ("/", "/cache", "/results", "/how", "/privacy", "/impressum", "/nope"):
         resp = client.get(path)
-        assert resp.status_code == 200
+        assert resp.status_code == (404 if path == "/nope" else 200)
         assert "playground" in resp.text
 
 

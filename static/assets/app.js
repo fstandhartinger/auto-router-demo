@@ -940,9 +940,7 @@ async function initResults() {
 }
 
 /* -------------------------------------------------------------- evidence */
-/* The study file is dropped in when the study is done. Until then the page draws
- * the sample file and says so, rather than showing nothing or passing an
- * invented number off as a measured one. */
+/* Never substitute invented sample data on the public evidence page. */
 async function loadJson(url) {
   const resp = await fetch(url, { cache: "no-cache" });
   if (!resp.ok) throw new Error(`${url}: ${resp.status}`);
@@ -951,22 +949,15 @@ async function loadJson(url) {
 
 async function initEvidence() {
   const root = el("#evidence-root");
-  let data, sample = false;
+  let data;
   try {
     data = await loadJson("/data/ab-study.json");
   } catch {
-    try {
-      data = await loadJson("/data/ab-study.sample.json");
-      sample = true;
-    } catch {
-      root.innerHTML = '<p class="muted">The study data could not be loaded.</p>';
-      return;
-    }
+    data = { status: "not-run", tasks: [], method: {} };
   }
-  if (data.sample === true) sample = true;
   const replay = await loadJson("/api/results").then((r) => r.replay_list).catch(() => null);
   if (!root.isConnected) return;
-  renderEvidence(root, data, { sample, replay });
+  renderEvidence(root, data, { sample: data.sample === true, replay });
 }
 
 /* ------------------------------------------------------------------- how */

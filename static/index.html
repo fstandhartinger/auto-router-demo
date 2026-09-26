@@ -196,7 +196,7 @@
   <article class="card">
     <header class="card-head">
       <h2 id="for-agents-title">For AI agents: how to install this router</h2>
-      <span class="chip chip-quiet">Claude Code · Codex · opencode · Cursor</span>
+      <span class="chip chip-quiet">Claude Code · Codex · OpenCode · OpenClaw · Hermes · Copilot · Cursor</span>
     </header>
     <div class="card-body">
       <p class="agents-lede">Give your coding agent this one line. It reads the install guide, asks you
@@ -891,12 +891,11 @@ wire_api = "responses"</code></pre>
 <template id="page-evidence">
 <section class="wrap page-head">
   <p class="eyebrow">Evidence</p>
-  <h1>Does it save money<br><em>without losing quality?</em></h1>
+  <h1>Evidence, with each result<br><em>labelled for what it is</em></h1>
   <p class="lede">
-    Three kinds of evidence, labelled for what they are: an <a href="#ab">A/B study</a> of real
-    tasks run twice, once always on the frontier model and once through the router; the older
-    <a href="#simulation">replay simulation</a>; and <a href="#claims">each claim</a> linked to the
-    code that implements it, so you can check it instead of believing it.
+    The matched Opus 5.5-versus-router coding study has not run. The earlier <a href="#simulation">replay
+    simulation</a> is not a measured saving; <a href="#claims">each implementation claim</a> links to
+    the code and source behind it.
   </p>
 </section>
 <div class="wrap" id="evidence-root">
@@ -911,7 +910,7 @@ wire_api = "responses"</code></pre>
   <ol class="claims">
     <li class="claim">
       <p class="claim-quote">“Saves me ~9× token cost while usually no noticeable quality degradation.”</p>
-      <p class="claim-true">Two separate pieces of evidence, both on this page: the A/B study above (real tasks run twice, list-price equivalents, small sample) and the older replay, where 9.6× is a <strong>simulation</strong> result, not a measurement. The cost ratio you get depends on your mix of easy and hard work.</p>
+      <p class="claim-true">The paired A/B study has not run, so no measured saving or quality result is available. The 9.6× figure comes from an older <strong>replay simulation</strong>, not a measured saving. Results depend on the mix of easy and hard work.</p>
       <p class="claim-links"><a href="#ab">A/B study</a> · <a href="#simulation">simulation</a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/EXPERIMENTS.md" rel="noopener"><code>EXPERIMENTS.md</code></a></p>
     </li>
     <li class="claim">
@@ -926,7 +925,7 @@ wire_api = "responses"</code></pre>
     </li>
     <li class="claim">
       <p class="claim-quote">… and a gateway in front of your own Claude Code login.</p>
-      <p class="claim-true">Opt-in, off by default: <strong>own login, own machine</strong>. Plan turns are forwarded unchanged to Anthropic; the router never stores or logs the token, and a subscription credential is only ever sent to Anthropic. Anthropic doesn't support routing Claude Code to non-Claude models, so answering plan turns with other models is at your own risk.</p>
+      <p class="claim-true">Opt-in, off by default, for <strong>your own login on your own machine</strong>. Anthropic documents that <code>ANTHROPIC_BASE_URL</code> alone can leave a saved Claude subscription active. It also says it does not support routing Claude Code to non-Claude models through a gateway and restricts developers from handling Claude.ai session tokens. This local integration does not store or log credentials; use switch mode or the MCP tool if you do not want the router to receive gateway traffic. Check your organization's terms and policy before enabling it.</p>
       <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/plan_auth.py" rel="noopener"><code>auto_router/plan_auth.py</code></a> · <a href="https://github.com/fstandhartinger/auto-model-router#2-a-gateway-in-front-of-claude-code-anthropic_base_url" rel="noopener">README: A gateway in front of Claude Code</a> · <a href="https://code.claude.com/docs/en/llm-gateway" rel="noopener">Anthropic: LLM gateway</a> · <a href="https://code.claude.com/docs/en/legal-and-compliance" rel="noopener">Anthropic: legal and compliance</a></p>
     </li>
     <li class="claim">

@@ -49,7 +49,7 @@ class PageMeta:
 #: *that* page does rather than repeating the site's tagline.
 PAGES: dict[str, PageMeta] = {
     "": PageMeta(
-        "Auto-router playground — watch a router pick the model",
+        "Auto-router: an open-source LLM router — watch it pick the model",
         "Type a prompt. Jev classifies it in about 0.6 s, every candidate model is priced for "
         "that exact request from Benchmark Heaven data, the expected-cost rule picks one, and "
         "the answer streams back — with a Jev check on the cheap answers.",
@@ -66,19 +66,19 @@ PAGES: dict[str, PageMeta] = {
     ),
     "how": PageMeta(
         "How it works: classify, decide, answer, check — auto-router",
-        "Three steps and a verdict. Jev classifies the request, the expected-cost rule prices "
-        "every route including its cache state, the chosen model answers, and a cheap answer is "
-        "checked before you get it.",
+        "Jev classifies the request, then the router prices each route, including cache state, "
+        "and picks the cheapest model likely to get it right. A quality check can escalate a "
+        "weaker answer before you receive it.",
     ),
     "run": PageMeta(
-        "Run the router on your own machine — auto-router",
+        "Run an open-source LLM router in front of Claude Code, Codex or Cursor — auto-router",
         "Run it locally in front of Claude Code, Codex, opencode or Cursor. Use requests included "
         "with your plans when they fit, and cheaper models on your own keys for easy turns.",
     ),
     "evidence": PageMeta(
-        "Evidence: does the router save money without losing quality? — auto-router",
-        "An A/B study on real tasks (always the frontier model against the router), the older "
-        "replay simulation labelled as one, and every claim linked to the code that implements it.",
+        "Evidence for the auto-router: measured runs and replay simulation",
+        "The paired Opus 5.5-versus-router A/B study has not run. The older replay simulation is "
+        "labelled as a simulation, and claims link to the code and sources behind them.",
     ),
     "claims": PageMeta(
         "What's true: each claim, and the code behind it — auto-router",
@@ -100,7 +100,7 @@ def _tag(name: str, value: str, *, attr: str = "property") -> str:
     return f'<meta {attr}="{name}" content="{html.escape(value, quote=True)}">'
 
 
-def head_for(path: str) -> str:
+def head_for(path: str, *, not_found: bool = False) -> str:
     """The full per-page head block: title, description, Open Graph, Twitter, icons."""
     page = PAGES.get(path.strip("/"), PAGES[""])
     url = f"{SITE_URL}/{path.strip('/')}".rstrip("/")
@@ -130,6 +130,11 @@ def head_for(path: str) -> str:
     ]
     if TWITTER_SITE:
         lines.append(_tag("twitter:site", TWITTER_SITE, attr="name"))
+    if not_found:
+        lines.append(_tag("robots", "noindex", attr="name"))
+    else:
+        from .seo import json_ld   # seo reads PAGES from this module
+        lines.append(json_ld(path))
     return "\n".join(lines)
 
 
@@ -137,6 +142,6 @@ def head_for(path: str) -> str:
 MARKER = "<!--page-meta-->"
 
 
-def render(template: str, path: str) -> str:
+def render(template: str, path: str, *, not_found: bool = False) -> str:
     """``index.html`` with this path's head block in place of the marker."""
-    return template.replace(MARKER, head_for(path))
+    return template.replace(MARKER, head_for(path, not_found=not_found))

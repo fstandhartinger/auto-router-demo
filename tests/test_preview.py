@@ -45,7 +45,7 @@ def test_a_subpage_previews_as_itself_not_as_the_playground(client):
     how = client.get("/how").text
     home = client.get("/").text
     assert "<title>How it works" in how
-    assert "<title>Auto-router playground" in home
+    assert "<title>Auto-router: an open-source LLM router" in home
     assert 'href="https://whichmodel.app.mintapis.com/how"' in how
     assert 'content="https://whichmodel.app.mintapis.com/how"' in how
 
@@ -74,7 +74,7 @@ def test_the_icons_are_served(client):
 
 def test_an_unknown_path_still_previews_as_the_site(client):
     html = client.get("/does-not-exist").text
-    assert "<title>Auto-router playground" in html
+    assert "<title>Auto-router: an open-source LLM router" in html
     assert 'content="https://whichmodel.app.mintapis.com"' in html
 
 

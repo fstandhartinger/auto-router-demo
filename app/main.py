@@ -21,12 +21,13 @@ from pathlib import Path
 import httpx
 from fastapi import FastAPI, Request
 from fastapi.responses import (FileResponse, HTMLResponse, JSONResponse, PlainTextResponse,
+                               Response,
                                StreamingResponse)
 from fastapi.staticfiles import StaticFiles
 
 from auto_router.economics import turn_cost
 
-from . import classify, latency, providers, verify
+from . import classify, latency, providers, seo, verify
 from . import meta as page_meta   # `meta` is already an endpoint name
 from .bonsai import MODEL_NAME as BONSAI_MODEL
 from .bonsai import SWARM
@@ -981,7 +982,8 @@ def llms_txt() -> str:
         "> A free, MIT-licensed LLM router. It classifies each request with Jev (TypeSafe) or a "
         "local Jev-class model, prices every model for that request from Benchmark Heaven data "
         "including warm and cold prompt-cache prices, and sends it to the route with the lowest "
-        "expected cost. It runs locally in front of Claude Code, Codex, opencode or Cursor.",
+        "expected cost. It runs locally with Claude Code, Codex, OpenCode, OpenClaw, Hermes Agent, "
+        "GitHub Copilot or Cursor.",
         "",
         "## Install",
         "",
@@ -997,8 +999,8 @@ def llms_txt() -> str:
         "## Source and evidence",
         "",
         f"- [Router repository]({SETTINGS.repo_url}): code, README, TERMS.md, EXPERIMENTS.md",
-        f"- [Evidence]({site}/evidence): the A/B study, the replay simulation, and each claim "
-        "linked to the code that implements it",
+        f"- [Evidence]({site}/evidence): the paired Opus 5.5-versus-router A/B study has not run; "
+        "see the replay simulation and the separate measured router run with their limitations",
         f"- [Results]({site}/results): the measured 78-task run and the replay",
         f"- [How it works]({site}/how)",
         "",
@@ -1039,8 +1041,19 @@ PAGES = {"": "index.html", "playground": "index.html", "cache": "index.html",
 TEMPLATE = (STATIC / "index.html").read_text()
 
 
-def _page(path: str) -> HTMLResponse:
-    return HTMLResponse(page_meta.render(TEMPLATE, path))
+def _page(path: str, *, not_found: bool = False) -> HTMLResponse:
+    return HTMLResponse(page_meta.render(TEMPLATE, path, not_found=not_found),
+                        status_code=404 if not_found else 200)
+
+
+@app.get("/robots.txt")
+async def robots():
+    return PlainTextResponse(seo.robots_txt())
+
+
+@app.get("/sitemap.xml")
+async def sitemap():
+    return Response(seo.sitemap_xml(), media_type="application/xml")
 
 
 @app.get("/{path:path}")
@@ -1051,6 +1064,6 @@ async def site(path: str, request: Request):
     candidate = (STATIC / path).resolve()
     if candidate.is_file() and STATIC in candidate.parents:
         return FileResponse(candidate)
-    # An unknown path still renders the app, which shows its own not-found
-    # view; the preview it gets is the site's, not a stale page's.
-    return _page("")
+    # Keep the app's not-found view, but mark it as a true 404 so crawlers do
+    # not index it as a duplicate of the home page.
+    return _page("", not_found=True)

@@ -46,6 +46,19 @@ def test_agent_guide_is_markdown(client, path):
     assert "auto-model-router" in resp.text
 
 
+def test_agent_guide_covers_supported_harnesses_and_key_names(client):
+    guide = client.get("/agents.md").text
+    for harness in ("Claude Code", "Codex", "OpenCode", "OpenClaw", "Hermes Agent",
+                    "GitHub Copilot", "Cursor"):
+        assert harness in guide
+    for key in ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "OPENROUTER_API_KEY",
+                "TENSORX_API_KEY", "TYPESAFE_API_KEY"):
+        assert key in guide
+    assert "Do not run `env`, `set`" in guide
+    assert "`printenv NAME`" in guide
+    assert "Windows 11 PowerShell" in guide
+
+
 def test_llms_txt_links_everything_an_agent_needs(client):
     resp = client.get("/llms.txt")
     assert resp.status_code == 200
@@ -54,6 +67,7 @@ def test_llms_txt_links_everything_an_agent_needs(client):
     for needle in ("/agents.md", "/install.md", "/install.sh", "/evidence", REPO):
         assert needle in body, needle
     assert ("/install.ps1" in body) == (STATIC / "install.ps1").is_file()
+    assert "A/B study has not run" in body
 
 
 def test_install_ps1_is_served_when_present_and_404_otherwise(client):
@@ -101,6 +115,14 @@ def test_sample_study_matches_the_schema_and_says_it_is_a_sample(client):
     assert abs(total_a - data["summary"]["A"]["total_cost_list_usd"]) < 0.01
 
 
+def test_public_evidence_does_not_fall_back_to_invented_sample_data(client):
+    source = (STATIC / "assets" / "app.js").read_text(encoding="utf-8")
+    page = client.get("/evidence").text
+    assert 'loadJson("/data/ab-study.sample.json")' not in source
+    assert "paired Opus 5.5-versus-router A/B study has not run" in page
+    assert "no measured saving or quality result is available" in page
+
+
 def test_real_study_file_if_present_is_valid_json_with_tasks():
     real = STATIC / "data" / "ab-study.json"
     if not real.is_file():
@@ -118,7 +140,7 @@ def test_claims_link_to_files_and_the_anthropic_pages(client):
         assert f"{REPO}/blob/main/{path}" in page, path
     assert "https://code.claude.com/docs/en/llm-gateway" in page
     assert "https://code.claude.com/docs/en/legal-and-compliance" in page
-    assert "own login, own machine" in page
+    assert "your own login on your own machine" in page
 
 
 def test_model_list_labels_the_bonsai_assumption(client):

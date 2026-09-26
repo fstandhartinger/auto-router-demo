@@ -915,6 +915,7 @@ main [id] { scroll-margin-top: 76px; }
   color: var(--ink-2); font-size: .92rem;
 }
 .sample-banner strong { color: var(--warn); text-transform: uppercase; letter-spacing: .06em; font-size: .82rem; margin-right: .3rem; }
+.study-not-run { border-left: 3px solid var(--warn); padding-left: 1rem; }
 .sim-tag {
   display: inline-block; vertical-align: .25em; font-size: .68rem; letter-spacing: .12em; font-weight: 700;
   color: var(--warn); border: 1px solid color-mix(in srgb, var(--warn) 50%, transparent);

@@ -170,14 +170,21 @@ function taskTable(tasks, fmt) {
 
 function simulation(replay) {
   const rows = replay?.rows || [];
-  const a = rows.find((r) => r.key === "A_static") || { usd_week: 12917, success: 0.9276, label: "A — Claude Opus 5 for everything" };
-  const f = rows.find((r) => r.key === "F_expected") || { usd_week: 1341, success: 0.8904, label: "F — minimise expected cost" };
+  const a = rows.find((r) => r.key === "A_static");
+  const f = rows.find((r) => r.key === "F_expected");
   const s = section("The older replay simulation",
     "Before the A/B study there was a replay: one week of one team's real coding-agent traffic " +
     "(1,638 sessions, 57,696 calls), re-priced as if each policy had routed it, using measured " +
     "per-model success rates and public list prices.");
   s.id = "simulation";
   s.querySelector("h2").insertAdjacentHTML("afterbegin", '<span class="sim-tag">SIMULATION</span> ');
+  if (!a || !f || !rows.length) {
+    const unavailable = document.createElement("p");
+    unavailable.className = "section-note";
+    unavailable.textContent = "The replay data could not be loaded, so no savings or quality ratio is shown.";
+    s.append(unavailable);
+    return s;
+  }
   const tiles = document.createElement("div");
   tiles.className = "stat-row";
   tiles.innerHTML =
@@ -208,6 +215,20 @@ function simulation(replay) {
 
 export function renderEvidence(root, data, { sample, replay }) {
   root.replaceChildren();
+  if (data.status === "not-run") {
+    const pending = section("Matched A/B study: not run",
+      "No paired Opus 5.5-versus-router coding study has been completed. This page has no measured " +
+      "A/B cost ratio or quality result, so the public “about 9×” claim is not established by an A/B measurement.");
+    pending.id = "ab";
+    pending.classList.add("study-not-run");
+    const note = document.createElement("p");
+    note.className = "section-note";
+    note.innerHTML = "The 9.6× value below comes from an older replay simulation only. It is not a measured saving. " +
+      '<a href="/results" data-link>See the replay assumptions and separate 78-task router run</a>.';
+    pending.append(note);
+    root.append(pending, simulation(replay));
+    return;
+  }
   const method = data.method || {};
   const labels = {
     A: method.arms?.A?.label || "always the frontier model",
