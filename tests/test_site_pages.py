@@ -123,7 +123,9 @@ def test_public_evidence_does_not_fall_back_to_invented_sample_data(client):
     evidence = (STATIC / "assets" / "evidence.js").read_text(encoding="utf-8")
     assert "Matched A/B study: not run" not in evidence
     assert "Analyzed on real traffic" in evidence
-    assert "no measured saving or quality result is available" in page
+    # The measured study replaced the "not run" wording; the claim now states the measured ratio.
+    assert "Not what the measurement shows" in page
+    assert "replay simulation" in page
 
 
 def test_real_study_file_if_present_is_valid_json_with_tasks():
@@ -132,6 +134,15 @@ def test_real_study_file_if_present_is_valid_json_with_tasks():
         pytest.skip("the real study file has not been dropped in yet")
     data = json.loads(real.read_text(encoding="utf-8"))
     assert data["tasks"] and data["summary"]
+    assert data["sample"] is False and data["status"] == "measured"
+    total_a = sum(t["A"]["cost_list_usd"] for t in data["tasks"])
+    total_b = sum(t["B"]["cost_list_usd"] for t in data["tasks"])
+    assert abs(total_a - data["summary"]["A"]["total_cost_list_usd"]) < 0.01
+    assert abs(total_b - data["summary"]["B"]["total_cost_list_usd"]) < 0.01
+    for task in data["tasks"]:
+        shot = task["A"].get("screenshot")
+        if shot:
+            assert (STATIC / shot.lstrip("/")).is_file(), shot
 
 
 def test_claims_link_to_files_and_the_anthropic_pages(client):

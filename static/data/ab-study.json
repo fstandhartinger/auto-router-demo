@@ -1,0 +1,2301 @@
+{
+ "sample": false,
+ "status": "measured",
+ "generated_at": "2026-09-26T15:39:25+00:00",
+ "method": {
+  "summary": "Paired study, 26 Sep 2026: the same 20 coding tasks (easy/medium/hard; Python and JavaScript modules with hidden unit tests, single-file web apps with a headless-browser check) were each run twice in Claude Code 2.1 headless with identical prompts, a fresh empty folder, max 12 turns and a 15-minute limit. Arm A talks to Claude Opus 5.5 directly. Arm B is the same Claude Code pointed at the auto-router gateway, which picks a model per turn (and may keep Opus). Order was counterbalanced per task; three runs in parallel. Arm B's router chose per turn among GPT-6 Luna, GLM-5.3 Flash, GPT-6 Astra and Claude Opus/Sonnet on the plan, classified by hosted Jev, and graded final answers from models below GPT-5.6 Terra, escalating rejected ones.",
+  "arms": {
+   "A": {
+    "label": "Claude Code, always Opus 5.5"
+   },
+   "B": {
+    "label": "Claude Code through auto-router, as shipped"
+   }
+  },
+  "router_version": "auto-model-router main after v0.5.0 + fixes c49d1e5 and 4d7800a (released as v0.5.1)",
+  "judges": [
+   "Claude Opus 5.5 (blind, sees files, checks and screenshots)",
+   "GPT-6 Luna (blind, sees files, checks and screenshots)"
+  ],
+  "pricing": {
+   "basis": "public list prices per 1M tokens incl. cache reads/writes. Opus 5.5 $4 in / $20 out / $0.20 cache read / $8 1-hour cache write (the figure Claude Code itself reports). GPT-6 Luna $0.10/$0.50, GLM-5.3 Flash $0.20/$0.50, GPT-6 Astra $10/$50. Hosted Jev classifier and judge calls at $0.0004 each.",
+   "as_of": "2026-09-26"
+  },
+  "limitations": [
+   "20 tasks, one run per arm each: a single run per arm is noisy, and a task can flip between runs.",
+   "Costs are list-price equivalents from token counts, not invoices. On a Claude subscription arm A bills nothing extra.",
+   "Quality scores come from two model judges plus automated tests; Opus judges its own arm, Luna judges routes that include itself.",
+   "The tasks are self-contained greenfield tasks. Long agentic sessions in a large repo send far more cached context per turn and may give a different ratio.",
+   "Two router bugs found in the pilot were fixed before this run (GPT-6 via /v1/responses; grading of streamed cheap answers); the published release contains the fixes."
+  ]
+ },
+ "tasks": [
+  {
+   "id": "e1-clock",
+   "title": "Analog clock",
+   "difficulty": "easy",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Build a beautiful analog clock on a canvas that shows the current local time, with a smoothly sweeping second hand, hour/minute ticks and a subtle glossy look. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.75,
+    "score_judges": [
+     8.0,
+     9.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.1547,
+    "tokens": {
+     "input": 6,
+     "output": 4683,
+     "cache_read": 57680,
+     "cache_write": 6185
+    },
+    "seconds": 40.0,
+    "turns": 3,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e1-clock-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 4.75,
+    "score_judges": [
+     3.5,
+     6.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.00545,
+    "tokens": {
+     "input": 4312,
+     "output": 4420,
+     "cache_read": 80900,
+     "cache_write": 0
+    },
+    "seconds": 40.2,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e1-clock-B.webp",
+    "cost_metered_usd": 0.00545,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.00345
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 1,
+    "quality_rejections": 0,
+    "jev_calls": 5
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 9.0,
+    "score_judges": [
+     8.5,
+     9.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.0045,
+    "tokens": {
+     "input": 4264,
+     "output": 3369,
+     "cache_read": 79001,
+     "cache_write": 0
+    },
+    "seconds": 32.4,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e1-clock-C.webp",
+    "cost_metered_usd": 0.0045,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.0029
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "e2-roman",
+   "title": "Roman numerals",
+   "difficulty": "easy",
+   "category": "py-function",
+   "kind": "py",
+   "prompt": "Write roman.py with two functions: to_roman(n: int) -> str for 1..3999 (standard subtractive notation, e.g. 1994 -> 'MCMXCIV') and from_roman(s: str) -> int that accepts only canonical uppercase numerals (e.g. 'IIII', 'IC', 'MMMM', '' or lowercase are invalid). Both raise ValueError on invalid input (including non-int or bool for to_roman, and out-of-range numbers). Put it in the current directory.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 10.0,
+    "score_judges": [
+     10.0,
+     10.0
+    ],
+    "tests_passed": 12,
+    "tests_total": 12,
+    "renders": null,
+    "cost_list_usd": 0.07632,
+    "tokens": {
+     "input": 6,
+     "output": 1640,
+     "cache_read": 53663,
+     "cache_write": 4096
+    },
+    "seconds": 16.7,
+    "turns": 3,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.75,
+    "score_judges": [
+     9.5,
+     10.0
+    ],
+    "tests_passed": 12,
+    "tests_total": 12,
+    "renders": null,
+    "cost_list_usd": 0.00422,
+    "tokens": {
+     "input": 1380,
+     "output": 1399,
+     "cache_read": 98033,
+     "cache_write": 0
+    },
+    "seconds": 21.5,
+    "turns": 5,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.00422,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 5,
+      "cost_list_usd": 0.00182
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 1,
+    "quality_rejections": 0,
+    "jev_calls": 6
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 9.75,
+    "score_judges": [
+     9.5,
+     10.0
+    ],
+    "tests_passed": 12,
+    "tests_total": 12,
+    "renders": null,
+    "cost_list_usd": 0.00386,
+    "tokens": {
+     "input": 2288,
+     "output": 1317,
+     "cache_read": 97003,
+     "cache_write": 0
+    },
+    "seconds": 21.9,
+    "turns": 5,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.00386,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 5,
+      "cost_list_usd": 0.00186
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "tie",
+     "noticeable": false
+    },
+    "luna": {
+     "winner": "tie",
+     "noticeable": false
+    }
+   }
+  },
+  {
+   "id": "e3-tip",
+   "title": "Tip calculator",
+   "difficulty": "easy",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Make a polished tip calculator: bill amount, tip percentage (preset buttons plus custom), number of people, and live results for tip per person and total per person. Good validation and a modern look. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.0,
+    "score_judges": [
+     9.0,
+     9.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.26245,
+    "tokens": {
+     "input": 6,
+     "output": 8553,
+     "cache_read": 60733,
+     "cache_write": 9903
+    },
+    "seconds": 70.7,
+    "turns": 3,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e3-tip-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.0,
+    "score_judges": [
+     8.5,
+     9.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.27188,
+    "tokens": {
+     "input": 34254,
+     "output": 6979,
+     "cache_read": 109207,
+     "cache_write": 0
+    },
+    "seconds": 51.9,
+    "turns": 5,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e3-tip-B.webp",
+    "cost_metered_usd": 0.27188,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 5,
+      "cost_list_usd": 0.00538
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 1,
+      "cost_list_usd": 0.2629
+     }
+    ],
+    "escalations": 1,
+    "quality_checks": 3,
+    "quality_rejections": 2,
+    "jev_calls": 9
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 8.5,
+    "score_judges": [
+     8.0,
+     9.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.00672,
+    "tokens": {
+     "input": 7872,
+     "output": 7019,
+     "cache_read": 82127,
+     "cache_write": 0
+    },
+    "seconds": 45.9,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e3-tip-C.webp",
+    "cost_metered_usd": 0.00672,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.00512
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": false
+    },
+    "luna": {
+     "winner": "B",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "e4-slugify",
+   "title": "slugify()",
+   "difficulty": "easy",
+   "category": "js-function",
+   "kind": "js",
+   "prompt": "Write slugify.js, a CommonJS module exporting a function slugify(input, options) (module.exports = slugify). Rules: strip diacritics (e.g. 'Cr\u00e8me Br\u00fbl\u00e9e' -> 'creme-brulee'), transliterate '\u00df' to 'ss', '\u00e6' to 'ae', '\u00f8' to 'o'; lowercase; replace every run of characters that are not a-z or 0-9 with a single separator; trim separators from both ends. options.separator (default '-'); options.maxLength (optional) truncates the result without leaving a trailing separator and without cutting inside a word if a separator exists before the limit (otherwise hard-cut). Non-string input throws TypeError. Put it in the current directory.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.75,
+    "score_judges": [
+     9.5,
+     10.0
+    ],
+    "tests_passed": 16,
+    "tests_total": 16,
+    "renders": null,
+    "cost_list_usd": 0.10423,
+    "tokens": {
+     "input": 6,
+     "output": 2891,
+     "cache_read": 55709,
+     "cache_write": 4406
+    },
+    "seconds": 30.3,
+    "turns": 3,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.75,
+    "score_judges": [
+     9.5,
+     10.0
+    ],
+    "tests_passed": 16,
+    "tests_total": 16,
+    "renders": null,
+    "cost_list_usd": 0.29968,
+    "tokens": {
+     "input": 27736,
+     "output": 7480,
+     "cache_read": 271468,
+     "cache_write": 0
+    },
+    "seconds": 96.3,
+    "turns": 12,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.29968,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 12,
+      "cost_list_usd": 0.00637
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 2,
+      "cost_list_usd": 0.28611
+     }
+    ],
+    "escalations": 2,
+    "quality_checks": 4,
+    "quality_rejections": 4,
+    "jev_calls": 18
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 9.25,
+    "score_judges": [
+     8.5,
+     10.0
+    ],
+    "tests_passed": 16,
+    "tests_total": 16,
+    "renders": null,
+    "cost_list_usd": 0.0083,
+    "tokens": {
+     "input": 3589,
+     "output": 6274,
+     "cache_read": 160726,
+     "cache_write": 0
+    },
+    "seconds": 65.2,
+    "turns": 8,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.0083,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 8,
+      "cost_list_usd": 0.0051
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": false
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": false
+    }
+   }
+  },
+  {
+   "id": "e5-life",
+   "title": "Game of Life",
+   "difficulty": "easy",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Create Conway's Game of Life on a canvas: click/drag to paint cells, start/pause, step, clear, randomize, speed slider, and a glow effect on living cells. Start with a random board running. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.5,
+    "score_judges": [
+     9.0,
+     10.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.23131,
+    "tokens": {
+     "input": 6,
+     "output": 7872,
+     "cache_read": 62545,
+     "cache_write": 7667
+    },
+    "seconds": 64.6,
+    "turns": 3,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e5-life-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.25,
+    "score_judges": [
+     8.5,
+     10.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.00667,
+    "tokens": {
+     "input": 6260,
+     "output": 6436,
+     "cache_read": 82897,
+     "cache_write": 0
+    },
+    "seconds": 46.0,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e5-life-B.webp",
+    "cost_metered_usd": 0.00667,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.00467
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 1,
+    "quality_rejections": 0,
+    "jev_calls": 5
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 9.5,
+    "score_judges": [
+     9.0,
+     10.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.00635,
+    "tokens": {
+     "input": 7083,
+     "output": 6437,
+     "cache_read": 81892,
+     "cache_write": 0
+    },
+    "seconds": 45.3,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e5-life-C.webp",
+    "cost_metered_usd": 0.00635,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.00475
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "e6-wordfreq",
+   "title": "Top-k words",
+   "difficulty": "easy",
+   "category": "py-function",
+   "kind": "py",
+   "prompt": "Write wordfreq.py with top_k_words(text: str, k: int) -> list[tuple[str, int]]. Words are maximal runs of letters (Unicode letters, str.isalpha) and apostrophes inside a word (\"don't\" is one word, leading/trailing apostrophes are stripped); compare case-insensitively and return words lowercased. Sort by count descending, then alphabetically. k <= 0 returns []; k larger than the number of distinct words returns all. Put it in the current directory.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.75,
+    "score_judges": [
+     9.5,
+     10.0
+    ],
+    "tests_passed": 10,
+    "tests_total": 10,
+    "renders": null,
+    "cost_list_usd": 0.05203,
+    "tokens": {
+     "input": 4,
+     "output": 1209,
+     "cache_read": 35126,
+     "cache_write": 2601
+    },
+    "seconds": 15.2,
+    "turns": 2,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.75,
+    "score_judges": [
+     9.5,
+     10.0
+    ],
+    "tests_passed": 10,
+    "tests_total": 10,
+    "renders": null,
+    "cost_list_usd": 0.24619,
+    "tokens": {
+     "input": 27486,
+     "output": 1650,
+     "cache_read": 93794,
+     "cache_write": 0
+    },
+    "seconds": 28.8,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.24619,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 3,
+      "cost_list_usd": 0.00119
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 2,
+      "cost_list_usd": 0.23878
+     },
+     {
+      "model": "glm-5.3-flash",
+      "turns": 1,
+      "cost_list_usd": 0.00221
+     }
+    ],
+    "escalations": 2,
+    "quality_checks": 4,
+    "quality_rejections": 4,
+    "jev_calls": 10
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 9.75,
+    "score_judges": [
+     9.5,
+     10.0
+    ],
+    "tests_passed": 10,
+    "tests_total": 10,
+    "renders": null,
+    "cost_list_usd": 0.01652,
+    "tokens": {
+     "input": 68690,
+     "output": 2183,
+     "cache_read": 18251,
+     "cache_write": 0
+    },
+    "seconds": 40.4,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.01652,
+    "routes": [
+     {
+      "model": "glm-5.3-flash",
+      "turns": 3,
+      "cost_list_usd": 0.01439
+     },
+     {
+      "model": "gpt-6-luna",
+      "turns": 1,
+      "cost_list_usd": 0.00053
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "tie",
+     "noticeable": false
+    },
+    "luna": {
+     "winner": "tie",
+     "noticeable": false
+    }
+   }
+  },
+  {
+   "id": "e7-balls",
+   "title": "Bouncing balls screensaver",
+   "difficulty": "easy",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Make a mesmerizing full-window screensaver of colorful bouncing balls with motion trails, elastic wall bounces and gradient shading; it must resize with the window. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.0,
+    "score_judges": [
+     8.5,
+     9.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.1711,
+    "tokens": {
+     "input": 6,
+     "output": 5307,
+     "cache_read": 58078,
+     "cache_write": 6665
+    },
+    "seconds": 48.7,
+    "turns": 3,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e7-balls-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.5,
+    "score_judges": [
+     8.0,
+     9.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.30667,
+    "tokens": {
+     "input": 44354,
+     "output": 4026,
+     "cache_read": 169330,
+     "cache_write": 0
+    },
+    "seconds": 59.9,
+    "turns": 7,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e7-balls-B.webp",
+    "cost_metered_usd": 0.30667,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 7,
+      "cost_list_usd": 0.00519
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 3,
+      "cost_list_usd": 0.29467
+     }
+    ],
+    "escalations": 3,
+    "quality_checks": 7,
+    "quality_rejections": 6,
+    "jev_calls": 17
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 8.0,
+    "score_judges": [
+     7.0,
+     9.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.00521,
+    "tokens": {
+     "input": 4228,
+     "output": 3556,
+     "cache_read": 100965,
+     "cache_write": 0
+    },
+    "seconds": 37.6,
+    "turns": 5,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/e7-balls-C.webp",
+    "cost_metered_usd": 0.00521,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 5,
+      "cost_list_usd": 0.00321
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "m1-particles",
+   "title": "Particle physics sandbox",
+   "difficulty": "medium",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Build a particle physics sandbox: at least 800 particles with gravity, particle-particle collisions (use a spatial grid so it stays at 60 fps), walls, mouse drag to fling particles, a toggle for attraction/repulsion around the cursor, and a glowing, colour-by-velocity look. Show the FPS. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.0,
+    "score_judges": [
+     8.5,
+     9.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.35898,
+    "tokens": {
+     "input": 10,
+     "output": 11531,
+     "cache_read": 120567,
+     "cache_write": 13026
+    },
+    "seconds": 104.1,
+    "turns": 5,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m1-particles-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 6.5,
+    "score_judges": [
+     6.5,
+     6.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.00986,
+    "tokens": {
+     "input": 27741,
+     "output": 8855,
+     "cache_read": 66009,
+     "cache_write": 0
+    },
+    "seconds": 55.5,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m1-particles-B.webp",
+    "cost_metered_usd": 0.00986,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.00786
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 1,
+    "quality_rejections": 0,
+    "jev_calls": 5
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 7.75,
+    "score_judges": [
+     8.0,
+     7.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.00794,
+    "tokens": {
+     "input": 9079,
+     "output": 9192,
+     "cache_read": 83928,
+     "cache_write": 0
+    },
+    "seconds": 65.3,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m1-particles-C.webp",
+    "cost_metered_usd": 0.00794,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.00634
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "m2-synth",
+   "title": "Synth with step sequencer",
+   "difficulty": "medium",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Create a Web Audio synthesizer with a 16-step, 8-note step sequencer grid, play/stop, tempo control, waveform selector, a simple ADSR envelope, a low-pass filter with cutoff and resonance, a playing-step indicator and a live oscilloscope visualisation. Also playable with the computer keyboard. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.25,
+    "score_judges": [
+     9.0,
+     9.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.61346,
+    "tokens": {
+     "input": 16,
+     "output": 18884,
+     "cache_read": 254275,
+     "cache_write": 23108
+    },
+    "seconds": 170.5,
+    "turns": 8,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m2-synth-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.5,
+    "score_judges": [
+     8.0,
+     9.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.01025,
+    "tokens": {
+     "input": 28237,
+     "output": 9517,
+     "cache_read": 66560,
+     "cache_write": 0
+    },
+    "seconds": 57.1,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m2-synth-B.webp",
+    "cost_metered_usd": 0.01025,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.00825
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 1,
+    "quality_rejections": 0,
+    "jev_calls": 5
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 3.5,
+    "score_judges": [
+     3.0,
+     4.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.05358,
+    "tokens": {
+     "input": 87229,
+     "output": 66998,
+     "cache_read": 87930,
+     "cache_write": 0
+    },
+    "seconds": 344.9,
+    "turns": 7,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m2-synth-C.webp",
+    "cost_metered_usd": 0.05358,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.0058
+     },
+     {
+      "model": "glm-5.3-flash",
+      "turns": 3,
+      "cost_list_usd": 0.04499
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "m3-lruttl",
+   "title": "LRU cache with TTL",
+   "difficulty": "medium",
+   "category": "py-module",
+   "kind": "py",
+   "prompt": "Write lru_ttl.py with class LRUTTLCache(capacity: int, ttl: float, clock=time.monotonic). Methods: get(key, default=None) (a hit refreshes recency but NOT the expiry), set(key, value, ttl=None) (per-item ttl overrides the default; setting an existing key updates value, expiry and recency), delete(key) -> bool, __contains__ (expired keys are not contained), __len__ (counts only unexpired items), and purge() -> int removing expired items and returning how many. When inserting beyond capacity, first drop expired items, then evict the least recently used. capacity < 1 or ttl <= 0 raises ValueError. An item expires when clock() >= set_time + ttl. Put it in the current directory.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.5,
+    "score_judges": [
+     9.5,
+     9.5
+    ],
+    "tests_passed": 15,
+    "tests_total": 15,
+    "renders": null,
+    "cost_list_usd": 0.10158,
+    "tokens": {
+     "input": 8,
+     "output": 2606,
+     "cache_read": 75377,
+     "cache_write": 4294
+    },
+    "seconds": 27.3,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.25,
+    "score_judges": [
+     7.5,
+     9.0
+    ],
+    "tests_passed": 14,
+    "tests_total": 15,
+    "renders": null,
+    "cost_list_usd": 0.27242,
+    "tokens": {
+     "input": 42326,
+     "output": 2340,
+     "cache_read": 120065,
+     "cache_write": 0
+    },
+    "seconds": 38.7,
+    "turns": 6,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.27242,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 6,
+      "cost_list_usd": 0.00397
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 2,
+      "cost_list_usd": 0.26366
+     }
+    ],
+    "escalations": 2,
+    "quality_checks": 4,
+    "quality_rejections": 4,
+    "jev_calls": 12
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 8.0,
+    "score_judges": [
+     7.5,
+     8.5
+    ],
+    "tests_passed": 14,
+    "tests_total": 15,
+    "renders": null,
+    "cost_list_usd": 0.00503,
+    "tokens": {
+     "input": 2564,
+     "output": 2395,
+     "cache_read": 117707,
+     "cache_write": 0
+    },
+    "seconds": 37.1,
+    "turns": 6,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.00503,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 6,
+      "cost_list_usd": 0.00263
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "m4-tetris",
+   "title": "Tetris",
+   "difficulty": "medium",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Make a complete, good-looking Tetris: 7-bag randomizer, rotation with wall kicks, ghost piece, hold, next-piece preview, soft/hard drop, line clear animation, levels with increasing speed, score, and game over / restart. Keyboard controls. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.75,
+    "score_judges": [
+     9.0,
+     8.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.75235,
+    "tokens": {
+     "input": 16,
+     "output": 23693,
+     "cache_read": 281138,
+     "cache_write": 27775
+    },
+    "seconds": 226.0,
+    "turns": 9,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m4-tetris-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.75,
+    "score_judges": [
+     8.0,
+     9.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.33603,
+    "tokens": {
+     "input": 59726,
+     "output": 14584,
+     "cache_read": 320277,
+     "cache_write": 0
+    },
+    "seconds": 117.0,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": "/data/ab-shots/m4-tetris-B.webp",
+    "cost_metered_usd": 0.33603,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 12,
+      "cost_list_usd": 0.01331
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 2,
+      "cost_list_usd": 0.31552
+     }
+    ],
+    "escalations": 2,
+    "quality_checks": 4,
+    "quality_rejections": 4,
+    "jev_calls": 18
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 6.75,
+    "score_judges": [
+     5.5,
+     8.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.01408,
+    "tokens": {
+     "input": 12037,
+     "output": 12575,
+     "cache_read": 258942,
+     "cache_write": 0
+    },
+    "seconds": 94.0,
+    "turns": 10,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m4-tetris-C.webp",
+    "cost_metered_usd": 0.01408,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 10,
+      "cost_list_usd": 0.01008
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "m5-semver",
+   "title": "semver compare and ranges",
+   "difficulty": "medium",
+   "category": "js-module",
+   "kind": "js",
+   "prompt": "Write semver.js, a CommonJS module exporting {parse, compare, satisfies}. parse(v) returns {major, minor, patch, prerelease: array} or null for invalid versions (strict MAJOR.MINOR.PATCH with optional -prerelease of dot-separated identifiers and optional +build metadata that is ignored; no leading zeros in numeric parts; a leading 'v' is allowed). compare(a, b) returns -1/0/1 with full SemVer 2.0.0 precedence (prerelease rules included). satisfies(version, range) supports: exact versions, comparators >, >=, <, <=, =, space-separated AND sets, '||' OR sets, caret (^1.2.3, ^0.2.3, ^0.0.3), tilde (~1.2.3, ~1.2), x-ranges (1.x, 1.2.*, *) and hyphen ranges (1.2.3 - 2.3.4). Like npm's semver: a prerelease version only satisfies a range if some comparator in the same set has the same major.minor.patch with a prerelease. Put it in the current directory.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.0,
+    "score_judges": [
+     9.0,
+     9.0
+    ],
+    "tests_passed": 19,
+    "tests_total": 19,
+    "renders": null,
+    "cost_list_usd": 0.29543,
+    "tokens": {
+     "input": 8,
+     "output": 9409,
+     "cache_read": 88662,
+     "cache_write": 11186
+    },
+    "seconds": 84.4,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.0,
+    "score_judges": [
+     9.0,
+     9.0
+    ],
+    "tests_passed": 19,
+    "tests_total": 19,
+    "renders": null,
+    "cost_list_usd": 0.4567,
+    "tokens": {
+     "input": 44562,
+     "output": 35006,
+     "cache_read": 60431,
+     "cache_write": 0
+    },
+    "seconds": 195.6,
+    "turns": 5,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.4567,
+    "routes": [
+     {
+      "model": "gpt-6-astra",
+      "turns": 4,
+      "cost_list_usd": 0.43426
+     },
+     {
+      "model": "glm-5.3-flash",
+      "turns": 1,
+      "cost_list_usd": 0.02044
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 0,
+    "quality_rejections": 0,
+    "jev_calls": 5
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 0.0,
+    "score_judges": [
+     0.0,
+     0.0
+    ],
+    "tests_passed": 0,
+    "tests_total": 19,
+    "renders": null,
+    "cost_list_usd": 0.04168,
+    "tokens": {
+     "input": 44418,
+     "output": 64000,
+     "cache_read": 0,
+     "cache_write": 0
+    },
+    "seconds": 758.3,
+    "turns": 1,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.04168,
+    "routes": [
+     {
+      "model": "glm-5.3-flash",
+      "turns": 2,
+      "cost_list_usd": 0.04088
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "tie",
+     "noticeable": false
+    },
+    "luna": {
+     "winner": "B",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "m6-mandelbrot",
+   "title": "Mandelbrot explorer",
+   "difficulty": "medium",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Build a Mandelbrot set explorer rendered with a WebGL fragment shader: smooth colouring with a nice palette, mouse-wheel zoom towards the cursor, drag to pan, adjustable iteration count, palette switcher, and a coordinates/zoom readout. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.5,
+    "score_judges": [
+     9.0,
+     10.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.39941,
+    "tokens": {
+     "input": 12,
+     "output": 12131,
+     "cache_read": 153133,
+     "cache_write": 15764
+    },
+    "seconds": 115.9,
+    "turns": 7,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m6-mandelbrot-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.75,
+    "score_judges": [
+     8.0,
+     9.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.00873,
+    "tokens": {
+     "input": 25538,
+     "output": 7077,
+     "cache_read": 63827,
+     "cache_write": 0
+    },
+    "seconds": 58.5,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m6-mandelbrot-B.webp",
+    "cost_metered_usd": 0.00873,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.00673
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 1,
+    "quality_rejections": 0,
+    "jev_calls": 5
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 8.0,
+    "score_judges": [
+     7.0,
+     9.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.00627,
+    "tokens": {
+     "input": 6955,
+     "output": 6315,
+     "cache_read": 81776,
+     "cache_write": 0
+    },
+    "seconds": 51.1,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/m6-mandelbrot-C.webp",
+    "cost_metered_usd": 0.00627,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 4,
+      "cost_list_usd": 0.00467
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "m7-expr",
+   "title": "Safe expression evaluator",
+   "difficulty": "medium",
+   "category": "py-module",
+   "kind": "py",
+   "prompt": "Write expr.py with evaluate(expression: str, variables: dict | None = None) -> float that parses and evaluates arithmetic without eval/exec/ast: numbers (ints, decimals, scientific notation like 1.5e-3), + - * / % and ** (right-associative, binds tighter than unary minus so -2**2 == -4), unary +/-, parentheses, variables (identifiers), and functions sqrt, abs, min, max (min/max take 1+ arguments), and constants pi and e. Raise ZeroDivisionError for division/modulo by zero, NameError for unknown variables or functions, and ValueError for any syntax error (including empty input or trailing tokens). Put it in the current directory.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.5,
+    "score_judges": [
+     9.0,
+     10.0
+    ],
+    "tests_passed": 15,
+    "tests_total": 15,
+    "renders": null,
+    "cost_list_usd": 0.11941,
+    "tokens": {
+     "input": 6,
+     "output": 3405,
+     "cache_read": 56283,
+     "cache_write": 5004
+    },
+    "seconds": 33.3,
+    "turns": 3,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.5,
+    "score_judges": [
+     9.0,
+     10.0
+    ],
+    "tests_passed": 15,
+    "tests_total": 15,
+    "renders": null,
+    "cost_list_usd": 0.20298,
+    "tokens": {
+     "input": 13456,
+     "output": 7247,
+     "cache_read": 212420,
+     "cache_write": 0
+    },
+    "seconds": 94.5,
+    "turns": 8,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.20298,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 8,
+      "cost_list_usd": 0.00517
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 2,
+      "cost_list_usd": 0.19221
+     }
+    ],
+    "escalations": 2,
+    "quality_checks": 4,
+    "quality_rejections": 4,
+    "jev_calls": 14
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 0.0,
+    "score_judges": [
+     0.0,
+     0.0
+    ],
+    "tests_passed": 0,
+    "tests_total": 15,
+    "renders": null,
+    "cost_list_usd": 0.01779,
+    "tokens": {
+     "input": 1884,
+     "output": 32000,
+     "cache_read": 20224,
+     "cache_write": 0
+    },
+    "seconds": 330.1,
+    "turns": 1,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.01779,
+    "routes": [
+     {
+      "model": "glm-5.3-flash",
+      "turns": 1,
+      "cost_list_usd": 0.01739
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "tie",
+     "noticeable": false
+    },
+    "luna": {
+     "winner": "B",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "h1-raymarch",
+   "title": "3D raymarcher",
+   "difficulty": "hard",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Write a real-time 3D raymarcher in a WebGL fragment shader: a scene of several smoothly blended SDF shapes (smooth union) on a reflective floor, soft shadows, ambient occlusion, a sky gradient with fog, one reflection bounce, animated objects, and an orbit camera controlled by mouse drag and wheel. Show FPS. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.75,
+    "score_judges": [
+     8.5,
+     9.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.38796,
+    "tokens": {
+     "input": 14,
+     "output": 11719,
+     "cache_read": 181620,
+     "cache_write": 14650
+    },
+    "seconds": 116.3,
+    "turns": 7,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/h1-raymarch-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 7.75,
+    "score_judges": [
+     8.0,
+     7.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.01111,
+    "tokens": {
+     "input": 26442,
+     "output": 6437,
+     "cache_read": 164236,
+     "cache_write": 0
+    },
+    "seconds": 73.6,
+    "turns": 9,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/h1-raymarch-B.webp",
+    "cost_metered_usd": 0.01111,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 8,
+      "cost_list_usd": 0.00751
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 1,
+    "quality_rejections": 0,
+    "jev_calls": 9
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 6.0,
+    "score_judges": [
+     5.5,
+     6.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.01139,
+    "tokens": {
+     "input": 8833,
+     "output": 8240,
+     "cache_read": 238538,
+     "cache_write": 0
+    },
+    "seconds": 71.1,
+    "turns": 10,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/h1-raymarch-C.webp",
+    "cost_metered_usd": 0.01139,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 10,
+      "cost_list_usd": 0.00739
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "h2-chess",
+   "title": "Chess with legal moves",
+   "difficulty": "hard",
+   "category": "html-functional",
+   "kind": "html",
+   "prompt": "Build a playable chess game: click-to-move board with highlighted legal moves, full rules (castling, en passant, promotion with piece choice, check, checkmate, stalemate, fifty-move rule, threefold repetition), move list in SAN, undo, and a simple AI opponent (e.g. minimax with alpha-beta, depth 3). Also expose window.chessPerft(fen, depth) returning the perft node count for any FEN position, for testing. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.25,
+    "score_judges": [
+     8.0,
+     8.5
+    ],
+    "tests_passed": 7,
+    "tests_total": 8,
+    "renders": true,
+    "cost_list_usd": 0.66868,
+    "tokens": {
+     "input": 6,
+     "output": 22905,
+     "cache_read": 74472,
+     "cache_write": 24458
+    },
+    "seconds": 194.5,
+    "turns": 3,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/h2-chess-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 4.5,
+    "score_judges": [
+     4.0,
+     5.0
+    ],
+    "tests_passed": 2,
+    "tests_total": 8,
+    "renders": true,
+    "cost_list_usd": 0.01387,
+    "tokens": {
+     "input": 11334,
+     "output": 9774,
+     "cache_read": 304575,
+     "cache_write": 0
+    },
+    "seconds": 99.4,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": "/data/ab-shots/h2-chess-B.webp",
+    "cost_metered_usd": 0.01387,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 12,
+      "cost_list_usd": 0.00907
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 0,
+    "quality_rejections": 0,
+    "jev_calls": 12
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 6.5,
+    "score_judges": [
+     5.0,
+     8.0
+    ],
+    "tests_passed": 7,
+    "tests_total": 8,
+    "renders": true,
+    "cost_list_usd": 0.01483,
+    "tokens": {
+     "input": 12440,
+     "output": 12589,
+     "cache_read": 289246,
+     "cache_write": 0
+    },
+    "seconds": 115.2,
+    "turns": 11,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/h2-chess-C.webp",
+    "cost_metered_usd": 0.01483,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 11,
+      "cost_list_usd": 0.01043
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "h3-sheet",
+   "title": "Spreadsheet with formulas",
+   "difficulty": "hard",
+   "category": "html-functional",
+   "kind": "html",
+   "prompt": "Build a spreadsheet app: a 26x50 grid (A-Z, 1-50) with editable cells, a formula bar, formulas starting with '=' supporting + - * / ^, parentheses, cell references, ranges (A1:B3), SUM, AVERAGE, MIN, MAX, COUNT, IF(cond, a, b) with comparison operators (=, <>, <, >, <=, >=), automatic recalculation of dependents, #CYCLE! for circular references, #DIV/0! for division by zero, #REF!/#NAME? style errors, and keyboard navigation. Also expose window.sheet = {set(ref, raw), get(ref)} where get returns the computed value (number, string, or the error string) for testing. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.25,
+    "score_judges": [
+     9.0,
+     9.5
+    ],
+    "tests_passed": 18,
+    "tests_total": 18,
+    "renders": true,
+    "cost_list_usd": 0.55287,
+    "tokens": {
+     "input": 8,
+     "output": 18494,
+     "cache_read": 105369,
+     "cache_write": 20236
+    },
+    "seconds": 159.1,
+    "turns": 4,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/h3-sheet-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.0,
+    "score_judges": [
+     8.5,
+     9.5
+    ],
+    "tests_passed": 18,
+    "tests_total": 18,
+    "renders": true,
+    "cost_list_usd": 0.3377,
+    "tokens": {
+     "input": 44706,
+     "output": 13471,
+     "cache_read": 318111,
+     "cache_write": 0
+    },
+    "seconds": 161.3,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": "/data/ab-shots/h3-sheet-B.webp",
+    "cost_metered_usd": 0.3377,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 12,
+      "cost_list_usd": 0.01118
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 1,
+      "cost_list_usd": 0.32052
+     }
+    ],
+    "escalations": 1,
+    "quality_checks": 2,
+    "quality_rejections": 2,
+    "jev_calls": 15
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 5.75,
+    "score_judges": [
+     5.0,
+     6.5
+    ],
+    "tests_passed": 11,
+    "tests_total": 18,
+    "renders": true,
+    "cost_list_usd": 0.01567,
+    "tokens": {
+     "input": 12758,
+     "output": 12745,
+     "cache_read": 321848,
+     "cache_write": 0
+    },
+    "seconds": 117.2,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": "/data/ab-shots/h3-sheet-C.webp",
+    "cost_metered_usd": 0.01567,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 12,
+      "cost_list_usd": 0.01087
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "B",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "h4-regex",
+   "title": "Regex engine from scratch",
+   "difficulty": "hard",
+   "category": "py-module",
+   "kind": "py",
+   "prompt": "Write regex.py with fullmatch(pattern: str, text: str) -> bool and search(pattern: str, text: str) -> tuple[int, int] | None (leftmost match; among matches starting there, the one Python's re would choose, i.e. backtracking/greedy semantics) without using the re module. Support literals, '.', character classes [abc], [a-z], negated [^...], escapes \\d \\w \\s \\. \\\\ etc., groups (...), alternation |, quantifiers * + ? {m} {m,} {m,n} and their lazy versions (*? +? ?? {m,n}?), and anchors ^ $. Patterns like (a*)*b on long inputs must not hang. Raise ValueError on malformed patterns. Put it in the current directory.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.75,
+    "score_judges": [
+     8.5,
+     9.0
+    ],
+    "tests_passed": 42,
+    "tests_total": 43,
+    "renders": null,
+    "cost_list_usd": 0.93551,
+    "tokens": {
+     "input": 24,
+     "output": 30867,
+     "cache_read": 441406,
+     "cache_write": 28724
+    },
+    "seconds": 856.7,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": null,
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 8.75,
+    "score_judges": [
+     8.5,
+     9.0
+    ],
+    "tests_passed": 43,
+    "tests_total": 43,
+    "renders": null,
+    "cost_list_usd": 0.01744,
+    "tokens": {
+     "input": 26116,
+     "output": 14973,
+     "cache_read": 253773,
+     "cache_write": 0
+    },
+    "seconds": 223.8,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": null,
+    "cost_metered_usd": 0.01744,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 12,
+      "cost_list_usd": 0.01264
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 0,
+    "quality_rejections": 0,
+    "jev_calls": 12
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 9.0,
+    "score_judges": [
+     9.0,
+     9.0
+    ],
+    "tests_passed": 43,
+    "tests_total": 43,
+    "renders": null,
+    "cost_list_usd": 0.3076,
+    "tokens": {
+     "input": 34163,
+     "output": 14883,
+     "cache_read": 260271,
+     "cache_write": 0
+    },
+    "seconds": 157.4,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": null,
+    "cost_metered_usd": 0.3076,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 10,
+      "cost_list_usd": 0.01054
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 2,
+      "cost_list_usd": 0.29226
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "B",
+     "noticeable": false
+    },
+    "luna": {
+     "winner": "B",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "h5-fluid",
+   "title": "Interactive fluid simulation",
+   "difficulty": "hard",
+   "category": "html-visual",
+   "kind": "html",
+   "prompt": "Create an interactive real-time fluid simulation (stable fluids / Navier-Stokes on the GPU with WebGL: advection, divergence, pressure solve with Jacobi iterations, vorticity confinement) where dragging the mouse injects colourful dye and velocity. Include controls for viscosity, dissipation and pressure iterations, and a pause and reset button. It should look stunning. Put everything (HTML, CSS, JS) into a single self-contained file index.html in the current directory. No external libraries, CDNs, fonts or network requests.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 8.75,
+    "score_judges": [
+     9.0,
+     8.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 1.26431,
+    "tokens": {
+     "input": 10,
+     "output": 42803,
+     "cache_read": 216410,
+     "cache_write": 45616
+    },
+    "seconds": 359.9,
+    "turns": 5,
+    "hit_turn_limit": false,
+    "screenshot": "/data/ab-shots/h5-fluid-A.webp",
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 4.5,
+    "score_judges": [
+     4.0,
+     5.0
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.01831,
+    "tokens": {
+     "input": 32935,
+     "output": 14246,
+     "cache_read": 309609,
+     "cache_write": 0
+    },
+    "seconds": 164.8,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": "/data/ab-shots/h5-fluid-B.webp",
+    "cost_metered_usd": 0.01831,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 12,
+      "cost_list_usd": 0.01351
+     }
+    ],
+    "escalations": 0,
+    "quality_checks": 0,
+    "quality_rejections": 0,
+    "jev_calls": 12
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 4.75,
+    "score_judges": [
+     4.0,
+     5.5
+    ],
+    "tests_passed": null,
+    "tests_total": null,
+    "renders": true,
+    "cost_list_usd": 0.01798,
+    "tokens": {
+     "input": 20368,
+     "output": 14767,
+     "cache_read": 375516,
+     "cache_write": 0
+    },
+    "seconds": 135.8,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": "/data/ab-shots/h5-fluid-C.webp",
+    "cost_metered_usd": 0.01798,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 12,
+      "cost_list_usd": 0.01318
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "A",
+     "noticeable": true
+    },
+    "luna": {
+     "winner": "A",
+     "noticeable": true
+    }
+   }
+  },
+  {
+   "id": "h6-lisp",
+   "title": "Lisp interpreter with TCO",
+   "difficulty": "hard",
+   "category": "py-module",
+   "kind": "py",
+   "prompt": "Write lisp.py with a function run(source: str) that evaluates a program of one or more Scheme-like expressions and returns the value of the last one. Integers, floats, #t/#f, strings, symbols, quote ('x), define (variables and (define (f args) body...)), lambda (with variadic rest args via dotted list (lambda (a . rest) ...)), if, cond (with else), let, let*, begin, set!, and, or; builtins + - * / (/ on integers yields a float only if not exact), = < > <= >=, eq?, equal?, not, cons, car, cdr, list, null?, pair?, length, append, map, filter, apply. Lists returned to Python are Python lists (the empty list is []), booleans are True/False, symbols are str. Proper tail calls: a tail-recursive loop of 100000 iterations must work. Unbound symbols raise NameError; calling a non-procedure raises TypeError; unbalanced parentheses raise SyntaxError. Put it in the current directory.",
+   "A": {
+    "model": "claude-opus-5.5",
+    "score": 9.25,
+    "score_judges": [
+     9.0,
+     9.5
+    ],
+    "tests_passed": 23,
+    "tests_total": 23,
+    "renders": null,
+    "cost_list_usd": 0.22414,
+    "tokens": {
+     "input": 6,
+     "output": 7105,
+     "cache_read": 59056,
+     "cache_write": 8776
+    },
+    "seconds": 63.2,
+    "turns": 3,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.0
+   },
+   "B": {
+    "model": "auto-router",
+    "score": 9.25,
+    "score_judges": [
+     9.0,
+     9.5
+    ],
+    "tests_passed": 23,
+    "tests_total": 23,
+    "renders": null,
+    "cost_list_usd": 0.37462,
+    "tokens": {
+     "input": 56556,
+     "output": 12555,
+     "cache_read": 201705,
+     "cache_write": 0
+    },
+    "seconds": 143.1,
+    "turns": 8,
+    "hit_turn_limit": false,
+    "screenshot": null,
+    "cost_metered_usd": 0.37462,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 8,
+      "cost_list_usd": 0.01036
+     },
+     {
+      "model": "gpt-6-astra",
+      "turns": 2,
+      "cost_list_usd": 0.35865
+     }
+    ],
+    "escalations": 2,
+    "quality_checks": 4,
+    "quality_rejections": 4,
+    "jev_calls": 14
+   },
+   "C": {
+    "model": "auto-router, answer check off",
+    "score": 3.25,
+    "score_judges": [
+     2.0,
+     4.5
+    ],
+    "tests_passed": 4,
+    "tests_total": 23,
+    "renders": null,
+    "cost_list_usd": 0.01618,
+    "tokens": {
+     "input": 13065,
+     "output": 13884,
+     "cache_read": 313106,
+     "cache_write": 0
+    },
+    "seconds": 132.7,
+    "turns": 13,
+    "hit_turn_limit": true,
+    "screenshot": null,
+    "cost_metered_usd": 0.01618,
+    "routes": [
+     {
+      "model": "gpt-6-luna",
+      "turns": 12,
+      "cost_list_usd": 0.01138
+     }
+    ]
+   },
+   "pairwise": {
+    "opus": {
+     "winner": "B",
+     "noticeable": false
+    },
+    "luna": {
+     "winner": "B",
+     "noticeable": true
+    }
+   }
+  }
+ ],
+ "summary": {
+  "n_tasks": 20,
+  "A": {
+   "mean_score": 9.16,
+   "total_cost_list_usd": 7.7262,
+   "tests_passed": 177,
+   "tests_total": 179
+  },
+  "B": {
+   "mean_score": 8.19,
+   "total_cost_list_usd": 3.2108,
+   "total_cost_metered_usd": 3.2108,
+   "tests_passed": 172,
+   "tests_total": 179,
+   "escalations": 17,
+   "quality_checks": 43,
+   "quality_rejections": 34
+  },
+  "cost_ratio_A_over_B": 2.41,
+  "cost_ratio_median_per_task": 10.16,
+  "score_delta_B_minus_A": -0.97,
+  "pairwise": {
+   "opus": {
+    "A": 13,
+    "B": 3,
+    "tie": 4,
+    "A_noticeable": 11,
+    "B_noticeable": 1
+   },
+   "luna": {
+    "A": 13,
+    "B": 5,
+    "tie": 2,
+    "A_noticeable": 12,
+    "B_noticeable": 5
+   }
+  },
+  "by_difficulty": {
+   "easy": {
+    "n": 7,
+    "A_mean_score": 9.39,
+    "B_mean_score": 8.68,
+    "A_cost_list_usd": 1.0521,
+    "B_cost_list_usd": 1.1408,
+    "cost_ratio": 0.92
+   },
+   "medium": {
+    "n": 7,
+    "A_mean_score": 9.21,
+    "B_mean_score": 8.46,
+    "A_cost_list_usd": 2.6406,
+    "B_cost_list_usd": 1.297,
+    "cost_ratio": 2.04
+   },
+   "hard": {
+    "n": 6,
+    "A_mean_score": 8.83,
+    "B_mean_score": 7.29,
+    "A_cost_list_usd": 4.0335,
+    "B_cost_list_usd": 0.7731,
+    "cost_ratio": 5.22
+   }
+  },
+  "excluded": [],
+  "C": {
+   "label": "Claude Code through auto-router with the answer check switched off (verify.enabled: false)",
+   "n_tasks": 20,
+   "mean_score": 6.65,
+   "total_cost_list_usd": 0.5815,
+   "tests_passed": 117,
+   "tests_total": 179,
+   "cost_ratio_A_over_C": 13.3
+  }
+ },
+ "what_if": [
+  {
+   "scenario": "As measured",
+   "description": "Both arms at public list prices, prompt cache as it happened.",
+   "A_cost": 7.7262,
+   "B_cost": 3.2108,
+   "ratio": 2.4
+  },
+  {
+   "scenario": "No prompt cache",
+   "description": "Every input token billed at the full input price on both arms.",
+   "A_cost": 16.0566,
+   "B_cost": 5.8313,
+   "ratio": 2.8
+  },
+  {
+   "scenario": "Opus at half price",
+   "description": "If Opus 5.5 (and the router's own Claude plan turns) cost half.",
+   "A_cost": 3.8631,
+   "B_cost": 3.2108,
+   "ratio": 1.2
+  }
+ ]
+}

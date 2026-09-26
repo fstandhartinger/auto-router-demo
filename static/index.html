@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
 <!--page-meta-->
-<link rel="stylesheet" href="/assets/app.css?v=20260926-centering">
+<link rel="stylesheet" href="/assets/app.css?v=20260926-ab">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -893,9 +893,9 @@ wire_api = "responses"</code></pre>
   <p class="eyebrow">Evidence</p>
   <h1>Evidence, with each result<br><em>labelled for what it is</em></h1>
   <p class="lede">
-    Explore the <a href="#simulation">analysis of real coding-agent traffic</a>, with replay
-    estimates labelled as simulations. <a href="#claims">Each implementation claim</a> links to
-    the code and source behind it.
+    A <a href="#ab">measured, paired A/B study</a> (26 Sep 2026: 20 coding tasks, Claude Code,
+    always-Opus against the router), the <a href="#simulation">analysis of real coding-agent traffic</a> with replay estimates labelled as simulations, and
+    <a href="#claims">each implementation claim</a> linked to the code behind it.
   </p>
 </section>
 <div class="wrap" id="evidence-root">
@@ -910,8 +910,8 @@ wire_api = "responses"</code></pre>
   <ol class="claims">
     <li class="claim">
       <p class="claim-quote">“Saves me ~9× token cost while usually no noticeable quality degradation.”</p>
-      <p class="claim-true">The paired A/B study has not run, so no measured saving or quality result is available. The 9.6× figure comes from an older <strong>replay simulation</strong>, not a measured saving. Results depend on the mix of easy and hard work.</p>
-      <p class="claim-links"><a href="#simulation">simulation</a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/EXPERIMENTS.md" rel="noopener"><code>EXPERIMENTS.md</code></a></p>
+      <p class="claim-true"><strong>Not what the measurement shows.</strong> In the paired study on 26 Sep 2026 (20 coding tasks in Claude Code, list prices), the router as shipped cost <strong>2.4× less</strong> than always using Opus 5.5 (median task 10×), and the quality drop was noticeable: both blind judges preferred the Opus run on 13 of 20 tasks, and hidden tests passed 172/179 against 177/179. With its answer check switched off the router was 13× cheaper but clearly worse (117/179 tests). The earlier 9.6× figure is a <strong>replay simulation</strong>, not a measured saving.</p>
+      <p class="claim-links"><a href="#ab">A/B study</a> · <a href="#arm-c">third arm</a> · <a href="/data/ab-study.json">raw data</a> · <a href="#simulation">simulation</a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/EXPERIMENTS.md" rel="noopener"><code>EXPERIMENTS.md</code></a></p>
     </li>
     <li class="claim">
       <p class="claim-quote">“It's free and open source.”</p>
@@ -950,7 +950,7 @@ wire_api = "responses"</code></pre>
     </li>
     <li class="claim">
       <p class="claim-quote">… and checks cheap answers.</p>
-      <p class="claim-true">After a cheap route answers, one typed question asks whether the answer is adequate; a rejected answer is re-run on a stronger route. Measured on 192 cheap answers: 85 % of wrong coding answers caught at a 10 % false-alarm rate.</p>
+      <p class="claim-true">After a cheap route answers, one typed question asks whether the answer is adequate; a rejected answer is re-run on a stronger route. Measured on 192 cheap answers: 85 % of wrong coding answers caught at a 10 % false-alarm rate. In the Claude Code A/B study it rejected 34 of 43 final answers and escalated 17; the final message of an agent run is often a short summary of work done in tools, which the judge cannot see, so many rejections were likely false alarms, and the escalated calls made up about 80 % of the router arm's model spend.</p>
       <p class="claim-links"><a href="https://github.com/fstandhartinger/auto-model-router/blob/main/auto_router/verify.py" rel="noopener"><code>auto_router/verify.py</code></a> · <a href="/results" data-link>results</a></p>
     </li>
     <li class="claim">

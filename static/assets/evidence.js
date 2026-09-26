@@ -272,7 +272,45 @@ export function renderEvidence(root, data, { sample, replay }) {
     `comparable. They are not invoices. n = ${tasks.length} tasks; with a sample this small a ` +
     `difference of a few tenths of a point in the mean score is within noise.`;
   s1.append(cap);
+  const pw = sum_.pairwise || {};
+  const tA = sum_.A || {}, tB = sum_.B || {};
+  if (tA.tests_total || Object.keys(pw).length) {
+    const q = document.createElement("p");
+    q.className = "section-note";
+    const judged = Object.entries(pw).map(([j, w]) =>
+      `${esc(j)} judge preferred A in ${w.A}, B in ${w.B}, tie in ${w.tie} (a difference it called noticeable: ${w.A_noticeable} for A, ${w.B_noticeable} for B)`);
+    q.innerHTML = `<strong>Quality.</strong> ` +
+      (tA.tests_total ? `Hidden unit and browser tests passed: A ${tA.tests_passed}/${tA.tests_total}, B ${tB.tests_passed}/${tB.tests_total}. ` : "") +
+      (judged.length ? `Blind side-by-side: ${judged.join("; ")}. ` : "") +
+      (tB.quality_checks ? `The router graded ${tB.quality_checks} final answers from models below GPT-5.6 Terra, rejected ${tB.quality_rejections} and re-ran ${tB.escalations} on a stronger model.` : "");
+    s1.append(q);
+  }
   root.append(s1);
+
+  /* arm C ---------------------------------------------------------------- */
+  const c = sum_.C;
+  if (c) {
+    const sc = section("A third arm: the router without its answer check",
+      `${esc(c.label)}. Same ${c.n_tasks} tasks, same Claude Code settings. It shows what the answer check costs and what it buys.`);
+    sc.id = "arm-c";
+    const tbl = (headers, rows) => {
+      const wrap = document.createElement("div");
+      wrap.className = "tbl-wrap";
+      wrap.setAttribute("role", "region");
+      wrap.setAttribute("aria-label", "Three arms compared");
+      wrap.tabIndex = 0;
+      wrap.innerHTML = `<table class="tbl"><thead><tr>${headers.map((h, i) =>
+        `<th class="${i ? "num" : ""}">${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map((r) =>
+        `<tr>${r.map((v, i) => `<td class="${i ? "num" : ""}">${esc(v)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+      return wrap;
+    };
+    sc.append(tbl(["arm", "list-price cost", "cost vs A", "mean score", "tests passed"], [
+      ["A · always Opus 5.5", usd(totA), "1×", fmt(meanA), tA.tests_total ? `${tA.tests_passed}/${tA.tests_total}` : "—"],
+      ["B · router, answer check on (shipped default)", usd(totB), times(ratio(totA, totB)) + " cheaper", fmt(meanB), tB.tests_total ? `${tB.tests_passed}/${tB.tests_total}` : "—"],
+      ["C · router, answer check off", usd(c.total_cost_list_usd), times(c.cost_ratio_A_over_C) + " cheaper", fmt(c.mean_score), c.tests_total ? `${c.tests_passed}/${c.tests_total}` : "—"],
+    ]));
+    root.append(sc);
+  }
 
   if (!tasks.length) {
     root.append(Object.assign(document.createElement("p"), { className: "muted", textContent: "No tasks in the study file." }));

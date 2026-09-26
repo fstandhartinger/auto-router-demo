@@ -158,7 +158,10 @@ p { margin: 0 0 1rem; }
 }
 .p2p-pill:hover { border-color: var(--p2p); text-decoration: none; }
 
-main { flex: 1 0 auto; padding-bottom: 4rem; }
+main { flex: 1 0 auto; padding-bottom: 4rem; min-height: 100vh; }  /* the footer must not jump while a page renders (CLS) */
+/* Links inside running text are underlined, not only coloured (axe link-in-text-block). */
+p a, li a, dd a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+.tbl-wrap { overflow-x: auto; margin: .6rem 0 1rem; }
 
 /* ------------------------------------------------------------------ hero */
 .hero { padding: clamp(1.6rem, 4vw, 2.8rem) 0 1.2rem; }
