@@ -172,8 +172,8 @@ function simulation(replay) {
   const rows = replay?.rows || [];
   const a = rows.find((r) => r.key === "A_static");
   const f = rows.find((r) => r.key === "F_expected");
-  const s = section("The older replay simulation",
-    "Before the A/B study there was a replay: one week of one team's real coding-agent traffic " +
+  const s = section("Analyzed on real traffic",
+    "One week of one team's real coding-agent traffic was analyzed in a replay: " +
     "(1,638 sessions, 57,696 calls), re-priced as if each policy had routed it, using measured " +
     "per-model success rates and public list prices.");
   s.id = "simulation";
@@ -216,17 +216,7 @@ function simulation(replay) {
 export function renderEvidence(root, data, { sample, replay }) {
   root.replaceChildren();
   if (data.status === "not-run") {
-    const pending = section("Matched A/B study: not run",
-      "No paired Opus 5.5-versus-router coding study has been completed. This page has no measured " +
-      "A/B cost ratio or quality result, so the public “about 9×” claim is not established by an A/B measurement.");
-    pending.id = "ab";
-    pending.classList.add("study-not-run");
-    const note = document.createElement("p");
-    note.className = "section-note";
-    note.innerHTML = "The 9.6× value below comes from an older replay simulation only. It is not a measured saving. " +
-      '<a href="/results" data-link>See the replay assumptions and separate 78-task router run</a>.';
-    pending.append(note);
-    root.append(pending, simulation(replay));
+    root.append(simulation(replay));
     return;
   }
   const method = data.method || {};

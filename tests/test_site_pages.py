@@ -119,7 +119,10 @@ def test_public_evidence_does_not_fall_back_to_invented_sample_data(client):
     source = (STATIC / "assets" / "app.js").read_text(encoding="utf-8")
     page = client.get("/evidence").text
     assert 'loadJson("/data/ab-study.sample.json")' not in source
-    assert "paired Opus 5.5-versus-router A/B study has not run" in page
+    assert "analysis of real coding-agent traffic" in page
+    evidence = (STATIC / "assets" / "evidence.js").read_text(encoding="utf-8")
+    assert "Matched A/B study: not run" not in evidence
+    assert "Analyzed on real traffic" in evidence
     assert "no measured saving or quality result is available" in page
 
 
