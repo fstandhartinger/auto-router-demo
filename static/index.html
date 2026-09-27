@@ -66,6 +66,7 @@
       A free, non-commercial showcase. Rate-limited, capped, no prompt logging.
       <a href="/privacy" data-link>Privacy</a> · <a href="/impressum" data-link>Legal notice</a> ·
       <a href="https://donate.stripe.com/fZu00i9ro0wmdF88sg1Jm01" rel="noopener" title="Pay what you want — helps cover the servers" style="white-space:nowrap">♥ Support this project</a>
+      · <span id="visitor-count" aria-live="polite" hidden></span>
     </p>
   </div>
 </footer>
@@ -994,7 +995,7 @@ wire_api = "responses"</code></pre>
     is online, on strangers' GPUs. Treat everything you type as public.
   </p>
   <h2>Cookies and tracking</h2>
-  <p>No cookies, no analytics, no third-party scripts. The page keeps a session id, your theme choice, whether you hid the install bar, and your own recent runs in your browser's local storage; none of it is sent anywhere but this site. The server counts page views, runs and installer downloads per day as plain totals — no address, no identifier, nothing per visitor.</p>
+  <p>We use Umami, a self-hosted, cookieless analytics tool on servers in Germany. It processes IP address and browser information to calculate aggregate visitor counts; raw IP addresses are not stored. The tracker sends only an approved public page path and title, and does not receive prompts, conversation state, query strings, fragments, referrers or custom events. It honors Do Not Track and Global Privacy Control. The page also keeps a session id, your theme choice, whether you hid the install bar, and your own recent runs in your browser's local storage; none of that state is sent to Umami.</p>
   <h2>Contact</h2>
   <p>productivity-boost.com Betriebs UG (haftungsbeschränkt) &amp; Co. KG — see the <a href="/impressum" data-link>Legal notice</a>.</p>
 </div>
@@ -1035,6 +1036,7 @@ wire_api = "responses"</code></pre>
 </div>
 </template>
 
+<script defer src="/analytics.js"></script>
 <script type="module" src="/assets/app.js"></script>
 </body>
 </html>
