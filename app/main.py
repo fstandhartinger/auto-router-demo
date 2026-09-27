@@ -13,6 +13,7 @@ import hmac
 import json
 import logging
 import math
+import os
 import time
 import uuid
 from dataclasses import dataclass, field
@@ -53,6 +54,12 @@ WHAT_IF_LIMITER = Limiter(per_ip_per_hour=600, per_ip_per_day=4000,
                           global_per_day=200_000, daily_budget_usd=1e9)
 
 app = FastAPI(title="Auto-router playground", docs_url=None, redoc_url=None)
+
+UMAMI_WEBSITE_ID = "d3f0e8b5-20e0-4649-8bad-2ba3c26eabe6"
+UMAMI_API_KEY = (os.environ.get("UMAMI_API_KEY") or "").strip()
+UMAMI_API_URL = "https://bh-analytics.app.mintapis.com"
+_UMAMI_VISITS_CACHE = {"visits": None, "expires_at": 0.0, "retry_after": 0.0}
+_UMAMI_VISITS_LOCK = asyncio.Lock()
 
 
 # ---------------------------------------------------------------------------
@@ -940,6 +947,49 @@ async def store_launch_stats(request: Request):
     LAUNCH_STATS_FILE.parent.mkdir(parents=True, exist_ok=True)
     LAUNCH_STATS_FILE.write_text(json.dumps(data))
     return {"ok": True}
+
+
+@app.get("/api/analytics/visits")
+async def analytics_visits():
+    """Expose only the public visitor aggregate; the Umami key stays server-side."""
+    if not UMAMI_API_KEY:
+        return JSONResponse({"detail": "analytics unavailable"}, status_code=503,
+                            headers={"Cache-Control": "no-store"})
+    now = time.monotonic()
+    if _UMAMI_VISITS_CACHE["visits"] is not None and _UMAMI_VISITS_CACHE["expires_at"] > now:
+        return JSONResponse({"visits": _UMAMI_VISITS_CACHE["visits"]},
+                            headers={"Cache-Control": "public, max-age=60, stale-while-revalidate=300"})
+    if _UMAMI_VISITS_CACHE["retry_after"] > now:
+        return JSONResponse({"detail": "analytics unavailable"}, status_code=503,
+                            headers={"Cache-Control": "no-store"})
+    async with _UMAMI_VISITS_LOCK:
+        now = time.monotonic()
+        if _UMAMI_VISITS_CACHE["visits"] is not None and _UMAMI_VISITS_CACHE["expires_at"] > now:
+            return JSONResponse({"visits": _UMAMI_VISITS_CACHE["visits"]},
+                                headers={"Cache-Control": "public, max-age=60, stale-while-revalidate=300"})
+        if _UMAMI_VISITS_CACHE["retry_after"] > now:
+            return JSONResponse({"detail": "analytics unavailable"}, status_code=503,
+                                headers={"Cache-Control": "no-store"})
+        try:
+            response = await app.state.client.get(
+                f"{UMAMI_API_URL}/api/websites/{UMAMI_WEBSITE_ID}/stats",
+                params={"startAt": 0, "endAt": int(time.time() * 1000)},
+                headers={"Authorization": f"Bearer {UMAMI_API_KEY}"},
+                timeout=3.0,
+            )
+            response.raise_for_status()
+            data = response.json()
+            visits = data.get("visitors") if isinstance(data, dict) else None
+            if type(visits) is not int or visits < 0:
+                raise ValueError("invalid Umami visitor total")
+        except (httpx.HTTPError, ValueError, TypeError):
+            _UMAMI_VISITS_CACHE["retry_after"] = time.monotonic() + 60
+            return JSONResponse({"detail": "analytics unavailable"}, status_code=503,
+                                headers={"Cache-Control": "no-store"})
+        _UMAMI_VISITS_CACHE.update(visits=visits, expires_at=time.monotonic() + 300,
+                                   retry_after=0.0)
+        return JSONResponse({"visits": visits},
+                            headers={"Cache-Control": "public, max-age=60, stale-while-revalidate=300"})
 
 
 @app.get("/install.sh")
