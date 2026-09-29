@@ -631,6 +631,8 @@ table.candidates td:first-child { min-width: 11rem; }
 .stat .v { font-size: 1.8rem; font-weight: 650; letter-spacing: -.03em; display: block; }
 .stat .k { color: var(--muted); font-size: .82rem; }
 .stat .s { color: var(--ink-2); font-size: .82rem; margin-top: .25rem; }
+#router-ab-2026-09-29 .stat .k,
+#router-ab-2026-09-29 .stat .s { display: block; }
 
 .chart { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.1rem; }
 .chart h3 { margin-bottom: .15rem; }
@@ -776,6 +778,7 @@ figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
 
 @media (max-width: 720px) {
   .stat-row { grid-template-columns: 1fr 1fr; }
+  #router-ab-2026-09-29 .stat-row { grid-template-columns: 1fr; }
   .topbar-inner { height: auto; flex-wrap: wrap; padding-block: .5rem; gap: .5rem; }
   .nav { margin-left: 0; }
   .topbar-actions { margin-left: auto; }
