@@ -114,8 +114,10 @@ and are never written to disk. Prompts are sent to the classifier and to whichev
 and — when that is the peer-to-peer route — to a volunteer's computer, which the page says before
 you use it.
 
-The routing results this demo displays rest on 78 graded tasks and one week of one team's traffic.
-The dollar figures on the results page are replay arithmetic at public list prices, not an invoice.
+The evidence page now includes a 40-task paired first-choice API study against fixed Claude Opus
+5.5, alongside the earlier 20-task Claude Code A/B. Each covers a different workflow and has its
+own method and limits. The separate 78-task router evaluation and one-week traffic replay remain
+on the Results page; the replay's dollar figures are estimates at public list prices, not invoices.
 
 ## Tests
 

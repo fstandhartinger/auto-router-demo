@@ -67,7 +67,7 @@ def test_llms_txt_links_everything_an_agent_needs(client):
     for needle in ("/agents.md", "/install.md", "/install.sh", "/evidence", REPO):
         assert needle in body, needle
     assert ("/install.ps1" in body) == (STATIC / "install.ps1").is_file()
-    assert "A/B study has not run" in body
+    assert "29 Sep paired first-choice API study" in body
 
 
 def test_install_ps1_is_served_when_present_and_404_otherwise(client):

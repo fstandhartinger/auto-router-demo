@@ -77,8 +77,8 @@ PAGES: dict[str, PageMeta] = {
     ),
     "evidence": PageMeta(
         "Evidence for the auto-router: measured runs and replay simulation",
-        "Analysis of real coding-agent traffic, with replay estimates "
-        "labelled as a simulation, and claims link to the code and sources behind them.",
+        "A paired first-choice API study, an earlier Claude Code A/B, and analysis of coding-agent "
+        "traffic, with replay estimates labelled as a simulation and limits shown for each result.",
     ),
     "claims": PageMeta(
         "What's true: each claim, and the code behind it — auto-router",

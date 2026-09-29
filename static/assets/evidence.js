@@ -51,6 +51,56 @@ function wireTips(root) {
   });
 }
 
+function firstChoiceStudy(data) {
+  const q = data.quality;
+  const costs = data.accounted_cost_usd_per_task;
+  const latency = data.latency_ms_per_task;
+  const s = section("First-choice API A/B (29 Sep 2026)",
+    "Forty fixed public-safe tasks compared one Claude Opus 5.5 completion with the source router's " +
+    "F_expected first choice. Task-level results, prompts and the protocol summary are linked below.");
+  s.id = "router-ab-2026-09-29";
+  const tiles = document.createElement("div");
+  tiles.className = "stat-row";
+  const tile = (value, key, note) => `<div class="stat"><span class="v">${esc(value)}</span>` +
+    `<span class="k">${esc(key)}</span><span class="s">${esc(note)}</span></div>`;
+  const pp = (v) => `${v > 0 ? "+" : ""}${v.toFixed(1)}`;
+  tiles.innerHTML =
+    tile(`${pp(q.delta_router_minus_control.estimate * 100)} pp`, "router minus Opus pass rate",
+      `30/40 vs 29/40; 95% paired CI ${pp(q.delta_router_minus_control.bootstrap_95_ci[0] * 100)} to ${pp(q.delta_router_minus_control.bootstrap_95_ci[1] * 100)} pp`) +
+    tile(`${(data.cost_ratio_router_over_control.mean * 100).toFixed(2)}%`, "router / Opus accounted cost",
+      `$${costs.control.mean.toFixed(6)} vs $${costs.router.mean.toFixed(6)} per task; 95% CI 4.49–6.13%`) +
+    tile(`+${(latency.delta_router_minus_control.mean / 1000).toFixed(2)} s`, "router minus Opus latency",
+      `${(latency.control.mean / 1000).toFixed(3)} s vs ${(latency.router.mean / 1000).toFixed(3)} s; 95% CI 3.91–12.28 s`) +
+    tile("$0.269939", "total model API spend", "80 completions; no provider errors");
+  s.append(tiles);
+
+  const cats = Object.entries(data.categories).map(([name, row]) => {
+    const delta = row.quality_delta_router_minus_control * 100;
+    const [lo, hi] = row.quality_delta_bootstrap_95_ci.map((v) => v * 100);
+    const sign = (v) => `${v > 0 ? "+" : ""}${v.toFixed(0)}`;
+    return [name, `${row.control.passed}/${row.control.n}`, `${row.router.passed}/${row.router.n}`,
+      `${sign(delta)} pp (${sign(lo)} to ${sign(hi)})`,
+      `${sign(row.e2e_latency_delta_router_minus_control_ms_per_task / 1000)} s`];
+  });
+  s.append(tableView(["category", "Opus passed", "router passed", "pass-rate delta (95% CI)", "latency delta"], cats));
+
+  const routes = Object.entries(data.route_distribution.router).map(([model, count]) => `${model}: ${count}`);
+  const note = document.createElement("p");
+  note.className = "section-note";
+  note.textContent = `The router chose ${routes.join("; ")}. The overall quality interval is broad and spans both a 7.5-point drop and a 12.5-point gain. ` +
+    "This measures the source router policy; the live playground adds a value-of-time term. " +
+    "Router latency includes warm local classification; one-time Weiche initialization took 4.595 s and is separate. " +
+    "The small synthetic task set used one completion per task and arm; answer checks and retries were disabled. HTML grading checks structure, not appearance.";
+  s.append(note);
+  const links = document.createElement("p");
+  links.className = "credits";
+  links.innerHTML = '<a href="/data/paired-router-ab-20260929/README.md">Task set and per-task results</a> · ' +
+    '<a href="/data/first-choice-ab-20260929.json">Machine-readable summary</a> · ' +
+    '<a href="https://github.com/fstandhartinger/auto-model-router/blob/053fb36826ea2f7bd24de0816564cebfd9d833ff/EXPERIMENTS.md#19-paired-first-choice-api-ab-29-september-2026" rel="noopener">Method in EXPERIMENTS.md</a>';
+  s.append(links);
+  return s;
+}
+
 function legend(labels) {
   return `<div class="legend">
     <span><i style="background:${COLOR.A}"></i>A · ${esc(labels.A)}</span>
@@ -240,6 +290,8 @@ export function renderEvidence(root, data, { sample, replay }) {
     root.append(banner);
   }
 
+  if (!sample && data.current_paired) root.append(firstChoiceStudy(data.current_paired));
+
   /* headline ------------------------------------------------------------ */
   const sum_ = data.summary || {};
   const totA = sum_.A?.total_cost_list_usd ?? sum(tasks.map((t) => t.A.cost_list_usd));
@@ -251,7 +303,7 @@ export function renderEvidence(root, data, { sample, replay }) {
     .filter(([, n]) => n).map(([d, n]) => `${n} ${d}`).join(" · ");
   const metered = sum_.B?.total_cost_metered_usd;
 
-  const s1 = section(`A/B study: ${tasks.length} tasks, run twice`,
+  const s1 = section(`Earlier Claude Code A/B: ${tasks.length} tasks, run twice`,
     `Every task was run in arm <b>A</b> (${esc(labels.A)}) and in arm <b>B</b> (${esc(labels.B)}),
      then scored by the same judges and tests. ${method.summary ? esc(method.summary) : ""}`);
   s1.id = "ab";
