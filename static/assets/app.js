@@ -955,6 +955,9 @@ async function initEvidence() {
   } catch {
     data = { status: "not-run", tasks: [], method: {} };
   }
+  if (data.sample !== true) {
+    data.current_paired = await loadJson("/data/first-choice-ab-20260929.json").catch(() => null);
+  }
   const replay = await loadJson("/api/results").then((r) => r.replay_list).catch(() => null);
   if (!root.isConnected) return;
   renderEvidence(root, data, { sample: data.sample === true, replay });

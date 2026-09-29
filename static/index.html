@@ -505,7 +505,7 @@
     <li>The demo only <em>runs</em> free and very cheap routes and caps the answer length. When
       the router picks something the demo may not run, it says so and answers from the best
       route it may use — the decision above it is untouched.</li>
-    <li>Routing is measured on 78 graded tasks and one week of one team's traffic. Small samples.</li>
+    <li>The evidence page includes a 40-task paired first-choice API study, a separate 78-task evaluation and a replay of one week of one team's traffic. The task samples are small, and the replay is an estimate.</li>
     <li>Rate-limited per visitor and capped per day, so the demo cannot be used as free inference.</li>
     <li>Prompts are sent to the classifier and to the chosen model. Nothing is stored here.</li>
   </ul>
@@ -894,8 +894,9 @@ wire_api = "responses"</code></pre>
   <p class="eyebrow">Evidence</p>
   <h1>Evidence, with each result<br><em>labelled for what it is</em></h1>
   <p class="lede">
-    A <a href="#ab">measured, paired A/B study</a> (26 Sep 2026: 20 coding tasks, Claude Code,
-    always-Opus against the router), the <a href="#simulation">analysis of real coding-agent traffic</a> with replay estimates labelled as simulations, and
+    A <a href="#router-ab-2026-09-29">measured first-choice API A/B</a> (29 Sep 2026: 40 public-safe tasks, fixed Opus 5.5 against the router), an
+    <a href="#ab">earlier Claude Code A/B</a> (26 Sep 2026: 20 coding tasks), the
+    <a href="#simulation">analysis of real coding-agent traffic</a> with replay estimates labelled as simulations, and
     <a href="#claims">each implementation claim</a> linked to the code behind it.
   </p>
 </section>
@@ -911,8 +912,8 @@ wire_api = "responses"</code></pre>
   <ol class="claims">
     <li class="claim">
       <p class="claim-quote">“Saves me ~9× token cost while usually no noticeable quality degradation.”</p>
-      <p class="claim-true"><strong>Not what the measurement shows.</strong> In the paired study on 26 Sep 2026 (20 coding tasks in Claude Code, list prices), the router as shipped cost <strong>2.4× less</strong> than always using Opus 5.5 (median task 10×), and the quality drop was noticeable: both blind judges preferred the Opus run on 13 of 20 tasks, and hidden tests passed 172/179 against 177/179. With its answer check switched off the router was 13× cheaper but clearly worse (117/179 tests). The earlier 9.6× figure is a <strong>replay simulation</strong>, not a measured saving.</p>
-      <p class="claim-links"><a href="#ab">A/B study</a> · <a href="#arm-c">third arm</a> · <a href="/data/ab-study.json">raw data</a> · <a href="#simulation">simulation</a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/EXPERIMENTS.md" rel="noopener"><code>EXPERIMENTS.md</code></a></p>
+      <p class="claim-true">Two paired studies measure different settings. On 40 fixed first-choice API tasks (29 Sep), the router cost about <strong>19× less</strong> per task ($0.000337 vs $0.006415) and passed 30/40 against Opus at 29/40; the quality difference was +2.5 percentage points (95% CI −7.5 to +12.5), while latency increased by 7.66 seconds (95% CI 3.91–12.28). In an earlier 20-task Claude Code coding study (26 Sep), the router as shipped cost 2.4× less ($3.21 vs $7.73) and hidden tests passed 172/179 against 177/179. These samples give different evidence for different workflows. The earlier 9.6× figure is a <strong>replay simulation</strong>.</p>
+      <p class="claim-links"><a href="#router-ab-2026-09-29">29 Sep first-choice A/B</a> · <a href="#ab">26 Sep Claude Code A/B</a> · <a href="#arm-c">third arm</a> · <a href="/data/ab-study.json">26 Sep raw data</a> · <a href="/data/first-choice-ab-20260929.json">29 Sep summary</a> · <a href="#simulation">simulation</a> · <a href="https://github.com/fstandhartinger/auto-model-router/blob/main/EXPERIMENTS.md" rel="noopener"><code>EXPERIMENTS.md</code></a></p>
     </li>
     <li class="claim">
       <p class="claim-quote">“It's free and open source.”</p>

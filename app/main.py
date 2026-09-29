@@ -1049,9 +1049,9 @@ def llms_txt() -> str:
         "## Source and evidence",
         "",
         f"- [Router repository]({SETTINGS.repo_url}): code, README, TERMS.md, EXPERIMENTS.md",
-        f"- [Evidence]({site}/evidence): the paired Opus 5.5-versus-router A/B study has not run; "
-        "see the replay simulation and the separate measured router run with their limitations",
-        f"- [Results]({site}/results): the measured 78-task run and the replay",
+        f"- [Evidence]({site}/evidence): the 29 Sep paired first-choice API study (40 public-safe tasks), "
+        "the earlier Claude Code A/B, and the replay simulation, each labelled with its method and limits",
+        f"- [Results]({site}/results): the measured 78-task evaluation and replay estimates",
         f"- [How it works]({site}/how)",
         "",
     ]
