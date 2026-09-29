@@ -65,11 +65,11 @@ function firstChoiceStudy(data) {
     `<span class="k">${esc(key)}</span><span class="s">${esc(note)}</span></div>`;
   const pp = (v) => `${v > 0 ? "+" : ""}${v.toFixed(1)}`;
   tiles.innerHTML =
-    tile("+2.5 pp", "router minus Opus pass rate",
+    tile(`${pp(q.delta_router_minus_control.estimate * 100)} pp`, "router minus Opus pass rate",
       `30/40 vs 29/40; 95% paired CI ${pp(q.delta_router_minus_control.bootstrap_95_ci[0] * 100)} to ${pp(q.delta_router_minus_control.bootstrap_95_ci[1] * 100)} pp`) +
-    tile("5.27%", "router / Opus accounted cost",
+    tile(`${(data.cost_ratio_router_over_control.mean * 100).toFixed(2)}%`, "router / Opus accounted cost",
       `$${costs.control.mean.toFixed(6)} vs $${costs.router.mean.toFixed(6)} per task; 95% CI 4.49–6.13%`) +
-    tile("+7.66 s", "router minus Opus latency",
+    tile(`+${(latency.delta_router_minus_control.mean / 1000).toFixed(2)} s`, "router minus Opus latency",
       `${(latency.control.mean / 1000).toFixed(3)} s vs ${(latency.router.mean / 1000).toFixed(3)} s; 95% CI 3.91–12.28 s`) +
     tile("$0.269939", "total model API spend", "80 completions; no provider errors");
   s.append(tiles);
@@ -96,7 +96,7 @@ function firstChoiceStudy(data) {
   links.className = "credits";
   links.innerHTML = '<a href="/data/paired-router-ab-20260929/README.md">Task set and per-task results</a> · ' +
     '<a href="/data/first-choice-ab-20260929.json">Machine-readable summary</a> · ' +
-    '<a href="https://github.com/fstandhartinger/auto-model-router/blob/2299e35cc75f7d21eabb5433787f5e2db4779690/EXPERIMENTS.md#19-paired-first-choice-api-ab-29-september-2026" rel="noopener">Method in EXPERIMENTS.md</a>';
+    '<a href="https://github.com/fstandhartinger/auto-model-router/blob/053fb36826ea2f7bd24de0816564cebfd9d833ff/EXPERIMENTS.md#19-paired-first-choice-api-ab-29-september-2026" rel="noopener">Method in EXPERIMENTS.md</a>';
   s.append(links);
   return s;
 }
