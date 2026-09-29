@@ -96,7 +96,7 @@ function firstChoiceStudy(data) {
   links.className = "credits";
   links.innerHTML = '<a href="/data/paired-router-ab-20260929/README.md">Task set and per-task results</a> · ' +
     '<a href="/data/first-choice-ab-20260929.json">Machine-readable summary</a> · ' +
-    '<a href="https://github.com/fstandhartinger/auto-model-router/blob/main/EXPERIMENTS.md#19-paired-first-choice-api-ab-29-september-2026" rel="noopener">Method in EXPERIMENTS.md</a>';
+    '<a href="https://github.com/fstandhartinger/auto-model-router/blob/2299e35cc75f7d21eabb5433787f5e2db4779690/EXPERIMENTS.md#19-paired-first-choice-api-ab-29-september-2026" rel="noopener">Method in EXPERIMENTS.md</a>';
   s.append(links);
   return s;
 }
