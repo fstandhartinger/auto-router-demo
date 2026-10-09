@@ -37,7 +37,8 @@
      "thinking_dialect": null,
      "health_key": null
     }
-   }
+   },
+   "irp_model_id": "prism-ml/ternary-bonsai-2-27b"
   },
   {
    "name": "nex-n2.5-pro",
@@ -63,7 +64,8 @@
      "thinking_dialect": "openrouter_reasoning",
      "health_key": null
     }
-   }
+   },
+   "irp_model_id": "nex-agi/nex-n2.5-pro"
   },
   {
    "name": "dsv4-flash",
@@ -88,7 +90,8 @@
    },
    "bench_offer": {
     "platform": "OpenRouter"
-   }
+   },
+   "irp_model_id": "deepseek/deepseek-v4-flash-0731"
   },
   {
    "name": "glm-5.2-free",
@@ -113,7 +116,8 @@
      "thinking_dialect": "openrouter_reasoning",
      "health_key": null
     }
-   }
+   },
+   "irp_model_id": "z-ai/glm-5.2"
   },
   {
    "name": "dsv4.1-flash",
@@ -136,7 +140,8 @@
      "thinking_dialect": "openrouter_reasoning",
      "health_key": null
     }
-   }
+   },
+   "irp_model_id": "deepseek/deepseek-v4.1-flash"
   },
   {
    "name": "glm-5.3-flash",
@@ -157,7 +162,8 @@
      "health_key": "glm-5.3-flash"
     }
    },
-   "_offer": "no offer pinned: the cheapest public offer that publishes cache prices is used"
+   "_offer": "no offer pinned: the cheapest public offer that publishes cache prices is used",
+   "irp_model_id": "z-ai/glm-5.3-flash"
   },
   {
    "name": "gpt-5.6-luna",
@@ -182,7 +188,8 @@
      "thinking_dialect": "reasoning_effort",
      "health_key": null
     }
-   }
+   },
+   "irp_model_id": "openai/gpt-5.6-luna"
   },
   {
    "name": "gpt-5.6-sol",
@@ -208,7 +215,8 @@
      "health_key": null
     },
     "frontier": true
-   }
+   },
+   "irp_model_id": "openai/gpt-5.6-sol"
   },
   {
    "name": "claude-opus-5",
@@ -236,7 +244,8 @@
      "health_key": null
     },
     "frontier": true
-   }
+   },
+   "irp_model_id": "anthropic/claude-opus-5"
   },
   {
    "name": "claude-fable-5.1",
@@ -263,7 +272,8 @@
      "thinking_dialect": "openrouter_reasoning",
      "health_key": null
     }
-   }
+   },
+   "irp_model_id": "anthropic/claude-fable-5.1"
   },
   {
    "name": "gpt-6-astra",
@@ -289,7 +299,8 @@
      "thinking_dialect": "reasoning_effort",
      "health_key": null
     }
-   }
+   },
+   "irp_model_id": "openai/gpt-6-astra"
   }
  ]
 }

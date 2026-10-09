@@ -145,3 +145,20 @@ serves numbers from [Artificial Analysis](https://artificialanalysis.ai) and
 [Epoch AI](https://epoch.ai). Router: [auto-model-router](https://github.com/fstandhartinger/auto-model-router), MIT.
 
 MIT licensed.
+
+## IRP API
+
+This deployment offers IRP v0.3.0-draft suggest-only at `/v1/routing/models` and
+`/v1/routing/rank`, using the published router's shared ranking implementation.
+It ranks locally without paid classifier/inference calls. All supplied messages
+and tools contribute to token estimates; caller candidates retain their own
+prices and cache state. Predictions use the configured success model with a
+conservative category/difficulty prior and are advisory. The preference is
+monotonic from quality-first (0) to cost-first (10), default 5. Errors are
+`application/problem+json`; extension fields use `extra["system1models.ai"]`.
+The public API is free, with bounded IP/network request allowances. It shares
+neither spending nor conversation state with the playground.
+
+The playground trims requests, caps output, substitutes expensive frontier routes
+and emits custom SSE. This release therefore exposes IRP suggest-only, not an IRP
+§6 proxy. [Documentation and curl example](https://github.com/fstandhartinger/auto-model-router/blob/main/docs/irp.md).
