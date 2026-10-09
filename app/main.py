@@ -55,6 +55,10 @@ WHAT_IF_LIMITER = Limiter(per_ip_per_hour=600, per_ip_per_day=4000,
 
 app = FastAPI(title="Auto-router playground", docs_url=None, redoc_url=None)
 
+# IRP ranks locally; it never calls the playground classifier or spends its budget.
+from .irp import routes as irp_routes
+app.include_router(irp_routes)
+
 UMAMI_WEBSITE_ID = "d3f0e8b5-20e0-4649-8bad-2ba3c26eabe6"
 UMAMI_API_KEY = (os.environ.get("UMAMI_API_KEY") or "").strip()
 UMAMI_API_URL = "https://bh-analytics.app.mintapis.com"

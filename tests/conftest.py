@@ -91,6 +91,12 @@ def client(monkeypatch):
     latency.BOOK._live.clear()
     latency.BOOK._strikes.clear()
     with TestClient(main.app) as test_client:
+        # Wait for this startup's build, not the previous fixture's ready catalog.
+        # Otherwise a late builder can overwrite test-specific frontier metadata.
+        async def wait_for_builder():
+            import asyncio
+            await asyncio.wait_for(main.app.state.builder, 10)
+        test_client.portal.call(wait_for_builder)
         # The catalog is built in the background so a slow benchmark API cannot
         # stop the server from booting; the tests wait for it deliberately.
         from app.engine import ENGINE

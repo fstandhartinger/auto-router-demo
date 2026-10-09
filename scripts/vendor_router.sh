@@ -2,7 +2,7 @@
 # Put the pinned router package next to the demo app for local development.
 # The Docker image does the same thing; auto_router/ is deliberately gitignored.
 set -euo pipefail
-REF="${ROUTER_REF:-6de8dca216f73f99c8fc6d464a7436b36f93f2b6}"
+REF="${ROUTER_REF:-ba9e61a76bdb9a96b4fd92b44a1dd4f28e6fe820}"
 REPO="${ROUTER_REPO:-https://github.com/fstandhartinger/auto-model-router.git}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
 tmp="$(mktemp -d)"
