@@ -204,7 +204,7 @@ export function renderResults(root, data) {
       <div class="s">${pct1(best.success)} versus ${pct1(baseline.success)}</div></div>
     <div class="stat"><span class="v">78</span><span class="k">graded tasks</span>
       <div class="s">five categories, three difficulty levels, 8 models</div></div>
-    <div class="stat"><span class="v">~6 ms</span><span class="k">to classify a short turn</span>
+    <div class="stat"><span class="v">5–35 ms</span><span class="k">to classify a typical turn</span>
       <div class="s">s1-llm-auto-router on the server's CPU; about 0.2 s at full 512-token length (Jev, the earlier classifier: 0.65 s)</div></div>`;
   root.append(stats);
 
