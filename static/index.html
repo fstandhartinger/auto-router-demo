@@ -80,7 +80,7 @@
     <p class="eyebrow">A live router, not a mock-up</p>
     <h1>Ask once. Watch the router<br><em>decide where it goes.</em></h1>
     <p class="lede">
-      Every request is classified in about 30 milliseconds, every model is priced for
+      Requests are normally classified in about 30 milliseconds, every model is priced for
       <em>this</em> request at what it actually costs including the risk of having to
       redo it, and the cheapest expected total wins.<span class="lede-rest"> Then the answer
       streams back from whichever model that turned out to be — and if it came from a cheap
@@ -359,11 +359,10 @@
         an open (MIT) 183 MB routing model from
         <a href="https://decisionmodels.io" rel="noopener">Decision Models</a>, runs on this
         server's CPU, on a scrubbed and truncated version of the turn. One pass answers seven
-        questions with calibrated probabilities: topic, difficulty, whether tools or a long
-        context are needed, whether this builds on the previous turn, and how costly a subtly
+        questions with calibrated probabilities: topic, difficulty, whether tools, an image or a long context are needed, whether this builds on the previous turn, and how costly a subtly
         wrong answer would be. About 30 ms, and the prompt does not leave the server for it.
         On its own held-out set of 2,175 synthetic requests it named the topic correctly 89.8 %
-        of the time and picked the same model as the gold labels in 74.2 % of cases; that
+        of the time and picked the same model as the reference labels in 74.2 % of cases; that
         comparison is the vendor's own and the set is synthetic, so read the
         <a href="https://huggingface.co/decisionmodels/s1-llm-auto-router" rel="noopener">model card</a>
         before leaning on it. If it cannot answer, the demo asks hosted Jev, then a small free
@@ -514,7 +513,7 @@
       route it may use — the decision above it is untouched.</li>
     <li>The evidence page includes a 40-task paired first-choice API study, a separate 78-task evaluation and a replay of one week of one team's traffic. The task samples are small, and the replay is an estimate.</li>
     <li>Rate-limited per visitor and capped per day, so the demo cannot be used as free inference.</li>
-    <li>The classifier runs on this server; prompts are sent to the chosen model, and to Jev only when a cheap model's answer is checked. Nothing is stored here.</li>
+    <li>The classifier runs on this server. Prompts are sent to the chosen model, to Jev when a cheap model's answer is checked or if the local classifier fails, and to a small free model if Jev is unavailable too. Nothing is stored here.</li>
   </ul>
   <h2 id="support">Support this project</h2>
   <p>
@@ -980,10 +979,8 @@ wire_api = "responses"</code></pre>
     Your prompt is classified on this server by the open
     <a href="https://huggingface.co/decisionmodels/s1-llm-auto-router" rel="noopener">s1-llm-auto-router</a>
     model (scrubbed of recognisable credentials and truncated first) and sent to the model the
-    router picks, which is hosted by a third-party inference provider. If a cheap model answers,
-    your prompt and its answer are also sent to <a href="https://typesafe.ai" rel="noopener">TypeSafe</a>
-    for the Jev answer check. If the local classifier cannot answer, the same scrubbed text goes to
-    hosted Jev instead. If
+    router picks, which is hosted by a third-party inference provider. If a cheap model answers and its answer is checked, a scrubbed and truncated copy of your prompt and its answer is also sent to <a href="https://typesafe.ai" rel="noopener">TypeSafe</a>
+    for the Jev answer check. If the local classifier cannot answer, the same scrubbed text goes to hosted Jev instead, and if Jev cannot answer either, to a small free model on a third-party provider; the page says which one classified your turn. If
     the peer-to-peer route is chosen, your prompt is processed <em>on a volunteer's
     computer</em> and the page says so before you use it.
   </p>

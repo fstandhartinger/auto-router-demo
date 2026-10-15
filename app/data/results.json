@@ -451,8 +451,8 @@
   }
  },
  "jev": {
-  "about": "Jev, TypeSafe's System One classifier, measured on the same 78 task prompts. One call, about 0.65 s, roughly 1.4k input tokens. Every number on this page was produced with Jev as the classifier.",
-  "live_note": "The live playground now classifies with s1-llm-auto-router (open weights, on this server's CPU, about 30 ms). It has not been re-run on these 78 tasks; its own held-out test of 2,175 synthetic requests gave 89.8 % topic accuracy and is on its model card.",
+  "about": "Jev, TypeSafe's System One classifier, measured on the same 78 task prompts. One call, about 0.65 s, roughly 1.4k input tokens. The routing and classifier results on this page were produced with Jev as the classifier.",
+  "live_note": "The live playground now classifies with s1-llm-auto-router (open weights, on this server's CPU, about 30 ms). It has not been re-run on these 78 tasks; on the vendor's own synthetic held-out set of 2,175 requests it got the topic right 89.8 % of the time (see its model card).",
   "category_accuracy": "78 of 78 plausible; every category exact except agentic tasks, which Jev labels 'coding'.",
   "difficulty_r": 0.74,
   "calibration": "d_jev = 0.27 + 0.51 x level; the router maps it back before it routes.",

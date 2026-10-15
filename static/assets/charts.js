@@ -351,7 +351,7 @@ export function renderResults(root, data) {
   root.append(s4);
 
   /* 5. the classifier ---------------------------------------------------- */
-  const s5 = section("How good the classifier is", esc(data.jev.about) + " " + esc(data.jev.live_note || ""));
+  const s5 = section("How good Jev was as the classifier", esc(data.jev.about) + " " + esc(data.jev.live_note || ""));
   const jstats = document.createElement("div");
   jstats.className = "stat-row";
   jstats.innerHTML = `
