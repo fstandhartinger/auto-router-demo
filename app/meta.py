@@ -50,7 +50,7 @@ class PageMeta:
 PAGES: dict[str, PageMeta] = {
     "": PageMeta(
         "Auto-router: an open-source LLM router — watch it pick the model",
-        "Type a prompt. An open routing model classifies it in about 30 ms, every candidate model is priced for "
+        "Type a prompt. An open routing model classifies it in milliseconds, every candidate model is priced for "
         "that exact request from Benchmark Heaven data, the expected-cost rule picks one, and "
         "the answer streams back — with a Jev check on the cheap answers.",
     ),
