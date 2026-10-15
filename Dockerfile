@@ -23,6 +23,15 @@ RUN git clone --filter=blob:none --no-checkout "$ROUTER_REPO" /tmp/router \
 COPY requirements.txt /srv/requirements.txt
 RUN pip install --no-cache-dir -r /srv/requirements.txt
 
+# The routing classifier is baked into the image, so a restart never downloads it and the
+# running container needs no outbound access to Hugging Face. The revision is pinned in the
+# router package and verify_files() refuses any file that does not match its pinned SHA-256.
+ENV HF_HOME=/srv/hf HF_HUB_DISABLE_XET=1
+RUN python -c "from huggingface_hub import snapshot_download; from auto_router import s1_router as s; \
+p = snapshot_download(s.REPO, revision=s.REVISION, allow_patterns=[s.MODEL_FILE, 'meta.json', 'tokenizer/*']); \
+s.verify_files(p); print('s1-llm-auto-router verified', s.REVISION)"
+ENV HF_HUB_OFFLINE=1
+
 COPY app /srv/app
 COPY static /srv/static
 

@@ -35,10 +35,6 @@ from . import latency
 from .bonsai import MODEL_NAME as BONSAI_MODEL
 from .settings import DATA, SETTINGS
 
-#: Jev reports difficulty on a compressed scale; this maps it back. Measured on
-#: the 78-task set (EXPERIMENTS.md section 4).
-JEV_CALIBRATION = [0.27, 0.51]
-
 #: Which answers get a second opinion, and against what. These are the
 #: published router's own calibrated numbers, written out here so the page can
 #: show a visitor exactly what it is applying rather than making them read a
@@ -142,8 +138,7 @@ class Engine:
             self.catalog_meta = meta
             self.config = RouterConfig(
                 providers=provider_objs, catalog=Catalog(models), subscriptions={},
-                policy={"name": "F_expected", "jev_difficulty_calibration": JEV_CALIBRATION,
-                        "verify": VERIFY_POLICY},
+                policy={"name": "F_expected", "verify": VERIFY_POLICY},
                 raw={"models": raw_entries})
             # The published expected-cost policy, plus the visitor's time. The
             # money half is untouched; see app/latency.py for what is added and

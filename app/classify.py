@@ -1,25 +1,47 @@
-"""The classifier the demo routes on, with a labelled fallback.
+"""The classifier the demo routes on, with labelled fallbacks.
 
-First choice is Jev (TypeSafe's System One), which answers typed questions with
-calibrated probabilities and is what the measured results were produced with.
-If Jev is unreachable, a small free model is asked for the same fields as JSON
-and the answer is wrapped in the same ``Classification`` object, so the policy
-code below it cannot tell the difference - but the page always says which one
-answered, because the fallback is not calibrated and its confidences are its
+First choice is s1-llm-auto-router, Decision Models' open (MIT) routing model,
+run on this server's CPU: no request leaves the container for classification.
+If it cannot answer, hosted Jev (TypeSafe's System One) is asked, and if that is
+unreachable too a small free model is asked for the same fields as JSON. Every
+answer is wrapped in the same ``Classification`` object, so the policy code
+below cannot tell the difference - but the page always says which one answered,
+because the free-model fallback is not calibrated and its confidences are its
 own opinion, not a measured probability.
+
+Difficulty is on the router's own 0..1 scale (expected level / 4), which is
+what s1-llm-auto-router answers natively. Jev answers on a compressed scale, so
+its difficulty is mapped back here before it reaches the policy.
 """
 
 from __future__ import annotations
 
 import asyncio
+import dataclasses
 import json
+import logging
+import os
 import re
 
 import httpx
 
-from auto_router import jev
+from auto_router import jev, s1_router
 
 from . import providers
+
+log = logging.getLogger("demo.classify")
+
+#: Jev reports difficulty on a compressed scale: ``d_jev = 0.27 + 0.51 x level``.
+#: Measured on the 78-task set (EXPERIMENTS.md section 4).
+JEV_CALIBRATION = (0.27, 0.51)
+
+#: ``DEMO_CLASSIFIER=jev`` switches the first choice back to hosted Jev.
+FIRST_CHOICE = (os.environ.get("DEMO_CLASSIFIER") or "s1").strip().lower()
+S1_LABEL = "s1-llm-auto-router by Decision Models (open weights)"
+S1_URL = "https://huggingface.co/decisionmodels/s1-llm-auto-router"
+
+S1 = s1_router.LocalS1Classifier(os.environ.get("DEMO_S1_MODEL") or s1_router.REPO,
+                                 int(os.environ.get("DEMO_S1_THREADS") or 2))
 
 #: Which route answers when Jev does not. Free and small on purpose.
 FALLBACK_MODELS = ("dsv4-flash", "glm-5.3-flash", "nex-n2.5-pro", "glm-5.2-free")
@@ -96,8 +118,22 @@ def classifier_meta(classification: jev.Classification | None) -> dict:
         return meta
     if classification.failed:
         return UNAVAILABLE
+    if classification.source_name == s1_router.LOCAL_SOURCE:
+        return {"kind": "s1", "label": S1_LABEL, "model": classification.model or s1_router.MODEL_ID,
+                "url": S1_URL}
     return {"kind": "jev", "label": "Jev by TypeSafe AI",
             "model": classification.model or jev.MODEL}
+
+
+def warm() -> bool:
+    """Load the model and run one request, so the first visitor does not wait for it."""
+    return S1.warm()
+
+
+def _native_difficulty(result: jev.Classification) -> jev.Classification:
+    """A Jev answer with difficulty mapped onto the router's own scale."""
+    offset, scale = JEV_CALIBRATION
+    return dataclasses.replace(result, difficulty=max(0.0, min(1.0, (result.difficulty - offset) / scale)))
 
 
 async def _fallback(request: str, context: str, client: httpx.AsyncClient) -> jev.Classification | None:
@@ -123,8 +159,13 @@ async def _fallback(request: str, context: str, client: httpx.AsyncClient) -> je
 
 
 async def classify(request: str, context: str, client: httpx.AsyncClient) -> jev.Classification | None:
-    """Jev first, a small free model second, ``None`` when neither answers."""
+    """s1-llm-auto-router first, hosted Jev second, a small free model third, else ``None``."""
+    if FIRST_CHOICE != "jev":
+        result = await asyncio.to_thread(S1, request, context)
+        if not result.failed:
+            return result
+        log.warning("s1-llm-auto-router did not answer; trying hosted Jev")
     result = await asyncio.to_thread(jev.classify, request, context)
     if not result.failed:
-        return result
+        return _native_difficulty(result)
     return await _fallback(request, context, client)

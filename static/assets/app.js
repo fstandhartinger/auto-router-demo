@@ -530,9 +530,11 @@ function paintClassification(data) {
   const c = data.classification;
   const meta = data.classifier || {};
   el("#classifier-chip").textContent =
-    meta.kind === "jev" ? "Jev by TypeSafe AI"
+    meta.kind === "s1" ? "s1-llm-auto-router"
+      : meta.kind === "jev" ? "Jev by TypeSafe AI (fallback)"
       : meta.kind === "fallback" ? `fallback: ${meta.model}` : "no classifier";
-  el("#classifier-chip").className = "chip " + (meta.kind === "jev" ? "chip-quiet" : "chip-warn");
+  el("#classifier-chip").title = meta.kind === "s1" ? meta.label : "";
+  el("#classifier-chip").className = "chip " + (meta.kind === "s1" ? "chip-quiet" : "chip-warn");
 
   const probs = Object.entries(data.categoryProbabilities || {})
     .filter(([, v]) => v > 0.001).sort((a, b) => b[1] - a[1]).slice(0, 4);

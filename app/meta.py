@@ -50,7 +50,7 @@ class PageMeta:
 PAGES: dict[str, PageMeta] = {
     "": PageMeta(
         "Auto-router: an open-source LLM router — watch it pick the model",
-        "Type a prompt. Jev classifies it in about 0.6 s, every candidate model is priced for "
+        "Type a prompt. An open routing model classifies it in about 30 ms, every candidate model is priced for "
         "that exact request from Benchmark Heaven data, the expected-cost rule picks one, and "
         "the answer streams back — with a Jev check on the cheap answers.",
     ),
@@ -66,7 +66,7 @@ PAGES: dict[str, PageMeta] = {
     ),
     "how": PageMeta(
         "How it works: classify, decide, answer, check — auto-router",
-        "Jev classifies the request, then the router prices each route, including cache state, "
+        "An open routing model classifies the request, then the router prices each route, including cache state, "
         "and picks the cheapest model likely to get it right. A quality check can escalate a "
         "weaker answer before you receive it.",
     ),

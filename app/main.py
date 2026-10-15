@@ -114,6 +114,15 @@ async def _startup() -> None:
     # comes up, answers its health check, and says "still starting" until it is
     # ready. A retry loop handles a benchmark outage at boot.
     app.state.builder = asyncio.create_task(_build_catalog())
+    app.state.warmup = asyncio.create_task(_warm_classifier())
+
+
+async def _warm_classifier() -> None:
+    if classify.FIRST_CHOICE == "jev":
+        return
+    ok = await asyncio.to_thread(classify.warm)
+    if not ok:
+        log.warning("s1-llm-auto-router did not load; requests fall back to hosted Jev")
 
 
 async def _build_catalog() -> None:
@@ -722,7 +731,8 @@ async def _run_turn(conv, messages: list[dict], emit, keys: tuple[str, str],
         context = (f"{len(messages)} messages so far. Previous user request: "
                    f"{(previous[-1]['content'] if previous else '')[:400]}")
 
-    await emit(_sse("classifying", {"classifier": "Jev by TypeSafe AI"}))
+    await emit(_sse("classifying", {"classifier": classify.S1_LABEL if classify.FIRST_CHOICE != "jev"
+                                    else "Jev by TypeSafe AI"}))
     started = time.perf_counter()
     classification = await classify.classify(prompt, context, app.state.client)
     classification_ms = (time.perf_counter() - started) * 1000
@@ -1033,8 +1043,8 @@ def llms_txt() -> str:
     lines = [
         "# auto-router",
         "",
-        "> A free, MIT-licensed LLM router. It classifies each request with Jev (TypeSafe) or a "
-        "local Jev-class model, prices every model for that request from Benchmark Heaven data "
+        "> A free, MIT-licensed LLM router. It classifies each request with the open s1-llm-auto-router "
+        "(Decision Models), Jev (TypeSafe) or a local Jev-class model, prices every model for that request from Benchmark Heaven data "
         "including warm and cold prompt-cache prices, and sends it to the route with the lowest "
         "expected cost. It runs locally with Claude Code, Codex, OpenCode, OpenClaw, Hermes Agent, "
         "GitHub Copilot or Cursor.",
