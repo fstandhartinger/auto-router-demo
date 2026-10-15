@@ -45,7 +45,7 @@ cheap answers — 85 % of wrong coding answers caught at a 10 % false-alarm rate
 
 ```
 browser ──SSE──► FastAPI (app/)
-                   ├── classify.py   Jev, with a labelled free-model fallback
+                   ├── classify.py   s1-llm-auto-router on CPU, then hosted Jev, then a labelled free model
                    ├── engine.py     builds the catalog, drives the router's policy
                    ├── latency.py    expected time per route; the reasoning plan per request
                    ├── verify.py     the answer check and what the page is told about it
@@ -68,7 +68,7 @@ the best route it may use, leaving the decision untouched.
 ./scripts/vendor_router.sh          # fetches auto_router/ at the pinned commit
 pip install -r requirements.txt
 
-export TYPESAFE_API_KEY=...         # the classifier; without it the fallback is used
+export TYPESAFE_API_KEY=...         # the answer check, and the second-choice classifier
 export DEMO_ROUTES_FILE=routes.local.json
 uvicorn app.main:app --port 8080
 ```
@@ -84,7 +84,9 @@ demo just cannot run it.
 | Variable | Default | What it does |
 |---|---|---|
 | `DEMO_ROUTES_JSON` / `DEMO_ROUTES_FILE` | – | providers and routes, as JSON or a path |
-| `TYPESAFE_API_KEY` | – | Jev. Missing or unreachable ⇒ the labelled fallback classifier |
+| `DEMO_CLASSIFIER` | `s1` | `s1` = open s1-llm-auto-router on this CPU first; `jev` = hosted Jev first |
+| `DEMO_S1_THREADS` | `2` | CPU threads for the classifier |
+| `TYPESAFE_API_KEY` | – | Jev: the answer check and the second-choice classifier. Missing or unreachable ⇒ the labelled free-model fallback |
 | `DEMO_RUNS_PER_IP_PER_HOUR` | `20` | per-visitor rate limit |
 | `DEMO_RUNS_PER_DAY` | `1200` | global run cap |
 | `DEMO_DAILY_BUDGET_USD` | `3.0` | metered spend the demo may use per day |
@@ -110,7 +112,7 @@ requests nobody will answer.
 No prompt and no answer is stored. The server keeps counters (a salted, restart-scoped hash of the
 address, a run count, a dollar total) and the router's prompt-free decision record in memory for
 the page you are looking at. Multi-turn conversations live in memory for the length of a session
-and are never written to disk. Prompts are sent to the classifier and to whichever model answers,
+and are never written to disk. The classifier runs in the container (no request leaves it for classification); prompts are sent to whichever model answers, to Jev only for the check of a cheap answer (or if the local classifier fails),
 and — when that is the peer-to-peer route — to a volunteer's computer, which the page says before
 you use it.
 
@@ -140,7 +142,7 @@ behind these projects.
 
 ## Credit
 
-Classifier: **Jev** by [TypeSafe AI](https://typesafe.ai). Model data: **Benchmark Heaven**, which
+Classifier: [s1-llm-auto-router](https://huggingface.co/decisionmodels/s1-llm-auto-router) by [Decision Models](https://decisionmodels.io) (MIT, open weights); answer check: **Jev** by [TypeSafe AI](https://typesafe.ai). Model data: **Benchmark Heaven**, which
 serves numbers from [Artificial Analysis](https://artificialanalysis.ai) and
 [Epoch AI](https://epoch.ai). Router: [auto-model-router](https://github.com/fstandhartinger/auto-model-router), MIT.
 

@@ -204,8 +204,8 @@ export function renderResults(root, data) {
       <div class="s">${pct1(best.success)} versus ${pct1(baseline.success)}</div></div>
     <div class="stat"><span class="v">78</span><span class="k">graded tasks</span>
       <div class="s">five categories, three difficulty levels, 8 models</div></div>
-    <div class="stat"><span class="v">0.65 s</span><span class="k">to classify a turn</span>
-      <div class="s">one Jev call on a scrubbed summary</div></div>`;
+    <div class="stat"><span class="v">~30 ms</span><span class="k">to classify a turn</span>
+      <div class="s">s1-llm-auto-router on the server's CPU (Jev, the earlier classifier: 0.65 s)</div></div>`;
   root.append(stats);
 
   /* 1. policies ---------------------------------------------------------- */
@@ -351,7 +351,7 @@ export function renderResults(root, data) {
   root.append(s4);
 
   /* 5. the classifier ---------------------------------------------------- */
-  const s5 = section("How good the classifier is", esc(data.jev.about));
+  const s5 = section("How good Jev was as the classifier", esc(data.jev.about) + " " + esc(data.jev.live_note || ""));
   const jstats = document.createElement("div");
   jstats.className = "stat-row";
   jstats.innerHTML = `

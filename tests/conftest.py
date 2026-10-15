@@ -58,9 +58,11 @@ def client(monkeypatch):
         from auto_router import jev
 
         hard = "hard" in request.lower()
+        # Difficulty on the router's own 0..1 scale, which is what the app hands the policy
+        # (the same turns used to be 0.3 and 0.9 on Jev's compressed scale).
         return jev.Classification(
             category="coding", category_probs={"coding": 0.9, "general": 0.1},
-            category_confidence=0.9, difficulty=0.9 if hard else 0.3,
+            category_confidence=0.9, difficulty=1.0 if hard else 0.06,
             difficulty_confidence=0.8, needs_tools=0.1, needs_vision=0.0,
             needs_long_context=0.0, follow_up=0.1, stakes=0.5, latency_s=0.12,
             model="jev-test")
@@ -74,6 +76,8 @@ def client(monkeypatch):
         yield "usage", providers.Usage(prompt_tokens=4000, completion_tokens=8, cached_tokens=0)
 
     monkeypatch.setattr(classify, "classify", fake_classify)
+    # The suite never loads (or downloads) the real classifier model.
+    monkeypatch.setattr(classify, "warm", lambda: True)
     monkeypatch.setattr(providers, "stream_answer", fake_stream)
 
     main.LIMITER._hits.clear()
