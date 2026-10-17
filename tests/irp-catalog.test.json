@@ -1,0 +1,322 @@
+{
+ "schema": 1,
+ "generated_at": "2026-10-17T00:00:00Z",
+ "models": [
+  {
+   "id": "system1models.ai/tiny-free",
+   "core": true,
+   "irp_aliases": [
+    "tiny-alias"
+   ],
+   "bench_id": null
+  },
+  {
+   "id": "irptest/model-0",
+   "irp_aliases": [
+    "e2ee-irptest-model-0"
+   ],
+   "bench_id": "irptest-model-0::default",
+   "label": "IRP test model 0",
+   "prices": {
+    "input": 0.1,
+    "output": 0.4
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-0::default",
+     "family_key": "irptest-model-0",
+     "display_name": "m0",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 20,
+      "aa_coding_index": 18,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-1",
+   "irp_aliases": [
+    "e2ee-irptest-model-1"
+   ],
+   "bench_id": "irptest-model-1::default",
+   "label": "IRP test model 1",
+   "prices": {
+    "input": 0.2,
+    "output": 0.8
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-1::default",
+     "family_key": "irptest-model-1",
+     "display_name": "m1",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 24,
+      "aa_coding_index": 22,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-2",
+   "irp_aliases": [
+    "e2ee-irptest-model-2"
+   ],
+   "bench_id": "irptest-model-2::default",
+   "label": "IRP test model 2",
+   "prices": {
+    "input": 0.30000000000000004,
+    "output": 1.2000000000000002
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-2::default",
+     "family_key": "irptest-model-2",
+     "display_name": "m2",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 28,
+      "aa_coding_index": 26,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-3",
+   "irp_aliases": [
+    "e2ee-irptest-model-3"
+   ],
+   "bench_id": "irptest-model-3::default",
+   "label": "IRP test model 3",
+   "prices": {
+    "input": 0.4,
+    "output": 1.6
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-3::default",
+     "family_key": "irptest-model-3",
+     "display_name": "m3",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 32,
+      "aa_coding_index": 30,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-4",
+   "irp_aliases": [
+    "e2ee-irptest-model-4"
+   ],
+   "bench_id": "irptest-model-4::default",
+   "label": "IRP test model 4",
+   "prices": {
+    "input": 0.5,
+    "output": 2.0
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-4::default",
+     "family_key": "irptest-model-4",
+     "display_name": "m4",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 36,
+      "aa_coding_index": 34,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-5",
+   "irp_aliases": [
+    "e2ee-irptest-model-5"
+   ],
+   "bench_id": "irptest-model-5::default",
+   "label": "IRP test model 5",
+   "prices": {
+    "input": 0.6000000000000001,
+    "output": 2.4000000000000004
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-5::default",
+     "family_key": "irptest-model-5",
+     "display_name": "m5",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 40,
+      "aa_coding_index": 38,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-6",
+   "irp_aliases": [
+    "e2ee-irptest-model-6"
+   ],
+   "bench_id": "irptest-model-6::default",
+   "label": "IRP test model 6",
+   "prices": {
+    "input": 0.7000000000000001,
+    "output": 2.8000000000000003
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-6::default",
+     "family_key": "irptest-model-6",
+     "display_name": "m6",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 44,
+      "aa_coding_index": 42,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-7",
+   "irp_aliases": [
+    "e2ee-irptest-model-7"
+   ],
+   "bench_id": "irptest-model-7::default",
+   "label": "IRP test model 7",
+   "prices": {
+    "input": 0.8,
+    "output": 3.2
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-7::default",
+     "family_key": "irptest-model-7",
+     "display_name": "m7",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 48,
+      "aa_coding_index": 46,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-8",
+   "irp_aliases": [
+    "e2ee-irptest-model-8"
+   ],
+   "bench_id": "irptest-model-8::default",
+   "label": "IRP test model 8",
+   "prices": {
+    "input": 0.9,
+    "output": 3.6
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-8::default",
+     "family_key": "irptest-model-8",
+     "display_name": "m8",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 52,
+      "aa_coding_index": 50,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-9",
+   "irp_aliases": [
+    "e2ee-irptest-model-9"
+   ],
+   "bench_id": "irptest-model-9::default",
+   "label": "IRP test model 9",
+   "prices": {
+    "input": 1.0,
+    "output": 4.0
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-9::default",
+     "family_key": "irptest-model-9",
+     "display_name": "m9",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 56,
+      "aa_coding_index": 54,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  },
+  {
+   "id": "irptest/model-10",
+   "irp_aliases": [
+    "e2ee-irptest-model-10"
+   ],
+   "bench_id": "irptest-model-10::default",
+   "label": "IRP test model 10",
+   "prices": {
+    "input": 1.1,
+    "output": 4.4
+   },
+   "context_tokens": 128000,
+   "document": {
+    "model": {
+     "id": "irptest-model-10::default",
+     "family_key": "irptest-model-10",
+     "display_name": "m10",
+     "variant": "default",
+     "benchmarks": {
+      "aa_intelligence_index": 60,
+      "aa_coding_index": 58,
+      "aa_math_index": null
+     },
+     "designarena": {},
+     "offers": []
+    }
+   }
+  }
+ ]
+}

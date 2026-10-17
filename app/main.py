@@ -57,6 +57,7 @@ app = FastAPI(title="Auto-router playground", docs_url=None, redoc_url=None)
 
 # IRP ranks locally; it never calls the playground classifier or spends its budget.
 from .irp import routes as irp_routes
+from .irp_catalog import CATALOG as IRP_CATALOG
 app.include_router(irp_routes)
 
 UMAMI_WEBSITE_ID = "d3f0e8b5-20e0-4649-8bad-2ba3c26eabe6"
@@ -115,6 +116,9 @@ async def _startup() -> None:
     # ready. A retry loop handles a benchmark outage at boot.
     app.state.builder = asyncio.create_task(_build_catalog())
     app.state.warmup = asyncio.create_task(_warm_classifier())
+    # The IRP model list refreshes itself hourly; a failed refresh keeps the last good catalog.
+    app.state.irp_refresh = asyncio.create_task(
+        IRP_CATALOG.refresh_loop(lambda: ENGINE.config if ENGINE.ready() else None))
 
 
 async def _warm_classifier() -> None:
@@ -141,6 +145,7 @@ async def _build_catalog() -> None:
 
 @app.on_event("shutdown")
 async def _shutdown() -> None:
+    app.state.irp_refresh.cancel()
     LIMITER.flush()
     USAGE.flush()
     await app.state.client.aclose()

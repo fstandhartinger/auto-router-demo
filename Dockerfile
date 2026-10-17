@@ -3,7 +3,7 @@
 FROM python:3.12-slim
 
 ARG ROUTER_REPO=https://github.com/fstandhartinger/auto-model-router.git
-ARG ROUTER_REF=8a382960bf231597fe2132c40889041010ee358c
+ARG ROUTER_REF=a803bd941f78350a2cf3f90328a75fe59fb64ccb
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends git ca-certificates curl \
