@@ -14,6 +14,7 @@ import os
 from types import SimpleNamespace
 
 from auto_router import s1_router
+from auto_router.economics import success_v2
 from auto_router.irp import BudgetedClassifier, Problem, endpoints
 
 from . import classify
@@ -98,6 +99,23 @@ CLASSIFIER = BudgetedClassifier(
     loaded=lambda: bool(getattr(classify.S1, "loaded", True)))
 
 
+#: ``IRP_SUCCESS_MODEL=v1`` puts rankings back on the playground's success model. The default v2 was refitted on
+#: 720 graded outcomes and kept the most quality on a fresh pre-registered set (auto-model-router
+#: evaluation/antseed-irp-eval-20261017/wave3). The playground itself stays on v1.
+SUCCESS_VERSION = "v1" if (os.environ.get("IRP_SUCCESS_MODEL") or "v2").strip().lower() == "v1" else "v2"
+_SUCCESS: dict = {}
+
+
+def _success(base):
+    if SUCCESS_VERSION == "v1":
+        return base
+    cached = _SUCCESS.get("v2")
+    if cached is None or cached[0] is not base:
+        cached = (base, success_v2(measured=dict(base.measured)))
+        _SUCCESS["v2"] = cached
+    return cached[1]
+
+
 def _config():
     if not ENGINE.ready():
         raise Problem(503, "Model catalog is starting; please retry.", 30)
@@ -107,7 +125,7 @@ def _config():
 def get_router():
     config = _config()
     # A separate stateless view leaves the existing playground behavior intact.
-    return SimpleNamespace(config=config, success=ENGINE.router.success, classifier=CLASSIFIER,
+    return SimpleNamespace(config=config, success=_success(ENGINE.router.success), classifier=CLASSIFIER,
                            _turn_request=ENGINE.router._turn_request, _summary=ENGINE.router._summary)
 
 
@@ -116,7 +134,7 @@ def models_extra() -> dict:
         info = CATALOG.info(_config())
     except Exception:  # noqa: BLE001 - status fields are best effort
         info = CATALOG.info()
-    return {**info, "classifier": CLASSIFIER.status()}
+    return {**info, "classifier": CLASSIFIER.status(), "success_model": SUCCESS_VERSION}
 
 
 async def guard(request):
