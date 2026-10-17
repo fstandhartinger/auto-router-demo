@@ -34,6 +34,10 @@ os.environ["DEMO_SPEED_FILE"] = str(TESTS / "speed.test.json")
 # laptop would otherwise change what the tests decide.
 os.environ["DEMO_HEALTH_FILE"] = str(TESTS / "health.test.json")
 os.environ["FAKE_KEY"] = "not-a-real-key"
+# The IRP catalog comes from a hermetic file and is never refreshed over the network.
+os.environ["IRP_CATALOG_FILE"] = str(TESTS / "irp-catalog.test.json")
+os.environ["IRP_CATALOG_URL"] = ""
+os.environ.pop("IRP_TRUSTED_IPS", None)
 # The counters must never be written to (or read from) a real deployment path.
 os.environ["DEMO_STATE_FILE"] = str(TESTS / ".limits.test.json")
 os.environ["DEMO_TEST_KEY"] = "test-key"
@@ -80,6 +84,21 @@ def client(monkeypatch):
     monkeypatch.setattr(classify, "warm", lambda: True)
     monkeypatch.setattr(providers, "stream_answer", fake_stream)
 
+    class FakeS1:
+        """The IRP path calls the local s1 classifier directly; the suite never loads the real one."""
+        loaded = True
+
+        def __call__(self, request, context=""):
+            from auto_router import jev
+            hard = "hard" in request.lower()
+            return jev.Classification(
+                category="coding", category_probs={"coding": 1.0}, category_confidence=0.9,
+                difficulty=1.0 if hard else 0.06, difficulty_confidence=0.8, needs_tools=0.1,
+                needs_vision=0.0, needs_long_context=0.0, follow_up=0.1, stakes=0.5, latency_s=0.01,
+                model="s1-test")
+
+    monkeypatch.setattr(classify, "S1", FakeS1())
+
     main.LIMITER._hits.clear()
     main.LIMITER._day_runs = 0
     main.LIMITER._day_spend = 0.0
@@ -89,6 +108,9 @@ def client(monkeypatch):
     main.LIMITER.per_subnet_per_day = 100
     main.LIMITER.global_per_day = 1200
     main.LIMITER.daily_budget_usd = 4.0
+    from app import irp
+    irp.LIMITER._hits.clear()
+    irp.LIMITER._day_runs = 0
     main.SESSIONS.clear()
     SENT.clear()
     from app import latency

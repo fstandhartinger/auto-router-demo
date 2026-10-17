@@ -152,13 +152,25 @@ MIT licensed.
 
 This deployment offers IRP v0.3.0-draft suggest-only at `/v1/routing/models` and
 `/v1/routing/rank`, using the published router's shared ranking implementation.
-It ranks locally without paid classifier/inference calls. All supplied messages
-and tools contribute to token estimates; caller candidates retain their own
-prices and cache state. Predictions use the configured success model with a
-conservative category/difficulty prior and are advisory. The preference is
+It ranks locally without paid classifier/inference calls. The last user turn is
+classified by the same local s1-llm-auto-router the playground uses, under a
+time budget (`IRP_CLASSIFIER_TIMEOUT_MS`, default 800) and a concurrency cap
+(`IRP_CLASSIFIER_CONCURRENCY`, default 3); on a timeout, a full pool or any error
+the ranking still succeeds on a conservative prior, and `extra["system1models.ai"].classifier`
+says which basis was used. All supplied messages and tools contribute to token
+estimates; caller candidates retain their own prices and cache state. Predictions
+use the configured success model and are advisory. The preference is
 monotonic from quality-first (0) to cost-first (10), default 5. Errors are
 `application/problem+json`; extension fields use `extra["system1models.ai"]`.
-The public API is free, with bounded IP/network request allowances. It shares
+The models listed are the playground's plus every model that AntSeed sellers
+advertise and Benchmark Heaven has capability evidence for (`app/irp_catalog.py`):
+the catalog is the `irp-catalog.json` file on the `irp-catalog` branch (`IRP_CATALOG_URL`,
+refreshed hourly, validated, last good kept on any failure; a copy is baked into the
+image). Prices in that file only construct the model records; rankings use the caller's
+prices. The public API is free, with bounded IP/network request allowances;
+`IRP_TRUSTED_IPS` (comma list of addresses/CIDRs, matched against the address the
+platform proxy saw, never a caller-supplied header) gets its own bucket
+(`IRP_TRUSTED_PER_HOUR` 20000, `IRP_TRUSTED_PER_DAY` 200000). It shares
 neither spending nor conversation state with the playground.
 
 The playground trims requests, caps output, substitutes expensive frontier routes
