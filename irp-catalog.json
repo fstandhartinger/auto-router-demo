@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-17T10:56:15Z",
+ "generated_at": "2026-10-18T03:23:59Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -3043,8 +3043,7 @@
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
     "gemma-4-26b",
-    "gemma-4-26b-a4b",
-    "google-gemma-4-26b-a4b-instruct"
+    "gemma-4-26b-a4b"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -5839,7 +5838,6 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
-    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -9317,9 +9315,7 @@
    },
    "id": "qwen/qwen3.8-27b",
    "irp_aliases": [
-    "e2ee-qwen3-8-27b",
-    "qwen3.8-27b-fast",
-    "qwen3.8-27b-mtp"
+    "e2ee-qwen3-8-27b"
    ],
    "label": "Qwen3.8 27B",
    "prices": {
@@ -9550,7 +9546,7 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen-3-235b-a22b-instruct-2507",
+    "qwen3-235b-a22b-instruct-2507",
     "qwen3-235b-instruct"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
@@ -11041,9 +11037,7 @@
     }
    },
    "id": "z-ai/glm-4.7-flash",
-   "irp_aliases": [
-    "e2ee-glm-4.7-flash"
-   ],
+   "irp_aliases": [],
    "label": "GLM 4.7 Flash",
    "prices": {
     "input": 0.06,
