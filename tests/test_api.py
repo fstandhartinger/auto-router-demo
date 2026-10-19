@@ -7,7 +7,12 @@ from conftest import first, sse
 
 # ---------------------------------------------------------------- basics --
 def test_health_and_meta(client):
-    assert client.get("/healthz").json()["ok"] is True
+    health = client.get("/healthz").json()
+    assert health["ok"] is True
+    # models counts the IRP catalog (playground models plus the wide catalog), not just the playground set
+    assert health["playground_models"] == 4
+    assert health["models"] >= health["playground_models"]
+    assert health["catalog_source"] in ("baked", "remote")
     meta = client.get("/api/meta").json()
     assert len(meta["examples"]) >= 6
     assert {m["name"] for m in meta["models"]} == {
