@@ -56,7 +56,7 @@ WHAT_IF_LIMITER = Limiter(per_ip_per_hour=600, per_ip_per_day=4000,
 app = FastAPI(title="Auto-router playground", docs_url=None, redoc_url=None)
 
 # IRP ranks locally; it never calls the playground classifier or spends its budget.
-from .irp import routes as irp_routes
+from .irp import models_extra as irp_models_extra, routes as irp_routes
 from .irp_catalog import CATALOG as IRP_CATALOG
 app.include_router(irp_routes)
 
@@ -505,9 +505,16 @@ def _actual_cost(model_name: str, usage: providers.Usage, decision) -> float:
 # ---------------------------------------------------------------------------
 @app.get("/healthz")
 async def healthz():
-    """The process is alive. ``ready`` says whether the catalog is built yet."""
-    return {"ok": True, "ready": ENGINE.ready(),
-            "models": len(ENGINE.config.catalog.all()) if ENGINE.ready() else 0}
+    """The process is alive. ``ready`` says whether the catalog is built yet.
+
+    ``models`` is the size of the catalog the IRP routing API serves (the wide AntSeed x Benchmark Heaven
+    catalog); ``playground_models`` is the small set the playground page routes between."""
+    if not ENGINE.ready():
+        return {"ok": True, "ready": False, "models": 0, "playground_models": 0}
+    extra = irp_models_extra()
+    return {"ok": True, "ready": True, "models": extra["catalog_models"],
+            "playground_models": len(ENGINE.config.catalog.all()),
+            "catalog_generated_at": extra["catalog_generated_at"], "catalog_source": extra["catalog_source"]}
 
 
 @app.get("/api/meta")
