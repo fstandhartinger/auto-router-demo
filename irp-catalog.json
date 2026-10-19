@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-18T15:24:01Z",
+ "generated_at": "2026-10-19T03:23:54Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -442,7 +442,9 @@
     }
    },
    "id": "anthropic/claude-opus-4.6",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "claude-opus-4.6:fast"
+   ],
    "label": "Claude Opus 4.6",
    "prices": {
     "input": 5,
@@ -3083,8 +3085,7 @@
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
     "gemma-4-26b",
-    "gemma-4-26b-a4b",
-    "google-gemma-4-26b-a4b-instruct"
+    "gemma-4-26b-a4b"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -3812,6 +3813,61 @@
    "prices": {
     "input": 0.075,
     "output": 0.225
+   }
+  },
+  {
+   "bench_id": "ling-3.0-flash-fin::default",
+   "context_tokens": 262144,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 262144
+     },
+     "benchmarks": {
+      "aa_agentic_index": 29.3,
+      "aa_coding_index": 55.6,
+      "aa_gpqa": null,
+      "aa_hle": 0.226,
+      "aa_intelligence_index": 22.6,
+      "aa_lcr": 0.736666666666667,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.424,
+      "aa_tau2": null,
+      "aa_tau_banking": 0.385567010309278,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": 0.625468164794007
+     },
+     "designarena": {},
+     "display_name": "Ling-3.0-flash-Fin",
+     "family_key": "ling-3.0-flash-fin",
+     "id": "ling-3.0-flash-fin::default",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2026-09-11",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-19T00:53:27.569Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 66698.07852058602
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "ling-3.0-flash-fin",
+   "irp_aliases": [],
+   "label": "Ling 3.0 Flash Fin",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
    }
   },
   {
@@ -5879,7 +5935,6 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
-    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -9588,7 +9643,7 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen-3-235b-a22b-instruct-2507",
+    "qwen3-235b-a22b-instruct-2507",
     "qwen3-235b-instruct"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
@@ -11079,9 +11134,7 @@
     }
    },
    "id": "z-ai/glm-4.7-flash",
-   "irp_aliases": [
-    "e2ee-glm-4.7-flash"
-   ],
+   "irp_aliases": [],
    "label": "GLM 4.7 Flash",
    "prices": {
     "input": 0.06,
