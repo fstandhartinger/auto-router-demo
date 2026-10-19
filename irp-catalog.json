@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-19T15:24:00Z",
+ "generated_at": "2026-10-19T18:45:03Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1210,7 +1210,9 @@
     }
    },
    "id": "deepseek-v3-0324",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "deepseek-chat-v3-0324"
+   ],
    "label": "DeepSeek V3 0324",
    "prices": {
     "input": 0.25,
@@ -1278,7 +1280,9 @@
     }
    },
    "id": "deepseek-v3.1",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "deepseek-chat-v3.1"
+   ],
    "label": "DeepSeek V3.1",
    "prices": {
     "input": 0.25,
@@ -3085,8 +3089,7 @@
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
     "gemma-4-26b",
-    "gemma-4-26b-a4b",
-    "google-gemma-4-26b-a4b-instruct"
+    "gemma-4-26b-a4b"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -3817,58 +3820,56 @@
    }
   },
   {
-   "bench_id": "ling-3.0-flash-fin::default",
-   "context_tokens": 262144,
+   "bench_id": "magistral-small-1.2::default",
+   "context_tokens": 128000,
    "core": false,
    "document": {
     "model": {
      "aa_metadata": {
-      "context_window_tokens": 262144
+      "context_window_tokens": 128000
      },
      "benchmarks": {
-      "aa_agentic_index": 29.3,
-      "aa_coding_index": 55.6,
-      "aa_gpqa": null,
-      "aa_hle": 0.226,
-      "aa_intelligence_index": 22.6,
-      "aa_lcr": 0.736666666666667,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.424,
-      "aa_tau2": null,
-      "aa_tau_banking": 0.385567010309278,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": 0.625468164794007
+      "aa_coding_index": 14.7,
+      "aa_gpqa": 0.663,
+      "aa_hle": 0.064,
+      "aa_intelligence_index": 8.6,
+      "aa_lcr": 0.193333333333333,
+      "aa_livecodebench": 0.723,
+      "aa_math_index": 80.3,
+      "aa_mmlu_pro": 0.768,
+      "aa_scicode": null,
+      "aa_tau2": 0.277777777777778,
+      "aa_tau_banking": 0.045360824742268,
+      "aa_terminalbench_hard": 0.0454545454545455,
+      "aa_terminalbench_v2_1": 0.0449438202247191,
+      "epoch_eci": 131.43,
+      "epoch_eci_software": null
      },
      "designarena": {},
-     "display_name": "Ling-3.0-flash-Fin",
-     "family_key": "ling-3.0-flash-fin",
-     "id": "ling-3.0-flash-fin::default",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2026-09-11",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-19T00:53:27.569Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 66698.07852058602
-        }
-       }
+     "display_name": "Magistral Small 1.2",
+     "family_key": "magistral-small-1.2",
+     "id": "magistral-small-1.2::default",
+     "offers": [
+      {
+       "input_per_1m": 0.6,
+       "output_per_1m": 1.8,
+       "platform": "AWS Bedrock",
+       "provider": "AWS Bedrock"
       }
-     },
+     ],
+     "open_weights": true,
+     "release_date": "2025-09-17",
      "variant": "default"
     }
    },
-   "id": "ling-3.0-flash-fin",
-   "irp_aliases": [],
-   "label": "Ling 3.0 Flash Fin",
+   "id": "magistral-small-1.2",
+   "irp_aliases": [
+    "magistral-small-2509"
+   ],
+   "label": "Magistral Small 1.2",
    "prices": {
-    "input": 0.0,
-    "output": 0.0
+    "input": 0.6,
+    "output": 1.8
    }
   },
   {
@@ -5936,7 +5937,6 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
-    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -9780,7 +9780,7 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen-3-235b-a22b-instruct-2507",
+    "qwen3-235b-a22b-instruct-2507",
     "qwen3-235b-instruct"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
@@ -11350,9 +11350,7 @@
     }
    },
    "id": "z-ai/glm-4.7-flash",
-   "irp_aliases": [
-    "e2ee-glm-4.7-flash"
-   ],
+   "irp_aliases": [],
    "label": "GLM 4.7 Flash",
    "prices": {
     "input": 0.06,
