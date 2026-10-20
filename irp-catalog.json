@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-20T03:23:02Z",
+ "generated_at": "2026-10-20T06:23:55Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1061,92 +1061,6 @@
    }
   },
   {
-   "bench_id": "deepseek-r1-distill-llama-8b::default",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.302,
-      "aa_hle": null,
-      "aa_intelligence_index": 6.5,
-      "aa_lcr": 0,
-      "aa_livecodebench": 0.233,
-      "aa_math_index": 41.3,
-      "aa_mmlu_pro": 0.543,
-      "aa_scicode": null,
-      "aa_tau2": null,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "DeepSeek R1 Distill Llama 8B",
-     "family_key": "deepseek-r1-distill-llama-8b",
-     "id": "deepseek-r1-distill-llama-8b::default",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2025-01-20",
-     "variant": "default"
-    }
-   },
-   "id": "deepseek-r1-distill-llama-8b",
-   "irp_aliases": [],
-   "label": "DeepSeek R1 Distill Llama 8B",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
-   }
-  },
-  {
-   "bench_id": "deepseek-r1-distill-qwen-14b::default",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.484,
-      "aa_hle": 0.041,
-      "aa_intelligence_index": 7.8,
-      "aa_lcr": 0.103333333333333,
-      "aa_livecodebench": 0.376,
-      "aa_math_index": 55.7,
-      "aa_mmlu_pro": 0.74,
-      "aa_scicode": null,
-      "aa_tau2": null,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null,
-      "epoch_eci": 135.44,
-      "epoch_eci_software": null
-     },
-     "designarena": {},
-     "display_name": "DeepSeek R1 Distill Qwen 14B",
-     "family_key": "deepseek-r1-distill-qwen-14b",
-     "id": "deepseek-r1-distill-qwen-14b::default",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2025-01-20",
-     "variant": "default"
-    }
-   },
-   "id": "deepseek-r1-distill-qwen-14b",
-   "irp_aliases": [],
-   "label": "DeepSeek R1 Distill Qwen 14B",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
-   }
-  },
-  {
    "bench_id": "deepseek-v3-0324::default",
    "context_tokens": 128000,
    "core": false,
@@ -1767,48 +1681,6 @@
    "prices": {
     "input": 0.4,
     "output": 2
-   }
-  },
-  {
-   "bench_id": "ernie-5.0-thinking-preview::default",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.777,
-      "aa_hle": 0.133,
-      "aa_intelligence_index": 14.3,
-      "aa_lcr": null,
-      "aa_livecodebench": 0.812,
-      "aa_math_index": 85,
-      "aa_mmlu_pro": 0.83,
-      "aa_scicode": null,
-      "aa_tau2": 0.839181286549707,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.25,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "ERNIE 5.0 Thinking Preview",
-     "family_key": "ernie-5.0-thinking-preview",
-     "id": "ernie-5.0-thinking-preview::default",
-     "offers": [],
-     "open_weights": false,
-     "release_date": "2025-11-13",
-     "variant": "default"
-    }
-   },
-   "id": "ernie-5.0-thinking-preview",
-   "irp_aliases": [],
-   "label": "Ernie 5.0 Thinking Preview",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
    }
   },
   {
@@ -9671,50 +9543,6 @@
     "qwen2.5-coder-7b"
    ],
    "label": "Qwen2.5 Coder Instruct 7B",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
-   }
-  },
-  {
-   "bench_id": "qwen3-235b-a22b::reasoning",
-   "context_tokens": 32768,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 32768
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.7,
-      "aa_hle": 0.11,
-      "aa_intelligence_index": 9.5,
-      "aa_lcr": 0,
-      "aa_livecodebench": 0.622,
-      "aa_math_index": 82,
-      "aa_mmlu_pro": 0.828,
-      "aa_scicode": null,
-      "aa_tau2": 0.239766081871345,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.0606060606060606,
-      "aa_terminalbench_v2_1": null,
-      "epoch_eci": 139.35,
-      "epoch_eci_software": 140.50769314572688
-     },
-     "designarena": {},
-     "display_name": "Qwen3 235B A22B (Reasoning)",
-     "family_key": "qwen3-235b-a22b",
-     "id": "qwen3-235b-a22b::reasoning",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2025-04-28",
-     "variant": "reasoning"
-    }
-   },
-   "id": "qwen3-235b-a22b",
-   "irp_aliases": [],
-   "label": "Qwen3 235B A22b",
    "prices": {
     "input": 0.0,
     "output": 0.0
