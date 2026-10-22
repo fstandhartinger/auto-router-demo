@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-22T12:23:04Z",
+ "generated_at": "2026-10-22T15:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -5630,8 +5630,8 @@
     "model": {
      "benchmarks": {
       "aa_coding_agent_index": 33.9,
-      "epoch_eci": 150.92,
-      "epoch_eci_software": 149.85408589795517
+      "epoch_eci": 150.94,
+      "epoch_eci_software": 149.97387360233358
      },
      "designarena": {
       "fullstack": {
@@ -5646,9 +5646,9 @@
      "id": "kimi-k2.6::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.1215,
+       "cache_read_per_1m": 0.1125,
        "context_length": 262144,
-       "input_per_1m": 0.441,
+       "input_per_1m": 0.495,
        "output_per_1m": 3.2,
        "platform": "OpenRouter",
        "provider": "Inceptron"
@@ -5680,7 +5680,7 @@
    ],
    "label": "Kimi K2.6",
    "prices": {
-    "input": 0.441,
+    "input": 0.495,
     "output": 3.2
    }
   },
@@ -9279,8 +9279,8 @@
       "aa_tau_banking": 0.0927835051546392,
       "aa_terminalbench_hard": 0.348484848484849,
       "aa_terminalbench_v2_1": 0.449438202247191,
-      "epoch_eci": 144.11,
-      "epoch_eci_software": 143.75060063313495
+      "epoch_eci": 143.73,
+      "epoch_eci_software": 143.62265705146632
      },
      "designarena": {},
      "display_name": "Qwen3.6 35B A3B (Reasoning)",
