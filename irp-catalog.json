@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-22T15:23:02Z",
+ "generated_at": "2026-10-22T18:23:51Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -442,9 +442,7 @@
     }
    },
    "id": "anthropic/claude-opus-4.6",
-   "irp_aliases": [
-    "claude-opus-4.6:fast"
-   ],
+   "irp_aliases": [],
    "label": "Claude Opus 4.6",
    "prices": {
     "input": 5,
