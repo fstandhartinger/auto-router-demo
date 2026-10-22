@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-22T06:23:48Z",
+ "generated_at": "2026-10-22T09:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -2285,7 +2285,7 @@
        "input_per_1m": 0.1,
        "output_per_1m": 0.4,
        "platform": "OpenRouter",
-       "provider": "Google"
+       "provider": "Google AI Studio"
       }
      ],
      "open_weights": false,
