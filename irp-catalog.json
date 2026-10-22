@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-22T09:23:02Z",
+ "generated_at": "2026-10-22T12:23:04Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -147,8 +147,8 @@
       "aa_tau_banking": 0.0927835051546392,
       "aa_terminalbench_hard": 0.272727272727273,
       "aa_terminalbench_v2_1": 0.441947565543071,
-      "epoch_eci": 142.4,
-      "epoch_eci_software": 145.00933907589254
+      "epoch_eci": 142.15,
+      "epoch_eci_software": 144.9235606111758
      },
      "designarena": {},
      "display_name": "Claude 4.5 Haiku (Reasoning)",
@@ -310,8 +310,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.46969696969697,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 150.17,
-      "epoch_eci_software": 152.63238213120076
+      "epoch_eci": 150.11,
+      "epoch_eci_software": 152.7411481282809
      },
      "designarena": {
       "frontend": {
@@ -391,15 +391,15 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.462121212121212,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 155.27,
-      "epoch_eci_software": 156.47036051466907
+      "epoch_eci": 155.66,
+      "epoch_eci_software": 156.86176172282222
      },
      "designarena": {
       "frontend": {
-       "battles": 4135,
-       "elo": 1207,
+       "battles": 4192,
+       "elo": 1206,
        "modelId": "claude-opus-4-6",
-       "winRate": 56.5
+       "winRate": 56.3
       },
       "fullstack": {
        "battles": 2517,
@@ -460,8 +460,8 @@
      "benchmarks": {
       "aa_agentic_index": 39.5,
       "aa_coding_agent_index": 46.7,
-      "epoch_eci": 156.32,
-      "epoch_eci_software": 158.0075274984614
+      "epoch_eci": 156.79,
+      "epoch_eci_software": 158.52471069926554
      },
      "designarena": {},
      "display_name": "Opus 4.7 (medium)",
@@ -665,8 +665,8 @@
       "aa_tau_banking": 0.245360824742268,
       "aa_terminalbench_hard": 0.356060606060606,
       "aa_terminalbench_v2_1": 0.558052434456929,
-      "epoch_eci": 146.83,
-      "epoch_eci_software": 147.66712565232896
+      "epoch_eci": 146.74,
+      "epoch_eci_software": 147.65738466953866
      },
      "designarena": {
       "frontend": {
@@ -744,8 +744,8 @@
      "benchmarks": {
       "aa_agentic_index": 33.1,
       "aa_coding_agent_index": 38.6,
-      "epoch_eci": 152.39,
-      "epoch_eci_software": 150.01033633517653
+      "epoch_eci": 152.79,
+      "epoch_eci_software": 150.7210389411648
      },
      "designarena": {
       "frontend": {
@@ -1218,7 +1218,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.25,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 139.91,
+      "epoch_eci": 139.79,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -1286,8 +1286,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.356060606060606,
       "aa_terminalbench_v2_1": 0.468164794007491,
-      "epoch_eci": 146.11,
-      "epoch_eci_software": 145.74778675890292
+      "epoch_eci": 146.09,
+      "epoch_eci_software": 145.63544803367046
      },
      "designarena": {},
      "display_name": "DeepSeek V3.2 (Reasoning)",
@@ -1362,14 +1362,6 @@
      "id": "deepseek-v4-flash::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.0104,
-       "context_length": 1048576,
-       "input_per_1m": 0.04,
-       "output_per_1m": 0.136,
-       "platform": "OpenRouter",
-       "provider": "OpenInference"
-      },
-      {
        "cache_read_per_1m": 0.05,
        "context_length": 1048576,
        "input_per_1m": 0.05,
@@ -1378,12 +1370,20 @@
        "provider": "Relace"
       },
       {
-       "cache_read_per_1m": 0.01652,
+       "cache_read_per_1m": 0.014,
        "context_length": 1024000,
-       "input_per_1m": 0.0826,
-       "output_per_1m": 0.1652,
+       "input_per_1m": 0.07,
+       "output_per_1m": 0.14,
        "platform": "OpenRouter",
        "provider": "StreamLake"
+      },
+      {
+       "cache_read_per_1m": 0.018,
+       "context_length": 1048576,
+       "input_per_1m": 0.09,
+       "output_per_1m": 0.18,
+       "platform": "OpenRouter",
+       "provider": "DeepInfra"
       }
      ],
      "open_weights": true,
@@ -1409,8 +1409,8 @@
    ],
    "label": "DeepSeek V4 Flash",
    "prices": {
-    "input": 0.04,
-    "output": 0.136
+    "input": 0.05,
+    "output": 0.45
    }
   },
   {
@@ -1505,8 +1505,8 @@
       "aa_tau_banking": 0.395876288659794,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.786516853932584,
-      "epoch_eci": 155.29,
-      "epoch_eci_software": 152.68561971699307
+      "epoch_eci": 155.64,
+      "epoch_eci_software": 152.94841691081007
      },
      "designarena": {},
      "display_name": "DeepSeek V4 Pro 0813 (Max)",
@@ -1514,9 +1514,9 @@
      "id": "deepseek-v4-pro-0813::max",
      "offers": [
       {
-       "cache_read_per_1m": 0.2,
+       "cache_read_per_1m": 0.22,
        "context_length": 1048576,
-       "input_per_1m": 0.2016,
+       "input_per_1m": 0.2235,
        "output_per_1m": 8,
        "platform": "OpenRouter",
        "provider": "Relace"
@@ -1559,7 +1559,7 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro 0813",
    "prices": {
-    "input": 0.2016,
+    "input": 0.2235,
     "output": 8
    }
   },
@@ -1593,10 +1593,18 @@
      "id": "deepseek-v4.1-flash-1017::max",
      "offers": [
       {
-       "cache_read_per_1m": 0.01,
+       "cache_read_per_1m": 0.008,
        "context_length": 1048576,
-       "input_per_1m": 0.05,
-       "output_per_1m": 0.024,
+       "input_per_1m": 0.07,
+       "output_per_1m": 0.5,
+       "platform": "OpenRouter",
+       "provider": "OpenInference"
+      },
+      {
+       "cache_read_per_1m": 0.008,
+       "context_length": 1048576,
+       "input_per_1m": 0.07,
+       "output_per_1m": 0.5,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
@@ -1607,14 +1615,6 @@
        "output_per_1m": 0.5,
        "platform": "OpenRouter",
        "provider": "InferenceNet"
-      },
-      {
-       "cache_read_per_1m": 0.007,
-       "context_length": 1048576,
-       "input_per_1m": 0.08,
-       "output_per_1m": 0.6,
-       "platform": "OpenRouter",
-       "provider": "Morph"
       }
      ],
      "open_weights": true,
@@ -1638,8 +1638,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4.1 Flash 1017",
    "prices": {
-    "input": 0.05,
-    "output": 0.024
+    "input": 0.07,
+    "output": 0.5
    }
   },
   {
@@ -1804,7 +1804,7 @@
        "input_per_1m": 1.25,
        "output_per_1m": 10,
        "platform": "OpenRouter",
-       "provider": "Google"
+       "provider": "Google AI Studio"
       }
      ],
      "open_weights": false,
@@ -2003,8 +2003,8 @@
     "model": {
      "benchmarks": {
       "aa_coding_agent_index": 32.9,
-      "epoch_eci": 154.67,
-      "epoch_eci_software": 151.96468748551453
+      "epoch_eci": 155.34,
+      "epoch_eci_software": 155.40317757325036
      },
      "designarena": {},
      "display_name": "Gemini 3.1 Pro (high)",
@@ -2019,13 +2019,13 @@
       },
       {
        "input_per_1m": 2.02,
-       "output_per_1m": 12.12,
+       "output_per_1m": 12.13,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
       },
       {
        "input_per_1m": 4.04,
-       "output_per_1m": 18.18,
+       "output_per_1m": 18.2,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
       }
@@ -2221,7 +2221,7 @@
        "input_per_1m": 0.3,
        "output_per_1m": 2.5,
        "platform": "OpenRouter",
-       "provider": "Google"
+       "provider": "Google AI Studio"
       }
      ],
      "open_weights": false,
@@ -2402,10 +2402,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 6609,
-       "elo": 1126,
+       "battles": 6649,
+       "elo": 1125,
        "modelId": "gemini-3.1-pro-preview",
-       "winRate": 44.5
+       "winRate": 44.3
       },
       "fullstack": {
        "battles": 4827,
@@ -2553,7 +2553,7 @@
       "aa_tau_banking": 0.175257731958763,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.535580524344569,
-      "epoch_eci": 145.15,
+      "epoch_eci": 144.91,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -2636,18 +2636,18 @@
       "aa_tau_banking": 0.298969072164948,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.775280898876405,
-      "epoch_eci": 154.24,
-      "epoch_eci_software": 152.68920177014706
+      "epoch_eci": 154.53,
+      "epoch_eci_software": 151.194114797234
      },
      "designarena": {
       "frontend": {
-       "battles": 2809,
-       "elo": 1195,
+       "battles": 2871,
+       "elo": 1197,
        "modelId": "gemini-3.6-flash",
-       "winRate": 45.5
+       "winRate": 45.6
       },
       "fullstack": {
-       "battles": 2934,
+       "battles": 2936,
        "elo": 1181,
        "modelId": "gemini-3.6-flash",
        "winRate": 44.3
@@ -2876,8 +2876,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 164.56,
-      "epoch_eci_software": 163.7679487219632
+      "epoch_eci": 166.45,
+      "epoch_eci_software": 165.92001892247706
      },
      "designarena": {},
      "display_name": "Gemini 4 Argon (High)",
@@ -2960,7 +2960,7 @@
       "aa_tau_banking": 0.119587628865979,
       "aa_terminalbench_hard": 0.1364,
       "aa_terminalbench_v2_1": 0.389513108614232,
-      "epoch_eci": 141.81,
+      "epoch_eci": 141.88,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -3032,8 +3032,8 @@
       "aa_tau_banking": 0.148453608247423,
       "aa_terminalbench_hard": 0.363636363636364,
       "aa_terminalbench_v2_1": 0.434456928838951,
-      "epoch_eci": 142.86,
-      "epoch_eci_software": 144.8557465892895
+      "epoch_eci": 142.99,
+      "epoch_eci_software": 144.90508583058443
      },
      "designarena": {},
      "display_name": "Gemma 4 31B (Reasoning)",
@@ -3122,7 +3122,7 @@
      "id": "gpt-5-codex::high",
      "offers": [
       {
-       "input_per_1m": 1.23,
+       "input_per_1m": 1.24,
        "output_per_1m": 9.77,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
@@ -3143,7 +3143,7 @@
    "irp_aliases": [],
    "label": "GPT 5 Codex",
    "prices": {
-    "input": 1.23,
+    "input": 1.24,
     "output": 9.77
    }
   },
@@ -3871,9 +3871,7 @@
       "aa_tau2": 0.277777777777778,
       "aa_tau_banking": 0.045360824742268,
       "aa_terminalbench_hard": 0.0454545454545455,
-      "aa_terminalbench_v2_1": 0.0449438202247191,
-      "epoch_eci": 131.43,
-      "epoch_eci_software": null
+      "aa_terminalbench_v2_1": 0.0449438202247191
      },
      "designarena": {},
      "display_name": "Magistral Small 1.2",
@@ -4050,8 +4048,8 @@
       "aa_tau_banking": 0.0371134020618557,
       "aa_terminalbench_hard": 0.0681818181818182,
       "aa_terminalbench_v2_1": 0.0786516853932584,
-      "epoch_eci": 132.2,
-      "epoch_eci_software": 129.32848639150464
+      "epoch_eci": 132.22,
+      "epoch_eci_software": 129.19714126438603
      },
      "designarena": {},
      "display_name": "Llama 4 Maverick",
@@ -4128,7 +4126,7 @@
       "aa_tau_banking": 0.0329896907216495,
       "aa_terminalbench_hard": 0.0151515151515152,
       "aa_terminalbench_v2_1": 0.0374531835205993,
-      "epoch_eci": 129.65,
+      "epoch_eci": 129.63,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -4207,8 +4205,8 @@
       "aa_tau_banking": 0.505154639175258,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.842696629213483,
-      "epoch_eci": 156.76,
-      "epoch_eci_software": null
+      "epoch_eci": 157.21,
+      "epoch_eci_software": 156.93305793652885
      },
      "designarena": {},
      "display_name": "Muse Spark 1.3 (Max)",
@@ -4271,7 +4269,9 @@
       "aa_tau2": null,
       "aa_tau_banking": null,
       "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": 0.764044943820225
+      "aa_terminalbench_v2_1": 0.764044943820225,
+      "epoch_eci": 155.11,
+      "epoch_eci_software": null
      },
      "designarena": {},
      "display_name": "Muse Spark Open (Xhigh)",
@@ -4287,19 +4287,19 @@
       },
       {
        "cache_read_per_1m": 0.15,
+       "context_length": 1048576,
+       "input_per_1m": 1.25,
+       "output_per_1m": 4.25,
+       "platform": "OpenRouter",
+       "provider": "Makora"
+      },
+      {
+       "cache_read_per_1m": 0.15,
        "context_length": 1000000,
        "input_per_1m": 1.25,
        "output_per_1m": 4.25,
        "platform": "OpenRouter",
        "provider": "Modal"
-      },
-      {
-       "cache_read_per_1m": 0.15,
-       "context_length": 1048576,
-       "input_per_1m": 1.25,
-       "output_per_1m": 4.25,
-       "platform": "OpenRouter",
-       "provider": "Together"
       }
      ],
      "open_weights": true,
@@ -4349,7 +4349,9 @@
       "aa_tau2": null,
       "aa_tau_banking": null,
       "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null
+      "aa_terminalbench_v2_1": null,
+      "epoch_eci": 161.85,
+      "epoch_eci_software": null
      },
      "designarena": {},
      "display_name": "Muse Wonder (Max)",
@@ -4645,7 +4647,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.348484848484849,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 146.67,
+      "epoch_eci": 146.59,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -4717,8 +4719,8 @@
       "aa_tau_banking": 0.0989690721649484,
       "aa_terminalbench_hard": 0.393939393939394,
       "aa_terminalbench_v2_1": 0.554307116104869,
-      "epoch_eci": 145.88,
-      "epoch_eci_software": 145.97341954694147
+      "epoch_eci": 145.78,
+      "epoch_eci_software": 145.90172107633904
      },
      "designarena": {},
      "display_name": "MiniMax-M2.7",
@@ -4801,18 +4803,18 @@
       "aa_tau_banking": 0.152577319587629,
       "aa_terminalbench_hard": 0.424242424242424,
       "aa_terminalbench_v2_1": 0.651685393258427,
-      "epoch_eci": 147.13,
-      "epoch_eci_software": 149.87488223112524
+      "epoch_eci": 146.87,
+      "epoch_eci_software": 150.14911637226848
      },
      "designarena": {
       "frontend": {
-       "battles": 3567,
-       "elo": 1198,
+       "battles": 3647,
+       "elo": 1200,
        "modelId": "minimax-m3",
-       "winRate": 46.8
+       "winRate": 46.9
       },
       "fullstack": {
-       "battles": 3673,
+       "battles": 3674,
        "elo": 1197,
        "modelId": "minimax-m3",
        "winRate": 47.2
@@ -5289,8 +5291,8 @@
       "aa_tau_banking": 0.150515463917526,
       "aa_terminalbench_hard": 0.333333333333333,
       "aa_terminalbench_v2_1": 0.50561797752809,
-      "epoch_eci": 141.47,
-      "epoch_eci_software": 141.898700526129
+      "epoch_eci": 141.36,
+      "epoch_eci_software": 141.75652007827293
      },
      "designarena": {},
      "display_name": "Mistral Medium 3.5",
@@ -5495,8 +5497,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.310606060606061,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 145.96,
-      "epoch_eci_software": 144.3755792973131
+      "epoch_eci": 145.82,
+      "epoch_eci_software": 144.28445390308184
      },
      "designarena": {},
      "display_name": "Kimi K2 Thinking",
@@ -5561,8 +5563,8 @@
       "aa_tau_banking": 0.142268041237113,
       "aa_terminalbench_hard": 0.348484848484849,
       "aa_terminalbench_v2_1": 0.456928838951311,
-      "epoch_eci": 147.98,
-      "epoch_eci_software": 146.85833592518256
+      "epoch_eci": 148.07,
+      "epoch_eci_software": 146.8535394961581
      },
      "designarena": {
       "frontend": {
@@ -5706,8 +5708,8 @@
       "aa_tau_banking": 0.202061855670103,
       "aa_terminalbench_hard": 0.446969696969697,
       "aa_terminalbench_v2_1": 0.674157303370786,
-      "epoch_eci": 149.87,
-      "epoch_eci_software": 149.17202843777667
+      "epoch_eci": 150.11,
+      "epoch_eci_software": 149.66453333847502
      },
      "designarena": {
       "frontend": {
@@ -5795,7 +5797,7 @@
        "cache_read_per_1m": 0.228,
        "context_length": 1048576,
        "input_per_1m": 0.238,
-       "output_per_1m": 16,
+       "output_per_1m": 24,
        "platform": "OpenRouter",
        "provider": "Wafer"
       },
@@ -5808,12 +5810,12 @@
        "provider": "InferenceNet"
       },
       {
-       "cache_read_per_1m": 0.359,
+       "cache_read_per_1m": 0.21,
        "context_length": 1048576,
-       "input_per_1m": 0.36,
-       "output_per_1m": 11.9,
+       "input_per_1m": 0.239,
+       "output_per_1m": 11.936,
        "platform": "OpenRouter",
-       "provider": "Wafer"
+       "provider": "InferenceNet"
       }
      ],
      "open_weights": true,
@@ -5828,7 +5830,7 @@
    "label": "Kimi K3",
    "prices": {
     "input": 0.238,
-    "output": 16
+    "output": 24
    }
   },
   {
@@ -6286,8 +6288,8 @@
       "aa_tau_banking": 0.142268041237113,
       "aa_terminalbench_hard": 0.363636363636364,
       "aa_terminalbench_v2_1": 0.539325842696629,
-      "epoch_eci": 145.77,
-      "epoch_eci_software": 141.88657718062464
+      "epoch_eci": 145.97,
+      "epoch_eci_software": 141.71029362312444
      },
      "designarena": {},
      "display_name": "Nemotron 3 Ultra 550B A55B (Reasoning)",
@@ -6475,7 +6477,7 @@
        "input_per_1m": 0.15,
        "output_per_1m": 0.5,
        "platform": "OpenRouter",
-       "provider": "Together"
+       "provider": "Io Net"
       }
      ],
      "open_weights": true,
@@ -6529,8 +6531,8 @@
       "aa_tau_banking": 0.0536082474226804,
       "aa_terminalbench_hard": 0.0757575757575758,
       "aa_terminalbench_v2_1": 0.101123595505618,
-      "epoch_eci": 135,
-      "epoch_eci_software": 135.0530420865398
+      "epoch_eci": 134.89,
+      "epoch_eci_software": 134.92730445223327
      },
      "designarena": {},
      "display_name": "GPT-4.1 mini",
@@ -6596,8 +6598,8 @@
       "aa_tau_banking": 0.0350515463917526,
       "aa_terminalbench_hard": 0.0378787878787879,
       "aa_terminalbench_v2_1": 0.0374531835205993,
-      "epoch_eci": 129.63,
-      "epoch_eci_software": 125.85714443843484
+      "epoch_eci": 129.54,
+      "epoch_eci_software": 125.6992762844829
      },
      "designarena": {},
      "display_name": "GPT-4.1 nano",
@@ -6663,8 +6665,8 @@
       "aa_tau_banking": 0.0288659793814433,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.0561797752808989,
-      "epoch_eci": 126.58,
-      "epoch_eci_software": 120.22162191494712
+      "epoch_eci": 126.46,
+      "epoch_eci_software": 119.95961058217142
      },
      "designarena": {},
      "display_name": "GPT-4o mini",
@@ -6925,8 +6927,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.431818181818182,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 153.46,
-      "epoch_eci_software": 153.2301652279652
+      "epoch_eci": 153.66,
+      "epoch_eci_software": 153.5354862060441
      },
      "designarena": {
       "frontend": {
@@ -7005,8 +7007,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.53030303030303,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 156.76,
-      "epoch_eci_software": 156.77596180968675
+      "epoch_eci": 157.09,
+      "epoch_eci_software": 157.09783715812762
      },
      "designarena": {
       "frontend": {
@@ -7085,12 +7087,12 @@
       "aa_tau_banking": 0.395876288659794,
       "aa_terminalbench_hard": 0.575757575757576,
       "aa_terminalbench_v2_1": 0.782771535580524,
-      "epoch_eci": 156.72,
-      "epoch_eci_software": 155.9327335791134
+      "epoch_eci": 157.31,
+      "epoch_eci_software": 156.8160133199929
      },
      "designarena": {
       "frontend": {
-       "battles": 3319,
+       "battles": 3320,
        "elo": 1059,
        "modelId": "gpt-5.4",
        "winRate": 40.3
@@ -7166,8 +7168,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.340909090909091,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 148.77,
-      "epoch_eci_software": 150.593551925824
+      "epoch_eci": 148.7,
+      "epoch_eci_software": 150.70373507060035
      },
      "designarena": {},
      "display_name": "GPT-5.4 mini (Medium)",
@@ -7176,7 +7178,7 @@
      "offers": [
       {
        "input_per_1m": 0.74,
-       "output_per_1m": 4.43,
+       "output_per_1m": 4.44,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
       },
@@ -7205,7 +7207,7 @@
    "label": "GPT 5.4 Mini",
    "prices": {
     "input": 0.74,
-    "output": 4.43
+    "output": 4.44
    }
   },
   {
@@ -7232,7 +7234,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.333333333333333,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 146.12,
+      "epoch_eci": 146.03,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -7704,8 +7706,8 @@
       "aa_tau_banking": 0.127835051546392,
       "aa_terminalbench_hard": 0.234848484848485,
       "aa_terminalbench_v2_1": 0.262172284644195,
-      "epoch_eci": 140,
-      "epoch_eci_software": 139.11840836989813
+      "epoch_eci": 139.79,
+      "epoch_eci_software": 138.91640972035273
      },
      "designarena": {},
      "display_name": "gpt-oss-120b (High)",
@@ -7786,8 +7788,8 @@
       "aa_tau_banking": 0.0701030927835052,
       "aa_terminalbench_hard": 0.106060606060606,
       "aa_terminalbench_v2_1": 0.138576779026217,
-      "epoch_eci": 137.81,
-      "epoch_eci_software": 136.90298403481933
+      "epoch_eci": 137.7,
+      "epoch_eci_software": 136.63218804443378
      },
      "designarena": {},
      "display_name": "gpt-oss-20b (High)",
@@ -7866,8 +7868,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.128787878787879,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 141.84,
-      "epoch_eci_software": 141.3214098769952
+      "epoch_eci": 141.72,
+      "epoch_eci_software": 141.2194249354976
      },
      "designarena": {},
      "display_name": "o1",
@@ -7933,8 +7935,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.371212121212121,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 146.87,
-      "epoch_eci_software": 146.43882677707973
+      "epoch_eci": 146.73,
+      "epoch_eci_software": 146.40307213996525
      },
      "designarena": {},
      "display_name": "o3",
@@ -7998,8 +8000,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.151515151515152,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 145.6,
-      "epoch_eci_software": 145.00690349655176
+      "epoch_eci": 145.46,
+      "epoch_eci_software": 144.92655196522077
      },
      "designarena": {},
      "display_name": "o4-mini (High)",
@@ -8266,7 +8268,7 @@
       "aa_tau_banking": 0.0556701030927835,
       "aa_terminalbench_hard": 0.0378787878787879,
       "aa_terminalbench_v2_1": 0.048689138576779,
-      "epoch_eci": 138.22,
+      "epoch_eci": 138.15,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -8390,7 +8392,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.0227272727272727,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 136.19,
+      "epoch_eci": 136.11,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -8443,7 +8445,7 @@
       "aa_tau_banking": 0.0536082474226804,
       "aa_terminalbench_hard": 0.0303030303030303,
       "aa_terminalbench_v2_1": 0.052434456928839,
-      "epoch_eci": 138.49,
+      "epoch_eci": 138.42,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -8529,13 +8531,6 @@
        "output_per_1m": 0.6,
        "platform": "OpenRouter",
        "provider": "Amazon Bedrock"
-      },
-      {
-       "context_length": 128000,
-       "input_per_1m": 0.22,
-       "output_per_1m": 0.9,
-       "platform": "Scaleway",
-       "provider": "Scaleway"
       }
      ],
      "open_weights": true,
@@ -8972,7 +8967,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.265151515151515,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 142.48,
+      "epoch_eci": 142.49,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -9042,7 +9037,7 @@
       "aa_tau_banking": 0.134020618556701,
       "aa_terminalbench_hard": 0.409090909090909,
       "aa_terminalbench_v2_1": 0.51310861423221,
-      "epoch_eci": 146.66,
+      "epoch_eci": 146.8,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -9124,7 +9119,7 @@
       "aa_tau_banking": 0.0701030927835052,
       "aa_terminalbench_hard": 0.242424242424242,
       "aa_terminalbench_v2_1": 0.292134831460674,
-      "epoch_eci": 139.43,
+      "epoch_eci": 139.32,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -9204,7 +9199,7 @@
       "aa_tau_banking": 0.167010309278351,
       "aa_terminalbench_hard": 0.348484848484849,
       "aa_terminalbench_v2_1": 0.606741573033708,
-      "epoch_eci": 146.48,
+      "epoch_eci": 146.23,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -9367,7 +9362,7 @@
       "aa_tau_banking": 0.208247422680412,
       "aa_terminalbench_hard": 0.439393939393939,
       "aa_terminalbench_v2_1": 0.614232209737828,
-      "epoch_eci": 147.49,
+      "epoch_eci": 147.3,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -9421,15 +9416,15 @@
       "aa_tau_banking": 0.117525773195876,
       "aa_terminalbench_hard": 0.507575757575758,
       "aa_terminalbench_v2_1": 0.745318352059925,
-      "epoch_eci": 153.83,
+      "epoch_eci": 154.04,
       "epoch_eci_software": null
      },
      "designarena": {
       "frontend": {
-       "battles": 2909,
-       "elo": 1210,
+       "battles": 2981,
+       "elo": 1208,
        "modelId": "qwen3.7-max",
-       "winRate": 49.2
+       "winRate": 48.8
       },
       "fullstack": {
        "battles": 1417,
@@ -9509,7 +9504,7 @@
       "aa_tau_banking": 0.175257731958763,
       "aa_terminalbench_hard": 0.46969696969697,
       "aa_terminalbench_v2_1": 0.610486891385768,
-      "epoch_eci": 147.3,
+      "epoch_eci": 147,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -9674,14 +9669,6 @@
      "id": "qwen3.8-27b::medium",
      "offers": [
       {
-       "cache_read_per_1m": 0.009,
-       "context_length": 262144,
-       "input_per_1m": 0.02,
-       "output_per_1m": 0.5,
-       "platform": "OpenRouter",
-       "provider": "Tenstorrent"
-      },
-      {
        "cache_read_per_1m": 0.0175,
        "context_length": 262144,
        "input_per_1m": 0.035,
@@ -9696,6 +9683,14 @@
        "output_per_1m": 1.35,
        "platform": "OpenRouter",
        "provider": "Near AI"
+      },
+      {
+       "cache_read_per_1m": 0.02,
+       "context_length": 262144,
+       "input_per_1m": 0.04,
+       "output_per_1m": 1.95,
+       "platform": "OpenRouter",
+       "provider": "Ionstream"
       }
      ],
      "open_weights": true,
@@ -9721,8 +9716,8 @@
    ],
    "label": "Qwen3.8 27B",
    "prices": {
-    "input": 0.02,
-    "output": 0.5
+    "input": 0.035,
+    "output": 2.2
    }
   },
   {
@@ -9749,7 +9744,7 @@
       "aa_tau_banking": 0.478350515463918,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.887640449438202,
-      "epoch_eci": 154.91,
+      "epoch_eci": 155.08,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -10100,15 +10095,15 @@
       "aa_tau_banking": 0.51340206185567,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.812734082397004,
-      "epoch_eci": 156.88,
-      "epoch_eci_software": 155.3964445412331
+      "epoch_eci": 157.4,
+      "epoch_eci_software": null
      },
      "designarena": {
       "frontend": {
-       "battles": 1756,
-       "elo": 1298,
+       "battles": 1784,
+       "elo": 1300,
        "modelId": "qwen3.8-max",
-       "winRate": 60
+       "winRate": 60.2
       },
       "fullstack": {
        "battles": 1327,
@@ -10243,20 +10238,20 @@
        "provider": "InferenceNet"
       },
       {
+       "cache_read_per_1m": 0.05,
+       "context_length": 1048576,
+       "input_per_1m": 1,
+       "output_per_1m": 2.7,
+       "platform": "OpenRouter",
+       "provider": "InferenceNet"
+      },
+      {
        "cache_read_per_1m": 0.1,
        "context_length": 262144,
        "input_per_1m": 1,
        "output_per_1m": 2.7,
        "platform": "OpenRouter",
        "provider": "Featherless"
-      },
-      {
-       "cache_read_per_1m": 0.1,
-       "context_length": 1048576,
-       "input_per_1m": 1,
-       "output_per_1m": 2.7,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
       }
      ],
      "open_weights": true,
@@ -10388,8 +10383,8 @@
       "aa_tau_banking": 0.290721649484536,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.550561797752809,
-      "epoch_eci": 148.59,
-      "epoch_eci_software": 137.4223684892714
+      "epoch_eci": 148.41,
+      "epoch_eci_software": 137.25960147489815
      },
      "designarena": {
       "frontend": {
@@ -10539,13 +10534,13 @@
       "aa_tau_banking": 0.420618556701031,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.816479400749064,
-      "epoch_eci": 153.93,
-      "epoch_eci_software": 154.98808645521348
+      "epoch_eci": 154.07,
+      "epoch_eci_software": 155.01318276295515
      },
      "designarena": {
       "frontend": {
-       "battles": 5798,
-       "elo": 1217,
+       "battles": 5852,
+       "elo": 1218,
        "modelId": "yoda",
        "winRate": 53.4
       },
@@ -10703,7 +10698,7 @@
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": null,
       "epoch_eci": 154.37,
-      "epoch_eci_software": 158.8804546438269
+      "epoch_eci_software": 159.52534011777382
      },
      "designarena": {},
      "display_name": "Grok 4.7 (High)",
@@ -10799,20 +10794,20 @@
        "provider": "GMICloud"
       },
       {
-       "cache_read_per_1m": 0.0028,
+       "cache_read_per_1m": 0.0034,
        "context_length": 1048576,
-       "input_per_1m": 0.14,
-       "output_per_1m": 0.28,
-       "platform": "OpenRouter",
-       "provider": "Xiaomi"
-      },
-      {
-       "cache_read_per_1m": 0.00336,
-       "context_length": 1000000,
        "input_per_1m": 0.168,
        "output_per_1m": 0.336,
        "platform": "OpenRouter",
-       "provider": "StreamLake"
+       "provider": "Novita"
+      },
+      {
+       "cache_read_per_1m": 0.08,
+       "context_length": 1000000,
+       "input_per_1m": 0.4,
+       "output_per_1m": 2,
+       "platform": "OpenRouter",
+       "provider": "Venice"
       }
      ],
      "open_weights": true,
@@ -10888,12 +10883,12 @@
        "provider": "AtlasCloud"
       },
       {
-       "cache_read_per_1m": 0.0036,
-       "context_length": 1048576,
-       "input_per_1m": 0.435,
-       "output_per_1m": 0.87,
+       "cache_read_per_1m": 0.096,
+       "context_length": 262144,
+       "input_per_1m": 0.48,
+       "output_per_1m": 1.8,
        "platform": "OpenRouter",
-       "provider": "Xiaomi"
+       "provider": "DigitalOcean"
       }
      ],
      "open_weights": true,
@@ -10951,14 +10946,6 @@
      "id": "mimo-v2.6-flash::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.003,
-       "context_length": 1048576,
-       "input_per_1m": 0.03,
-       "output_per_1m": 0.08,
-       "platform": "OpenRouter",
-       "provider": "Relace"
-      },
-      {
        "cache_read_per_1m": 0.05,
        "context_length": 1048576,
        "input_per_1m": 0.1,
@@ -10973,6 +10960,14 @@
        "output_per_1m": 0.28,
        "platform": "OpenRouter",
        "provider": "Makora"
+      },
+      {
+       "cache_read_per_1m": 0.003,
+       "context_length": 1048576,
+       "input_per_1m": 0.13,
+       "output_per_1m": 0.28,
+       "platform": "OpenRouter",
+       "provider": "Relace"
       }
      ],
      "open_weights": true,
@@ -10998,8 +10993,8 @@
    ],
    "label": "MiMo V2.6 Flash",
    "prices": {
-    "input": 0.03,
-    "output": 0.08
+    "input": 0.1,
+    "output": 0.28
    }
   },
   {
@@ -11028,7 +11023,7 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3259,
+       "battles": 3260,
        "elo": 1290,
        "modelId": "hampshire",
        "winRate": 58.3
@@ -11420,7 +11415,7 @@
       "aa_tau_banking": 0.121649484536082,
       "aa_terminalbench_hard": 0.318181818181818,
       "aa_terminalbench_v2_1": 0.453183520599251,
-      "epoch_eci": 143.79,
+      "epoch_eci": 143.59,
       "epoch_eci_software": null
      },
      "designarena": {
@@ -11560,8 +11555,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.431818181818182,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 145.78,
-      "epoch_eci_software": 148.59409434293843
+      "epoch_eci": 145.8,
+      "epoch_eci_software": 148.64207808691893
      },
      "designarena": {
       "fullstack": {
@@ -11689,12 +11684,12 @@
       "aa_tau_banking": 0.136082474226804,
       "aa_terminalbench_hard": 0.431818181818182,
       "aa_terminalbench_v2_1": 0.617977528089888,
-      "epoch_eci": 149.99,
-      "epoch_eci_software": 149.68709100048753
+      "epoch_eci": 149.82,
+      "epoch_eci_software": 149.80263433802205
      },
      "designarena": {
       "frontend": {
-       "battles": 7155,
+       "battles": 7186,
        "elo": 1175,
        "modelId": "glm-5.1",
        "winRate": 50.5
@@ -11784,8 +11779,8 @@
       "aa_tau_banking": 0.503092783505155,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.838951310861423,
-      "epoch_eci": 155.91,
-      "epoch_eci_software": 158.88059688651634
+      "epoch_eci": 155.99,
+      "epoch_eci_software": 158.9653448929099
      },
      "designarena": {},
      "display_name": "GLM-5.3 (Max)",
@@ -11809,12 +11804,12 @@
        "provider": "InferenceNet"
       },
       {
-       "cache_read_per_1m": 0.105,
-       "context_length": 262144,
-       "input_per_1m": 0.14,
-       "output_per_1m": 4.2,
+       "cache_read_per_1m": 0.076,
+       "context_length": 1048576,
+       "input_per_1m": 0.08,
+       "output_per_1m": 4.381,
        "platform": "OpenRouter",
-       "provider": "Reka"
+       "provider": "InferenceNet"
       }
      ],
      "open_weights": true,
