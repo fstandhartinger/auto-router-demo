@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-23T06:23:58Z",
+ "generated_at": "2026-10-23T15:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -4504,7 +4504,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-20T05:29:00.378Z",
+        "collected_at": "2026-10-23T05:29:52.186Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 21038.927509116238
@@ -4554,7 +4554,7 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3647,
+       "battles": 3651,
        "elo": 1200,
        "modelId": "minimax-m3",
        "winRate": 46.9
@@ -4601,7 +4601,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-20T05:29:00.378Z",
+        "collected_at": "2026-10-23T05:29:52.186Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 48192.034776700704
