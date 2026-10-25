@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-25T06:23:55Z",
+ "generated_at": "2026-10-25T09:23:04Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -396,14 +396,14 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4195,
+       "battles": 4197,
        "elo": 1206,
        "modelId": "claude-opus-4-6",
        "winRate": 56.3
       },
       "fullstack": {
-       "battles": 2517,
-       "elo": 1220,
+       "battles": 2518,
+       "elo": 1221,
        "modelId": "claude-opus-4-6",
        "winRate": 59.9
       }
@@ -1476,28 +1476,28 @@
      "id": "deepseek-v4-flash::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.0407,
+       "cache_read_per_1m": 0.0211,
        "context_length": 1048576,
-       "input_per_1m": 0.0407,
+       "input_per_1m": 0.0211,
        "output_per_1m": 0.45,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
       {
-       "cache_read_per_1m": 0.008568,
-       "context_length": 1024000,
-       "input_per_1m": 0.04284,
-       "output_per_1m": 0.08568,
-       "platform": "OpenRouter",
-       "provider": "StreamLake"
-      },
-      {
-       "cache_read_per_1m": 0.008708,
+       "cache_read_per_1m": 0.004452,
        "context_length": 1048576,
-       "input_per_1m": 0.04354,
-       "output_per_1m": 0.08708,
+       "input_per_1m": 0.02226,
+       "output_per_1m": 0.04452,
        "platform": "OpenRouter",
        "provider": "Baidu"
+      },
+      {
+       "cache_read_per_1m": 0.0056,
+       "context_length": 1024000,
+       "input_per_1m": 0.028,
+       "output_per_1m": 0.056,
+       "platform": "OpenRouter",
+       "provider": "StreamLake"
       }
      ],
      "open_weights": true,
@@ -1523,7 +1523,7 @@
    ],
    "label": "DeepSeek V4 Flash",
    "prices": {
-    "input": 0.0407,
+    "input": 0.0211,
     "output": 0.45
    }
   },
@@ -1558,18 +1558,18 @@
      "id": "deepseek-v4-pro::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.04466,
+       "cache_read_per_1m": 0.01722,
        "context_length": 1048576,
-       "input_per_1m": 0.53911,
-       "output_per_1m": 1.07822,
+       "input_per_1m": 0.20787,
+       "output_per_1m": 0.41574,
        "platform": "OpenRouter",
        "provider": "Baidu"
       },
       {
-       "cache_read_per_1m": 0.0450515,
+       "cache_read_per_1m": 0.0174,
        "context_length": 1024000,
-       "input_per_1m": 0.540618,
-       "output_per_1m": 1.081236,
+       "input_per_1m": 0.2088,
+       "output_per_1m": 0.4176,
        "platform": "OpenRouter",
        "provider": "StreamLake"
       },
@@ -1591,8 +1591,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro",
    "prices": {
-    "input": 0.53911,
-    "output": 1.07822
+    "input": 0.20787,
+    "output": 0.41574
    }
   },
   {
@@ -2558,8 +2558,8 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 6651,
-       "elo": 1125,
+       "battles": 6654,
+       "elo": 1126,
        "modelId": "gemini-3.1-pro-preview",
        "winRate": 44.3
       },
@@ -2797,7 +2797,7 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 2875,
+       "battles": 2884,
        "elo": 1197,
        "modelId": "gemini-3.6-flash",
        "winRate": 45.6
@@ -3250,6 +3250,48 @@
    }
   },
   {
+   "bench_id": "gpt-3.5-turbo::default",
+   "context_tokens": 4096,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 4096
+     },
+     "benchmarks": {
+      "aa_coding_index": 10.7,
+      "aa_gpqa": 0.297,
+      "aa_hle": null,
+      "aa_intelligence_index": 5.5,
+      "aa_lcr": null,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": 0.462,
+      "aa_scicode": null,
+      "aa_tau2": null,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "GPT-3.5 Turbo",
+     "family_key": "gpt-3.5-turbo",
+     "id": "gpt-3.5-turbo::default",
+     "offers": [],
+     "open_weights": false,
+     "release_date": "2022-11-30",
+     "variant": "default"
+    }
+   },
+   "id": "gpt-3.5-turbo",
+   "irp_aliases": [],
+   "label": "GPT 3.5 Turbo",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "gpt-5-codex::high",
    "context_tokens": 400000,
    "core": false,
@@ -3475,7 +3517,7 @@
        "winRate": 49.7
       },
       "fullstack": {
-       "battles": 2427,
+       "battles": 2428,
        "elo": 1054,
        "modelId": "grok-4.20-0309-reasoning",
        "winRate": 41.1
@@ -4324,7 +4366,7 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3838,
+       "battles": 3843,
        "elo": 1207,
        "modelId": "evergreen",
        "winRate": 49.1
@@ -4404,13 +4446,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 2096,
-       "elo": 1221,
+       "battles": 2097,
+       "elo": 1222,
        "modelId": "muse-spark-1.2",
-       "winRate": 50.2
+       "winRate": 50.3
       },
       "fullstack": {
-       "battles": 1907,
+       "battles": 1908,
        "elo": 1210,
        "modelId": "muse-spark-1.2",
        "winRate": 48
@@ -5158,6 +5200,14 @@
      "offers": [
       {
        "cache_read_per_1m": 0.01,
+       "context_length": 1048576,
+       "input_per_1m": 0.09,
+       "output_per_1m": 0.5,
+       "platform": "OpenRouter",
+       "provider": "Relace"
+      },
+      {
+       "cache_read_per_1m": 0.01,
        "context_length": 1000000,
        "input_per_1m": 0.1,
        "output_per_1m": 0.55,
@@ -5171,14 +5221,6 @@
        "output_per_1m": 0.55,
        "platform": "OpenRouter",
        "provider": "InferenceNet"
-      },
-      {
-       "cache_read_per_1m": 0.01425,
-       "context_length": 1048576,
-       "input_per_1m": 0.1425,
-       "output_per_1m": 0.57,
-       "platform": "OpenRouter",
-       "provider": "GMICloud"
       }
      ],
      "open_weights": false,
@@ -5202,8 +5244,8 @@
    "irp_aliases": [],
    "label": "MiniMax M3.1 Flash",
    "prices": {
-    "input": 0.1,
-    "output": 0.55
+    "input": 0.09,
+    "output": 0.5
    }
   },
   {
@@ -6126,9 +6168,17 @@
      "id": "kimi-k3::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.228,
+       "cache_read_per_1m": 0.19,
        "context_length": 1048576,
-       "input_per_1m": 0.238,
+       "input_per_1m": 0.19,
+       "output_per_1m": 8.94,
+       "platform": "OpenRouter",
+       "provider": "Relace"
+      },
+      {
+       "cache_read_per_1m": 0.19,
+       "context_length": 1048576,
+       "input_per_1m": 0.2,
        "output_per_1m": 16,
        "platform": "OpenRouter",
        "provider": "Wafer"
@@ -6138,14 +6188,6 @@
        "context_length": 1048576,
        "input_per_1m": 0.239,
        "output_per_1m": 10.8,
-       "platform": "OpenRouter",
-       "provider": "InferenceNet"
-      },
-      {
-       "cache_read_per_1m": 0.21,
-       "context_length": 1048576,
-       "input_per_1m": 0.239,
-       "output_per_1m": 11.936,
        "platform": "OpenRouter",
        "provider": "InferenceNet"
       }
@@ -6161,8 +6203,8 @@
    ],
    "label": "Kimi K3",
    "prices": {
-    "input": 0.238,
-    "output": 16
+    "input": 0.19,
+    "output": 8.94
    }
   },
   {
@@ -6912,56 +6954,6 @@
    }
   },
   {
-   "bench_id": "gpt-3.5-turbo::default",
-   "context_tokens": 4096,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 4096
-     },
-     "benchmarks": {
-      "aa_coding_index": 10.7,
-      "aa_gpqa": 0.297,
-      "aa_hle": null,
-      "aa_intelligence_index": 5.5,
-      "aa_lcr": null,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": 0.462,
-      "aa_scicode": null,
-      "aa_tau2": null,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "GPT-3.5 Turbo",
-     "family_key": "gpt-3.5-turbo",
-     "id": "gpt-3.5-turbo::default",
-     "offers": [
-      {
-       "context_length": 16385,
-       "input_per_1m": 0.5,
-       "output_per_1m": 1.5,
-       "platform": "OpenRouter",
-       "provider": "OpenAI"
-      }
-     ],
-     "open_weights": false,
-     "release_date": "2022-11-30",
-     "variant": "default"
-    }
-   },
-   "id": "openai/gpt-3.5-turbo",
-   "irp_aliases": [],
-   "label": "GPT 3.5 Turbo",
-   "prices": {
-    "input": 0.5,
-    "output": 1.5
-   }
-  },
-  {
    "bench_id": "gpt-4-turbo::default",
    "context_tokens": 128000,
    "core": false,
@@ -7704,7 +7696,7 @@
      "designarena": {
       "frontend": {
        "battles": 2245,
-       "elo": 1032,
+       "elo": 1033,
        "modelId": "gpt-5.3-codex",
        "winRate": 36.9
       },
@@ -11563,7 +11555,7 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 5857,
+       "battles": 5861,
        "elo": 1218,
        "modelId": "yoda",
        "winRate": 53.4
@@ -12707,10 +12699,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 7190,
+       "battles": 7194,
        "elo": 1175,
        "modelId": "glm-5.1",
-       "winRate": 50.6
+       "winRate": 50.5
       },
       "fullstack": {
        "battles": 3901,
@@ -12806,6 +12798,14 @@
      "id": "glm-5.3::max",
      "offers": [
       {
+       "cache_read_per_1m": 0.0703,
+       "context_length": 1048576,
+       "input_per_1m": 0.0703,
+       "output_per_1m": 4.3843,
+       "platform": "OpenRouter",
+       "provider": "Relace"
+      },
+      {
        "cache_read_per_1m": 0.078,
        "context_length": 1048576,
        "input_per_1m": 0.079,
@@ -12817,15 +12817,7 @@
        "cache_read_per_1m": 0.076,
        "context_length": 1048576,
        "input_per_1m": 0.08,
-       "output_per_1m": 4,
-       "platform": "OpenRouter",
-       "provider": "InferenceNet"
-      },
-      {
-       "cache_read_per_1m": 0.076,
-       "context_length": 1048576,
-       "input_per_1m": 0.08,
-       "output_per_1m": 4.381,
+       "output_per_1m": 3.6,
        "platform": "OpenRouter",
        "provider": "InferenceNet"
       }
@@ -12851,8 +12843,8 @@
    "irp_aliases": [],
    "label": "GLM 5.3",
    "prices": {
-    "input": 0.079,
-    "output": 1.4
+    "input": 0.0703,
+    "output": 4.3843
    }
   },
   {
@@ -12882,7 +12874,7 @@
      "designarena": {
       "frontend": {
        "battles": 5385,
-       "elo": 1124,
+       "elo": 1125,
        "modelId": "glm-5v-turbo",
        "winRate": 44.7
       },
