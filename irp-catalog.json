@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-26T12:23:04Z",
+ "generated_at": "2026-10-26T15:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -4582,14 +4582,6 @@
      "id": "kimi-k2.6::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.07568,
-       "context_length": 262144,
-       "input_per_1m": 0.44935,
-       "output_per_1m": 1.892,
-       "platform": "OpenRouter",
-       "provider": "Baidu"
-      },
-      {
        "cache_read_per_1m": 0.114,
        "context_length": 262144,
        "input_per_1m": 0.57,
@@ -4604,6 +4596,14 @@
        "output_per_1m": 2.52,
        "platform": "OpenRouter",
        "provider": "StreamLake"
+      },
+      {
+       "cache_read_per_1m": 0.126,
+       "context_length": 262144,
+       "input_per_1m": 0.603,
+       "output_per_1m": 3.2,
+       "platform": "OpenRouter",
+       "provider": "Inceptron"
       }
      ],
      "open_weights": true,
@@ -4616,8 +4616,8 @@
    ],
    "label": "Kimi K2.6",
    "prices": {
-    "input": 0.44935,
-    "output": 1.892
+    "input": 0.57,
+    "output": 2.4
    }
   },
   {
@@ -7159,7 +7159,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T00:53:04.428Z",
+        "collected_at": "2026-10-26T05:29:07.813Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 15144.827849293042
@@ -7891,7 +7891,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-24T05:29:00.405Z",
+        "collected_at": "2026-10-26T05:29:07.813Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 34593.73903040719
@@ -8034,7 +8034,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T00:53:04.428Z",
+        "collected_at": "2026-10-26T05:29:07.813Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 32190.312589070043
@@ -8110,7 +8110,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T00:53:04.428Z",
+        "collected_at": "2026-10-26T05:29:07.813Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 36345.83819524092
@@ -8711,7 +8711,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-24T05:29:00.405Z",
+        "collected_at": "2026-10-26T05:29:07.813Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 46160.990028328524
