@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-27T06:23:56Z",
+ "generated_at": "2026-10-27T09:23:03Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -3964,7 +3964,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 24525.250228477853
@@ -5549,7 +5549,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 14390.429576058992
@@ -5704,7 +5704,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 7146.8895730909935
@@ -6510,7 +6510,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 28366.096709963975
@@ -6669,7 +6669,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 49173.83294616723
@@ -8401,7 +8401,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 24888.768976802337
@@ -9047,7 +9047,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 17114.45983788592
@@ -9422,7 +9422,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 32287.31401968609
@@ -9804,7 +9804,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 68515.01528492119
@@ -10223,7 +10223,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 62781.60649121499
