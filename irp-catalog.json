@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-27T12:23:02Z",
+ "generated_at": "2026-10-27T15:24:03Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -185,7 +185,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 18484.51541295649
@@ -266,7 +266,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 32812.5566527238
@@ -396,10 +396,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4206,
+       "battles": 4207,
        "elo": 1206,
        "modelId": "claude-opus-4-6",
-       "winRate": 56.3
+       "winRate": 56.2
       },
       "fullstack": {
        "battles": 2518,
@@ -620,7 +620,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 25745.286895441168
@@ -716,7 +716,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 16823.574782579984
@@ -860,7 +860,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 27337.078040610624
@@ -941,7 +941,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 20937.627614580473
@@ -1112,7 +1112,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 1963.4404010246926
@@ -1442,7 +1442,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 42404.18653079549
@@ -1494,14 +1494,6 @@
      "id": "deepseek-v4-pro::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.08,
-       "context_length": 1048576,
-       "input_per_1m": 0.8,
-       "output_per_1m": 1.6,
-       "platform": "OpenRouter",
-       "provider": "Reka"
-      },
-      {
        "cache_read_per_1m": 0.25,
        "context_length": 1048576,
        "input_per_1m": 0.9,
@@ -1516,6 +1508,14 @@
        "output_per_1m": 1.91052,
        "platform": "OpenRouter",
        "provider": "StreamLake"
+      },
+      {
+       "cache_read_per_1m": 0.07975,
+       "context_length": 1048576,
+       "input_per_1m": 0.957,
+       "output_per_1m": 1.914,
+       "platform": "OpenRouter",
+       "provider": "GMICloud"
       }
      ],
      "open_weights": true,
@@ -1527,8 +1527,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro",
    "prices": {
-    "input": 0.8,
-    "output": 1.6
+    "input": 0.9,
+    "output": 1.5
    }
   },
   {
@@ -1564,9 +1564,9 @@
      "id": "deepseek-v4-pro-0813::max",
      "offers": [
       {
-       "cache_read_per_1m": 0.24,
+       "cache_read_per_1m": 0.22,
        "context_length": 1048576,
-       "input_per_1m": 0.2448,
+       "input_per_1m": 0.2211,
        "output_per_1m": 8,
        "platform": "OpenRouter",
        "provider": "Relace"
@@ -1594,7 +1594,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 55154.4293719494
@@ -1609,7 +1609,7 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro 0813",
    "prices": {
-    "input": 0.2448,
+    "input": 0.2211,
     "output": 8
    }
   },
@@ -1643,6 +1643,14 @@
      "id": "deepseek-v4.1-flash-1017::max",
      "offers": [
       {
+       "cache_read_per_1m": 0.015,
+       "context_length": 1048576,
+       "input_per_1m": 0.02,
+       "output_per_1m": 0.511839,
+       "platform": "OpenRouter",
+       "provider": "OpenInference"
+      },
+      {
        "cache_read_per_1m": 0.03,
        "context_length": 1048576,
        "input_per_1m": 0.04,
@@ -1651,20 +1659,12 @@
        "provider": "Reka"
       },
       {
-       "cache_read_per_1m": 0.012146,
+       "cache_read_per_1m": 0.005,
        "context_length": 1048576,
-       "input_per_1m": 0.050282,
-       "output_per_1m": 0.01,
+       "input_per_1m": 0.069,
+       "output_per_1m": 0.6,
        "platform": "OpenRouter",
-       "provider": "OpenInference"
-      },
-      {
-       "cache_read_per_1m": 0.008,
-       "context_length": 1048576,
-       "input_per_1m": 0.07,
-       "output_per_1m": 0.5,
-       "platform": "OpenRouter",
-       "provider": "Relace"
+       "provider": "Morph"
       }
      ],
      "open_weights": true,
@@ -1673,7 +1673,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 89495.05222921798
@@ -1688,8 +1688,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4.1 Flash 1017",
    "prices": {
-    "input": 0.04,
-    "output": 0.5
+    "input": 0.02,
+    "output": 0.511839
    }
   },
   {
@@ -1905,7 +1905,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 10549.36492895319
@@ -2124,7 +2124,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 11962.429490354582
@@ -2249,7 +2249,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 8893.943845424661
@@ -2580,7 +2580,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 18112.30078500516
@@ -2729,7 +2729,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 17506.699128048065
@@ -2825,7 +2825,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 41605.76340544727
@@ -2971,7 +2971,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 52598.80180165109
@@ -3055,7 +3055,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 61557.626207648
@@ -3208,7 +3208,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 12581.674416583553
@@ -3641,7 +3641,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 26155.726977249793
@@ -3704,7 +3704,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 9097.955024148974
@@ -3778,7 +3778,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 48696.98128055749
@@ -3849,7 +3849,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 102864.81234045888
@@ -4166,7 +4166,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 2047.2595761136122
@@ -4471,7 +4471,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 60200.15762740819
@@ -4551,7 +4551,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 40418.14288334975
@@ -4616,7 +4616,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 54476.547878296864
@@ -5156,7 +5156,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 78612.2924198701
@@ -5627,7 +5627,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 26085.529205306077
@@ -6061,7 +6061,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 29885.723839996914
@@ -6095,20 +6095,20 @@
      "id": "kimi-k3::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.179,
-       "context_length": 1048576,
-       "input_per_1m": 0.189,
-       "output_per_1m": 20,
-       "platform": "OpenRouter",
-       "provider": "Wafer"
-      },
-      {
        "cache_read_per_1m": 0.19,
        "context_length": 1048576,
        "input_per_1m": 0.19,
        "output_per_1m": 8.94,
        "platform": "OpenRouter",
        "provider": "Relace"
+      },
+      {
+       "cache_read_per_1m": 0.19,
+       "context_length": 1048576,
+       "input_per_1m": 0.2,
+       "output_per_1m": 20,
+       "platform": "OpenRouter",
+       "provider": "Wafer"
       },
       {
        "cache_read_per_1m": 0.115,
@@ -6130,8 +6130,8 @@
    ],
    "label": "Kimi K3",
    "prices": {
-    "input": 0.189,
-    "output": 20
+    "input": 0.19,
+    "output": 8.94
    }
   },
   {
@@ -6186,7 +6186,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 55194.603042960516
@@ -6347,7 +6347,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 26974.986020571774
@@ -6427,7 +6427,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 113822.52266480435
@@ -6591,7 +6591,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 36798.43785409437
@@ -7386,7 +7386,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 8553.741957565155
@@ -7466,7 +7466,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 5477.785521063995
@@ -7548,7 +7548,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 11456.455776112209
@@ -7630,7 +7630,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 6497.665406570324
@@ -7712,7 +7712,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 8069.842557491671
@@ -7867,7 +7867,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 26953.971576042284
@@ -7948,7 +7948,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 18108.80158174822
@@ -9261,7 +9261,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 18665.97614436674
@@ -9342,7 +9342,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 34894.77601780932
@@ -9647,7 +9647,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 32190.312589070043
@@ -9723,7 +9723,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 36345.83819524092
@@ -9885,7 +9885,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 51943.29937745417
@@ -10152,7 +10152,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 107884.70441134622
@@ -10361,7 +10361,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 64144.28936512275
@@ -10441,7 +10441,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 46160.990028328524
@@ -10527,7 +10527,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 34655.976744705644
@@ -10677,7 +10677,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 26882.29418589173
@@ -10754,7 +10754,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 28466.40897482784
@@ -10835,7 +10835,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 65901.46774813943
@@ -10907,7 +10907,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 30926.933313082875
@@ -10988,7 +10988,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 29884.92268012666
@@ -11037,14 +11037,6 @@
      "id": "mimo-v2.6-flash::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.00182,
-       "context_length": 1048576,
-       "input_per_1m": 0.091,
-       "output_per_1m": 0.182,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      },
-      {
        "cache_read_per_1m": 0.003,
        "context_length": 1048320,
        "input_per_1m": 0.1,
@@ -11059,6 +11051,14 @@
        "output_per_1m": 0.28,
        "platform": "OpenRouter",
        "provider": "Darkbloom"
+      },
+      {
+       "cache_read_per_1m": 0.00255,
+       "context_length": 1050000,
+       "input_per_1m": 0.119,
+       "output_per_1m": 0.238,
+       "platform": "OpenRouter",
+       "provider": "GMICloud"
       }
      ],
      "open_weights": true,
@@ -11067,7 +11067,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 77853.09444149617
@@ -11084,8 +11084,8 @@
    ],
    "label": "MiMo V2.6 Flash",
    "prices": {
-    "input": 0.091,
-    "output": 0.182
+    "input": 0.1,
+    "output": 0.28
    }
   },
   {
@@ -11155,7 +11155,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 64275.70051166789
@@ -11723,10 +11723,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 7196,
+       "battles": 7199,
        "elo": 1175,
        "modelId": "glm-5.1",
-       "winRate": 50.6
+       "winRate": 50.5
       },
       "fullstack": {
        "battles": 3902,
@@ -11770,7 +11770,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 41294.80352158475
@@ -11852,7 +11852,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T00:53:38.505Z",
+        "collected_at": "2026-10-27T05:29:24.667Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 71127.61363824058
