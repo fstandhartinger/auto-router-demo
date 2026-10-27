@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-27T03:23:03Z",
+ "generated_at": "2026-10-27T06:23:56Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -278,7 +278,9 @@
     }
    },
    "id": "anthropic/claude-haiku-5.5",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "claude-haiku-5-5-1m"
+   ],
    "label": "Claude Haiku 5.5",
    "prices": {
     "input": 0.1,
@@ -440,7 +442,9 @@
     }
    },
    "id": "anthropic/claude-opus-4.6",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "claude-opus-4.6:fast"
+   ],
    "label": "Claude Opus 4.6",
    "prices": {
     "input": 5,
@@ -1739,7 +1743,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 12544.288298302885
@@ -1756,6 +1760,48 @@
    "prices": {
     "input": 0.4,
     "output": 2
+   }
+  },
+  {
+   "bench_id": "ernie-5.0-thinking-preview::default",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.777,
+      "aa_hle": 0.133,
+      "aa_intelligence_index": 14.3,
+      "aa_lcr": null,
+      "aa_livecodebench": 0.812,
+      "aa_math_index": 85,
+      "aa_mmlu_pro": 0.83,
+      "aa_scicode": null,
+      "aa_tau2": 0.839181286549707,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.25,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "ERNIE 5.0 Thinking Preview",
+     "family_key": "ernie-5.0-thinking-preview",
+     "id": "ernie-5.0-thinking-preview::default",
+     "offers": [],
+     "open_weights": false,
+     "release_date": "2025-11-13",
+     "variant": "default"
+    }
+   },
+   "id": "ernie-5.0-thinking-preview",
+   "irp_aliases": [],
+   "label": "Ernie 5.0 Thinking Preview",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
    }
   },
   {
@@ -3215,7 +3261,7 @@
      "offers": [
       {
        "input_per_1m": 1.23,
-       "output_per_1m": 9.74,
+       "output_per_1m": 9.73,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
       },
@@ -3236,7 +3282,7 @@
    "label": "GPT 5 Codex",
    "prices": {
     "input": 1.23,
-    "output": 9.74
+    "output": 9.73
    }
   },
   {
@@ -3323,7 +3369,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 53901.83089155641
@@ -3377,7 +3423,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 18647.9855515946
@@ -4197,7 +4243,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 1918.1080615755395
@@ -4248,7 +4294,7 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3846,
+       "battles": 3849,
        "elo": 1207,
        "modelId": "evergreen",
        "winRate": 49.1
@@ -4279,7 +4325,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 55582.279333785715
@@ -4328,8 +4374,8 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 2099,
-       "elo": 1221,
+       "battles": 2101,
+       "elo": 1222,
        "modelId": "muse-spark-1.2",
        "winRate": 50.2
       },
@@ -4359,7 +4405,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 47874.47420818148
@@ -5189,7 +5235,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 6016.936604270011
@@ -5268,7 +5314,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 13088.251664646437
@@ -5347,7 +5393,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 7896.288438630577
@@ -5424,7 +5470,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 5566.44243010125
@@ -5890,8 +5936,8 @@
      },
      "designarena": {
       "fullstack": {
-       "battles": 5980,
-       "elo": 1155,
+       "battles": 5981,
+       "elo": 1156,
        "modelId": "kimi-k2.6",
        "winRate": 49.4
       }
@@ -5900,6 +5946,14 @@
      "family_key": "kimi-k2.6",
      "id": "kimi-k2.6::default",
      "offers": [
+      {
+       "cache_read_per_1m": 0.117,
+       "context_length": 262144,
+       "input_per_1m": 0.546,
+       "output_per_1m": 3.5,
+       "platform": "OpenRouter",
+       "provider": "Inceptron"
+      },
       {
        "cache_read_per_1m": 0.114,
        "context_length": 262144,
@@ -5915,14 +5969,6 @@
        "output_per_1m": 2.52,
        "platform": "OpenRouter",
        "provider": "StreamLake"
-      },
-      {
-       "cache_read_per_1m": 0.126,
-       "context_length": 262144,
-       "input_per_1m": 0.603,
-       "output_per_1m": 3.2,
-       "platform": "OpenRouter",
-       "provider": "Inceptron"
       }
      ],
      "open_weights": true,
@@ -5935,8 +5981,8 @@
    ],
    "label": "Kimi K2.6",
    "prices": {
-    "input": 0.57,
-    "output": 2.4
+    "input": 0.546,
+    "output": 3.5
    }
   },
   {
@@ -6160,6 +6206,48 @@
    }
   },
   {
+   "bench_id": "nemotron-nano-12b-v2-vl::reasoning",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.572,
+      "aa_hle": 0.055,
+      "aa_intelligence_index": 7.5,
+      "aa_lcr": 0.41,
+      "aa_livecodebench": 0.694,
+      "aa_math_index": 75,
+      "aa_mmlu_pro": 0.759,
+      "aa_scicode": null,
+      "aa_tau2": 0.213450292397661,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0454545454545455,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "NVIDIA Nemotron Nano 12B v2 VL (Reasoning)",
+     "family_key": "nemotron-nano-12b-v2-vl",
+     "id": "nemotron-nano-12b-v2-vl::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-10-28",
+     "variant": "reasoning"
+    }
+   },
+   "id": "nemotron-nano-12b-v2-vl",
+   "irp_aliases": [],
+   "label": "Nemotron Nano 12B V2 Vl",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "nemotron-nano-9b-v2::reasoning",
    "context_tokens": 131072,
    "core": false,
@@ -6199,69 +6287,6 @@
    "prices": {
     "input": 0.0,
     "output": 0.0
-   }
-  },
-  {
-   "bench_id": "nova-pro::default",
-   "context_tokens": 300000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 300000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.499,
-      "aa_hle": 0.032,
-      "aa_intelligence_index": 7,
-      "aa_lcr": 0.21,
-      "aa_livecodebench": 0.233,
-      "aa_math_index": 7,
-      "aa_mmlu_pro": 0.691,
-      "aa_scicode": null,
-      "aa_tau2": 0.140350877192982,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.0606060606060606,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "Nova Pro",
-     "family_key": "nova-pro",
-     "id": "nova-pro::default",
-     "offers": [
-      {
-       "context_length": 300000,
-       "input_per_1m": 0.8,
-       "output_per_1m": 3.2,
-       "platform": "OpenRouter",
-       "provider": "Amazon Bedrock"
-      },
-      {
-       "context_length": 300000,
-       "input_per_1m": 0.8,
-       "output_per_1m": 3.2,
-       "platform": "OpenRouter",
-       "provider": "Amazon Bedrock"
-      },
-      {
-       "input_per_1m": 1.05,
-       "output_per_1m": 4.2,
-       "platform": "AWS Bedrock",
-       "provider": "AWS Bedrock"
-      }
-     ],
-     "open_weights": false,
-     "release_date": "2024-12-03",
-     "variant": "default"
-    }
-   },
-   "id": "nova-pro",
-   "irp_aliases": [],
-   "label": "Nova Pro",
-   "prices": {
-    "input": 0.8,
-    "output": 3.2
    }
   },
   {
@@ -6335,6 +6360,7 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
+    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -6497,7 +6523,6 @@
    },
    "id": "nvidia/nemotron-3-ultra-550b-a55b",
    "irp_aliases": [
-    "nemotron-3-ultra-550b",
     "nvidia-nemotron-3-ultra-550b-a55b"
    ],
    "label": "Nemotron 3 Ultra 550B A55b",
@@ -7707,6 +7732,79 @@
    }
   },
   {
+   "bench_id": "gpt-6.1-terra::medium",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": null,
+      "aa_hle": 0.402,
+      "aa_intelligence_index": 41.3,
+      "aa_lcr": 0.806666666666667,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.516,
+      "aa_tau2": null,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "GPT-6.1 Terra (Medium)",
+     "family_key": "gpt-6.1-terra",
+     "id": "gpt-6.1-terra::medium",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.05,
+       "cache_write_per_1m": 1.25,
+       "context_length": 1050000,
+       "input_per_1m": 1,
+       "output_per_1m": 5,
+       "platform": "OpenRouter",
+       "provider": "OpenAI"
+      },
+      {
+       "cache_read_per_1m": 0.1,
+       "cache_write_per_1m": 2.5,
+       "context_length": 1050000,
+       "input_per_1m": 2,
+       "output_per_1m": 10,
+       "platform": "OpenRouter",
+       "provider": "OpenAI"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2026-10-26",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T00:53:38.505Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 5834.767505569609
+        }
+       }
+      }
+     },
+     "variant": "medium"
+    }
+   },
+   "id": "openai/gpt-6.1-terra",
+   "irp_aliases": [],
+   "label": "GPT 6.1 Terra",
+   "prices": {
+    "input": 1,
+    "output": 5
+   }
+  },
+  {
    "bench_id": "gpt-oss-120b::high",
    "context_tokens": 131072,
    "core": false,
@@ -8624,7 +8722,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 15144.827849293042
@@ -9406,7 +9504,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 34593.73903040719
@@ -9864,7 +9962,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-26T05:29:07.813Z",
+        "collected_at": "2026-10-27T00:53:38.505Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 107730.23065646883
@@ -9943,7 +10041,7 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen3-235b-a22b-instruct-2507",
+    "qwen-3-235b-a22b-instruct-2507",
     "qwen3-235b-instruct"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
@@ -11459,7 +11557,9 @@
     }
    },
    "id": "z-ai/glm-4.7-flash",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "e2ee-glm-4.7-flash"
+   ],
    "label": "GLM 4.7 Flash",
    "prices": {
     "input": 0.0605,
