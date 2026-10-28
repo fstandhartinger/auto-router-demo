@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-28T15:23:02Z",
+ "generated_at": "2026-10-28T18:27:22Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -3603,83 +3603,6 @@
    }
   },
   {
-   "bench_id": "llama-4-scout::default",
-   "context_tokens": 10000000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 10000000
-     },
-     "benchmarks": {
-      "aa_agentic_index": 0.5,
-      "aa_coding_index": 8.2,
-      "aa_gpqa": 0.587,
-      "aa_hle": 0.038,
-      "aa_intelligence_index": 6.5,
-      "aa_lcr": 0.277,
-      "aa_livecodebench": 0.299,
-      "aa_math_index": 14,
-      "aa_mmlu_pro": 0.752,
-      "aa_scicode": 0.213,
-      "aa_tau2": 0.154970760233918,
-      "aa_tau_banking": 0.0329896907216495,
-      "aa_terminalbench_hard": 0.0151515151515152,
-      "aa_terminalbench_v2_1": 0.0374531835205993,
-      "epoch_eci": 129.63,
-      "epoch_eci_software": null
-     },
-     "designarena": {},
-     "display_name": "Llama 4 Scout",
-     "family_key": "llama-4-scout",
-     "id": "llama-4-scout::default",
-     "offers": [
-      {
-       "context_length": 327680,
-       "input_per_1m": 0.1,
-       "output_per_1m": 0.3,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      },
-      {
-       "input_per_1m": 0.17,
-       "output_per_1m": 0.66,
-       "platform": "AWS Bedrock",
-       "provider": "AWS Bedrock"
-      },
-      {
-       "input_per_1m": 0.25,
-       "output_per_1m": 0.7,
-       "platform": "Google Vertex AI",
-       "provider": "Google Vertex AI"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2025-04-05",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 1918.1080615755395
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "meta-llama/llama-4-scout",
-   "irp_aliases": [],
-   "label": "Llama 4 Scout",
-   "prices": {
-    "input": 0.1,
-    "output": 0.3
-   }
-  },
-  {
    "bench_id": "muse-spark-1.3::max",
    "context_tokens": 1000000,
    "core": false,
@@ -5098,6 +5021,48 @@
    }
   },
   {
+   "bench_id": "nemotron-nano-12b-v2-vl::reasoning",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.572,
+      "aa_hle": 0.055,
+      "aa_intelligence_index": 7.5,
+      "aa_lcr": 0.41,
+      "aa_livecodebench": 0.694,
+      "aa_math_index": 75,
+      "aa_mmlu_pro": 0.759,
+      "aa_scicode": null,
+      "aa_tau2": 0.213450292397661,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0454545454545455,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "NVIDIA Nemotron Nano 12B v2 VL (Reasoning)",
+     "family_key": "nemotron-nano-12b-v2-vl",
+     "id": "nemotron-nano-12b-v2-vl::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-10-28",
+     "variant": "reasoning"
+    }
+   },
+   "id": "nemotron-nano-12b-v2-vl",
+   "irp_aliases": [],
+   "label": "Nemotron Nano 12B V2 Vl",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "nemotron-nano-9b-v2::reasoning",
    "context_tokens": 131072,
    "core": false,
@@ -5730,7 +5695,7 @@
    }
   },
   {
-   "bench_id": "gpt-4.1-nano::default",
+   "bench_id": "gpt-4.1::default",
    "context_tokens": 1000000,
    "core": false,
    "document": {
@@ -5739,46 +5704,46 @@
       "context_window_tokens": 1000000
      },
      "benchmarks": {
-      "aa_coding_index": 11.1,
-      "aa_gpqa": 0.512,
-      "aa_hle": 0.038,
-      "aa_intelligence_index": 7.8,
-      "aa_lcr": 0.203333333333333,
-      "aa_livecodebench": 0.326,
-      "aa_math_index": 24,
-      "aa_mmlu_pro": 0.657,
+      "aa_coding_index": null,
+      "aa_gpqa": 0.666,
+      "aa_hle": 0.042,
+      "aa_intelligence_index": 12.7,
+      "aa_lcr": 0.683333333333333,
+      "aa_livecodebench": 0.457,
+      "aa_math_index": 34.7,
+      "aa_mmlu_pro": 0.806,
       "aa_scicode": null,
-      "aa_tau2": 0.172514619883041,
-      "aa_tau_banking": 0.0350515463917526,
-      "aa_terminalbench_hard": 0.0378787878787879,
-      "aa_terminalbench_v2_1": 0.0374531835205993,
-      "epoch_eci": 129.54,
-      "epoch_eci_software": 125.6992762844829
+      "aa_tau2": 0.470760233918129,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.136363636363636,
+      "aa_terminalbench_v2_1": null,
+      "epoch_eci": 136.65,
+      "epoch_eci_software": 138.6348854845342
      },
      "designarena": {},
-     "display_name": "GPT-4.1 nano",
-     "family_key": "gpt-4.1-nano",
-     "id": "gpt-4.1-nano::default",
+     "display_name": "GPT-4.1",
+     "family_key": "gpt-4.1",
+     "id": "gpt-4.1::default",
      "offers": [
       {
-       "input_per_1m": 0.1,
-       "output_per_1m": 0.4,
+       "input_per_1m": 2,
+       "output_per_1m": 8,
        "platform": "Azure AI Foundry",
        "provider": "Azure AI Foundry"
       },
       {
-       "cache_read_per_1m": 0.03,
+       "cache_read_per_1m": 0.5,
        "context_length": 1047576,
-       "input_per_1m": 0.1,
-       "output_per_1m": 0.4,
+       "input_per_1m": 2,
+       "output_per_1m": 8,
        "platform": "OpenRouter",
        "provider": "Azure"
       },
       {
-       "cache_read_per_1m": 0.025,
+       "cache_read_per_1m": 0.5,
        "context_length": 1047576,
-       "input_per_1m": 0.1,
-       "output_per_1m": 0.4,
+       "input_per_1m": 2,
+       "output_per_1m": 8,
        "platform": "OpenRouter",
        "provider": "OpenAI"
       }
@@ -5788,12 +5753,12 @@
      "variant": "default"
     }
    },
-   "id": "openai/gpt-4.1-nano",
+   "id": "openai/gpt-4.1",
    "irp_aliases": [],
-   "label": "GPT 4.1 Nano",
+   "label": "GPT 4.1",
    "prices": {
-    "input": 0.1,
-    "output": 0.4
+    "input": 2,
+    "output": 8
    }
   },
   {
@@ -6056,6 +6021,63 @@
    "prices": {
     "input": 0.05,
     "output": 0.4
+   }
+  },
+  {
+   "bench_id": "gpt-5.1-codex-mini::high",
+   "context_tokens": 400000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 400000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.813,
+      "aa_hle": 0.185,
+      "aa_intelligence_index": 20.4,
+      "aa_lcr": 0.666666666666667,
+      "aa_livecodebench": 0.836,
+      "aa_math_index": 91.7,
+      "aa_mmlu_pro": 0.82,
+      "aa_scicode": null,
+      "aa_tau2": 0.628654970760234,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.333333333333333,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "GPT-5.1 Codex mini (High)",
+     "family_key": "gpt-5.1-codex-mini",
+     "id": "gpt-5.1-codex-mini::high",
+     "offers": [
+      {
+       "input_per_1m": 0.25,
+       "output_per_1m": 2,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "cache_read_per_1m": 0.03,
+       "context_length": 400000,
+       "input_per_1m": 0.25,
+       "output_per_1m": 2,
+       "platform": "OpenRouter",
+       "provider": "Azure"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-11-13",
+     "variant": "high"
+    }
+   },
+   "id": "openai/gpt-5.1-codex-mini",
+   "irp_aliases": [],
+   "label": "GPT 5.1 Codex Mini",
+   "prices": {
+    "input": 0.25,
+    "output": 2
    }
   },
   {
@@ -7070,6 +7092,71 @@
    "prices": {
     "input": 0.018,
     "output": 0.09
+   }
+  },
+  {
+   "bench_id": "o1::default",
+   "context_tokens": 200000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 200000
+     },
+     "benchmarks": {
+      "aa_coding_index": 39.7,
+      "aa_gpqa": 0.747,
+      "aa_hle": 0.07,
+      "aa_intelligence_index": 15.2,
+      "aa_lcr": 0.65,
+      "aa_livecodebench": 0.679,
+      "aa_math_index": null,
+      "aa_mmlu_pro": 0.841,
+      "aa_scicode": null,
+      "aa_tau2": 0.625730994152047,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.128787878787879,
+      "aa_terminalbench_v2_1": null,
+      "epoch_eci": 141.72,
+      "epoch_eci_software": 141.2194249354976
+     },
+     "designarena": {},
+     "display_name": "o1",
+     "family_key": "o1",
+     "id": "o1::default",
+     "offers": [
+      {
+       "input_per_1m": 15,
+       "output_per_1m": 60,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "cache_read_per_1m": 7.5,
+       "context_length": 200000,
+       "input_per_1m": 15,
+       "output_per_1m": 60,
+       "platform": "OpenRouter",
+       "provider": "OpenAI"
+      },
+      {
+       "input_per_1m": 16.5,
+       "output_per_1m": 66,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2024-12-05",
+     "variant": "default"
+    }
+   },
+   "id": "openai/o1",
+   "irp_aliases": [],
+   "label": "O1",
+   "prices": {
+    "input": 15,
+    "output": 60
    }
   },
   {
@@ -8937,7 +9024,7 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen-3-235b-a22b-instruct-2507"
+    "qwen3-235b-a22b-instruct-2507"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
    "prices": {
