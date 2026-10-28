@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-28T18:27:22Z",
+ "generated_at": "2026-10-28T21:23:05Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1366,28 +1366,28 @@
      "id": "deepseek-v4-flash::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.05,
+       "cache_read_per_1m": 0.0383,
        "context_length": 1048576,
-       "input_per_1m": 0.05,
+       "input_per_1m": 0.0383,
        "output_per_1m": 0.45,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
       {
-       "cache_read_per_1m": 0.01652,
-       "context_length": 1024000,
-       "input_per_1m": 0.0826,
-       "output_per_1m": 0.1652,
+       "cache_read_per_1m": 0.008064,
+       "context_length": 1048576,
+       "input_per_1m": 0.04032,
+       "output_per_1m": 0.08064,
        "platform": "OpenRouter",
-       "provider": "StreamLake"
+       "provider": "Baidu"
       },
       {
-       "cache_read_per_1m": 0.018,
-       "context_length": 1048576,
-       "input_per_1m": 0.09,
-       "output_per_1m": 0.18,
+       "cache_read_per_1m": 0.014,
+       "context_length": 1024000,
+       "input_per_1m": 0.07,
+       "output_per_1m": 0.14,
        "platform": "OpenRouter",
-       "provider": "DeepInfra"
+       "provider": "StreamLake"
       }
      ],
      "open_weights": true,
@@ -1413,7 +1413,7 @@
    ],
    "label": "DeepSeek V4 Flash",
    "prices": {
-    "input": 0.05,
+    "input": 0.0383,
     "output": 0.45
    }
   },
@@ -1448,28 +1448,28 @@
      "id": "deepseek-v4-pro::high",
      "offers": [
       {
+       "cache_read_per_1m": 0.07364,
+       "context_length": 1048576,
+       "input_per_1m": 0.88894,
+       "output_per_1m": 1.77788,
+       "platform": "OpenRouter",
+       "provider": "Baidu"
+      },
+      {
+       "cache_read_per_1m": 0.0740805,
+       "context_length": 1024000,
+       "input_per_1m": 0.888966,
+       "output_per_1m": 1.777932,
+       "platform": "OpenRouter",
+       "provider": "StreamLake"
+      },
+      {
        "cache_read_per_1m": 0.25,
        "context_length": 1048576,
        "input_per_1m": 0.9,
        "output_per_1m": 1.5,
        "platform": "OpenRouter",
        "provider": "Relace"
-      },
-      {
-       "cache_read_per_1m": 0.079605,
-       "context_length": 1024000,
-       "input_per_1m": 0.95526,
-       "output_per_1m": 1.91052,
-       "platform": "OpenRouter",
-       "provider": "StreamLake"
-      },
-      {
-       "cache_read_per_1m": 0.07975,
-       "context_length": 1048576,
-       "input_per_1m": 0.957,
-       "output_per_1m": 1.914,
-       "platform": "OpenRouter",
-       "provider": "GMICloud"
       }
      ],
      "open_weights": true,
@@ -1481,8 +1481,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro",
    "prices": {
-    "input": 0.9,
-    "output": 1.5
+    "input": 0.88894,
+    "output": 1.77788
    }
   },
   {
@@ -1518,12 +1518,20 @@
      "id": "deepseek-v4-pro-0813::max",
      "offers": [
       {
-       "cache_read_per_1m": 0.22,
+       "cache_read_per_1m": 0.15,
        "context_length": 1048576,
-       "input_per_1m": 0.2211,
+       "input_per_1m": 0.1472,
        "output_per_1m": 8,
        "platform": "OpenRouter",
        "provider": "Relace"
+      },
+      {
+       "cache_read_per_1m": 0.005208,
+       "context_length": 1048576,
+       "input_per_1m": 0.16368,
+       "output_per_1m": 0.49104,
+       "platform": "OpenRouter",
+       "provider": "Baidu"
       },
       {
        "cache_read_per_1m": 0.284,
@@ -1532,14 +1540,6 @@
        "output_per_1m": 4.3,
        "platform": "OpenRouter",
        "provider": "Wafer"
-      },
-      {
-       "cache_read_per_1m": 0.088,
-       "context_length": 1048576,
-       "input_per_1m": 0.37,
-       "output_per_1m": 2.93,
-       "platform": "OpenRouter",
-       "provider": "Ionstream"
       }
      ],
      "open_weights": true,
@@ -1563,7 +1563,7 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro 0813",
    "prices": {
-    "input": 0.2211,
+    "input": 0.1472,
     "output": 8
    }
   },
@@ -1597,15 +1597,15 @@
      "id": "deepseek-v4.1-flash-1017::max",
      "offers": [
       {
-       "cache_read_per_1m": 0.015,
+       "cache_read_per_1m": 0.0114,
        "context_length": 1048576,
-       "input_per_1m": 0.02,
-       "output_per_1m": 0.511839,
+       "input_per_1m": 0.0115,
+       "output_per_1m": 1.8,
        "platform": "OpenRouter",
        "provider": "OpenInference"
       },
       {
-       "cache_read_per_1m": 0.03,
+       "cache_read_per_1m": 0.004,
        "context_length": 1048576,
        "input_per_1m": 0.04,
        "output_per_1m": 0.5,
@@ -1613,10 +1613,10 @@
        "provider": "Reka"
       },
       {
-       "cache_read_per_1m": 0.005,
+       "cache_read_per_1m": 0.004,
        "context_length": 1048576,
-       "input_per_1m": 0.069,
-       "output_per_1m": 0.6,
+       "input_per_1m": 0.044,
+       "output_per_1m": 0.383,
        "platform": "OpenRouter",
        "provider": "Morph"
       }
@@ -1642,8 +1642,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4.1 Flash 1017",
    "prices": {
-    "input": 0.02,
-    "output": 0.511839
+    "input": 0.0115,
+    "output": 1.8
    }
   },
   {
@@ -1875,14 +1875,14 @@
        "provider": "Google Vertex AI"
       },
       {
-       "input_per_1m": 2.01,
-       "output_per_1m": 12.08,
+       "input_per_1m": 2,
+       "output_per_1m": 12.02,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
       },
       {
-       "input_per_1m": 4.03,
-       "output_per_1m": 18.12,
+       "input_per_1m": 4.01,
+       "output_per_1m": 18.04,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
       }
@@ -3313,7 +3313,7 @@
       },
       {
        "cache_read_per_1m": 0.015,
-       "context_length": 262144,
+       "context_length": 1000000,
        "input_per_1m": 0.075,
        "output_per_1m": 0.225,
        "platform": "OpenRouter",
@@ -3898,11 +3898,10 @@
        "provider": "Google Vertex AI"
       },
       {
-       "context_length": 196608,
-       "input_per_1m": 0.3,
-       "output_per_1m": 1.2,
-       "platform": "OpenRouter",
-       "provider": "Google"
+       "input_per_1m": 0.36,
+       "output_per_1m": 1.44,
+       "platform": "AWS Bedrock",
+       "provider": "AWS Bedrock"
       }
      ],
      "open_weights": true,
@@ -4261,6 +4260,14 @@
      "id": "minimax-m3.1-flash::default",
      "offers": [
       {
+       "cache_read_per_1m": 0.0135,
+       "context_length": 1000000,
+       "input_per_1m": 0.135,
+       "output_per_1m": 0.54,
+       "platform": "OpenRouter",
+       "provider": "StreamLake"
+      },
+      {
        "cache_read_per_1m": 0.01425,
        "context_length": 1048576,
        "input_per_1m": 0.1425,
@@ -4274,14 +4281,6 @@
        "output_per_1m": 0.6,
        "platform": "Nebius",
        "provider": "Nebius"
-      },
-      {
-       "cache_read_per_1m": 0.015,
-       "context_length": 1000000,
-       "input_per_1m": 0.15,
-       "output_per_1m": 0.6,
-       "platform": "OpenRouter",
-       "provider": "InferenceNet"
       }
      ],
      "open_weights": false,
@@ -4305,8 +4304,8 @@
    "irp_aliases": [],
    "label": "MiniMax M3.1 Flash",
    "prices": {
-    "input": 0.1425,
-    "output": 0.57
+    "input": 0.135,
+    "output": 0.54
    }
   },
   {
@@ -4629,19 +4628,18 @@
        "provider": "Google Vertex AI"
       },
       {
-       "context_length": 262144,
-       "input_per_1m": 0.6,
-       "output_per_1m": 2.5,
-       "platform": "OpenRouter",
-       "provider": "Google"
-      },
-      {
        "cache_read_per_1m": 0.15,
        "context_length": 262144,
        "input_per_1m": 0.6,
        "output_per_1m": 2.5,
        "platform": "OpenRouter",
        "provider": "Novita"
+      },
+      {
+       "input_per_1m": 0.72,
+       "output_per_1m": 3,
+       "platform": "AWS Bedrock",
+       "provider": "AWS Bedrock"
       }
      ],
      "open_weights": true,
@@ -4763,12 +4761,12 @@
      "id": "kimi-k2.6::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.117,
+       "cache_read_per_1m": 0.0656,
        "context_length": 262144,
-       "input_per_1m": 0.546,
-       "output_per_1m": 3.5,
+       "input_per_1m": 0.3895,
+       "output_per_1m": 1.64,
        "platform": "OpenRouter",
-       "provider": "Inceptron"
+       "provider": "Baidu"
       },
       {
        "cache_read_per_1m": 0.114,
@@ -4797,8 +4795,8 @@
    ],
    "label": "Kimi K2.6",
    "prices": {
-    "input": 0.546,
-    "output": 3.5
+    "input": 0.3895,
+    "output": 1.64
    }
   },
   {
@@ -4913,15 +4911,15 @@
       {
        "cache_read_per_1m": 0.19,
        "context_length": 1048576,
-       "input_per_1m": 0.19,
-       "output_per_1m": 8.94,
+       "input_per_1m": 0.1995,
+       "output_per_1m": 8.504,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
       {
-       "cache_read_per_1m": 0.19,
+       "cache_read_per_1m": 0.2,
        "context_length": 1048576,
-       "input_per_1m": 0.2,
+       "input_per_1m": 0.21,
        "output_per_1m": 20,
        "platform": "OpenRouter",
        "provider": "Wafer"
@@ -4945,8 +4943,8 @@
    ],
    "label": "Kimi K3",
    "prices": {
-    "input": 0.19,
-    "output": 8.94
+    "input": 0.1995,
+    "output": 8.504
    }
   },
   {
@@ -5338,6 +5336,7 @@
        "provider": "Nebius"
       },
       {
+       "cache_read_per_1m": 0.012,
        "context_length": 262144,
        "input_per_1m": 0.06,
        "output_per_1m": 0.24,
@@ -5404,13 +5403,6 @@
      "offers": [
       {
        "context_length": 262144,
-       "input_per_1m": 0,
-       "output_per_1m": 0,
-       "platform": "OpenRouter",
-       "provider": "Nvidia"
-      },
-      {
-       "context_length": 262144,
        "input_per_1m": 0.08,
        "output_per_1m": 0.45,
        "platform": "OpenRouter",
@@ -5422,6 +5414,12 @@
        "output_per_1m": 0.4,
        "platform": "OpenRouter",
        "provider": "DeepInfra"
+      },
+      {
+       "input_per_1m": 0.18,
+       "output_per_1m": 0.78,
+       "platform": "AWS Bedrock",
+       "provider": "AWS Bedrock"
       }
      ],
      "open_weights": true,
@@ -5447,8 +5445,8 @@
    ],
    "label": "Nemotron 3 Super 120B A12b",
    "prices": {
-    "input": 0,
-    "output": 0.0
+    "input": 0.08,
+    "output": 0.45
    }
   },
   {
@@ -5692,6 +5690,126 @@
    "prices": {
     "input": 0,
     "output": 0.0
+   }
+  },
+  {
+   "bench_id": "o1::default",
+   "context_tokens": 200000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 200000
+     },
+     "benchmarks": {
+      "aa_coding_index": 39.7,
+      "aa_gpqa": 0.747,
+      "aa_hle": 0.07,
+      "aa_intelligence_index": 15.2,
+      "aa_lcr": 0.65,
+      "aa_livecodebench": 0.679,
+      "aa_math_index": null,
+      "aa_mmlu_pro": 0.841,
+      "aa_scicode": null,
+      "aa_tau2": 0.625730994152047,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.128787878787879,
+      "aa_terminalbench_v2_1": null,
+      "epoch_eci": 141.72,
+      "epoch_eci_software": 141.2194249354976
+     },
+     "designarena": {},
+     "display_name": "o1",
+     "family_key": "o1",
+     "id": "o1::default",
+     "offers": [
+      {
+       "input_per_1m": 15,
+       "output_per_1m": 60,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "cache_read_per_1m": 7.5,
+       "context_length": 200000,
+       "input_per_1m": 15,
+       "output_per_1m": 60,
+       "platform": "OpenRouter",
+       "provider": "OpenAI"
+      },
+      {
+       "input_per_1m": 16.5,
+       "output_per_1m": 66,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2024-12-05",
+     "variant": "default"
+    }
+   },
+   "id": "o1",
+   "irp_aliases": [],
+   "label": "O1",
+   "prices": {
+    "input": 15,
+    "output": 60
+   }
+  },
+  {
+   "bench_id": "o3-mini::default",
+   "context_tokens": 200000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 200000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.748,
+      "aa_hle": 0.079,
+      "aa_intelligence_index": 12.5,
+      "aa_lcr": null,
+      "aa_livecodebench": 0.717,
+      "aa_math_index": null,
+      "aa_mmlu_pro": 0.791,
+      "aa_scicode": null,
+      "aa_tau2": 0.286549707602339,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0681818181818182,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "o3-mini",
+     "family_key": "o3-mini",
+     "id": "o3-mini::default",
+     "offers": [
+      {
+       "input_per_1m": 1.1,
+       "output_per_1m": 4.4,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "input_per_1m": 1.21,
+       "output_per_1m": 4.84,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-01-31",
+     "variant": "default"
+    }
+   },
+   "id": "o3-mini",
+   "irp_aliases": [],
+   "label": "O3 Mini",
+   "prices": {
+    "input": 1.1,
+    "output": 4.4
    }
   },
   {
@@ -6353,8 +6471,8 @@
      "id": "gpt-5.4-mini::medium",
      "offers": [
       {
-       "input_per_1m": 0.74,
-       "output_per_1m": 4.42,
+       "input_per_1m": 0.73,
+       "output_per_1m": 4.4,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
       },
@@ -6382,8 +6500,8 @@
    "irp_aliases": [],
    "label": "GPT 5.4 Mini",
    "prices": {
-    "input": 0.74,
-    "output": 4.42
+    "input": 0.73,
+    "output": 4.4
    }
   },
   {
@@ -6897,6 +7015,15 @@
        "provider": "OpenAI"
       },
       {
+       "cache_read_per_1m": 0.06,
+       "cache_write_per_1m": 1.5,
+       "context_length": 1050000,
+       "input_per_1m": 1.2,
+       "output_per_1m": 6,
+       "platform": "OpenRouter",
+       "provider": "Azure"
+      },
+      {
        "cache_read_per_1m": 0.1,
        "cache_write_per_1m": 2.5,
        "context_length": 1050000,
@@ -7095,71 +7222,6 @@
    }
   },
   {
-   "bench_id": "o1::default",
-   "context_tokens": 200000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 200000
-     },
-     "benchmarks": {
-      "aa_coding_index": 39.7,
-      "aa_gpqa": 0.747,
-      "aa_hle": 0.07,
-      "aa_intelligence_index": 15.2,
-      "aa_lcr": 0.65,
-      "aa_livecodebench": 0.679,
-      "aa_math_index": null,
-      "aa_mmlu_pro": 0.841,
-      "aa_scicode": null,
-      "aa_tau2": 0.625730994152047,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.128787878787879,
-      "aa_terminalbench_v2_1": null,
-      "epoch_eci": 141.72,
-      "epoch_eci_software": 141.2194249354976
-     },
-     "designarena": {},
-     "display_name": "o1",
-     "family_key": "o1",
-     "id": "o1::default",
-     "offers": [
-      {
-       "input_per_1m": 15,
-       "output_per_1m": 60,
-       "platform": "Azure AI Foundry",
-       "provider": "Azure AI Foundry"
-      },
-      {
-       "cache_read_per_1m": 7.5,
-       "context_length": 200000,
-       "input_per_1m": 15,
-       "output_per_1m": 60,
-       "platform": "OpenRouter",
-       "provider": "OpenAI"
-      },
-      {
-       "input_per_1m": 16.5,
-       "output_per_1m": 66,
-       "platform": "Azure AI Foundry",
-       "provider": "Azure AI Foundry"
-      }
-     ],
-     "open_weights": false,
-     "release_date": "2024-12-05",
-     "variant": "default"
-    }
-   },
-   "id": "openai/o1",
-   "irp_aliases": [],
-   "label": "O1",
-   "prices": {
-    "input": 15,
-    "output": 60
-   }
-  },
-  {
    "bench_id": "o3::default",
    "context_tokens": 200000,
    "core": false,
@@ -7222,69 +7284,6 @@
    "prices": {
     "input": 2,
     "output": 8
-   }
-  },
-  {
-   "bench_id": "o3-mini::default",
-   "context_tokens": 200000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 200000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.748,
-      "aa_hle": 0.079,
-      "aa_intelligence_index": 12.5,
-      "aa_lcr": null,
-      "aa_livecodebench": 0.717,
-      "aa_math_index": null,
-      "aa_mmlu_pro": 0.791,
-      "aa_scicode": null,
-      "aa_tau2": 0.286549707602339,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.0681818181818182,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "o3-mini",
-     "family_key": "o3-mini",
-     "id": "o3-mini::default",
-     "offers": [
-      {
-       "input_per_1m": 1.1,
-       "output_per_1m": 4.4,
-       "platform": "Azure AI Foundry",
-       "provider": "Azure AI Foundry"
-      },
-      {
-       "cache_read_per_1m": 0.55,
-       "context_length": 200000,
-       "input_per_1m": 1.1,
-       "output_per_1m": 4.4,
-       "platform": "OpenRouter",
-       "provider": "OpenAI"
-      },
-      {
-       "input_per_1m": 1.21,
-       "output_per_1m": 4.84,
-       "platform": "Azure AI Foundry",
-       "provider": "Azure AI Foundry"
-      }
-     ],
-     "open_weights": false,
-     "release_date": "2025-01-31",
-     "variant": "default"
-    }
-   },
-   "id": "openai/o3-mini",
-   "irp_aliases": [],
-   "label": "O3 Mini",
-   "prices": {
-    "input": 1.1,
-    "output": 4.4
    }
   },
   {
@@ -8550,12 +8549,12 @@
        "provider": "AkashML"
       },
       {
-       "cache_read_per_1m": 0.1,
+       "cache_read_per_1m": 0.025,
        "context_length": 262144,
        "input_per_1m": 0.1,
-       "output_per_1m": 0.95,
+       "output_per_1m": 0.9,
        "platform": "OpenRouter",
-       "provider": "DeepInfra"
+       "provider": "Parasail"
       }
      ],
      "open_weights": true,
@@ -9077,13 +9076,6 @@
        "output_per_1m": 0.47,
        "platform": "OpenRouter",
        "provider": "Alibaba"
-      },
-      {
-       "cache_read_per_1m": 0.05,
-       "input_per_1m": 0.2,
-       "output_per_1m": 0.5,
-       "platform": "TensorX",
-       "provider": "TensorX"
       }
      ],
      "open_weights": true,
@@ -9271,28 +9263,28 @@
      "id": "step-5-preview::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.05,
-       "context_length": 1048576,
-       "input_per_1m": 1,
-       "output_per_1m": 2.7,
-       "platform": "OpenRouter",
-       "provider": "InferenceNet"
-      },
-      {
-       "cache_read_per_1m": 0.05,
-       "context_length": 1048576,
-       "input_per_1m": 1,
-       "output_per_1m": 2.7,
-       "platform": "OpenRouter",
-       "provider": "InferenceNet"
-      },
-      {
        "cache_read_per_1m": 0.1,
        "context_length": 262144,
        "input_per_1m": 1,
        "output_per_1m": 2.7,
        "platform": "OpenRouter",
        "provider": "Featherless"
+      },
+      {
+       "cache_read_per_1m": 0.1,
+       "context_length": 1048576,
+       "input_per_1m": 1,
+       "output_per_1m": 2.7,
+       "platform": "OpenRouter",
+       "provider": "DeepInfra"
+      },
+      {
+       "cache_read_per_1m": 0.1,
+       "context_length": 1000000,
+       "input_per_1m": 1,
+       "output_per_1m": 2.7,
+       "platform": "OpenRouter",
+       "provider": "StepFun"
       }
      ],
      "open_weights": true,
@@ -9351,10 +9343,10 @@
      "id": "hy3::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.033,
+       "cache_read_per_1m": 0.020625,
        "context_length": 262144,
-       "input_per_1m": 0.132,
-       "output_per_1m": 0.528,
+       "input_per_1m": 0.0825,
+       "output_per_1m": 0.33,
        "platform": "OpenRouter",
        "provider": "Tencent"
       },
@@ -9396,8 +9388,8 @@
    "irp_aliases": [],
    "label": "Hy3",
    "prices": {
-    "input": 0.132,
-    "output": 0.528
+    "input": 0.0825,
+    "output": 0.33
    }
   },
   {
@@ -10065,6 +10057,14 @@
      "id": "mimo-v2.6-pro::default",
      "offers": [
       {
+       "cache_read_per_1m": 0.0034,
+       "context_length": 1050000,
+       "input_per_1m": 0.36975,
+       "output_per_1m": 0.7395,
+       "platform": "OpenRouter",
+       "provider": "GMICloud"
+      },
+      {
        "cache_read_per_1m": 0.00324,
        "context_length": 1048576,
        "input_per_1m": 0.387,
@@ -10079,14 +10079,6 @@
        "output_per_1m": 0.87,
        "platform": "OpenRouter",
        "provider": "Novita"
-      },
-      {
-       "cache_read_per_1m": 0.004,
-       "context_length": 1050000,
-       "input_per_1m": 0.435,
-       "output_per_1m": 0.87,
-       "platform": "OpenRouter",
-       "provider": "GMICloud"
       }
      ],
      "open_weights": true,
@@ -10110,8 +10102,8 @@
    "irp_aliases": [],
    "label": "MiMo V2.6 Pro",
    "prices": {
-    "input": 0.387,
-    "output": 0.783
+    "input": 0.36975,
+    "output": 0.7395
    }
   },
   {
@@ -10678,6 +10670,14 @@
      "id": "glm-5.1::reasoning",
      "offers": [
       {
+       "cache_read_per_1m": 0.16692,
+       "context_length": 202752,
+       "input_per_1m": 0.8988,
+       "output_per_1m": 2.8248,
+       "platform": "OpenRouter",
+       "provider": "Baidu"
+      },
+      {
        "cache_read_per_1m": 0.1794,
        "context_length": 200000,
        "input_per_1m": 0.966,
@@ -10692,14 +10692,6 @@
        "output_per_1m": 3.74,
        "platform": "OpenRouter",
        "provider": "SiliconFlow"
-      },
-      {
-       "cache_read_per_1m": 0.6,
-       "context_length": 202752,
-       "input_per_1m": 1.21,
-       "output_per_1m": 4.2,
-       "platform": "OpenRouter",
-       "provider": "Phala"
       }
      ],
      "open_weights": true,
@@ -10723,8 +10715,8 @@
    "irp_aliases": [],
    "label": "GLM 5.1",
    "prices": {
-    "input": 0.966,
-    "output": 3.036
+    "input": 0.8988,
+    "output": 2.8248
    }
   },
   {
