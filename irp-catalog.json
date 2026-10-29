@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-28T21:23:05Z",
+ "generated_at": "2026-10-29T03:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -8456,7 +8456,7 @@
        "cache_read_per_1m": 0.2,
        "context_length": 262144,
        "input_per_1m": 0.2,
-       "output_per_1m": 2,
+       "output_per_1m": 3,
        "platform": "OpenRouter",
        "provider": "Reka"
       },
@@ -8497,7 +8497,7 @@
    "label": "Qwen3.6 27B",
    "prices": {
     "input": 0.2,
-    "output": 2
+    "output": 3
    }
   },
   {
