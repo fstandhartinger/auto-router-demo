@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31T03:23:02Z",
+ "generated_at": "2026-10-31T06:28:24Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1982,6 +1982,60 @@
    }
   },
   {
+   "bench_id": "gemma-4-e4b::reasoning",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.576,
+      "aa_hle": 0.038,
+      "aa_intelligence_index": 8.9,
+      "aa_lcr": 0.32,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.244,
+      "aa_tau2": 0.207602339181287,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0833333333333333,
+      "aa_terminalbench_v2_1": 0.0187265917602996
+     },
+     "designarena": {},
+     "display_name": "Gemma 4 E4B (Reasoning)",
+     "family_key": "gemma-4-e4b",
+     "id": "gemma-4-e4b::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2026-04-03",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 8996.301954875533
+        }
+       }
+      }
+     },
+     "variant": "reasoning"
+    }
+   },
+   "id": "gemma-4-e4b",
+   "irp_aliases": [],
+   "label": "Gemma 4 E4b",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "gemini-2.5-flash::non-reasoning",
    "context_tokens": 1000000,
    "core": false,
@@ -3212,70 +3266,6 @@
    }
   },
   {
-   "bench_id": "ling-3.0-flash-vl::default",
-   "context_tokens": 262144,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 262144
-     },
-     "benchmarks": {
-      "aa_agentic_index": 30,
-      "aa_coding_index": 57,
-      "aa_gpqa": 0.862,
-      "aa_hle": 0.22,
-      "aa_intelligence_index": 24.6,
-      "aa_lcr": 0.783333333333333,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.442,
-      "aa_tau2": null,
-      "aa_tau_banking": 0.344329896907216,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": 0.644194756554307
-     },
-     "designarena": {},
-     "display_name": "Ling-3.0-flash-VL",
-     "family_key": "ling-3.0-flash-vl",
-     "id": "ling-3.0-flash-vl::default",
-     "offers": [
-      {
-       "cache_read_per_1m": 0.012,
-       "context_length": 131072,
-       "input_per_1m": 0.06,
-       "output_per_1m": 0.18,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2026-09-10",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 50380.53172990063
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "inclusionai/ling-3.0-flash-vl",
-   "irp_aliases": [],
-   "label": "Ling 3.0 Flash Vl",
-   "prices": {
-    "input": 0.06,
-    "output": 0.18
-   }
-  },
-  {
    "bench_id": "ling-3.1-flash::default",
    "context_tokens": 1000000,
    "core": false,
@@ -3601,83 +3591,6 @@
    "prices": {
     "input": 0.1875,
     "output": 0.6525
-   }
-  },
-  {
-   "bench_id": "llama-4-scout::default",
-   "context_tokens": 10000000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 10000000
-     },
-     "benchmarks": {
-      "aa_agentic_index": 0.5,
-      "aa_coding_index": 8.2,
-      "aa_gpqa": 0.587,
-      "aa_hle": 0.038,
-      "aa_intelligence_index": 6.5,
-      "aa_lcr": 0.277,
-      "aa_livecodebench": 0.299,
-      "aa_math_index": 14,
-      "aa_mmlu_pro": 0.752,
-      "aa_scicode": 0.213,
-      "aa_tau2": 0.154970760233918,
-      "aa_tau_banking": 0.0329896907216495,
-      "aa_terminalbench_hard": 0.0151515151515152,
-      "aa_terminalbench_v2_1": 0.0374531835205993,
-      "epoch_eci": 129.63,
-      "epoch_eci_software": null
-     },
-     "designarena": {},
-     "display_name": "Llama 4 Scout",
-     "family_key": "llama-4-scout",
-     "id": "llama-4-scout::default",
-     "offers": [
-      {
-       "context_length": 327680,
-       "input_per_1m": 0.1,
-       "output_per_1m": 0.3,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      },
-      {
-       "input_per_1m": 0.17,
-       "output_per_1m": 0.66,
-       "platform": "AWS Bedrock",
-       "provider": "AWS Bedrock"
-      },
-      {
-       "input_per_1m": 0.25,
-       "output_per_1m": 0.7,
-       "platform": "Google Vertex AI",
-       "provider": "Google Vertex AI"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2025-04-05",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 1918.1080615755395
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "meta-llama/llama-4-scout",
-   "irp_aliases": [],
-   "label": "Llama 4 Scout",
-   "prices": {
-    "input": 0.1,
-    "output": 0.3
    }
   },
   {
@@ -4442,6 +4355,83 @@
    "prices": {
     "input": 0.135,
     "output": 0.54
+   }
+  },
+  {
+   "bench_id": "mistral-large-3::default",
+   "context_tokens": 256000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 256000
+     },
+     "benchmarks": {
+      "aa_agentic_index": 2.4,
+      "aa_coding_index": 20.1,
+      "aa_gpqa": 0.68,
+      "aa_hle": 0.042,
+      "aa_intelligence_index": 9.3,
+      "aa_lcr": 0.36,
+      "aa_livecodebench": 0.465,
+      "aa_math_index": 38,
+      "aa_mmlu_pro": 0.807,
+      "aa_scicode": 0.366,
+      "aa_tau2": 0.245614035087719,
+      "aa_tau_banking": 0.0577319587628866,
+      "aa_terminalbench_hard": 0.159090909090909,
+      "aa_terminalbench_v2_1": 0.119850187265918
+     },
+     "designarena": {},
+     "display_name": "Mistral Large 3",
+     "family_key": "mistral-large-3",
+     "id": "mistral-large-3::default",
+     "offers": [
+      {
+       "input_per_1m": 0.5,
+       "output_per_1m": 1.5,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "cache_read_per_1m": 0.05,
+       "input_per_1m": 0.5,
+       "output_per_1m": 1.5,
+       "platform": "Mistral",
+       "provider": "Mistral"
+      },
+      {
+       "cache_read_per_1m": 0.05,
+       "context_length": 262144,
+       "input_per_1m": 0.5,
+       "output_per_1m": 1.5,
+       "platform": "OpenRouter",
+       "provider": "Mistral"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2025-12-02",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 5566.44243010125
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "mistral-large-3",
+   "irp_aliases": [],
+   "label": "Mistral Large 3",
+   "prices": {
+    "input": 0.5,
+    "output": 1.5
    }
   },
   {
@@ -7543,9 +7533,7 @@
     }
    },
    "id": "qwen/qwen3-235b-a22b-thinking-2507",
-   "irp_aliases": [
-    "qwen3-235b-thinking"
-   ],
+   "irp_aliases": [],
    "label": "Qwen3 235B A22b Thinking 2507",
    "prices": {
     "input": 0.45,
@@ -7864,7 +7852,9 @@
     }
    },
    "id": "qwen/qwen3-coder-next",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "qwen3-coder-next-80b"
+   ],
    "label": "Qwen3 Coder Next",
    "prices": {
     "input": 0.12,
@@ -8966,12 +8956,55 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen3-235b-a22b-instruct-2507"
+    "qwen-3-235b-a22b-instruct-2507",
+    "qwen3-235b-instruct"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
    "prices": {
     "input": 0.0875,
     "output": 0.35
+   }
+  },
+  {
+   "bench_id": "qwen3.5-4b::reasoning",
+   "context_tokens": 262144,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 262144
+     },
+     "benchmarks": {
+      "aa_coding_index": 22.6,
+      "aa_gpqa": 0.771,
+      "aa_hle": 0.099,
+      "aa_intelligence_index": 13.1,
+      "aa_lcr": 0.63,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": null,
+      "aa_tau2": 0.921052631578947,
+      "aa_tau_banking": 0.0680412371134021,
+      "aa_terminalbench_hard": 0.181818181818182,
+      "aa_terminalbench_v2_1": 0.258426966292135
+     },
+     "designarena": {},
+     "display_name": "Qwen3.5 4B (Reasoning)",
+     "family_key": "qwen3.5-4b",
+     "id": "qwen3.5-4b::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2026-03-02",
+     "variant": "reasoning"
+    }
+   },
+   "id": "qwen3.5-4b",
+   "irp_aliases": [],
+   "label": "Qwen3.5 4B",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
    }
   },
   {
