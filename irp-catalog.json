@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31T18:29:07Z",
+ "generated_at": "2026-10-31T21:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -5568,6 +5568,68 @@
    "prices": {
     "input": 0.5,
     "output": 1.5
+   }
+  },
+  {
+   "bench_id": "mistral-large-4::medium",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": null,
+      "aa_hle": null,
+      "aa_intelligence_index": 23.1,
+      "aa_lcr": null,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": null,
+      "aa_tau2": null,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Mistral Large 4 (Medium)",
+     "family_key": "mistral-large-4",
+     "id": "mistral-large-4::medium",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.07,
+       "input_per_1m": 0.7,
+       "output_per_1m": 2.1,
+       "platform": "Mistral",
+       "provider": "Mistral"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2026-10-29",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-31T08:20:39.382Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 56324.47155445095
+        }
+       }
+      }
+     },
+     "variant": "medium"
+    }
+   },
+   "id": "mistral-large-4",
+   "irp_aliases": [],
+   "label": "Mistral Large 4",
+   "prices": {
+    "input": 0.7,
+    "output": 2.1
    }
   },
   {
