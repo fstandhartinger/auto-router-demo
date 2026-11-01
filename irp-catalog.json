@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-01T06:26:37Z",
+ "generated_at": "2026-11-01T09:23:04Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -137,7 +137,7 @@
       "aa_coding_index": 43.9,
       "aa_gpqa": 0.672,
       "aa_hle": 0.104,
-      "aa_intelligence_index": 16.9,
+      "aa_intelligence_index": 6.3,
       "aa_lcr": 0.743333333333333,
       "aa_livecodebench": 0.615,
       "aa_math_index": 83.7,
@@ -217,7 +217,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.338,
-      "aa_intelligence_index": 34.5,
+      "aa_intelligence_index": 24.6,
       "aa_lcr": 0.773333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -266,10 +266,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 32812.5566527238
+         "output": 53335.11651977117
         }
        }
       }
@@ -300,7 +300,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.866,
       "aa_hle": 0.301,
-      "aa_intelligence_index": 29.1,
+      "aa_intelligence_index": 17.9,
       "aa_lcr": 0.773333333333333,
       "aa_livecodebench": 0.871,
       "aa_math_index": 91.3,
@@ -316,7 +316,7 @@
      "designarena": {
       "frontend": {
        "battles": 2697,
-       "elo": 1147,
+       "elo": 1146,
        "modelId": "claude-opus-4-5-20251101",
        "winRate": 55.1
       },
@@ -381,7 +381,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.896,
       "aa_hle": 0.399,
-      "aa_intelligence_index": 31.9,
+      "aa_intelligence_index": 20.3,
       "aa_lcr": 0.78,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -397,7 +397,7 @@
      "designarena": {
       "frontend": {
        "battles": 4220,
-       "elo": 1194,
+       "elo": 1193,
        "modelId": "claude-opus-4-6",
        "winRate": 56.2
       },
@@ -569,7 +569,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.547,
-      "aa_intelligence_index": 51.2,
+      "aa_intelligence_index": 48.1,
       "aa_lcr": 0.843333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -618,10 +618,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 25745.286895441168
+         "output": 43816.54647879175
         }
        }
       }
@@ -653,7 +653,7 @@
       "aa_coding_index": 52.1,
       "aa_gpqa": 0.834,
       "aa_hle": 0.178,
-      "aa_intelligence_index": 20.7,
+      "aa_intelligence_index": 9.8,
       "aa_lcr": 0.723333333333333,
       "aa_livecodebench": 0.714,
       "aa_math_index": 88,
@@ -669,7 +669,7 @@
      "designarena": {
       "frontend": {
        "battles": 1503,
-       "elo": 1047,
+       "elo": 1046,
        "modelId": "claude-sonnet-4-5-20250929",
        "winRate": 43.2
       },
@@ -748,7 +748,7 @@
      "designarena": {
       "frontend": {
        "battles": 2825,
-       "elo": 1178,
+       "elo": 1177,
        "modelId": "claude-sonnet-4-6",
        "winRate": 57
       },
@@ -812,7 +812,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.3,
-      "aa_intelligence_index": 28.1,
+      "aa_intelligence_index": 17.6,
       "aa_lcr": 0.736666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -890,7 +890,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.398,
-      "aa_intelligence_index": 40.8,
+      "aa_intelligence_index": 30.3,
       "aa_lcr": 0.763333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -939,10 +939,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 20937.627614580473
+         "output": 30745.89477415119
         }
        }
       }
@@ -1028,7 +1028,7 @@
       "aa_coding_index": 21.2,
       "aa_gpqa": 0.655,
       "aa_hle": 0.047,
-      "aa_intelligence_index": 9.7,
+      "aa_intelligence_index": 4.3,
       "aa_lcr": 0.406666666666667,
       "aa_livecodebench": 0.405,
       "aa_math_index": 41,
@@ -1100,7 +1100,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.779,
       "aa_hle": 0.143,
-      "aa_intelligence_index": 13.5,
+      "aa_intelligence_index": 6.2,
       "aa_lcr": 0.566666666666667,
       "aa_livecodebench": 0.784,
       "aa_math_index": 89.7,
@@ -1171,7 +1171,7 @@
       "aa_coding_index": 43.5,
       "aa_gpqa": 0.792,
       "aa_hle": 0.164,
-      "aa_intelligence_index": 14.8,
+      "aa_intelligence_index": 6.2,
       "aa_lcr": 0.693333333333333,
       "aa_livecodebench": 0.798,
       "aa_math_index": 89.7,
@@ -1221,7 +1221,7 @@
       "aa_coding_index": 44.2,
       "aa_gpqa": 0.84,
       "aa_hle": 0.246,
-      "aa_intelligence_index": 21.5,
+      "aa_intelligence_index": 10.7,
       "aa_lcr": 0.733333333333333,
       "aa_livecodebench": 0.862,
       "aa_math_index": 92,
@@ -1290,7 +1290,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.797,
       "aa_hle": 0.149,
-      "aa_intelligence_index": 16.6,
+      "aa_intelligence_index": 6.3,
       "aa_lcr": 0.723333333333333,
       "aa_livecodebench": 0.789,
       "aa_math_index": 87.7,
@@ -1342,7 +1342,7 @@
       "aa_coding_index": 52,
       "aa_gpqa": 0.867,
       "aa_hle": 0.303,
-      "aa_intelligence_index": 24.4,
+      "aa_intelligence_index": 12.3,
       "aa_lcr": 0.72,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -1359,28 +1359,28 @@
      "id": "deepseek-v4-flash::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.0436,
+       "cache_read_per_1m": 0.0386,
        "context_length": 1048576,
-       "input_per_1m": 0.0436,
+       "input_per_1m": 0.0386,
        "output_per_1m": 0.45,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
       {
-       "cache_read_per_1m": 0.009156,
-       "context_length": 1048576,
-       "input_per_1m": 0.04578,
-       "output_per_1m": 0.09156,
-       "platform": "OpenRouter",
-       "provider": "Baidu"
-      },
-      {
-       "cache_read_per_1m": 0.009184,
+       "cache_read_per_1m": 0.00798,
        "context_length": 1024000,
-       "input_per_1m": 0.04592,
-       "output_per_1m": 0.09184,
+       "input_per_1m": 0.0399,
+       "output_per_1m": 0.0798,
        "platform": "OpenRouter",
        "provider": "StreamLake"
+      },
+      {
+       "cache_read_per_1m": 0.00812,
+       "context_length": 1048576,
+       "input_per_1m": 0.0406,
+       "output_per_1m": 0.0812,
+       "platform": "OpenRouter",
+       "provider": "Baidu"
       }
      ],
      "open_weights": true,
@@ -1406,7 +1406,7 @@
    ],
    "label": "DeepSeek V4 Flash",
    "prices": {
-    "input": 0.0436,
+    "input": 0.0386,
     "output": 0.45
    }
   },
@@ -1424,7 +1424,7 @@
       "aa_coding_index": 58.7,
       "aa_gpqa": 0.905,
       "aa_hle": 0.352,
-      "aa_intelligence_index": 30.1,
+      "aa_intelligence_index": 18.4,
       "aa_lcr": 0.703333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -1441,18 +1441,18 @@
      "id": "deepseek-v4-pro::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.065743,
+       "cache_read_per_1m": 0.0319435,
        "context_length": 1024000,
-       "input_per_1m": 0.788916,
-       "output_per_1m": 1.577832,
+       "input_per_1m": 0.383322,
+       "output_per_1m": 0.766644,
        "platform": "OpenRouter",
        "provider": "StreamLake"
       },
       {
-       "cache_read_per_1m": 0.06608,
+       "cache_read_per_1m": 0.03248,
        "context_length": 1048576,
-       "input_per_1m": 0.79768,
-       "output_per_1m": 1.59536,
+       "input_per_1m": 0.39208,
+       "output_per_1m": 0.78416,
        "platform": "OpenRouter",
        "provider": "Baidu"
       },
@@ -1474,8 +1474,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro",
    "prices": {
-    "input": 0.788916,
-    "output": 1.577832
+    "input": 0.383322,
+    "output": 0.766644
    }
   },
   {
@@ -1492,7 +1492,7 @@
       "aa_coding_index": 68.8,
       "aa_gpqa": 0.928,
       "aa_hle": 0.41,
-      "aa_intelligence_index": 36,
+      "aa_intelligence_index": 23.1,
       "aa_lcr": 0.803333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -1522,17 +1522,17 @@
        "cache_read_per_1m": 0.11,
        "context_length": 1048576,
        "input_per_1m": 0.115,
-       "output_per_1m": 4.3,
+       "output_per_1m": 4,
        "platform": "OpenRouter",
        "provider": "Wafer"
       },
       {
-       "cache_read_per_1m": 0.284,
+       "cache_read_per_1m": 0.00903,
        "context_length": 1048576,
-       "input_per_1m": 0.285,
-       "output_per_1m": 4.3,
+       "input_per_1m": 0.2838,
+       "output_per_1m": 0.8514,
        "platform": "OpenRouter",
-       "provider": "Wafer"
+       "provider": "Baidu"
       }
      ],
      "open_weights": true,
@@ -1541,10 +1541,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 55154.4293719494
+         "output": 98732.69082294707
         }
        }
       }
@@ -1573,7 +1573,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.433,
-      "aa_intelligence_index": 45.1,
+      "aa_intelligence_index": 32.5,
       "aa_lcr": 0.826666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -1592,20 +1592,12 @@
      "id": "deepseek-v4.1-flash-1017::max",
      "offers": [
       {
-       "cache_read_per_1m": 0.013,
+       "cache_read_per_1m": 0.005,
        "context_length": 1048576,
-       "input_per_1m": 0.0141,
-       "output_per_1m": 0.144,
+       "input_per_1m": 0.035,
+       "output_per_1m": 0.5,
        "platform": "OpenRouter",
        "provider": "OpenInference"
-      },
-      {
-       "cache_read_per_1m": 0.004,
-       "context_length": 1048576,
-       "input_per_1m": 0.022,
-       "output_per_1m": 0.192,
-       "platform": "OpenRouter",
-       "provider": "Morph"
       },
       {
        "cache_read_per_1m": 0.005,
@@ -1614,6 +1606,14 @@
        "output_per_1m": 0.5,
        "platform": "OpenRouter",
        "provider": "Relace"
+      },
+      {
+       "cache_read_per_1m": 0.005,
+       "context_length": 1048576,
+       "input_per_1m": 0.038,
+       "output_per_1m": 0.5,
+       "platform": "OpenRouter",
+       "provider": "Wafer"
       }
      ],
      "open_weights": true,
@@ -1622,10 +1622,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 89495.05222921798
+         "output": 138961.70588646265
         }
        }
       }
@@ -1637,8 +1637,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4.1 Flash 1017",
    "prices": {
-    "input": 0.0141,
-    "output": 0.144
+    "input": 0.035,
+    "output": 0.5
    }
   },
   {
@@ -1654,7 +1654,7 @@
       "aa_coding_index": 33.3,
       "aa_gpqa": 0.844,
       "aa_hle": 0.225,
-      "aa_intelligence_index": 16.1,
+      "aa_intelligence_index": 6.3,
       "aa_lcr": 0.69,
       "aa_livecodebench": 0.801,
       "aa_math_index": 87.7,
@@ -1785,7 +1785,7 @@
       "aa_coding_index": 34.7,
       "aa_gpqa": 0.822,
       "aa_hle": 0.172,
-      "aa_intelligence_index": 15.6,
+      "aa_intelligence_index": 6.3,
       "aa_lcr": 0.743333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -1908,7 +1908,7 @@
       "aa_coding_index": 10.1,
       "aa_gpqa": 0.428,
       "aa_hle": 0.044,
-      "aa_intelligence_index": 4.9,
+      "aa_intelligence_index": 1.9,
       "aa_lcr": 0.0733333333333333,
       "aa_livecodebench": 0.137,
       "aa_math_index": 20.7,
@@ -1988,7 +1988,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.683,
       "aa_hle": 0.047,
-      "aa_intelligence_index": 9.9,
+      "aa_intelligence_index": 4.4,
       "aa_lcr": 0.499,
       "aa_livecodebench": 0.495,
       "aa_math_index": 60.3,
@@ -2116,7 +2116,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.898,
       "aa_hle": 0.366,
-      "aa_intelligence_index": 26.3,
+      "aa_intelligence_index": 14.5,
       "aa_lcr": 0.78,
       "aa_livecodebench": 0.908,
       "aa_math_index": 97,
@@ -2130,7 +2130,7 @@
      "designarena": {
       "frontend": {
        "battles": 3980,
-       "elo": 1098,
+       "elo": 1097,
        "modelId": "gemini-3-flash-preview",
        "winRate": 48.5
       },
@@ -2191,7 +2191,7 @@
       "aa_coding_index": 68.8,
       "aa_gpqa": 0.941,
       "aa_hle": 0.47,
-      "aa_intelligence_index": 29.7,
+      "aa_intelligence_index": 18,
       "aa_lcr": 0.82,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2204,10 +2204,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 6666,
-       "elo": 1113,
+       "battles": 6669,
+       "elo": 1112,
        "modelId": "gemini-3.1-pro-preview",
-       "winRate": 44.3
+       "winRate": 44.4
       },
       "fullstack": {
        "battles": 4828,
@@ -2277,7 +2277,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.921,
       "aa_hle": 0.413,
-      "aa_intelligence_index": 33.6,
+      "aa_intelligence_index": 23,
       "aa_lcr": 0.743333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2345,7 +2345,7 @@
       "aa_coding_index": 49.3,
       "aa_gpqa": 0.838,
       "aa_hle": 0.188,
-      "aa_intelligence_index": 22.2,
+      "aa_intelligence_index": 11.7,
       "aa_lcr": 0.76,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2394,10 +2394,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 17506.699128048065
+         "output": 30300.690239426476
         }
        }
       }
@@ -2428,7 +2428,7 @@
       "aa_coding_index": 69.2,
       "aa_gpqa": 0.928,
       "aa_hle": 0.408,
-      "aa_intelligence_index": 34,
+      "aa_intelligence_index": 23.9,
       "aa_lcr": 0.8,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2443,13 +2443,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 2903,
-       "elo": 1183,
+       "battles": 2905,
+       "elo": 1182,
        "modelId": "gemini-3.6-flash",
        "winRate": 45.5
       },
       "fullstack": {
-       "battles": 2938,
+       "battles": 2939,
        "elo": 1181,
        "modelId": "gemini-3.6-flash",
        "winRate": 44.3
@@ -2522,7 +2522,7 @@
       "aa_coding_index": 71.5,
       "aa_gpqa": 0.921,
       "aa_hle": 0.39,
-      "aa_intelligence_index": 39.6,
+      "aa_intelligence_index": 29.8,
       "aa_lcr": 0.83,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2589,7 +2589,7 @@
       "aa_coding_index": 74.1,
       "aa_gpqa": 0.935,
       "aa_hle": 0.421,
-      "aa_intelligence_index": 39.8,
+      "aa_intelligence_index": 30,
       "aa_lcr": 0.84,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2636,10 +2636,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 52598.80180165109
+         "output": 82068.01531105887
         }
        }
       }
@@ -2668,7 +2668,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.571,
-      "aa_intelligence_index": 52.6,
+      "aa_intelligence_index": 50.4,
       "aa_lcr": 0.796666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2720,10 +2720,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 61557.626207648
+         "output": 116368.02906783369
         }
        }
       }
@@ -2752,7 +2752,7 @@
       "aa_coding_index": 39.3,
       "aa_gpqa": 0.792,
       "aa_hle": 0.193,
-      "aa_intelligence_index": 16.7,
+      "aa_intelligence_index": 6.3,
       "aa_lcr": 0.656666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2778,20 +2778,20 @@
        "provider": "Google AI Studio"
       },
       {
-       "cache_read_per_1m": 0.005,
-       "context_length": 262144,
-       "input_per_1m": 0.011,
-       "output_per_1m": 0.032,
-       "platform": "OpenRouter",
-       "provider": "PrimeIntellect"
-      },
-      {
-       "cache_read_per_1m": 0.021,
+       "cache_read_per_1m": 0.01,
        "context_length": 131072,
-       "input_per_1m": 0.042,
-       "output_per_1m": 0.22,
+       "input_per_1m": 0.024,
+       "output_per_1m": 0.1,
        "platform": "OpenRouter",
        "provider": "Darkbloom"
+      },
+      {
+       "cache_read_per_1m": 0.013,
+       "context_length": 262144,
+       "input_per_1m": 0.026,
+       "output_per_1m": 0.078,
+       "platform": "OpenRouter",
+       "provider": "PrimeIntellect"
       }
      ],
      "open_weights": true,
@@ -2825,7 +2825,7 @@
       "aa_coding_index": 43.4,
       "aa_gpqa": 0.857,
       "aa_hle": 0.236,
-      "aa_intelligence_index": 14.7,
+      "aa_intelligence_index": 6.2,
       "aa_lcr": 0.696666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2907,7 +2907,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.899,
       "aa_hle": 0.357,
-      "aa_intelligence_index": 28.5,
+      "aa_intelligence_index": 17.7,
       "aa_lcr": 0.823333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2956,7 +2956,7 @@
       "aa_coding_index": 51.5,
       "aa_gpqa": 0.895,
       "aa_hle": 0.383,
-      "aa_intelligence_index": 27.2,
+      "aa_intelligence_index": 16.6,
       "aa_lcr": 0.746666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3018,7 +3018,7 @@
       "aa_coding_index": 31.1,
       "aa_gpqa": 0.77,
       "aa_hle": 0.171,
-      "aa_intelligence_index": 10.8,
+      "aa_intelligence_index": 4.7,
       "aa_lcr": 0.436666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3081,7 +3081,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.118,
-      "aa_intelligence_index": 12.3,
+      "aa_intelligence_index": 5.3,
       "aa_lcr": 0.716666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3147,7 +3147,7 @@
       "aa_coding_index": 50.6,
       "aa_gpqa": 0.855,
       "aa_hle": 0.237,
-      "aa_intelligence_index": 20.1,
+      "aa_intelligence_index": 9.7,
       "aa_lcr": 0.73,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3403,7 +3403,7 @@
       "aa_coding_index": 11.9,
       "aa_gpqa": 0.498,
       "aa_hle": 0.036,
-      "aa_intelligence_index": 7.7,
+      "aa_intelligence_index": 3.3,
       "aa_lcr": 0.156666666666667,
       "aa_livecodebench": 0.288,
       "aa_math_index": 7.7,
@@ -3547,7 +3547,7 @@
       "aa_coding_index": 8.2,
       "aa_gpqa": 0.587,
       "aa_hle": 0.038,
-      "aa_intelligence_index": 6.5,
+      "aa_intelligence_index": 2.7,
       "aa_lcr": 0.277,
       "aa_livecodebench": 0.299,
       "aa_math_index": 14,
@@ -3689,7 +3689,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.89,
       "aa_hle": 0.439,
-      "aa_intelligence_index": 38.9,
+      "aa_intelligence_index": 24.7,
       "aa_lcr": 0.783333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3737,10 +3737,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 40418.14288334975
+         "output": 66440.0869950025
         }
        }
       }
@@ -3769,7 +3769,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.501,
-      "aa_intelligence_index": 52.4,
+      "aa_intelligence_index": 43.3,
       "aa_lcr": 0.806666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3802,10 +3802,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 54476.547878296864
+         "output": 96063.09909177679
         }
        }
       }
@@ -3834,7 +3834,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.846,
       "aa_hle": 0.228,
-      "aa_intelligence_index": 20.8,
+      "aa_intelligence_index": 9.8,
       "aa_lcr": 0.706666666666667,
       "aa_livecodebench": 0.868,
       "aa_math_index": 96.3,
@@ -3938,7 +3938,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.83,
       "aa_hle": 0.232,
-      "aa_intelligence_index": 20.9,
+      "aa_intelligence_index": 9.9,
       "aa_lcr": 0.676666666666667,
       "aa_livecodebench": 0.81,
       "aa_math_index": 82.7,
@@ -4251,7 +4251,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.48,
-      "aa_intelligence_index": 42.7,
+      "aa_intelligence_index": 28.9,
       "aa_lcr": 0.796666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -4292,16 +4292,16 @@
        "provider": "StreamLake"
       }
      ],
-     "open_weights": false,
+     "open_weights": true,
      "release_date": "2026-10-19",
      "token_efficiency": {
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 78612.2924198701
+         "output": 138176.35829722678
         }
        }
       }
@@ -4331,7 +4331,7 @@
       "aa_coding_index": 20.1,
       "aa_gpqa": 0.68,
       "aa_hle": 0.042,
-      "aa_intelligence_index": 9.3,
+      "aa_intelligence_index": 4.1,
       "aa_lcr": 0.36,
       "aa_livecodebench": 0.465,
       "aa_math_index": 38,
@@ -4436,7 +4436,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-31T08:20:39.382Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 56324.47155445095
@@ -4469,7 +4469,7 @@
       "aa_coding_index": 46.9,
       "aa_gpqa": 0.748,
       "aa_hle": 0.138,
-      "aa_intelligence_index": 14.2,
+      "aa_intelligence_index": 6.2,
       "aa_lcr": 0.693333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -4623,7 +4623,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.766,
       "aa_hle": 0.074,
-      "aa_intelligence_index": 12.7,
+      "aa_intelligence_index": 5.4,
       "aa_lcr": 0.53,
       "aa_livecodebench": 0.556,
       "aa_math_index": 57,
@@ -4673,7 +4673,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.838,
       "aa_hle": 0.238,
-      "aa_intelligence_index": 22,
+      "aa_intelligence_index": 11.4,
       "aa_lcr": 0.72,
       "aa_livecodebench": 0.853,
       "aa_math_index": 94.7,
@@ -4738,7 +4738,7 @@
       "aa_coding_index": 46.8,
       "aa_gpqa": 0.879,
       "aa_hle": 0.307,
-      "aa_intelligence_index": 23.5,
+      "aa_intelligence_index": 12,
       "aa_lcr": 0.78,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -4754,7 +4754,7 @@
      "designarena": {
       "frontend": {
        "battles": 3436,
-       "elo": 1123,
+       "elo": 1122,
        "modelId": "kimi-k2.5",
        "winRate": 51.6
       },
@@ -4883,7 +4883,7 @@
       "aa_coding_index": 60.8,
       "aa_gpqa": 0.896,
       "aa_hle": 0.35,
-      "aa_intelligence_index": 25.8,
+      "aa_intelligence_index": 13.2,
       "aa_lcr": 0.793333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -4979,6 +4979,14 @@
      "id": "kimi-k3::default",
      "offers": [
       {
+       "cache_read_per_1m": 0.148,
+       "context_length": 1048576,
+       "input_per_1m": 0.149,
+       "output_per_1m": 22,
+       "platform": "OpenRouter",
+       "provider": "Wafer"
+      },
+      {
        "cache_read_per_1m": 0.07475,
        "context_length": 1048576,
        "input_per_1m": 0.1495,
@@ -4987,20 +4995,12 @@
        "provider": "Sail Research"
       },
       {
-       "cache_read_per_1m": 0.15,
+       "cache_read_per_1m": 0.18,
        "context_length": 1048576,
-       "input_per_1m": 0.1558,
-       "output_per_1m": 10.5478,
+       "input_per_1m": 0.1824,
+       "output_per_1m": 9.3388,
        "platform": "OpenRouter",
        "provider": "Relace"
-      },
-      {
-       "cache_read_per_1m": 0.163,
-       "context_length": 1048576,
-       "input_per_1m": 0.164,
-       "output_per_1m": 22,
-       "platform": "OpenRouter",
-       "provider": "Wafer"
       }
      ],
      "open_weights": true,
@@ -5013,8 +5013,8 @@
    ],
    "label": "Kimi K3",
    "prices": {
-    "input": 0.1495,
-    "output": 7.15
+    "input": 0.149,
+    "output": 22
    }
   },
   {
@@ -5030,7 +5030,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.525,
-      "aa_intelligence_index": 55.1,
+      "aa_intelligence_index": 46,
       "aa_lcr": 0.863333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -5069,10 +5069,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 55194.603042960516
+         "output": 72238.9702315149
         }
        }
       }
@@ -5375,7 +5375,7 @@
       "aa_coding_index": 14.4,
       "aa_gpqa": 0.757,
       "aa_hle": 0.114,
-      "aa_intelligence_index": 8.9,
+      "aa_intelligence_index": 3.9,
       "aa_lcr": 0.38,
       "aa_livecodebench": 0.741,
       "aa_math_index": 91,
@@ -5775,7 +5775,7 @@
       "aa_coding_index": 11.1,
       "aa_gpqa": 0.512,
       "aa_hle": 0.038,
-      "aa_intelligence_index": 7.8,
+      "aa_intelligence_index": 3.3,
       "aa_lcr": 0.203333333333333,
       "aa_livecodebench": 0.326,
       "aa_math_index": 24,
@@ -5840,7 +5840,7 @@
       "aa_coding_index": 11.4,
       "aa_gpqa": 0.426,
       "aa_hle": 0.042,
-      "aa_intelligence_index": 6.7,
+      "aa_intelligence_index": 2.8,
       "aa_lcr": null,
       "aa_livecodebench": 0.234,
       "aa_math_index": 14.7,
@@ -5907,7 +5907,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.842,
       "aa_hle": 0.254,
-      "aa_intelligence_index": 22.9,
+      "aa_intelligence_index": 11.8,
       "aa_lcr": 0.76,
       "aa_livecodebench": 0.703,
       "aa_math_index": 91.7,
@@ -5972,7 +5972,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.803,
       "aa_hle": 0.159,
-      "aa_intelligence_index": 20.6,
+      "aa_intelligence_index": 9.8,
       "aa_lcr": 0.723333333333333,
       "aa_livecodebench": 0.692,
       "aa_math_index": 85,
@@ -6102,7 +6102,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.864,
       "aa_hle": 0.267,
-      "aa_intelligence_index": 26.5,
+      "aa_intelligence_index": 15,
       "aa_lcr": 0.703333333333333,
       "aa_livecodebench": 0.894,
       "aa_math_index": 96.7,
@@ -6118,7 +6118,7 @@
      "designarena": {
       "frontend": {
        "battles": 3570,
-       "elo": 1073,
+       "elo": 1072,
        "modelId": "gpt-5.2",
        "winRate": 45.5
       },
@@ -6182,7 +6182,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.915,
       "aa_hle": 0.425,
-      "aa_intelligence_index": 32.5,
+      "aa_intelligence_index": 21,
       "aa_lcr": 0.833333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6196,7 +6196,7 @@
      "designarena": {
       "frontend": {
        "battles": 2246,
-       "elo": 1020,
+       "elo": 1019,
        "modelId": "gpt-5.3-codex",
        "winRate": 36.9
       },
@@ -6260,7 +6260,7 @@
       "aa_coding_index": 71.1,
       "aa_gpqa": 0.92,
       "aa_hle": 0.437,
-      "aa_intelligence_index": 39,
+      "aa_intelligence_index": 29,
       "aa_lcr": 0.82,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6276,7 +6276,7 @@
      "designarena": {
       "frontend": {
        "battles": 3322,
-       "elo": 1046,
+       "elo": 1045,
        "modelId": "gpt-5.4",
        "winRate": 40.3
       },
@@ -6341,7 +6341,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.823,
       "aa_hle": 0.186,
-      "aa_intelligence_index": 19.7,
+      "aa_intelligence_index": 9.6,
       "aa_lcr": 0.67,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6407,7 +6407,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.761,
       "aa_hle": 0.159,
-      "aa_intelligence_index": 20,
+      "aa_intelligence_index": 9.7,
       "aa_lcr": 0.673333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6475,7 +6475,7 @@
       "aa_coding_index": 71.5,
       "aa_gpqa": 0.926,
       "aa_hle": 0.424,
-      "aa_intelligence_index": 33.8,
+      "aa_intelligence_index": 23.4,
       "aa_lcr": 0.83,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6553,7 +6553,7 @@
       "aa_coding_index": 64.7,
       "aa_gpqa": 0.872,
       "aa_hle": 0.333,
-      "aa_intelligence_index": 30.1,
+      "aa_intelligence_index": 18.4,
       "aa_lcr": 0.74,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6632,7 +6632,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.283,
-      "aa_intelligence_index": 29.9,
+      "aa_intelligence_index": 18.3,
       "aa_lcr": 0.783333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6682,10 +6682,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 11456.455776112209
+         "output": 19823.23818001747
         }
        }
       }
@@ -6714,7 +6714,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.41,
-      "aa_intelligence_index": 39.8,
+      "aa_intelligence_index": 30,
       "aa_lcr": 0.823333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6796,7 +6796,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.499,
-      "aa_intelligence_index": 47.8,
+      "aa_intelligence_index": 46.1,
       "aa_lcr": 0.833333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6846,10 +6846,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 8069.842557491671
+         "output": 13518.335935178977
         }
        }
       }
@@ -6878,7 +6878,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.402,
-      "aa_intelligence_index": 41.3,
+      "aa_intelligence_index": 38.1,
       "aa_lcr": 0.806666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6928,10 +6928,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 5834.767505569609
+         "output": 10875.462740790412
         }
        }
       }
@@ -6961,7 +6961,7 @@
       "aa_coding_index": 30.4,
       "aa_gpqa": 0.782,
       "aa_hle": 0.196,
-      "aa_intelligence_index": 11.6,
+      "aa_intelligence_index": 5,
       "aa_lcr": 0.52,
       "aa_livecodebench": 0.878,
       "aa_math_index": 93.4,
@@ -6980,6 +6980,13 @@
      "id": "gpt-oss-120b::high",
      "offers": [
       {
+       "context_length": 131072,
+       "input_per_1m": 0.023,
+       "output_per_1m": 0.083,
+       "platform": "OpenRouter",
+       "provider": "PrimeIntellect"
+      },
+      {
        "cache_read_per_1m": 0.015,
        "context_length": 131072,
        "input_per_1m": 0.03,
@@ -6994,14 +7001,6 @@
        "output_per_1m": 0.15,
        "platform": "OpenRouter",
        "provider": "Venice"
-      },
-      {
-       "cache_read_per_1m": 0.03,
-       "context_length": 131072,
-       "input_per_1m": 0.03,
-       "output_per_1m": 0.17,
-       "platform": "OpenRouter",
-       "provider": "CoreWeave"
       }
      ],
      "open_weights": true,
@@ -7025,8 +7024,8 @@
    "irp_aliases": [],
    "label": "GPT OSS 120B",
    "prices": {
-    "input": 0.03,
-    "output": 0.15
+    "input": 0.023,
+    "output": 0.083
    }
   },
   {
@@ -7043,7 +7042,7 @@
       "aa_coding_index": 20.7,
       "aa_gpqa": 0.688,
       "aa_hle": 0.11,
-      "aa_intelligence_index": 9,
+      "aa_intelligence_index": 3.9,
       "aa_lcr": 0.346666666666667,
       "aa_livecodebench": 0.777,
       "aa_math_index": 89.3,
@@ -7062,6 +7061,13 @@
      "id": "gpt-oss-20b::high",
      "offers": [
       {
+       "context_length": 131072,
+       "input_per_1m": 0.009,
+       "output_per_1m": 0.036,
+       "platform": "OpenRouter",
+       "provider": "PrimeIntellect"
+      },
+      {
        "cache_read_per_1m": 0.009,
        "context_length": 131072,
        "input_per_1m": 0.018,
@@ -7075,14 +7081,6 @@
        "output_per_1m": 0.1,
        "platform": "OpenRouter",
        "provider": "AkashML"
-      },
-      {
-       "cache_read_per_1m": 0.029,
-       "context_length": 131072,
-       "input_per_1m": 0.029,
-       "output_per_1m": 0.14,
-       "platform": "OpenRouter",
-       "provider": "DekaLLM"
       }
      ],
      "open_weights": true,
@@ -7106,8 +7104,8 @@
    "irp_aliases": [],
    "label": "GPT OSS 20B",
    "prices": {
-    "input": 0.018,
-    "output": 0.09
+    "input": 0.009,
+    "output": 0.036
    }
   },
   {
@@ -7123,7 +7121,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.827,
       "aa_hle": 0.201,
-      "aa_intelligence_index": 20.2,
+      "aa_intelligence_index": 9.7,
       "aa_lcr": 0.746666666666667,
       "aa_livecodebench": 0.808,
       "aa_math_index": 88.3,
@@ -7288,7 +7286,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": null,
-      "aa_intelligence_index": 11.8,
+      "aa_intelligence_index": 5.1,
       "aa_lcr": null,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -7338,7 +7336,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.417,
       "aa_hle": 0.035,
-      "aa_intelligence_index": 6.7,
+      "aa_intelligence_index": 2.8,
       "aa_lcr": null,
       "aa_livecodebench": 0.295,
       "aa_math_index": null,
@@ -7453,7 +7451,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.616,
       "aa_hle": 0.062,
-      "aa_intelligence_index": 7.6,
+      "aa_intelligence_index": 3.2,
       "aa_lcr": 0,
       "aa_livecodebench": 0.506,
       "aa_math_index": 72.3,
@@ -7505,7 +7503,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.659,
       "aa_hle": 0.069,
-      "aa_intelligence_index": 7.5,
+      "aa_intelligence_index": 3.2,
       "aa_lcr": 0.263333333333333,
       "aa_livecodebench": 0.515,
       "aa_math_index": 66.3,
@@ -7637,7 +7635,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.516,
       "aa_hle": 0.038,
-      "aa_intelligence_index": 9.6,
+      "aa_intelligence_index": 4.2,
       "aa_lcr": 0.326666666666667,
       "aa_livecodebench": 0.403,
       "aa_math_index": 29,
@@ -7697,7 +7695,7 @@
       "aa_coding_index": 36.2,
       "aa_gpqa": 0.737,
       "aa_hle": 0.101,
-      "aa_intelligence_index": 9.2,
+      "aa_intelligence_index": 4,
       "aa_lcr": 0.47,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -7772,7 +7770,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.738,
       "aa_hle": 0.076,
-      "aa_intelligence_index": 9.6,
+      "aa_intelligence_index": 4.2,
       "aa_lcr": 0.526666666666667,
       "aa_livecodebench": 0.684,
       "aa_math_index": 66.3,
@@ -7836,7 +7834,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.712,
       "aa_hle": 0.066,
-      "aa_intelligence_index": 9.9,
+      "aa_intelligence_index": 4.4,
       "aa_lcr": 0.326666666666667,
       "aa_livecodebench": 0.594,
       "aa_math_index": 70.7,
@@ -7903,7 +7901,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.695,
       "aa_hle": 0.063,
-      "aa_intelligence_index": 7.9,
+      "aa_intelligence_index": 3.4,
       "aa_lcr": null,
       "aa_livecodebench": 0.476,
       "aa_math_index": 72.3,
@@ -7967,7 +7965,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.858,
       "aa_hle": 0.239,
-      "aa_intelligence_index": 22.9,
+      "aa_intelligence_index": 11.8,
       "aa_lcr": 0.776666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8031,7 +8029,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.845,
       "aa_hle": 0.21,
-      "aa_intelligence_index": 19.3,
+      "aa_intelligence_index": 9.6,
       "aa_lcr": 0.72,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8101,7 +8099,7 @@
       "aa_coding_index": 48.2,
       "aa_gpqa": 0.893,
       "aa_hle": 0.29,
-      "aa_intelligence_index": 18.4,
+      "aa_intelligence_index": 9.1,
       "aa_lcr": 0.773333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8183,7 +8181,7 @@
       "aa_coding_index": 28.7,
       "aa_gpqa": 0.806,
       "aa_hle": 0.149,
-      "aa_intelligence_index": 11.2,
+      "aa_intelligence_index": 4.9,
       "aa_lcr": 0.7,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8202,6 +8200,14 @@
      "id": "qwen3.5-9b::reasoning",
      "offers": [
       {
+       "cache_read_per_1m": 0.015,
+       "context_length": 262144,
+       "input_per_1m": 0.017,
+       "output_per_1m": 0.025,
+       "platform": "OpenRouter",
+       "provider": "PrimeIntellect"
+      },
+      {
        "cache_read_per_1m": 0.04,
        "context_length": 262144,
        "input_per_1m": 0.08,
@@ -8215,13 +8221,6 @@
        "output_per_1m": 0.15,
        "platform": "OpenRouter",
        "provider": "SiliconFlow"
-      },
-      {
-       "context_length": 262144,
-       "input_per_1m": 0.1,
-       "output_per_1m": 0.15,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
       }
      ],
      "open_weights": true,
@@ -8245,8 +8244,8 @@
    "irp_aliases": [],
    "label": "Qwen3.5 9B",
    "prices": {
-    "input": 0.08,
-    "output": 0.13
+    "input": 0.017,
+    "output": 0.025
    }
   },
   {
@@ -8343,7 +8342,7 @@
       "aa_coding_index": 41.9,
       "aa_gpqa": 0.841,
       "aa_hle": 0.222,
-      "aa_intelligence_index": 18.2,
+      "aa_intelligence_index": 8.5,
       "aa_lcr": 0.716666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8426,7 +8425,7 @@
       "aa_coding_index": 54.5,
       "aa_gpqa": 0.882,
       "aa_hle": 0.278,
-      "aa_intelligence_index": 27,
+      "aa_intelligence_index": 16.1,
       "aa_lcr": 0.783333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8480,7 +8479,7 @@
       "aa_coding_index": 66,
       "aa_gpqa": 0.923,
       "aa_hle": 0.405,
-      "aa_intelligence_index": 29.5,
+      "aa_intelligence_index": 18,
       "aa_lcr": 0.79,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8568,7 +8567,7 @@
       "aa_coding_index": 55.9,
       "aa_gpqa": 0.9,
       "aa_hle": 0.356,
-      "aa_intelligence_index": 25.2,
+      "aa_intelligence_index": 12.6,
       "aa_lcr": 0.73,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8724,7 +8723,7 @@
       "aa_coding_index": 56.1,
       "aa_gpqa": 0.845,
       "aa_hle": 0.141,
-      "aa_intelligence_index": 27.6,
+      "aa_intelligence_index": 17.5,
       "aa_lcr": 0.796666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8741,6 +8740,14 @@
      "id": "qwen3.8-27b::medium",
      "offers": [
       {
+       "cache_read_per_1m": 0.005,
+       "context_length": 131072,
+       "input_per_1m": 0.006,
+       "output_per_1m": 0.335,
+       "platform": "OpenRouter",
+       "provider": "PrimeIntellect"
+      },
+      {
        "cache_read_per_1m": 0.0175,
        "context_length": 262144,
        "input_per_1m": 0.035,
@@ -8755,14 +8762,6 @@
        "output_per_1m": 1.35,
        "platform": "OpenRouter",
        "provider": "Near AI"
-      },
-      {
-       "cache_read_per_1m": 0.02,
-       "context_length": 262144,
-       "input_per_1m": 0.04,
-       "output_per_1m": 1.95,
-       "platform": "OpenRouter",
-       "provider": "Ionstream"
       }
      ],
      "open_weights": true,
@@ -8771,10 +8770,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 51943.29937745417
+         "output": 86407.34031510795
         }
        }
       }
@@ -8788,8 +8787,8 @@
    ],
    "label": "Qwen3.8 27B",
    "prices": {
-    "input": 0.035,
-    "output": 1.5
+    "input": 0.006,
+    "output": 0.335
    }
   },
   {
@@ -8805,7 +8804,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.753,
       "aa_hle": 0.111,
-      "aa_intelligence_index": 12,
+      "aa_intelligence_index": 5.2,
       "aa_lcr": 0.339,
       "aa_livecodebench": 0.524,
       "aa_math_index": 71.7,
@@ -8874,7 +8873,7 @@
       "aa_coding_index": 9,
       "aa_gpqa": 0.589,
       "aa_hle": 0.039,
-      "aa_intelligence_index": 5.2,
+      "aa_intelligence_index": 2,
       "aa_lcr": 0,
       "aa_livecodebench": 0.406,
       "aa_math_index": 19,
@@ -8918,7 +8917,7 @@
       "aa_coding_index": 22.6,
       "aa_gpqa": 0.771,
       "aa_hle": 0.099,
-      "aa_intelligence_index": 13.1,
+      "aa_intelligence_index": 6.2,
       "aa_lcr": 0.63,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8960,7 +8959,7 @@
       "aa_coding_index": 73.1,
       "aa_gpqa": 0.923,
       "aa_hle": 0.38,
-      "aa_intelligence_index": 39.8,
+      "aa_intelligence_index": 30,
       "aa_lcr": 0.796666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9242,7 +9241,7 @@
       "aa_coding_index": 58.8,
       "aa_gpqa": 0.897,
       "aa_hle": 0.335,
-      "aa_intelligence_index": 25.3,
+      "aa_intelligence_index": 12.7,
       "aa_lcr": 0.79,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9322,7 +9321,7 @@
       "aa_coding_index": 52.1,
       "aa_gpqa": 0.872,
       "aa_hle": 0.319,
-      "aa_intelligence_index": 25,
+      "aa_intelligence_index": 12.5,
       "aa_lcr": 0.773333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9338,7 +9337,7 @@
      "designarena": {
       "frontend": {
        "battles": 1207,
-       "elo": 1183,
+       "elo": 1182,
        "modelId": "inkling",
        "winRate": 48.6
       }
@@ -9375,10 +9374,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 34655.976744705644
+         "output": 51255.67131667426
         }
        }
       }
@@ -9407,7 +9406,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.89,
       "aa_hle": 0.3,
-      "aa_intelligence_index": 24.8,
+      "aa_intelligence_index": 12.4,
       "aa_lcr": 0.75,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9471,7 +9470,7 @@
       "aa_coding_index": 72.4,
       "aa_gpqa": 0.931,
       "aa_hle": 0.427,
-      "aa_intelligence_index": 38.8,
+      "aa_intelligence_index": 28.8,
       "aa_lcr": 0.793333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9486,8 +9485,8 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 5896,
-       "elo": 1205,
+       "battles": 5899,
+       "elo": 1204,
        "modelId": "yoda",
        "winRate": 53.3
       },
@@ -9557,7 +9556,7 @@
       "aa_coding_index": 74.4,
       "aa_gpqa": 0.935,
       "aa_hle": 0.421,
-      "aa_intelligence_index": 42.8,
+      "aa_intelligence_index": 32.9,
       "aa_lcr": 0.81,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9634,7 +9633,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.423,
-      "aa_intelligence_index": 46.3,
+      "aa_intelligence_index": 35,
       "aa_lcr": 0.77,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9683,10 +9682,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 65901.46774813943
+         "output": 89127.17577396278
         }
        }
       }
@@ -9716,7 +9715,7 @@
       "aa_coding_index": 56.8,
       "aa_gpqa": 0.849,
       "aa_hle": 0.272,
-      "aa_intelligence_index": 21.8,
+      "aa_intelligence_index": 11.2,
       "aa_lcr": 0.73,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9789,7 +9788,7 @@
       "aa_coding_index": 60.2,
       "aa_gpqa": 0.866,
       "aa_hle": 0.357,
-      "aa_intelligence_index": 26,
+      "aa_intelligence_index": 13.7,
       "aa_lcr": 0.796666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9868,7 +9867,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.351,
-      "aa_intelligence_index": 37.9,
+      "aa_intelligence_index": 26.7,
       "aa_lcr": 0.743333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9915,10 +9914,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 77853.09444149617
+         "output": 131806.22552062702
         }
        }
       }
@@ -9949,7 +9948,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.494,
-      "aa_intelligence_index": 46.3,
+      "aa_intelligence_index": 29.9,
       "aa_lcr": 0.863333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10003,10 +10002,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 64275.70051166789
+         "output": 121073.12983119856
         }
        }
       }
@@ -10035,7 +10034,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.782,
       "aa_hle": 0.13,
-      "aa_intelligence_index": 12.8,
+      "aa_intelligence_index": 5.5,
       "aa_lcr": 0.526666666666667,
       "aa_livecodebench": 0.738,
       "aa_math_index": 73.7,
@@ -10086,7 +10085,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.733,
       "aa_hle": 0.07,
-      "aa_intelligence_index": 11.1,
+      "aa_intelligence_index": 4.8,
       "aa_lcr": 0.466666666666667,
       "aa_livecodebench": 0.684,
       "aa_math_index": 80.7,
@@ -10211,7 +10210,7 @@
       "aa_coding_index": 45.8,
       "aa_gpqa": 0.78,
       "aa_hle": 0.145,
-      "aa_intelligence_index": 18.5,
+      "aa_intelligence_index": 9.4,
       "aa_lcr": 0.54,
       "aa_livecodebench": 0.695,
       "aa_math_index": 86,
@@ -10285,7 +10284,7 @@
       "aa_coding_index": 45.3,
       "aa_gpqa": 0.859,
       "aa_hle": 0.274,
-      "aa_intelligence_index": 22.2,
+      "aa_intelligence_index": 11.7,
       "aa_lcr": 0.71,
       "aa_livecodebench": 0.894,
       "aa_math_index": 95,
@@ -10361,7 +10360,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.581,
       "aa_hle": 0.076,
-      "aa_intelligence_index": 14.9,
+      "aa_intelligence_index": 6.2,
       "aa_lcr": 0.416666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10425,7 +10424,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.82,
       "aa_hle": 0.293,
-      "aa_intelligence_index": 27.9,
+      "aa_intelligence_index": 17.6,
       "aa_lcr": 0.756666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10501,7 +10500,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.847,
       "aa_hle": 0.278,
-      "aa_intelligence_index": 26.6,
+      "aa_intelligence_index": 15.2,
       "aa_lcr": 0.716666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10554,7 +10553,7 @@
       "aa_coding_index": 55.8,
       "aa_gpqa": 0.868,
       "aa_hle": 0.301,
-      "aa_intelligence_index": 26.1,
+      "aa_intelligence_index": 14,
       "aa_lcr": 0.736666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10649,7 +10648,7 @@
       "aa_coding_index": 74.8,
       "aa_gpqa": 0.917,
       "aa_hle": 0.423,
-      "aa_intelligence_index": 44.8,
+      "aa_intelligence_index": 31.7,
       "aa_lcr": 0.796666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10676,20 +10675,20 @@
        "provider": "Wafer"
       },
       {
+       "cache_read_per_1m": 0.069,
+       "context_length": 1048576,
+       "input_per_1m": 0.07,
+       "output_per_1m": 1.4,
+       "platform": "OpenRouter",
+       "provider": "Morph"
+      },
+      {
        "cache_read_per_1m": 0.0703,
        "context_length": 1048576,
        "input_per_1m": 0.0703,
        "output_per_1m": 4.3843,
        "platform": "OpenRouter",
        "provider": "Relace"
-      },
-      {
-       "cache_read_per_1m": 0.069,
-       "context_length": 1048576,
-       "input_per_1m": 0.086,
-       "output_per_1m": 1.4,
-       "platform": "OpenRouter",
-       "provider": "Morph"
       }
      ],
      "open_weights": true,
@@ -10698,10 +10697,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 71127.61363824058
+         "output": 118986.50484699552
         }
        }
       }
