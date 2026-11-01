@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-01T09:23:04Z",
+ "generated_at": "2026-11-01T15:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1744,7 +1744,7 @@
      "designarena": {
       "frontend": {
        "battles": 4076,
-       "elo": 1102,
+       "elo": 1101,
        "modelId": "gemini-3-pro-preview",
        "winRate": 49.4
       },
@@ -3657,7 +3657,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-31T08:20:39.382Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 91113.83312355439
@@ -4172,7 +4172,7 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3865,
+       "battles": 3873,
        "elo": 1189,
        "modelId": "minimax-m3",
        "winRate": 47.1
@@ -4219,7 +4219,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-31T08:20:39.382Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 91451.58534806609
@@ -5581,7 +5581,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-31T08:20:39.382Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 51467.614604634866
@@ -5662,7 +5662,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-31T08:20:39.382Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 65026.1687297589
@@ -5740,7 +5740,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-31T08:20:39.382Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 81434.63441391091
@@ -9048,10 +9048,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 1787,
-       "elo": 1287,
+       "battles": 1788,
+       "elo": 1286,
        "modelId": "qwen3.8-max",
-       "winRate": 60.2
+       "winRate": 60.1
       },
       "fullstack": {
        "battles": 1327,
@@ -9208,7 +9208,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-31T08:20:39.382Z",
+        "collected_at": "2026-11-01T05:30:57.494Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 113472.87772177807
@@ -10743,7 +10743,7 @@
      "designarena": {
       "frontend": {
        "battles": 5385,
-       "elo": 1112,
+       "elo": 1111,
        "modelId": "glm-5v-turbo",
        "winRate": 44.7
       },
