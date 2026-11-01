@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31T21:23:02Z",
+ "generated_at": "2026-11-01T00:23:03Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -971,7 +971,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.527,
       "aa_hle": 0.04,
-      "aa_intelligence_index": 7,
+      "aa_intelligence_index": 2.9,
       "aa_lcr": 0.213333333333333,
       "aa_livecodebench": 0.287,
       "aa_math_index": 13,
@@ -1930,7 +1930,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.908,
       "aa_hle": 0.397,
-      "aa_intelligence_index": 28,
+      "aa_intelligence_index": 17.6,
       "aa_lcr": 0.76,
       "aa_livecodebench": 0.917,
       "aa_math_index": 95.7,
@@ -1944,7 +1944,7 @@
      "designarena": {
       "frontend": {
        "battles": 4076,
-       "elo": 1115,
+       "elo": 1102,
        "modelId": "gemini-3-pro-preview",
        "winRate": 49.4
       },
@@ -2356,7 +2356,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.625,
       "aa_hle": 0.068,
-      "aa_intelligence_index": 8.5,
+      "aa_intelligence_index": 3.7,
       "aa_lcr": 0.556666666666667,
       "aa_livecodebench": 0.593,
       "aa_math_index": 53.3,
@@ -3843,7 +3843,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.394,
-      "aa_intelligence_index": 41.1,
+      "aa_intelligence_index": 30.8,
       "aa_lcr": 0.83,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3915,7 +3915,7 @@
       "aa_coding_index": 55.6,
       "aa_gpqa": null,
       "aa_hle": 0.226,
-      "aa_intelligence_index": 22.6,
+      "aa_intelligence_index": 11.8,
       "aa_lcr": 0.736666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -4020,7 +4020,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.255,
       "aa_hle": 0.053,
-      "aa_intelligence_index": 5.7,
+      "aa_intelligence_index": 2.3,
       "aa_lcr": 0.0433333333333333,
       "aa_livecodebench": 0.083,
       "aa_math_index": 3.3,
@@ -4145,7 +4145,7 @@
       "aa_coding_index": 16.3,
       "aa_gpqa": 0.671,
       "aa_hle": 0.049,
-      "aa_intelligence_index": 9.3,
+      "aa_intelligence_index": 4.1,
       "aa_lcr": 0.5,
       "aa_livecodebench": 0.397,
       "aa_math_index": 19.3,
@@ -4155,8 +4155,8 @@
       "aa_tau_banking": 0.0371134020618557,
       "aa_terminalbench_hard": 0.0681818181818182,
       "aa_terminalbench_v2_1": 0.0786516853932584,
-      "epoch_eci": 132.22,
-      "epoch_eci_software": 129.19714126438603
+      "epoch_eci": 132.34,
+      "epoch_eci_software": 129.24569065147796
      },
      "designarena": {},
      "display_name": "Llama 4 Maverick",
@@ -4462,7 +4462,7 @@
       "aa_coding_index": 75.8,
       "aa_gpqa": 0.935,
       "aa_hle": 0.487,
-      "aa_intelligence_index": 48.1,
+      "aa_intelligence_index": 36.4,
       "aa_lcr": 0.83,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -4472,8 +4472,8 @@
       "aa_tau_banking": 0.505154639175258,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.842696629213483,
-      "epoch_eci": 157.21,
-      "epoch_eci_software": 156.93305793652885
+      "epoch_eci": 157.37,
+      "epoch_eci_software": 157.20805966804977
      },
      "designarena": {},
      "display_name": "Muse Spark 1.3 (Max)",
@@ -4495,10 +4495,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-10-31T08:20:39.382Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 60200.15762740819
+         "output": 91113.83312355439
         }
        }
       }
@@ -4814,7 +4814,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.777,
       "aa_hle": 0.137,
-      "aa_intelligence_index": 18.6,
+      "aa_intelligence_index": 9.4,
       "aa_lcr": 0.643333333333333,
       "aa_livecodebench": 0.826,
       "aa_math_index": 78.3,
@@ -4941,7 +4941,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.848,
       "aa_hle": 0.205,
-      "aa_intelligence_index": 22.8,
+      "aa_intelligence_index": 11.8,
       "aa_lcr": 0.733333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -4951,7 +4951,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.348484848484849,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 146.59,
+      "epoch_eci": 146.68,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -5013,7 +5013,7 @@
       "aa_coding_index": 52.6,
       "aa_gpqa": 0.874,
       "aa_hle": 0.296,
-      "aa_intelligence_index": 22.8,
+      "aa_intelligence_index": 11.8,
       "aa_lcr": 0.783333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -5023,8 +5023,8 @@
       "aa_tau_banking": 0.0989690721649484,
       "aa_terminalbench_hard": 0.393939393939394,
       "aa_terminalbench_v2_1": 0.554307116104869,
-      "epoch_eci": 145.78,
-      "epoch_eci_software": 145.90172107633904
+      "epoch_eci": 145.88,
+      "epoch_eci_software": 145.99355542501604
      },
      "designarena": {},
      "display_name": "MiniMax-M2.7",
@@ -5097,7 +5097,7 @@
       "aa_coding_index": 58.6,
       "aa_gpqa": 0.929,
       "aa_hle": 0.39,
-      "aa_intelligence_index": 29.2,
+      "aa_intelligence_index": 18.7,
       "aa_lcr": 0.83,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -5107,15 +5107,15 @@
       "aa_tau_banking": 0.152577319587629,
       "aa_terminalbench_hard": 0.424242424242424,
       "aa_terminalbench_v2_1": 0.651685393258427,
-      "epoch_eci": 146.87,
-      "epoch_eci_software": 150.14911637226848
+      "epoch_eci": 146.92,
+      "epoch_eci_software": 150.28227790194956
      },
      "designarena": {
       "frontend": {
-       "battles": 3794,
-       "elo": 1201,
+       "battles": 3865,
+       "elo": 1189,
        "modelId": "minimax-m3",
-       "winRate": 47
+       "winRate": 47.1
       },
       "fullstack": {
        "battles": 3674,
@@ -5159,10 +5159,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-10-31T08:20:39.382Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 48192.034776700704
+         "output": 91451.58534806609
         }
        }
       }
@@ -5723,7 +5723,7 @@
       "aa_coding_index": 12.5,
       "aa_gpqa": 0.505,
       "aa_hle": 0.043,
-      "aa_intelligence_index": 7,
+      "aa_intelligence_index": 2.9,
       "aa_lcr": 0.203333333333333,
       "aa_livecodebench": 0.275,
       "aa_math_index": 27,
@@ -6281,7 +6281,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.572,
       "aa_hle": 0.055,
-      "aa_intelligence_index": 7.5,
+      "aa_intelligence_index": 3.2,
       "aa_lcr": 0.41,
       "aa_livecodebench": 0.694,
       "aa_math_index": 75,
@@ -6323,7 +6323,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.57,
       "aa_hle": 0.049,
-      "aa_intelligence_index": 7.4,
+      "aa_intelligence_index": 3.1,
       "aa_lcr": 0.226666666666667,
       "aa_livecodebench": 0.724,
       "aa_math_index": 69.7,
@@ -6365,7 +6365,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.433,
       "aa_hle": 0.043,
-      "aa_intelligence_index": 6.7,
+      "aa_intelligence_index": 2.8,
       "aa_lcr": 0.19,
       "aa_livecodebench": 0.167,
       "aa_math_index": 7,
@@ -6428,7 +6428,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.358,
       "aa_hle": 0.046,
-      "aa_intelligence_index": 5.9,
+      "aa_intelligence_index": 2.4,
       "aa_lcr": 0.13,
       "aa_livecodebench": 0.14,
       "aa_math_index": 6,
@@ -6491,7 +6491,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.499,
       "aa_hle": 0.032,
-      "aa_intelligence_index": 7,
+      "aa_intelligence_index": 2.9,
       "aa_lcr": 0.21,
       "aa_livecodebench": 0.233,
       "aa_math_index": 7,
@@ -6635,7 +6635,7 @@
       "aa_coding_index": 37.7,
       "aa_gpqa": 0.8,
       "aa_hle": 0.208,
-      "aa_intelligence_index": 12.8,
+      "aa_intelligence_index": 5.5,
       "aa_lcr": 0.656666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6713,7 +6713,7 @@
       "aa_coding_index": 49.3,
       "aa_gpqa": 0.867,
       "aa_hle": 0.284,
-      "aa_intelligence_index": 22.9,
+      "aa_intelligence_index": 11.8,
       "aa_lcr": 0.793333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6723,8 +6723,8 @@
       "aa_tau_banking": 0.142268041237113,
       "aa_terminalbench_hard": 0.363636363636364,
       "aa_terminalbench_v2_1": 0.539325842696629,
-      "epoch_eci": 145.97,
-      "epoch_eci_software": 141.71029362312444
+      "epoch_eci": 146.02,
+      "epoch_eci_software": 141.85475871697398
      },
      "designarena": {},
      "display_name": "Nemotron 3 Ultra 550B A55B (Reasoning)",
@@ -6761,10 +6761,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-10-31T08:20:39.382Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 28366.096709963975
+         "output": 51467.614604634866
         }
        }
       }
@@ -6797,7 +6797,7 @@
       "aa_coding_index": 26.8,
       "aa_gpqa": 0.743,
       "aa_hle": 0.106,
-      "aa_intelligence_index": 12.9,
+      "aa_intelligence_index": 5.5,
       "aa_lcr": 0.603333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6843,10 +6843,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-10-31T08:20:39.382Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 36798.43785409437
+         "output": 65026.1687297589
         }
        }
       }
@@ -6875,7 +6875,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.307,
-      "aa_intelligence_index": 26.5,
+      "aa_intelligence_index": 13.6,
       "aa_lcr": 0.69,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6908,7 +6908,7 @@
       },
       {
        "cache_read_per_1m": 0.08,
-       "context_length": 262144,
+       "context_length": 1048576,
        "input_per_1m": 0.1,
        "output_per_1m": 0.4,
        "platform": "OpenRouter",
@@ -6921,10 +6921,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-10-31T08:20:39.382Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 49173.83294616723
+         "output": 81434.63441391091
         }
        }
       }
@@ -7273,7 +7273,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.67,
       "aa_hle": 0.087,
-      "aa_intelligence_index": 12.5,
+      "aa_intelligence_index": 5.4,
       "aa_lcr": 0.436666666666667,
       "aa_livecodebench": 0.763,
       "aa_math_index": 78.3,
@@ -8424,7 +8424,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.471,
       "aa_hle": 0.049,
-      "aa_intelligence_index": 7.7,
+      "aa_intelligence_index": 3.3,
       "aa_lcr": null,
       "aa_livecodebench": 0.295,
       "aa_math_index": null,
@@ -8474,7 +8474,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.578,
       "aa_hle": 0.066,
-      "aa_intelligence_index": 7.6,
+      "aa_intelligence_index": 3.2,
       "aa_lcr": null,
       "aa_livecodebench": 0.275,
       "aa_math_index": null,
@@ -8627,7 +8627,7 @@
       "aa_coding_index": 13.8,
       "aa_gpqa": 0.604,
       "aa_hle": 0.045,
-      "aa_intelligence_index": 6.4,
+      "aa_intelligence_index": 2.6,
       "aa_lcr": 0,
       "aa_livecodebench": 0.523,
       "aa_math_index": 55.7,
@@ -8637,7 +8637,7 @@
       "aa_tau_banking": 0.0556701030927835,
       "aa_terminalbench_hard": 0.0378787878787879,
       "aa_terminalbench_v2_1": 0.048689138576779,
-      "epoch_eci": 138.15,
+      "epoch_eci": 138.2,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -8687,7 +8687,7 @@
       "aa_coding_index": 22.1,
       "aa_gpqa": 0.79,
       "aa_hle": 0.159,
-      "aa_intelligence_index": 12.7,
+      "aa_intelligence_index": 5.4,
       "aa_lcr": 0.72,
       "aa_livecodebench": 0.788,
       "aa_math_index": 91,
@@ -8868,7 +8868,7 @@
       "aa_coding_index": 15.3,
       "aa_gpqa": 0.668,
       "aa_hle": 0.074,
-      "aa_intelligence_index": 7.2,
+      "aa_intelligence_index": 3,
       "aa_lcr": 0,
       "aa_livecodebench": 0.546,
       "aa_math_index": 73,
@@ -8878,7 +8878,7 @@
       "aa_tau_banking": 0.0536082474226804,
       "aa_terminalbench_hard": 0.0303030303030303,
       "aa_terminalbench_v2_1": 0.052434456928839,
-      "epoch_eci": 138.42,
+      "epoch_eci": 138.48,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -9641,7 +9641,7 @@
       "aa_coding_index": 53.7,
       "aa_gpqa": 0.842,
       "aa_hle": 0.231,
-      "aa_intelligence_index": 21.4,
+      "aa_intelligence_index": 10.6,
       "aa_lcr": 0.773333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9651,7 +9651,7 @@
       "aa_tau_banking": 0.167010309278351,
       "aa_terminalbench_hard": 0.348484848484849,
       "aa_terminalbench_v2_1": 0.606741573033708,
-      "epoch_eci": 146.23,
+      "epoch_eci": 146.32,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -10022,7 +10022,7 @@
       "aa_coding_index": 71.9,
       "aa_gpqa": 0.935,
       "aa_hle": 0.424,
-      "aa_intelligence_index": 39.9,
+      "aa_intelligence_index": 30,
       "aa_lcr": 0.803333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10532,7 +10532,7 @@
       "aa_coding_index": 71.8,
       "aa_gpqa": 0.927,
       "aa_hle": 0.43,
-      "aa_intelligence_index": 40.2,
+      "aa_intelligence_index": 30.1,
       "aa_lcr": 0.783333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10542,13 +10542,13 @@
       "aa_tau_banking": 0.51340206185567,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.812734082397004,
-      "epoch_eci": 157.4,
-      "epoch_eci_software": null
+      "epoch_eci": 157.98,
+      "epoch_eci_software": 158.85456700683042
      },
      "designarena": {
       "frontend": {
        "battles": 1787,
-       "elo": 1300,
+       "elo": 1287,
        "modelId": "qwen3.8-max",
        "winRate": 60.2
       },
@@ -10601,7 +10601,7 @@
       "aa_coding_index": 39.6,
       "aa_gpqa": 0.809,
       "aa_hle": 0.214,
-      "aa_intelligence_index": 19.5,
+      "aa_intelligence_index": 9.6,
       "aa_lcr": 0.736666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10660,7 +10660,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.465,
-      "aa_intelligence_index": 43.7,
+      "aa_intelligence_index": 28.5,
       "aa_lcr": 0.883333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -10678,19 +10678,19 @@
      "offers": [
       {
        "cache_read_per_1m": 0.1,
+       "context_length": 1048576,
+       "input_per_1m": 1,
+       "output_per_1m": 2.7,
+       "platform": "OpenRouter",
+       "provider": "GMICloud"
+      },
+      {
+       "cache_read_per_1m": 0.1,
        "context_length": 262144,
        "input_per_1m": 1,
        "output_per_1m": 2.7,
        "platform": "OpenRouter",
        "provider": "Featherless"
-      },
-      {
-       "cache_read_per_1m": 0.1,
-       "context_length": 1048576,
-       "input_per_1m": 1,
-       "output_per_1m": 2.7,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
       },
       {
        "cache_read_per_1m": 0.1,
@@ -10707,10 +10707,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-10-31T08:20:39.382Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 64144.28936512275
+         "output": 113472.87772177807
         }
        }
       }
@@ -11650,7 +11650,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.684,
       "aa_hle": 0.063,
-      "aa_intelligence_index": 7.6,
+      "aa_intelligence_index": 3.2,
       "aa_lcr": 0,
       "aa_livecodebench": 0.604,
       "aa_math_index": 73,
@@ -12287,7 +12287,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.809,
       "aa_hle": 0.171,
-      "aa_intelligence_index": 23.5,
+      "aa_intelligence_index": 12,
       "aa_lcr": 0.703333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -12301,12 +12301,12 @@
      "designarena": {
       "frontend": {
        "battles": 5385,
-       "elo": 1125,
+       "elo": 1112,
        "modelId": "glm-5v-turbo",
        "winRate": 44.7
       },
       "fullstack": {
-       "battles": 3947,
+       "battles": 3948,
        "elo": 1149,
        "modelId": "glm-5v-turbo",
        "winRate": 52.1
