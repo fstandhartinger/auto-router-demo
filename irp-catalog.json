@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03T12:23:01Z",
+ "generated_at": "2026-11-03T15:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -7152,7 +7152,7 @@
       "aa_coding_index": 20.2,
       "aa_gpqa": 0.664,
       "aa_hle": 0.05,
-      "aa_intelligence_index": 4.5,
+      "aa_intelligence_index": 4.7,
       "aa_lcr": 0.44,
       "aa_livecodebench": 0.483,
       "aa_math_index": 46.3,
@@ -8833,7 +8833,7 @@
       "aa_coding_index": 13.8,
       "aa_gpqa": 0.604,
       "aa_hle": 0.045,
-      "aa_intelligence_index": 2.6,
+      "aa_intelligence_index": 2.7,
       "aa_lcr": 0,
       "aa_livecodebench": 0.523,
       "aa_math_index": 55.7,
