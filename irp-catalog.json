@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03T06:29:09Z",
+ "generated_at": "2026-11-03T12:23:01Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1731,7 +1731,7 @@
    }
   },
   {
-   "bench_id": "deepseek-v4.1-flash-1017::max",
+   "bench_id": "deepseek-v4.1-flash-1017::high",
    "context_tokens": 1000000,
    "core": false,
    "document": {
@@ -1742,25 +1742,31 @@
      "benchmarks": {
       "aa_coding_index": null,
       "aa_gpqa": null,
-      "aa_hle": 0.433,
-      "aa_intelligence_index": 32.5,
-      "aa_lcr": 0.826666666666667,
+      "aa_hle": null,
+      "aa_intelligence_index": 28.5,
+      "aa_lcr": null,
       "aa_livecodebench": null,
       "aa_math_index": null,
       "aa_mmlu_pro": null,
-      "aa_scicode": 0.559,
+      "aa_scicode": null,
       "aa_tau2": null,
       "aa_tau_banking": null,
       "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null,
-      "epoch_eci": 158.83,
-      "epoch_eci_software": null
+      "aa_terminalbench_v2_1": null
      },
      "designarena": {},
-     "display_name": "DeepSeek V4.1 Flash 1017 (Max)",
+     "display_name": "DeepSeek V4.1 Flash 1017 (High)",
      "family_key": "deepseek-v4.1-flash-1017",
-     "id": "deepseek-v4.1-flash-1017::max",
+     "id": "deepseek-v4.1-flash-1017::high",
      "offers": [
+      {
+       "cache_read_per_1m": 0.006,
+       "context_length": 1048576,
+       "input_per_1m": 0.035,
+       "output_per_1m": 0.315,
+       "platform": "OpenRouter",
+       "provider": "Morph"
+      },
       {
        "cache_read_per_1m": 0.005,
        "context_length": 1048576,
@@ -1776,14 +1782,6 @@
        "output_per_1m": 0.5,
        "platform": "OpenRouter",
        "provider": "Relace"
-      },
-      {
-       "cache_read_per_1m": 0.005,
-       "context_length": 1048576,
-       "input_per_1m": 0.038,
-       "output_per_1m": 0.5,
-       "platform": "OpenRouter",
-       "provider": "Wafer"
       }
      ],
      "open_weights": true,
@@ -1792,15 +1790,15 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-01T05:30:57.494Z",
+        "collected_at": "2026-11-03T07:30:28.319Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 138961.70588646265
+         "output": 110430.0909887056
         }
        }
       }
      },
-     "variant": "max"
+     "variant": "high"
     }
    },
    "id": "deepseek/deepseek-v4.1-flash-1017",
@@ -1808,7 +1806,7 @@
    "label": "DeepSeek V4.1 Flash 1017",
    "prices": {
     "input": 0.035,
-    "output": 0.5
+    "output": 0.315
    }
   },
   {
@@ -3625,6 +3623,56 @@
    "prices": {
     "input": 1,
     "output": 2
+   }
+  },
+  {
+   "bench_id": "hermes-3-llama-3.1-70b::default",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.401,
+      "aa_hle": 0.04,
+      "aa_intelligence_index": 2.4,
+      "aa_lcr": null,
+      "aa_livecodebench": 0.188,
+      "aa_math_index": null,
+      "aa_mmlu_pro": 0.571,
+      "aa_scicode": null,
+      "aa_tau2": null,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Hermes 3 - Llama-3.1 70B",
+     "family_key": "hermes-3-llama-3.1-70b",
+     "id": "hermes-3-llama-3.1-70b::default",
+     "offers": [
+      {
+       "context_length": 131072,
+       "input_per_1m": 0.7,
+       "output_per_1m": 0.7,
+       "platform": "OpenRouter",
+       "provider": "DeepInfra"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2024-08-15",
+     "variant": "default"
+    }
+   },
+   "id": "hermes-3-llama-3.1-70b",
+   "irp_aliases": [],
+   "label": "Hermes 3 Llama 3.1 70B",
+   "prices": {
+    "input": 0.7,
+    "output": 0.7
    }
   },
   {
@@ -6327,56 +6375,6 @@
    "prices": {
     "input": 0.0,
     "output": 0.0
-   }
-  },
-  {
-   "bench_id": "hermes-3-llama-3.1-70b::default",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.401,
-      "aa_hle": 0.04,
-      "aa_intelligence_index": 2.4,
-      "aa_lcr": null,
-      "aa_livecodebench": 0.188,
-      "aa_math_index": null,
-      "aa_mmlu_pro": 0.571,
-      "aa_scicode": null,
-      "aa_tau2": null,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "Hermes 3 - Llama-3.1 70B",
-     "family_key": "hermes-3-llama-3.1-70b",
-     "id": "hermes-3-llama-3.1-70b::default",
-     "offers": [
-      {
-       "context_length": 131072,
-       "input_per_1m": 0.7,
-       "output_per_1m": 0.7,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2024-08-15",
-     "variant": "default"
-    }
-   },
-   "id": "nousresearch/hermes-3-llama-3.1-70b",
-   "irp_aliases": [],
-   "label": "Hermes 3 Llama 3.1 70B",
-   "prices": {
-    "input": 0.7,
-    "output": 0.7
    }
   },
   {
