@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-04T18:26:20Z",
+ "generated_at": "2026-11-04T21:23:03Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -266,7 +266,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 53335.11651977117
@@ -396,10 +396,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4242,
-       "elo": 1193,
+       "battles": 4267,
+       "elo": 1194,
        "modelId": "claude-opus-4-6",
-       "winRate": 56.1
+       "winRate": 56.2
       },
       "fullstack": {
        "battles": 2518,
@@ -1790,7 +1790,7 @@
       },
       "fullstack": {
        "battles": 2261,
-       "elo": 1074,
+       "elo": 1075,
        "modelId": "gemini-3-pro-preview",
        "winRate": 48.8
       }
@@ -4235,7 +4235,7 @@
       "aa_coding_index": 58.6,
       "aa_gpqa": 0.929,
       "aa_hle": 0.39,
-      "aa_intelligence_index": 18.7,
+      "aa_intelligence_index": 18.9,
       "aa_lcr": 0.83,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -4250,13 +4250,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3907,
-       "elo": 1190,
+       "battles": 3941,
+       "elo": 1192,
        "modelId": "minimax-m3",
-       "winRate": 47.3
+       "winRate": 47.5
       },
       "fullstack": {
-       "battles": 3674,
+       "battles": 3676,
        "elo": 1197,
        "modelId": "minimax-m3",
        "winRate": 47.2
@@ -4297,7 +4297,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 91451.58534806609
