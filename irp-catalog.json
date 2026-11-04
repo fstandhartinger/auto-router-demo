@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-04T06:29:06Z",
+ "generated_at": "2026-11-04T15:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1659,7 +1659,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": null,
-      "aa_intelligence_index": 28.5,
+      "aa_intelligence_index": 28.6,
       "aa_lcr": null,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -1676,20 +1676,20 @@
      "id": "deepseek-v4.1-flash-1017::high",
      "offers": [
       {
+       "cache_read_per_1m": 0.00475,
+       "context_length": 1048576,
+       "input_per_1m": 0.0333,
+       "output_per_1m": 0.475,
+       "platform": "OpenRouter",
+       "provider": "OpenInference"
+      },
+      {
        "cache_read_per_1m": 0.006,
        "context_length": 1048576,
        "input_per_1m": 0.035,
        "output_per_1m": 0.315,
        "platform": "OpenRouter",
        "provider": "Morph"
-      },
-      {
-       "cache_read_per_1m": 0.005,
-       "context_length": 1048576,
-       "input_per_1m": 0.035,
-       "output_per_1m": 0.5,
-       "platform": "OpenRouter",
-       "provider": "OpenInference"
       },
       {
        "cache_read_per_1m": 0.005,
@@ -1706,7 +1706,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 110430.0909887056
@@ -1721,8 +1721,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4.1 Flash 1017",
    "prices": {
-    "input": 0.035,
-    "output": 0.315
+    "input": 0.0333,
+    "output": 0.475
    }
   },
   {
