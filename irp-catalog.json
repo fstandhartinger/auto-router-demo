@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-04T21:23:03Z",
+ "generated_at": "2026-11-05T00:23:03Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -569,7 +569,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.547,
-      "aa_intelligence_index": 48.1,
+      "aa_intelligence_index": 48.2,
       "aa_lcr": 0.843333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -618,7 +618,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 43816.54647879175
@@ -675,7 +675,7 @@
       },
       "fullstack": {
        "battles": 629,
-       "elo": 1050,
+       "elo": 1051,
        "modelId": "claude-sonnet-4-5-20250929",
        "winRate": 43.7
       }
@@ -890,7 +890,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.398,
-      "aa_intelligence_index": 30.3,
+      "aa_intelligence_index": 30.8,
       "aa_lcr": 0.763333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -939,7 +939,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 30745.89477415119
@@ -1564,7 +1564,7 @@
        "cache_read_per_1m": 0.11,
        "context_length": 1048576,
        "input_per_1m": 0.115,
-       "output_per_1m": 4,
+       "output_per_1m": 4.6,
        "platform": "OpenRouter",
        "provider": "Wafer"
       },
@@ -1583,7 +1583,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 98732.69082294707
@@ -1694,7 +1694,7 @@
       "aa_coding_index": 33.3,
       "aa_gpqa": 0.844,
       "aa_hle": 0.225,
-      "aa_intelligence_index": 6.3,
+      "aa_intelligence_index": 6.2,
       "aa_lcr": 0.69,
       "aa_livecodebench": 0.801,
       "aa_math_index": 87.7,
@@ -1825,7 +1825,7 @@
       "aa_coding_index": 34.7,
       "aa_gpqa": 0.822,
       "aa_hle": 0.172,
-      "aa_intelligence_index": 6.3,
+      "aa_intelligence_index": 6.2,
       "aa_lcr": 0.743333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -1869,10 +1869,10 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
-         "output": 11962.429490354582
+         "output": 15910.706826771477
         }
        }
       }
@@ -2273,7 +2273,7 @@
       "aa_coding_index": 68.8,
       "aa_gpqa": 0.941,
       "aa_hle": 0.47,
-      "aa_intelligence_index": 18,
+      "aa_intelligence_index": 18.1,
       "aa_lcr": 0.82,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2286,14 +2286,14 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 6693,
+       "battles": 6712,
        "elo": 1112,
        "modelId": "gemini-3.1-pro-preview",
        "winRate": 44.3
       },
       "fullstack": {
        "battles": 4828,
-       "elo": 1068,
+       "elo": 1069,
        "modelId": "gemini-3.1-pro-preview",
        "winRate": 40.8
       }
@@ -2359,7 +2359,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.921,
       "aa_hle": 0.413,
-      "aa_intelligence_index": 23,
+      "aa_intelligence_index": 23.3,
       "aa_lcr": 0.743333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2476,7 +2476,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 30300.690239426476
@@ -2510,7 +2510,7 @@
       "aa_coding_index": 69.2,
       "aa_gpqa": 0.928,
       "aa_hle": 0.408,
-      "aa_intelligence_index": 23.9,
+      "aa_intelligence_index": 24,
       "aa_lcr": 0.8,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2525,16 +2525,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 2923,
+       "battles": 2948,
        "elo": 1182,
        "modelId": "gemini-3.6-flash",
        "winRate": 45.3
       },
       "fullstack": {
-       "battles": 2939,
-       "elo": 1181,
+       "battles": 2940,
+       "elo": 1182,
        "modelId": "gemini-3.6-flash",
-       "winRate": 44.3
+       "winRate": 44.4
       }
      },
      "display_name": "Gemini 3.6 Flash (High)",
@@ -2604,7 +2604,7 @@
       "aa_coding_index": 71.5,
       "aa_gpqa": 0.921,
       "aa_hle": 0.39,
-      "aa_intelligence_index": 29.8,
+      "aa_intelligence_index": 29.9,
       "aa_lcr": 0.83,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2671,7 +2671,7 @@
       "aa_coding_index": 74.1,
       "aa_gpqa": 0.935,
       "aa_hle": 0.421,
-      "aa_intelligence_index": 30,
+      "aa_intelligence_index": 30.1,
       "aa_lcr": 0.84,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -2718,7 +2718,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 82068.01531105887
@@ -2802,7 +2802,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 116368.02906783369
@@ -2939,12 +2939,12 @@
        "provider": "CoreWeave"
       },
       {
-       "cache_read_per_1m": 0.09,
-       "context_length": 256000,
-       "input_per_1m": 0.12,
-       "output_per_1m": 0.36,
+       "cache_read_per_1m": 0.058,
+       "context_length": 262144,
+       "input_per_1m": 0.116,
+       "output_per_1m": 0.195,
        "platform": "OpenRouter",
-       "provider": "Venice"
+       "provider": "PrimeIntellect"
       }
      ],
      "open_weights": true,
@@ -2987,7 +2987,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.899,
       "aa_hle": 0.357,
-      "aa_intelligence_index": 17.7,
+      "aa_intelligence_index": 17.8,
       "aa_lcr": 0.823333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3362,7 +3362,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.394,
-      "aa_intelligence_index": 30.8,
+      "aa_intelligence_index": 31.1,
       "aa_lcr": 0.83,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3571,19 +3571,20 @@
        "provider": "DeepInfra"
       },
       {
-       "context_length": 12288,
-       "input_per_1m": 0.135,
-       "output_per_1m": 0.4,
-       "platform": "OpenRouter",
-       "provider": "Novita"
-      },
-      {
        "cache_read_per_1m": 0.1,
        "context_length": 131072,
        "input_per_1m": 0.2,
        "output_per_1m": 0.52,
        "platform": "OpenRouter",
        "provider": "AkashML"
+      },
+      {
+       "cache_read_per_1m": 0.11,
+       "context_length": 131072,
+       "input_per_1m": 0.22,
+       "output_per_1m": 0.5,
+       "platform": "OpenRouter",
+       "provider": "Parasail"
       }
      ],
      "open_weights": true,
@@ -3767,7 +3768,7 @@
       "aa_coding_index": null,
       "aa_gpqa": 0.89,
       "aa_hle": 0.439,
-      "aa_intelligence_index": 24.7,
+      "aa_intelligence_index": 24.9,
       "aa_lcr": 0.783333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3815,7 +3816,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 66440.0869950025
@@ -3847,7 +3848,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.501,
-      "aa_intelligence_index": 43.3,
+      "aa_intelligence_index": 43.6,
       "aa_lcr": 0.806666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -3880,7 +3881,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 96063.09909177679
@@ -4329,7 +4330,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.48,
-      "aa_intelligence_index": 28.9,
+      "aa_intelligence_index": 29.1,
       "aa_lcr": 0.796666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -4376,7 +4377,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 138176.35829722678
@@ -4514,7 +4515,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 56324.47155445095
@@ -4992,26 +4993,26 @@
      "id": "kimi-k3::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.17,
+       "cache_read_per_1m": 0.19,
        "context_length": 1048576,
-       "input_per_1m": 0.171,
-       "output_per_1m": 22,
-       "platform": "OpenRouter",
-       "provider": "Wafer"
-      },
-      {
-       "cache_read_per_1m": 0.18,
-       "context_length": 1048576,
-       "input_per_1m": 0.1824,
-       "output_per_1m": 9.3388,
+       "input_per_1m": 0.19,
+       "output_per_1m": 8.94,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
       {
-       "cache_read_per_1m": 0.182,
+       "cache_read_per_1m": 0.19,
        "context_length": 1048576,
-       "input_per_1m": 0.192,
-       "output_per_1m": 15,
+       "input_per_1m": 0.2,
+       "output_per_1m": 16,
+       "platform": "OpenRouter",
+       "provider": "Wafer"
+      },
+      {
+       "cache_read_per_1m": 0.232,
+       "context_length": 1048576,
+       "input_per_1m": 0.233,
+       "output_per_1m": 22,
        "platform": "OpenRouter",
        "provider": "Wafer"
       }
@@ -5026,8 +5027,8 @@
    ],
    "label": "Kimi K3",
    "prices": {
-    "input": 0.171,
-    "output": 22
+    "input": 0.19,
+    "output": 8.94
    }
   },
   {
@@ -5043,7 +5044,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.525,
-      "aa_intelligence_index": 46,
+      "aa_intelligence_index": 46.5,
       "aa_lcr": 0.863333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -5056,10 +5057,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 691,
-       "elo": 1325,
+       "battles": 742,
+       "elo": 1313,
        "modelId": "kimi-k3.1-pro",
-       "winRate": 62.8
+       "winRate": 61.3
       }
      },
      "display_name": "Kimi K3.1 Pro",
@@ -5089,7 +5090,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 72238.9702315149
@@ -5413,13 +5414,6 @@
      "offers": [
       {
        "context_length": 262144,
-       "input_per_1m": 0.05,
-       "output_per_1m": 0.2,
-       "platform": "OpenRouter",
-       "provider": "Novita"
-      },
-      {
-       "context_length": 262144,
        "input_per_1m": 0.06,
        "output_per_1m": 0.24,
        "platform": "Nebius",
@@ -5432,6 +5426,12 @@
        "output_per_1m": 0.24,
        "platform": "OpenRouter",
        "provider": "Nebius"
+      },
+      {
+       "input_per_1m": 0.072,
+       "output_per_1m": 0.288,
+       "platform": "AWS Bedrock",
+       "provider": "AWS Bedrock"
       }
      ],
      "open_weights": true,
@@ -5457,8 +5457,8 @@
    ],
    "label": "Nemotron 3 Nano 30B A3b",
    "prices": {
-    "input": 0.05,
-    "output": 0.2
+    "input": 0.06,
+    "output": 0.24
    }
   },
   {
@@ -5493,17 +5493,17 @@
      "offers": [
       {
        "context_length": 262144,
+       "input_per_1m": 0.075,
+       "output_per_1m": 0.4,
+       "platform": "OpenRouter",
+       "provider": "DeepInfra"
+      },
+      {
+       "context_length": 262144,
        "input_per_1m": 0.08,
        "output_per_1m": 0.45,
        "platform": "OpenRouter",
        "provider": "DekaLLM"
-      },
-      {
-       "context_length": 262144,
-       "input_per_1m": 0.085,
-       "output_per_1m": 0.4,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
       },
       {
        "input_per_1m": 0.18,
@@ -5535,8 +5535,8 @@
    ],
    "label": "Nemotron 3 Super 120B A12b",
    "prices": {
-    "input": 0.08,
-    "output": 0.45
+    "input": 0.075,
+    "output": 0.4
    }
   },
   {
@@ -5601,7 +5601,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 51467.614604634866
@@ -5682,7 +5682,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 65026.1687297589
@@ -5760,7 +5760,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 81434.63441391091
@@ -6282,7 +6282,7 @@
       "aa_coding_index": 71.1,
       "aa_gpqa": 0.92,
       "aa_hle": 0.437,
-      "aa_intelligence_index": 29,
+      "aa_intelligence_index": 29.1,
       "aa_lcr": 0.82,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6304,7 +6304,7 @@
       },
       "fullstack": {
        "battles": 2152,
-       "elo": 1017,
+       "elo": 1018,
        "modelId": "gpt-5.4",
        "winRate": 40.9
       }
@@ -6499,7 +6499,7 @@
       "aa_coding_index": 71.5,
       "aa_gpqa": 0.926,
       "aa_hle": 0.424,
-      "aa_intelligence_index": 23.4,
+      "aa_intelligence_index": 23.8,
       "aa_lcr": 0.83,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6656,7 +6656,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.283,
-      "aa_intelligence_index": 18.3,
+      "aa_intelligence_index": 18.5,
       "aa_lcr": 0.783333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6706,7 +6706,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 19823.23818001747
@@ -6738,7 +6738,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.41,
-      "aa_intelligence_index": 30,
+      "aa_intelligence_index": 30.1,
       "aa_lcr": 0.823333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6820,7 +6820,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.499,
-      "aa_intelligence_index": 46.1,
+      "aa_intelligence_index": 46.3,
       "aa_lcr": 0.833333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6870,7 +6870,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 13518.335935178977
@@ -6902,7 +6902,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.402,
-      "aa_intelligence_index": 38.1,
+      "aa_intelligence_index": 38.2,
       "aa_lcr": 0.806666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -6925,6 +6925,15 @@
        "input_per_1m": 1,
        "output_per_1m": 5,
        "platform": "OpenRouter",
+       "provider": "Azure"
+      },
+      {
+       "cache_read_per_1m": 0.05,
+       "cache_write_per_1m": 1.25,
+       "context_length": 1050000,
+       "input_per_1m": 1,
+       "output_per_1m": 5,
+       "platform": "OpenRouter",
        "provider": "OpenAI"
       },
       {
@@ -6933,15 +6942,6 @@
        "context_length": 1050000,
        "input_per_1m": 1.1,
        "output_per_1m": 5.5,
-       "platform": "OpenRouter",
-       "provider": "Amazon Bedrock"
-      },
-      {
-       "cache_read_per_1m": 0.06,
-       "cache_write_per_1m": 1.5,
-       "context_length": 1050000,
-       "input_per_1m": 1.2,
-       "output_per_1m": 6,
        "platform": "OpenRouter",
        "provider": "Azure"
       }
@@ -6952,7 +6952,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 10875.462740790412
@@ -7086,10 +7086,10 @@
      "id": "gpt-oss-20b::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.005,
+       "cache_read_per_1m": 0.006,
        "context_length": 131072,
-       "input_per_1m": 0.006,
-       "output_per_1m": 0.027,
+       "input_per_1m": 0.007,
+       "output_per_1m": 0.028,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -7130,8 +7130,8 @@
    "irp_aliases": [],
    "label": "GPT OSS 20B",
    "prices": {
-    "input": 0.006,
-    "output": 0.027
+    "input": 0.007,
+    "output": 0.028
    }
   },
   {
@@ -8288,10 +8288,10 @@
      "id": "qwen3.5-9b::reasoning",
      "offers": [
       {
-       "cache_read_per_1m": 0.035,
+       "cache_read_per_1m": 0.066,
        "context_length": 262144,
-       "input_per_1m": 0.039,
-       "output_per_1m": 0.058,
+       "input_per_1m": 0.073,
+       "output_per_1m": 0.107,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -8332,8 +8332,8 @@
    "irp_aliases": [],
    "label": "Qwen3.5 9B",
    "prices": {
-    "input": 0.039,
-    "output": 0.058
+    "input": 0.073,
+    "output": 0.107
    }
   },
   {
@@ -8582,13 +8582,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3008,
+       "battles": 3028,
        "elo": 1195,
        "modelId": "qwen3.7-max",
        "winRate": 48.7
       },
       "fullstack": {
-       "battles": 1418,
+       "battles": 1421,
        "elo": 1191,
        "modelId": "qwen3.7-max",
        "winRate": 47.7
@@ -8731,7 +8731,7 @@
       "aa_coding_index": 71.9,
       "aa_gpqa": 0.935,
       "aa_hle": 0.424,
-      "aa_intelligence_index": 30,
+      "aa_intelligence_index": 30.2,
       "aa_lcr": 0.803333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -8828,10 +8828,10 @@
      "id": "qwen3.8-27b::medium",
      "offers": [
       {
-       "cache_read_per_1m": 0.006,
+       "cache_read_per_1m": 0.023,
        "context_length": 131072,
-       "input_per_1m": 0.007,
-       "output_per_1m": 0.392,
+       "input_per_1m": 0.026,
+       "output_per_1m": 1.411,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -8858,7 +8858,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 86407.34031510795
@@ -8875,8 +8875,8 @@
    ],
    "label": "Qwen3.8 27B",
    "prices": {
-    "input": 0.007,
-    "output": 0.392
+    "input": 0.026,
+    "output": 1.411
    }
   },
   {
@@ -9048,7 +9048,7 @@
       "aa_coding_index": 73.1,
       "aa_gpqa": 0.923,
       "aa_hle": 0.38,
-      "aa_intelligence_index": 30,
+      "aa_intelligence_index": 30.1,
       "aa_lcr": 0.796666666666667,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9122,7 +9122,7 @@
       "aa_coding_index": 71.8,
       "aa_gpqa": 0.927,
       "aa_hle": 0.43,
-      "aa_intelligence_index": 30.1,
+      "aa_intelligence_index": 30.4,
       "aa_lcr": 0.783333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9137,14 +9137,14 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 1800,
+       "battles": 1809,
        "elo": 1288,
        "modelId": "qwen3.8-max",
        "winRate": 60.3
       },
       "fullstack": {
        "battles": 1327,
-       "elo": 1305,
+       "elo": 1306,
        "modelId": "qwen3.8-max",
        "winRate": 62
       }
@@ -9297,7 +9297,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 113472.87772177807
@@ -9463,7 +9463,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 51255.67131667426
@@ -9559,7 +9559,7 @@
       "aa_coding_index": 72.4,
       "aa_gpqa": 0.931,
       "aa_hle": 0.427,
-      "aa_intelligence_index": 28.8,
+      "aa_intelligence_index": 28.9,
       "aa_lcr": 0.793333333333333,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9574,13 +9574,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 5921,
+       "battles": 5944,
        "elo": 1204,
        "modelId": "yoda",
-       "winRate": 53.3
+       "winRate": 53.2
       },
       "fullstack": {
-       "battles": 2785,
+       "battles": 2786,
        "elo": 1249,
        "modelId": "yoda",
        "winRate": 60.7
@@ -9645,7 +9645,7 @@
       "aa_coding_index": 74.4,
       "aa_gpqa": 0.935,
       "aa_hle": 0.421,
-      "aa_intelligence_index": 32.9,
+      "aa_intelligence_index": 33,
       "aa_lcr": 0.81,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9722,7 +9722,7 @@
       "aa_coding_index": null,
       "aa_gpqa": null,
       "aa_hle": 0.423,
-      "aa_intelligence_index": 35,
+      "aa_intelligence_index": 35.2,
       "aa_lcr": 0.77,
       "aa_livecodebench": null,
       "aa_math_index": null,
@@ -9772,7 +9772,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 89127.17577396278
@@ -9822,14 +9822,6 @@
      "id": "mimo-v2.5::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.00255,
-       "context_length": 1050000,
-       "input_per_1m": 0.119,
-       "output_per_1m": 0.238,
-       "platform": "OpenRouter",
-       "provider": "GMICloud"
-      },
-      {
        "cache_read_per_1m": 0.08,
        "context_length": 1000000,
        "input_per_1m": 0.4,
@@ -9861,8 +9853,8 @@
    ],
    "label": "MiMo V2.5",
    "prices": {
-    "input": 0.119,
-    "output": 0.238
+    "input": 0.4,
+    "output": 2
    }
   },
   {
@@ -9974,14 +9966,6 @@
      "id": "mimo-v2.6-flash::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.003,
-       "context_length": 1048320,
-       "input_per_1m": 0.1,
-       "output_per_1m": 0.28,
-       "platform": "OpenRouter",
-       "provider": "Io Net"
-      },
-      {
        "cache_read_per_1m": 0.05,
        "context_length": 1048576,
        "input_per_1m": 0.1,
@@ -9990,12 +9974,20 @@
        "provider": "Darkbloom"
       },
       {
-       "cache_read_per_1m": 0.002,
+       "cache_read_per_1m": 0.0024,
+       "context_length": 1050000,
+       "input_per_1m": 0.112,
+       "output_per_1m": 0.224,
+       "platform": "OpenRouter",
+       "provider": "GMICloud"
+      },
+      {
+       "cache_read_per_1m": 0.003,
        "context_length": 1048576,
-       "input_per_1m": 0.11,
+       "input_per_1m": 0.14,
        "output_per_1m": 0.28,
        "platform": "OpenRouter",
-       "provider": "Makora"
+       "provider": "Cohere"
       }
      ],
      "open_weights": true,
@@ -10004,7 +9996,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 131806.22552062702
@@ -10092,7 +10084,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 121073.12983119856
@@ -10658,14 +10650,14 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 7218,
-       "elo": 1162,
+       "battles": 7230,
+       "elo": 1163,
        "modelId": "glm-5.1",
        "winRate": 50.6
       },
       "fullstack": {
-       "battles": 3902,
-       "elo": 1167,
+       "battles": 3903,
+       "elo": 1168,
        "modelId": "glm-5.1",
        "winRate": 53.2
       }
@@ -10787,7 +10779,7 @@
       "aa": {
        "tokens_per_task": {
         "basis": "measured",
-        "collected_at": "2026-11-03T07:30:28.319Z",
+        "collected_at": "2026-11-04T08:51:51.964Z",
         "scope": "aa_intelligence_index_benchmark",
         "value": {
          "output": 118986.50484699552
