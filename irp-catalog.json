@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-05T18:29:04Z",
+ "generated_at": "2026-11-05T21:23:01Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1674,28 +1674,28 @@
      "id": "deepseek-v4.1-flash-1017::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.00475,
+       "cache_read_per_1m": 0.005,
        "context_length": 1048576,
-       "input_per_1m": 0.0333,
-       "output_per_1m": 0.475,
+       "input_per_1m": 0.006,
+       "output_per_1m": 0.5,
        "platform": "OpenRouter",
-       "provider": "OpenInference"
-      },
-      {
-       "cache_read_per_1m": 0.006,
-       "context_length": 1048576,
-       "input_per_1m": 0.035,
-       "output_per_1m": 0.315,
-       "platform": "OpenRouter",
-       "provider": "Morph"
+       "provider": "Relace"
       },
       {
        "cache_read_per_1m": 0.005,
        "context_length": 1048576,
-       "input_per_1m": 0.035,
+       "input_per_1m": 0.01,
        "output_per_1m": 0.5,
        "platform": "OpenRouter",
-       "provider": "Relace"
+       "provider": "OpenInference"
+      },
+      {
+       "cache_read_per_1m": 0.001007319,
+       "context_length": 1048576,
+       "input_per_1m": 0.016788652,
+       "output_per_1m": 0.16788652,
+       "platform": "OpenRouter",
+       "provider": "Particle AI"
       }
      ],
      "open_weights": true,
@@ -1719,8 +1719,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4.1 Flash 1017",
    "prices": {
-    "input": 0.0333,
-    "output": 0.475
+    "input": 0.006,
+    "output": 0.5
    }
   },
   {
@@ -4484,7 +4484,7 @@
      "variant": "default"
     }
    },
-   "id": "minimax/minimax-m2",
+   "id": "minimax-m2",
    "irp_aliases": [],
    "label": "MiniMax M2",
    "prices": {
@@ -4549,7 +4549,7 @@
      "variant": "default"
     }
    },
-   "id": "minimax/minimax-m2.1",
+   "id": "minimax-m2.1",
    "irp_aliases": [],
    "label": "MiniMax M2.1",
    "prices": {
@@ -6669,8 +6669,8 @@
       "aa_tau_banking": 0.0350515463917526,
       "aa_terminalbench_hard": 0.0378787878787879,
       "aa_terminalbench_v2_1": 0.0374531835205993,
-      "epoch_eci": 129.55,
-      "epoch_eci_software": 125.72920421889103
+      "epoch_eci": 126.95,
+      "epoch_eci_software": 124.76931184656118
      },
      "designarena": {},
      "display_name": "GPT-4.1 nano",
