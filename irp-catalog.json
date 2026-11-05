@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-05T00:23:03Z",
+ "generated_at": "2026-11-05T06:29:08Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -2004,6 +2004,55 @@
    }
   },
   {
+   "bench_id": "gemma-4-e2b::reasoning",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": 7.2,
+      "aa_gpqa": 0.433,
+      "aa_hle": 0.048,
+      "aa_intelligence_index": 3.4,
+      "aa_lcr": 0.163333333333333,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": null,
+      "aa_tau2": 0.207602339181287,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0303030303030303,
+      "aa_terminalbench_v2_1": 0.00374531835205993
+     },
+     "designarena": {},
+     "display_name": "Gemma 4 E2B (Reasoning)",
+     "family_key": "gemma-4-e2b",
+     "id": "gemma-4-e2b::reasoning",
+     "offers": [
+      {
+       "input_per_1m": 0.048,
+       "output_per_1m": 0.096,
+       "platform": "AWS Bedrock",
+       "provider": "AWS Bedrock"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2026-04-02",
+     "variant": "reasoning"
+    }
+   },
+   "id": "gemma-4-e2b",
+   "irp_aliases": [],
+   "label": "Gemma 4 E2b",
+   "prices": {
+    "input": 0.048,
+    "output": 0.096
+   }
+  },
+  {
    "bench_id": "gemma-4-e4b::reasoning",
    "context_tokens": 128000,
    "core": false,
@@ -2883,7 +2932,8 @@
    },
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
-    "gemma-4-26b"
+    "gemma-4-26b",
+    "google-gemma-4-26b-a4b-instruct"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -5453,6 +5503,7 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
+    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -5847,6 +5898,71 @@
    "prices": {
     "input": 0.4,
     "output": 1.6
+   }
+  },
+  {
+   "bench_id": "gpt-4.1-nano::default",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": 11.1,
+      "aa_gpqa": 0.512,
+      "aa_hle": 0.038,
+      "aa_intelligence_index": 3.4,
+      "aa_lcr": 0.203333333333333,
+      "aa_livecodebench": 0.326,
+      "aa_math_index": 24,
+      "aa_mmlu_pro": 0.657,
+      "aa_scicode": null,
+      "aa_tau2": 0.172514619883041,
+      "aa_tau_banking": 0.0350515463917526,
+      "aa_terminalbench_hard": 0.0378787878787879,
+      "aa_terminalbench_v2_1": 0.0374531835205993,
+      "epoch_eci": 129.55,
+      "epoch_eci_software": 125.72920421889103
+     },
+     "designarena": {},
+     "display_name": "GPT-4.1 nano",
+     "family_key": "gpt-4.1-nano",
+     "id": "gpt-4.1-nano::default",
+     "offers": [
+      {
+       "input_per_1m": 0.1,
+       "output_per_1m": 0.4,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "cache_read_per_1m": 0.03,
+       "context_length": 1047576,
+       "input_per_1m": 0.1,
+       "output_per_1m": 0.4,
+       "platform": "OpenRouter",
+       "provider": "Azure"
+      },
+      {
+       "input_per_1m": 0.11,
+       "output_per_1m": 0.44,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-04-14",
+     "variant": "default"
+    }
+   },
+   "id": "openai/gpt-4.1-nano",
+   "irp_aliases": [],
+   "label": "GPT 4.1 Nano",
+   "prices": {
+    "input": 0.1,
+    "output": 0.4
    }
   },
   {
@@ -8041,6 +8157,56 @@
    }
   },
   {
+   "bench_id": "qwen3-vl-30b-a3b-thinking::reasoning",
+   "context_tokens": 256000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 256000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.72,
+      "aa_hle": 0.089,
+      "aa_intelligence_index": 4.3,
+      "aa_lcr": null,
+      "aa_livecodebench": 0.697,
+      "aa_math_index": 82.3,
+      "aa_mmlu_pro": 0.807,
+      "aa_scicode": null,
+      "aa_tau2": 0.198830409356725,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.053030303030303,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Qwen3 VL 30B A3B (Reasoning)",
+     "family_key": "qwen3-vl-30b-a3b-thinking",
+     "id": "qwen3-vl-30b-a3b-thinking::reasoning",
+     "offers": [
+      {
+       "context_length": 262144,
+       "input_per_1m": 0.29,
+       "output_per_1m": 1,
+       "platform": "OpenRouter",
+       "provider": "SiliconFlow"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2025-10-03",
+     "variant": "reasoning"
+    }
+   },
+   "id": "qwen/qwen3-vl-30b-a3b-thinking",
+   "irp_aliases": [],
+   "label": "Qwen3 Vl 30B A3b Thinking",
+   "prices": {
+    "input": 0.29,
+    "output": 1
+   }
+  },
+  {
    "bench_id": "qwen3.5-27b::reasoning",
    "context_tokens": 262144,
    "core": false,
@@ -8988,6 +9154,48 @@
    "id": "qwen3-8b",
    "irp_aliases": [],
    "label": "Qwen3 8B",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
+   "bench_id": "qwen3-vl-235b-a22b-thinking::reasoning",
+   "context_tokens": 262144,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 262144
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.772,
+      "aa_hle": 0.119,
+      "aa_intelligence_index": 6.2,
+      "aa_lcr": 0.636666666666667,
+      "aa_livecodebench": 0.646,
+      "aa_math_index": 88.3,
+      "aa_mmlu_pro": 0.836,
+      "aa_scicode": null,
+      "aa_tau2": 0.54093567251462,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.113636363636364,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Qwen3 VL 235B A22B (Reasoning)",
+     "family_key": "qwen3-vl-235b-a22b-thinking",
+     "id": "qwen3-vl-235b-a22b-thinking::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-09-23",
+     "variant": "reasoning"
+    }
+   },
+   "id": "qwen3-vl-235b-a22b-thinking",
+   "irp_aliases": [],
+   "label": "Qwen3 Vl 235B A22b Thinking",
    "prices": {
     "input": 0.0,
     "output": 0.0
