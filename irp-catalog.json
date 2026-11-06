@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-05T21:23:01Z",
+ "generated_at": "2026-11-06T00:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -147,8 +147,8 @@
       "aa_tau_banking": 0.0927835051546392,
       "aa_terminalbench_hard": 0.272727272727273,
       "aa_terminalbench_v2_1": 0.441947565543071,
-      "epoch_eci": 142.21,
-      "epoch_eci_software": 145.00461226887265
+      "epoch_eci": 142.82,
+      "epoch_eci_software": 145.43138584744537
      },
      "designarena": {},
      "display_name": "Claude 4.5 Haiku (Reasoning)",
@@ -391,21 +391,21 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.462121212121212,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 155.85,
-      "epoch_eci_software": 156.85355444910243
+      "epoch_eci": 156.3,
+      "epoch_eci_software": 158.00568652341246
      },
      "designarena": {
       "frontend": {
-       "battles": 4267,
-       "elo": 1194,
+       "battles": 4297,
+       "elo": 1190,
        "modelId": "claude-opus-4-6",
-       "winRate": 56.2
+       "winRate": 56
       },
       "fullstack": {
-       "battles": 2518,
-       "elo": 1221,
+       "battles": 2529,
+       "elo": 1213,
        "modelId": "claude-opus-4-6",
-       "winRate": 59.9
+       "winRate": 59.8
       }
      },
      "display_name": "Claude Opus 4.6 (Max)",
@@ -1984,13 +1984,13 @@
      "designarena": {
       "frontend": {
        "battles": 4076,
-       "elo": 1101,
+       "elo": 1098,
        "modelId": "gemini-3-pro-preview",
        "winRate": 49.4
       },
       "fullstack": {
        "battles": 2261,
-       "elo": 1075,
+       "elo": 1067,
        "modelId": "gemini-3-pro-preview",
        "winRate": 48.8
       }
@@ -4579,9 +4579,7 @@
       "aa_tau2": 0.953216374269006,
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.348484848484849,
-      "aa_terminalbench_v2_1": null,
-      "epoch_eci": 146.68,
-      "epoch_eci_software": null
+      "aa_terminalbench_v2_1": null
      },
      "designarena": {},
      "display_name": "MiniMax-M2.5",
@@ -4651,9 +4649,7 @@
       "aa_tau2": 0.847953216374269,
       "aa_tau_banking": 0.0989690721649484,
       "aa_terminalbench_hard": 0.393939393939394,
-      "aa_terminalbench_v2_1": 0.554307116104869,
-      "epoch_eci": 145.88,
-      "epoch_eci_software": 145.99355542501604
+      "aa_terminalbench_v2_1": 0.554307116104869
      },
      "designarena": {},
      "display_name": "MiniMax-M2.7",
@@ -4736,19 +4732,19 @@
       "aa_tau_banking": 0.152577319587629,
       "aa_terminalbench_hard": 0.424242424242424,
       "aa_terminalbench_v2_1": 0.651685393258427,
-      "epoch_eci": 146.92,
-      "epoch_eci_software": 150.28227790194956
+      "epoch_eci": 147.6,
+      "epoch_eci_software": 150.87476267201828
      },
      "designarena": {
       "frontend": {
-       "battles": 3941,
-       "elo": 1192,
+       "battles": 3983,
+       "elo": 1191,
        "modelId": "minimax-m3",
-       "winRate": 47.5
+       "winRate": 47.6
       },
       "fullstack": {
-       "battles": 3676,
-       "elo": 1197,
+       "battles": 3696,
+       "elo": 1190,
        "modelId": "minimax-m3",
        "winRate": 47.2
       }
@@ -6602,8 +6598,8 @@
       "aa_tau_banking": 0.0536082474226804,
       "aa_terminalbench_hard": 0.0757575757575758,
       "aa_terminalbench_v2_1": 0.101123595505618,
-      "epoch_eci": 134.92,
-      "epoch_eci_software": 134.98311741278138
+      "epoch_eci": 134.29,
+      "epoch_eci_software": 134.51216236493104
      },
      "designarena": {},
      "display_name": "GPT-4.1 mini",
@@ -8287,7 +8283,7 @@
       "aa_tau_banking": 0.0556701030927835,
       "aa_terminalbench_hard": 0.0378787878787879,
       "aa_terminalbench_v2_1": 0.048689138576779,
-      "epoch_eci": 138.2,
+      "epoch_eci": 136.2,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -10041,7 +10037,7 @@
       "aa_tau_banking": 0.0474226804123711,
       "aa_terminalbench_hard": 0.0227272727272727,
       "aa_terminalbench_v2_1": 0.0224719101123595,
-      "epoch_eci": 136.11,
+      "epoch_eci": 132.2,
       "epoch_eci_software": null
      },
      "designarena": {},
