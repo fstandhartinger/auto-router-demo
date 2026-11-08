@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T18:27:46Z",
+ "generated_at": "2026-11-08T03:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1682,20 +1682,20 @@
        "provider": "Relace"
       },
       {
-       "cache_read_per_1m": 0.005,
+       "cache_read_per_1m": 0.004,
        "context_length": 1048576,
-       "input_per_1m": 0.01,
-       "output_per_1m": 0.5,
+       "input_per_1m": 0.0175,
+       "output_per_1m": 0.7,
        "platform": "OpenRouter",
        "provider": "OpenInference"
       },
       {
-       "cache_read_per_1m": 0.001007319,
+       "cache_read_per_1m": 0.004,
        "context_length": 1048576,
-       "input_per_1m": 0.016788652,
-       "output_per_1m": 0.16788652,
+       "input_per_1m": 0.022,
+       "output_per_1m": 0.4,
        "platform": "OpenRouter",
-       "provider": "Particle AI"
+       "provider": "Morph"
       }
      ],
      "open_weights": true,
