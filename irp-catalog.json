@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-08T06:29:05Z",
+ "generated_at": "2026-11-08T09:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -396,16 +396,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4297,
-       "elo": 1190,
+       "battles": 4343,
+       "elo": 1189,
        "modelId": "claude-opus-4-6",
-       "winRate": 56
+       "winRate": 55.6
       },
       "fullstack": {
-       "battles": 2529,
-       "elo": 1213,
+       "battles": 2555,
+       "elo": 1205,
        "modelId": "claude-opus-4-6",
-       "winRate": 59.8
+       "winRate": 59.5
       }
      },
      "display_name": "Claude Opus 4.6 (Max)",
@@ -1944,13 +1944,13 @@
      "designarena": {
       "frontend": {
        "battles": 4076,
-       "elo": 1098,
+       "elo": 1099,
        "modelId": "gemini-3-pro-preview",
        "winRate": 49.4
       },
       "fullstack": {
        "battles": 2261,
-       "elo": 1067,
+       "elo": 1060,
        "modelId": "gemini-3-pro-preview",
        "winRate": 48.8
       }
@@ -3553,135 +3553,6 @@
    }
   },
   {
-   "bench_id": "mercury-2::default",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_agentic_index": 4,
-      "aa_coding_index": 31.1,
-      "aa_gpqa": 0.77,
-      "aa_hle": 0.171,
-      "aa_intelligence_index": 4.9,
-      "aa_lcr": 0.436666666666667,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.377,
-      "aa_tau2": 0.707602339181287,
-      "aa_tau_banking": 0.0948453608247423,
-      "aa_terminalbench_hard": 0.265151515151515,
-      "aa_terminalbench_v2_1": 0.273408239700375
-     },
-     "designarena": {},
-     "display_name": "Mercury 2",
-     "family_key": "mercury-2",
-     "id": "mercury-2::default",
-     "offers": [
-      {
-       "cache_read_per_1m": 0.025,
-       "context_length": 128000,
-       "input_per_1m": 0.25,
-       "output_per_1m": 0.75,
-       "platform": "OpenRouter",
-       "provider": "Inception"
-      }
-     ],
-     "open_weights": false,
-     "release_date": "2026-02-20",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 26155.726977249793
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "inception/mercury-2",
-   "irp_aliases": [],
-   "label": "Mercury 2",
-   "prices": {
-    "input": 0.25,
-    "output": 0.75
-   }
-  },
-  {
-   "bench_id": "mercury-2.5::default",
-   "context_tokens": 260000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 260000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": null,
-      "aa_hle": 0.118,
-      "aa_intelligence_index": 5.3,
-      "aa_lcr": 0.716666666666667,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.385,
-      "aa_tau2": null,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "Mercury 2.5",
-     "family_key": "mercury-2.5",
-     "id": "mercury-2.5::default",
-     "offers": [
-      {
-       "cache_read_per_1m": 0.004,
-       "context_length": 260000,
-       "input_per_1m": 0.04,
-       "output_per_1m": 0.15,
-       "platform": "OpenRouter",
-       "provider": "Inception"
-      }
-     ],
-     "open_weights": false,
-     "release_date": "2026-09-08",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 9097.955024148974
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "inception/mercury-2.5",
-   "irp_aliases": [
-    "mercury-2-5"
-   ],
-   "label": "Mercury 2.5",
-   "prices": {
-    "input": 0.04,
-    "output": 0.15
-   }
-  },
-  {
    "bench_id": "ling-3.0-flash::default",
    "context_tokens": 262144,
    "core": false,
@@ -3992,6 +3863,135 @@
    "prices": {
     "input": 0.6,
     "output": 1.8
+   }
+  },
+  {
+   "bench_id": "mercury-2::default",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_agentic_index": 4,
+      "aa_coding_index": 31.1,
+      "aa_gpqa": 0.77,
+      "aa_hle": 0.171,
+      "aa_intelligence_index": 4.9,
+      "aa_lcr": 0.436666666666667,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.377,
+      "aa_tau2": 0.707602339181287,
+      "aa_tau_banking": 0.0948453608247423,
+      "aa_terminalbench_hard": 0.265151515151515,
+      "aa_terminalbench_v2_1": 0.273408239700375
+     },
+     "designarena": {},
+     "display_name": "Mercury 2",
+     "family_key": "mercury-2",
+     "id": "mercury-2::default",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.025,
+       "context_length": 128000,
+       "input_per_1m": 0.25,
+       "output_per_1m": 0.75,
+       "platform": "OpenRouter",
+       "provider": "Inception"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2026-02-20",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 26155.726977249793
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "mercury-2",
+   "irp_aliases": [],
+   "label": "Mercury 2",
+   "prices": {
+    "input": 0.25,
+    "output": 0.75
+   }
+  },
+  {
+   "bench_id": "mercury-2.5::default",
+   "context_tokens": 260000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 260000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": null,
+      "aa_hle": 0.118,
+      "aa_intelligence_index": 5.3,
+      "aa_lcr": 0.716666666666667,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.385,
+      "aa_tau2": null,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Mercury 2.5",
+     "family_key": "mercury-2.5",
+     "id": "mercury-2.5::default",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.004,
+       "context_length": 260000,
+       "input_per_1m": 0.04,
+       "output_per_1m": 0.15,
+       "platform": "OpenRouter",
+       "provider": "Inception"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2026-09-08",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 9097.955024148974
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "mercury-2.5",
+   "irp_aliases": [
+    "mercury-2-5"
+   ],
+   "label": "Mercury 2.5",
+   "prices": {
+    "input": 0.04,
+    "output": 0.15
    }
   },
   {
@@ -4971,16 +4971,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3983,
-       "elo": 1191,
+       "battles": 4116,
+       "elo": 1194,
        "modelId": "minimax-m3",
        "winRate": 47.6
       },
       "fullstack": {
-       "battles": 3696,
-       "elo": 1190,
+       "battles": 3746,
+       "elo": 1184,
        "modelId": "minimax-m3",
-       "winRate": 47.2
+       "winRate": 47.3
       }
      },
      "display_name": "MiniMax-M3",
