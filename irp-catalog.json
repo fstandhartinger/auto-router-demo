@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-08T03:23:02Z",
+ "generated_at": "2026-11-08T06:29:05Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1007,53 +1007,13 @@
     }
    },
    "id": "cohere/command-a",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "command-a-03-2025"
+   ],
    "label": "Command A",
    "prices": {
     "input": 2.5,
     "output": 10
-   }
-  },
-  {
-   "bench_id": "deepseek-r1-0528-qwen3-8b::default",
-   "context_tokens": 32768,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 32768
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.612,
-      "aa_hle": 0.059,
-      "aa_intelligence_index": 3.6,
-      "aa_lcr": 0.15,
-      "aa_livecodebench": 0.513,
-      "aa_math_index": 63.7,
-      "aa_mmlu_pro": 0.739,
-      "aa_scicode": null,
-      "aa_tau2": 0,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.0151515151515152,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "DeepSeek R1 0528 Qwen3 8B",
-     "family_key": "deepseek-r1-0528-qwen3-8b",
-     "id": "deepseek-r1-0528-qwen3-8b::default",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2025-05-29",
-     "variant": "default"
-    }
-   },
-   "id": "deepseek-r1-0528-qwen3-8b",
-   "irp_aliases": [],
-   "label": "DeepSeek R1 0528 Qwen3 8B",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
    }
   },
   {
@@ -2254,6 +2214,60 @@
    }
   },
   {
+   "bench_id": "gemma-4-e4b::reasoning",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.576,
+      "aa_hle": 0.038,
+      "aa_intelligence_index": 4,
+      "aa_lcr": 0.32,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.244,
+      "aa_tau2": 0.207602339181287,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0833333333333333,
+      "aa_terminalbench_v2_1": 0.0187265917602996
+     },
+     "designarena": {},
+     "display_name": "Gemma 4 E4B (Reasoning)",
+     "family_key": "gemma-4-e4b",
+     "id": "gemma-4-e4b::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2026-04-03",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 8996.301954875533
+        }
+       }
+      }
+     },
+     "variant": "reasoning"
+    }
+   },
+   "id": "gemma-4-e4b",
+   "irp_aliases": [],
+   "label": "Gemma 4 E4b",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "gemini-2.5-flash::non-reasoning",
    "context_tokens": 1000000,
    "core": false,
@@ -3080,8 +3094,7 @@
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
     "gemma-4-26b",
-    "gemma-4-26b-a4b",
-    "google-gemma-4-26b-a4b-instruct"
+    "gemma-4-26b-a4b"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -3324,13 +3337,13 @@
      "designarena": {
       "frontend": {
        "battles": 3434,
-       "elo": 1128,
+       "elo": 1129,
        "modelId": "grok-4.20-0309-reasoning",
        "winRate": 49.7
       },
       "fullstack": {
        "battles": 2428,
-       "elo": 1047,
+       "elo": 1039,
        "modelId": "grok-4.20-0309-reasoning",
        "winRate": 41.1
       }
@@ -4259,6 +4272,166 @@
    "prices": {
     "input": 0.1,
     "output": 0.3
+   }
+  },
+  {
+   "bench_id": "muse-spark-1.1::xhigh",
+   "context_tokens": 1048576,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1048576
+     },
+     "benchmarks": {
+      "aa_agentic_index": 27.5,
+      "aa_coding_agent_index": 54.9,
+      "aa_coding_index": 71.3,
+      "aa_gpqa": 0.898,
+      "aa_hle": 0.462,
+      "aa_intelligence_index": 23.5,
+      "aa_lcr": 0.776666666666667,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.588,
+      "aa_tau2": null,
+      "aa_tau_banking": 0.317525773195876,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": 0.779026217228464,
+      "epoch_eci": 154.87,
+      "epoch_eci_software": null
+     },
+     "designarena": {
+      "frontend": {
+       "battles": 4064,
+       "elo": 1191,
+       "modelId": "evergreen",
+       "winRate": 48.6
+      },
+      "fullstack": {
+       "battles": 1536,
+       "elo": 1185,
+       "modelId": "evergreen",
+       "winRate": 45.3
+      }
+     },
+     "display_name": "Muse Spark 1.1 (Xhigh)",
+     "family_key": "muse-spark-1.1",
+     "id": "muse-spark-1.1::xhigh",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.15,
+       "context_length": 1048576,
+       "input_per_1m": 1.25,
+       "output_per_1m": 4.25,
+       "platform": "OpenRouter",
+       "provider": "Meta"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2026-07-09",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 55582.279333785715
+        }
+       }
+      }
+     },
+     "variant": "xhigh"
+    }
+   },
+   "id": "meta/muse-spark-1.1",
+   "irp_aliases": [],
+   "label": "Muse Spark 1.1",
+   "prices": {
+    "input": 1.25,
+    "output": 4.25
+   }
+  },
+  {
+   "bench_id": "muse-spark-1.2::xhigh",
+   "context_tokens": 1048576,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1048576
+     },
+     "benchmarks": {
+      "aa_agentic_index": 44,
+      "aa_coding_agent_index": 60.3,
+      "aa_coding_index": 72.2,
+      "aa_gpqa": 0.904,
+      "aa_hle": 0.455,
+      "aa_intelligence_index": 29.9,
+      "aa_lcr": 0.79,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.574,
+      "aa_tau2": null,
+      "aa_tau_banking": 0.348453608247423,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": 0.801498127340824,
+      "epoch_eci": 155.05,
+      "epoch_eci_software": 151.48926309856282
+     },
+     "designarena": {
+      "frontend": {
+       "battles": 2297,
+       "elo": 1207,
+       "modelId": "muse-spark-1.2",
+       "winRate": 49.6
+      },
+      "fullstack": {
+       "battles": 1947,
+       "elo": 1195,
+       "modelId": "muse-spark-1.2",
+       "winRate": 47.8
+      }
+     },
+     "display_name": "Muse Spark 1.2 (Xhigh)",
+     "family_key": "muse-spark-1.2",
+     "id": "muse-spark-1.2::xhigh",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.15,
+       "context_length": 1048576,
+       "input_per_1m": 1.25,
+       "output_per_1m": 4.25,
+       "platform": "OpenRouter",
+       "provider": "Meta"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2026-08-05",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 47874.47420818148
+        }
+       }
+      }
+     },
+     "variant": "xhigh"
+    }
+   },
+   "id": "meta/muse-spark-1.2",
+   "irp_aliases": [],
+   "label": "Muse Spark 1.2",
+   "prices": {
+    "input": 1.25,
+    "output": 4.25
    }
   },
   {
@@ -6318,7 +6491,6 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
-    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -6650,7 +6822,7 @@
    }
   },
   {
-   "bench_id": "o1::default",
+   "bench_id": "o3-mini::default",
    "context_tokens": 200000,
    "core": false,
    "document": {
@@ -6659,51 +6831,106 @@
       "context_window_tokens": 200000
      },
      "benchmarks": {
-      "aa_coding_index": 39.7,
-      "aa_gpqa": 0.747,
-      "aa_hle": 0.07,
-      "aa_intelligence_index": 6.2,
-      "aa_lcr": 0.65,
-      "aa_livecodebench": 0.679,
+      "aa_coding_index": null,
+      "aa_gpqa": 0.748,
+      "aa_hle": 0.079,
+      "aa_intelligence_index": 5.4,
+      "aa_lcr": null,
+      "aa_livecodebench": 0.717,
       "aa_math_index": null,
-      "aa_mmlu_pro": 0.841,
+      "aa_mmlu_pro": 0.791,
       "aa_scicode": null,
-      "aa_tau2": 0.625730994152047,
+      "aa_tau2": 0.286549707602339,
       "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.128787878787879,
-      "aa_terminalbench_v2_1": null,
-      "epoch_eci": 141.16,
-      "epoch_eci_software": 141.16088745625356
+      "aa_terminalbench_hard": 0.0681818181818182,
+      "aa_terminalbench_v2_1": null
      },
      "designarena": {},
-     "display_name": "o1",
-     "family_key": "o1",
-     "id": "o1::default",
+     "display_name": "o3-mini",
+     "family_key": "o3-mini",
+     "id": "o3-mini::default",
      "offers": [
       {
-       "input_per_1m": 15,
-       "output_per_1m": 60,
+       "input_per_1m": 1.1,
+       "output_per_1m": 4.4,
        "platform": "Azure AI Foundry",
        "provider": "Azure AI Foundry"
       },
       {
-       "input_per_1m": 16.5,
-       "output_per_1m": 66,
+       "input_per_1m": 1.21,
+       "output_per_1m": 4.84,
        "platform": "Azure AI Foundry",
        "provider": "Azure AI Foundry"
       }
      ],
      "open_weights": false,
-     "release_date": "2024-12-05",
+     "release_date": "2025-01-31",
      "variant": "default"
     }
    },
-   "id": "o1",
+   "id": "o3-mini",
    "irp_aliases": [],
-   "label": "O1",
+   "label": "O3 Mini",
    "prices": {
-    "input": 15,
-    "output": 60
+    "input": 1.1,
+    "output": 4.4
+   }
+  },
+  {
+   "bench_id": "o4-mini::high",
+   "context_tokens": 200000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 200000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.784,
+      "aa_hle": 0.165,
+      "aa_intelligence_index": 6.3,
+      "aa_lcr": 0.61,
+      "aa_livecodebench": 0.859,
+      "aa_math_index": 90.7,
+      "aa_mmlu_pro": 0.832,
+      "aa_scicode": null,
+      "aa_tau2": 0.555555555555556,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.151515151515152,
+      "aa_terminalbench_v2_1": null,
+      "epoch_eci": 145.24,
+      "epoch_eci_software": 145.05812884837655
+     },
+     "designarena": {},
+     "display_name": "o4-mini (High)",
+     "family_key": "o4-mini",
+     "id": "o4-mini::high",
+     "offers": [
+      {
+       "input_per_1m": 1.1,
+       "output_per_1m": 4.4,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "input_per_1m": 1.21,
+       "output_per_1m": 4.84,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-04-16",
+     "variant": "high"
+    }
+   },
+   "id": "o4-mini",
+   "irp_aliases": [],
+   "label": "O4 Mini",
+   "prices": {
+    "input": 1.1,
+    "output": 4.4
    }
   },
   {
@@ -8827,7 +9054,9 @@
     }
    },
    "id": "qwen/qwen3-coder-next",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "qwen3-coder-next-80b"
+   ],
    "label": "Qwen3 Coder Next",
    "prices": {
     "input": 0.12,
@@ -10132,57 +10361,13 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen-3-235b-a22b-instruct-2507"
+    "qwen-3-235b-a22b-instruct-2507",
+    "qwen3-235b-instruct"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
    "prices": {
     "input": 0.0875,
     "output": 0.35
-   }
-  },
-  {
-   "bench_id": "qwen3-8b::reasoning",
-   "context_tokens": 131072,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 131072
-     },
-     "benchmarks": {
-      "aa_agentic_index": 0.8,
-      "aa_coding_index": 9,
-      "aa_gpqa": 0.589,
-      "aa_hle": 0.039,
-      "aa_intelligence_index": 2,
-      "aa_lcr": 0,
-      "aa_livecodebench": 0.406,
-      "aa_math_index": 19,
-      "aa_mmlu_pro": 0.743,
-      "aa_scicode": 0.279,
-      "aa_tau2": 0.277777777777778,
-      "aa_tau_banking": 0.0474226804123711,
-      "aa_terminalbench_hard": 0.0227272727272727,
-      "aa_terminalbench_v2_1": 0.0224719101123595,
-      "epoch_eci": 132.2,
-      "epoch_eci_software": null
-     },
-     "designarena": {},
-     "display_name": "Qwen3 8B (Reasoning)",
-     "family_key": "qwen3-8b",
-     "id": "qwen3-8b::reasoning",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2025-04-28",
-     "variant": "reasoning"
-    }
-   },
-   "id": "qwen3-8b",
-   "irp_aliases": [],
-   "label": "Qwen3 8B",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
    }
   },
   {
