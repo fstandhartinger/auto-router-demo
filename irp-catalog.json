@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-09T09:23:02Z",
+ "generated_at": "2026-11-09T12:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -396,16 +396,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4343,
-       "elo": 1189,
+       "battles": 4353,
+       "elo": 1191,
        "modelId": "claude-opus-4-6",
        "winRate": 55.6
       },
       "fullstack": {
-       "battles": 2555,
+       "battles": 2567,
        "elo": 1205,
        "modelId": "claude-opus-4-6",
-       "winRate": 59.5
+       "winRate": 59.4
       }
      },
      "display_name": "Claude Opus 4.6 (Max)",
@@ -4557,13 +4557,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4116,
-       "elo": 1194,
+       "battles": 4134,
+       "elo": 1196,
        "modelId": "minimax-m3",
        "winRate": 47.6
       },
       "fullstack": {
-       "battles": 3746,
+       "battles": 3763,
        "elo": 1184,
        "modelId": "minimax-m3",
        "winRate": 47.3
