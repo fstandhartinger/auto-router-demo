@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-09T03:23:03Z",
+ "generated_at": "2026-11-09T06:29:04Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -2159,6 +2159,60 @@
    }
   },
   {
+   "bench_id": "gemma-4-e4b::reasoning",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.576,
+      "aa_hle": 0.038,
+      "aa_intelligence_index": 4,
+      "aa_lcr": 0.32,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.244,
+      "aa_tau2": 0.207602339181287,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0833333333333333,
+      "aa_terminalbench_v2_1": 0.0187265917602996
+     },
+     "designarena": {},
+     "display_name": "Gemma 4 E4B (Reasoning)",
+     "family_key": "gemma-4-e4b",
+     "id": "gemma-4-e4b::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2026-04-03",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 8996.301954875533
+        }
+       }
+      }
+     },
+     "variant": "reasoning"
+    }
+   },
+   "id": "gemma-4-e4b",
+   "irp_aliases": [],
+   "label": "Gemma 4 E4b",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "gemini-2.5-flash::non-reasoning",
    "context_tokens": 1000000,
    "core": false,
@@ -2985,7 +3039,8 @@
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
     "gemma-4-26b",
-    "gemma-4-26b-a4b"
+    "gemma-4-26b-a4b",
+    "google-gemma-4-26b-a4b-instruct"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -5790,6 +5845,7 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
+    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -8050,7 +8106,9 @@
     }
    },
    "id": "qwen/qwen3-coder-next",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "qwen3-coder-next-80b"
+   ],
    "label": "Qwen3 Coder Next",
    "prices": {
     "input": 0.12,
@@ -9131,7 +9189,9 @@
     }
    },
    "id": "qwen/qwen3.8-2.4t-a95b",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "qwen-3.8-2.4t"
+   ],
    "label": "Qwen3.8 2.4T A95b",
    "prices": {
     "input": 2,
@@ -9354,7 +9414,8 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen3-235b-a22b-instruct-2507"
+    "qwen-3-235b-a22b-instruct-2507",
+    "qwen3-235b-instruct"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
    "prices": {
