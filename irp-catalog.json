@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-09T06:29:04Z",
+ "generated_at": "2026-11-09T09:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -3283,7 +3283,7 @@
      "designarena": {
       "frontend": {
        "battles": 3434,
-       "elo": 1129,
+       "elo": 1130,
        "modelId": "grok-4.20-0309-reasoning",
        "winRate": 49.7
       },
@@ -4036,16 +4036,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 2299,
-       "elo": 1207,
+       "battles": 2316,
+       "elo": 1208,
        "modelId": "muse-spark-1.2",
        "winRate": 49.6
       },
       "fullstack": {
-       "battles": 1948,
-       "elo": 1196,
+       "battles": 1965,
+       "elo": 1194,
        "modelId": "muse-spark-1.2",
-       "winRate": 47.8
+       "winRate": 47.6
       }
      },
      "display_name": "Muse Spark 1.2 (Xhigh)",
