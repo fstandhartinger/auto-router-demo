@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T03:23:02Z",
+ "generated_at": "2026-11-11T06:29:05Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -310,19 +310,19 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.46969696969697,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 151.82,
-      "epoch_eci_software": 153.74478842870076
+      "epoch_eci": 151.83,
+      "epoch_eci_software": 153.74989217724797
      },
      "designarena": {
       "frontend": {
        "battles": 2697,
-       "elo": 1145,
+       "elo": 1143,
        "modelId": "claude-opus-4-5-20251101",
        "winRate": 55.1
       },
       "fullstack": {
        "battles": 1397,
-       "elo": 1141,
+       "elo": 1136,
        "modelId": "claude-opus-4-5-20251101",
        "winRate": 60.1
       }
@@ -458,8 +458,8 @@
      "benchmarks": {
       "aa_agentic_index": 39.5,
       "aa_coding_agent_index": 46.7,
-      "epoch_eci": 157.55,
-      "epoch_eci_software": 158.32732370390428
+      "epoch_eci": 157.56,
+      "epoch_eci_software": 158.30811817714576
      },
      "designarena": {},
      "display_name": "Opus 4.7 (medium)",
@@ -663,19 +663,19 @@
       "aa_tau_banking": 0.245360824742268,
       "aa_terminalbench_hard": 0.356060606060606,
       "aa_terminalbench_v2_1": 0.558052434456929,
-      "epoch_eci": 147.56,
-      "epoch_eci_software": 148.20032894209132
+      "epoch_eci": 147.6,
+      "epoch_eci_software": 148.21811456242773
      },
      "designarena": {
       "frontend": {
        "battles": 1503,
-       "elo": 1045,
+       "elo": 1044,
        "modelId": "claude-sonnet-4-5-20250929",
        "winRate": 43.2
       },
       "fullstack": {
        "battles": 629,
-       "elo": 1035,
+       "elo": 1031,
        "modelId": "claude-sonnet-4-5-20250929",
        "winRate": 43.7
       }
@@ -742,19 +742,19 @@
      "benchmarks": {
       "aa_agentic_index": 33.1,
       "aa_coding_agent_index": 38.6,
-      "epoch_eci": 152.86,
-      "epoch_eci_software": 151.33046691335707
+      "epoch_eci": 152.84,
+      "epoch_eci_software": 151.33946914500262
      },
      "designarena": {
       "frontend": {
        "battles": 2825,
-       "elo": 1176,
+       "elo": 1174,
        "modelId": "claude-sonnet-4-6",
        "winRate": 57
       },
       "fullstack": {
        "battles": 2030,
-       "elo": 1198,
+       "elo": 1193,
        "modelId": "claude-sonnet-4-6",
        "winRate": 64.3
       }
@@ -959,6 +959,48 @@
    }
   },
   {
+   "bench_id": "deepseek-r1-0528-qwen3-8b::default",
+   "context_tokens": 32768,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 32768
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.612,
+      "aa_hle": 0.059,
+      "aa_intelligence_index": 3.6,
+      "aa_lcr": 0.15,
+      "aa_livecodebench": 0.513,
+      "aa_math_index": 63.7,
+      "aa_mmlu_pro": 0.739,
+      "aa_scicode": null,
+      "aa_tau2": 0,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0151515151515152,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "DeepSeek R1 0528 Qwen3 8B",
+     "family_key": "deepseek-r1-0528-qwen3-8b",
+     "id": "deepseek-r1-0528-qwen3-8b::default",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-05-29",
+     "variant": "default"
+    }
+   },
+   "id": "deepseek-r1-0528-qwen3-8b",
+   "irp_aliases": [],
+   "label": "DeepSeek R1 0528 Qwen3 8B",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "deepseek-v3-0324::default",
    "context_tokens": 128000,
    "core": false,
@@ -1054,7 +1096,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.25,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 140.85,
+      "epoch_eci": 140.84,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -1175,8 +1217,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.356060606060606,
       "aa_terminalbench_v2_1": 0.468164794007491,
-      "epoch_eci": 146.22,
-      "epoch_eci_software": 146.13509226631606
+      "epoch_eci": 146.24,
+      "epoch_eci_software": 146.17390107932155
      },
      "designarena": {},
      "display_name": "DeepSeek V3.2 (Reasoning)",
@@ -1245,7 +1287,7 @@
       "aa_terminalbench_hard": 0.310606060606061,
       "aa_terminalbench_v2_1": null,
       "epoch_eci": 144.41,
-      "epoch_eci_software": 143.58285557168378
+      "epoch_eci_software": 143.62061027749445
      },
      "designarena": {},
      "display_name": "DeepSeek V3.2 Exp (Reasoning)",
@@ -1446,8 +1488,8 @@
       "aa_tau_banking": 0.395876288659794,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.786516853932584,
-      "epoch_eci": 155.87,
-      "epoch_eci_software": 153.59266009770016
+      "epoch_eci": 155.9,
+      "epoch_eci_software": 153.59139611066675
      },
      "designarena": {},
      "display_name": "DeepSeek V4 Pro 0813 (Max)",
@@ -1742,8 +1784,8 @@
     "model": {
      "benchmarks": {
       "aa_coding_agent_index": 32.9,
-      "epoch_eci": 156.24,
-      "epoch_eci_software": 155.66060148127193
+      "epoch_eci": 156.25,
+      "epoch_eci_software": 155.66247212986858
      },
      "designarena": {},
      "display_name": "Gemini 3.1 Pro (high)",
@@ -1848,6 +1890,60 @@
    "prices": {
     "input": 0.08,
     "output": 0.16
+   }
+  },
+  {
+   "bench_id": "gemma-4-e4b::reasoning",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.576,
+      "aa_hle": 0.038,
+      "aa_intelligence_index": 4,
+      "aa_lcr": 0.32,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.244,
+      "aa_tau2": 0.207602339181287,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0833333333333333,
+      "aa_terminalbench_v2_1": 0.0187265917602996
+     },
+     "designarena": {},
+     "display_name": "Gemma 4 E4B (Reasoning)",
+     "family_key": "gemma-4-e4b",
+     "id": "gemma-4-e4b::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2026-04-03",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 8996.301954875533
+        }
+       }
+      }
+     },
+     "variant": "reasoning"
+    }
+   },
+   "id": "gemma-4-e4b",
+   "irp_aliases": [],
+   "label": "Gemma 4 E4b",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
    }
   },
   {
@@ -2005,13 +2101,13 @@
      "designarena": {
       "frontend": {
        "battles": 3980,
-       "elo": 1096,
+       "elo": 1094,
        "modelId": "gemini-3-flash-preview",
        "winRate": 48.5
       },
       "fullstack": {
        "battles": 2360,
-       "elo": 1048,
+       "elo": 1043,
        "modelId": "gemini-3-flash-preview",
        "winRate": 47.4
       }
@@ -2079,14 +2175,14 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 6782,
-       "elo": 1112,
+       "battles": 6790,
+       "elo": 1110,
        "modelId": "gemini-3.1-pro-preview",
        "winRate": 44.1
       },
       "fullstack": {
-       "battles": 4870,
-       "elo": 1053,
+       "battles": 4877,
+       "elo": 1048,
        "modelId": "gemini-3.1-pro-preview",
        "winRate": 40.5
       }
@@ -2230,7 +2326,7 @@
       "aa_tau_banking": 0.175257731958763,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.535580524344569,
-      "epoch_eci": 145.59,
+      "epoch_eci": 145.58,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -2313,21 +2409,21 @@
       "aa_tau_banking": 0.298969072164948,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.775280898876405,
-      "epoch_eci": 155.21,
-      "epoch_eci_software": 152.20751313430895
+      "epoch_eci": 155.2,
+      "epoch_eci_software": 152.18520923911714
      },
      "designarena": {
       "frontend": {
-       "battles": 3120,
-       "elo": 1183,
+       "battles": 3142,
+       "elo": 1182,
        "modelId": "gemini-3.6-flash",
-       "winRate": 45.1
+       "winRate": 45.2
       },
       "fullstack": {
-       "battles": 2995,
-       "elo": 1166,
+       "battles": 3011,
+       "elo": 1161,
        "modelId": "gemini-3.6-flash",
-       "winRate": 44.2
+       "winRate": 44.1
       }
      },
      "display_name": "Gemini 3.6 Flash (High)",
@@ -2553,8 +2649,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 166.45,
-      "epoch_eci_software": 166.19731567741294
+      "epoch_eci": 166.53,
+      "epoch_eci_software": 166.29475764589031
      },
      "designarena": {},
      "display_name": "Gemini 4 Argon (High)",
@@ -2615,6 +2711,88 @@
    }
   },
   {
+   "bench_id": "gemini-4-carbon::medium",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": null,
+      "aa_hle": null,
+      "aa_intelligence_index": 58.3,
+      "aa_lcr": null,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": null,
+      "aa_tau2": null,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Gemini 4 Carbon (Medium)",
+     "family_key": "gemini-4-carbon",
+     "id": "gemini-4-carbon::medium",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.1,
+       "cache_write_per_1m": 0.1875,
+       "context_length": 1048576,
+       "input_per_1m": 2,
+       "output_per_1m": 10,
+       "platform": "OpenRouter",
+       "provider": "Google"
+      },
+      {
+       "cache_read_per_1m": 0.1,
+       "cache_write_per_1m": 0.1875,
+       "context_length": 1048576,
+       "input_per_1m": 2,
+       "output_per_1m": 10,
+       "platform": "OpenRouter",
+       "provider": "Google AI Studio"
+      },
+      {
+       "cache_read_per_1m": 0.11,
+       "cache_write_per_1m": 0.1875,
+       "context_length": 1048576,
+       "input_per_1m": 2.2,
+       "output_per_1m": 11,
+       "platform": "OpenRouter",
+       "provider": "Google"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2026-10-28",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-11-04T08:51:51.964Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 103012.4954382641
+        }
+       }
+      }
+     },
+     "variant": "medium"
+    }
+   },
+   "id": "google/gemini-4-carbon",
+   "irp_aliases": [],
+   "label": "Gemini 4 Carbon",
+   "prices": {
+    "input": 2,
+    "output": 10
+   }
+  },
+  {
    "bench_id": "gemma-4-26b-a4b-it::reasoning",
    "context_tokens": 256000,
    "core": false,
@@ -2637,7 +2815,7 @@
       "aa_tau_banking": 0.119587628865979,
       "aa_terminalbench_hard": 0.1364,
       "aa_terminalbench_v2_1": 0.389513108614232,
-      "epoch_eci": 141.69,
+      "epoch_eci": 141.7,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -2653,10 +2831,10 @@
        "provider": "Google AI Studio"
       },
       {
-       "cache_read_per_1m": 0.019,
+       "cache_read_per_1m": 0.005,
        "context_length": 262144,
-       "input_per_1m": 0.039,
-       "output_per_1m": 0.116,
+       "input_per_1m": 0.01,
+       "output_per_1m": 0.031,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -2676,7 +2854,8 @@
    },
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
-    "gemma-4-26b"
+    "gemma-4-26b",
+    "google-gemma-4-26b-a4b-instruct"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -2709,7 +2888,7 @@
       "aa_terminalbench_hard": 0.363636363636364,
       "aa_terminalbench_v2_1": 0.434456928838951,
       "epoch_eci": 144.24,
-      "epoch_eci_software": 145.50704184034888
+      "epoch_eci_software": 145.5799116806868
      },
      "designarena": {},
      "display_name": "Gemma 4 31B (Reasoning)",
@@ -2729,15 +2908,15 @@
        "input_per_1m": 0.1,
        "output_per_1m": 0.34,
        "platform": "OpenRouter",
-       "provider": "CoreWeave"
+       "provider": "KT"
       },
       {
-       "cache_read_per_1m": 0.09,
-       "context_length": 256000,
-       "input_per_1m": 0.12,
-       "output_per_1m": 0.36,
+       "cache_read_per_1m": 0.1,
+       "context_length": 262144,
+       "input_per_1m": 0.1,
+       "output_per_1m": 0.34,
        "platform": "OpenRouter",
-       "provider": "Venice"
+       "provider": "CoreWeave"
       }
      ],
      "open_weights": true,
@@ -2878,6 +3057,78 @@
    }
   },
   {
+   "bench_id": "granite-4.2-8b::default",
+   "context_tokens": 131072,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 131072
+     },
+     "benchmarks": {
+      "aa_agentic_index": 3.7,
+      "aa_coding_index": 22.4,
+      "aa_gpqa": 0.631,
+      "aa_hle": 0.097,
+      "aa_intelligence_index": 5.1,
+      "aa_lcr": 0.45,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.315,
+      "aa_tau2": null,
+      "aa_tau_banking": 0.0762886597938144,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": 0.183520599250936
+     },
+     "designarena": {},
+     "display_name": "Granite 4.2 8B",
+     "family_key": "granite-4.2-8b",
+     "id": "granite-4.2-8b::default",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.015,
+       "context_length": 131072,
+       "input_per_1m": 0.06,
+       "output_per_1m": 0.15,
+       "platform": "OpenRouter",
+       "provider": "CoreWeave"
+      },
+      {
+       "cache_read_per_1m": 0.015,
+       "context_length": 131072,
+       "input_per_1m": 0.06,
+       "output_per_1m": 0.25,
+       "platform": "OpenRouter",
+       "provider": "DeepInfra"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2026-08-25",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-11-04T08:51:51.964Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 51515.07023020724
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "ibm-granite/granite-4.2-8b",
+   "irp_aliases": [],
+   "label": "Granite 4.2 8B",
+   "prices": {
+    "input": 0.06,
+    "output": 0.15
+   }
+  },
+  {
    "bench_id": "ling-3.0-flash::default",
    "context_tokens": 262144,
    "core": false,
@@ -2950,6 +3201,61 @@
    }
   },
   {
+   "bench_id": "mercury-2::default",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_agentic_index": 4,
+      "aa_coding_index": 31.1,
+      "aa_gpqa": 0.77,
+      "aa_hle": 0.171,
+      "aa_intelligence_index": 4.9,
+      "aa_lcr": 0.436666666666667,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.377,
+      "aa_tau2": 0.707602339181287,
+      "aa_tau_banking": 0.0948453608247423,
+      "aa_terminalbench_hard": 0.265151515151515,
+      "aa_terminalbench_v2_1": 0.273408239700375
+     },
+     "designarena": {},
+     "display_name": "Mercury 2",
+     "family_key": "mercury-2",
+     "id": "mercury-2::default",
+     "offers": [],
+     "open_weights": false,
+     "release_date": "2026-02-20",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 26155.726977249793
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "mercury-2",
+   "irp_aliases": [],
+   "label": "Mercury 2",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "mercury-2.5::default",
    "context_tokens": 260000,
    "core": false,
@@ -2996,7 +3302,9 @@
     }
    },
    "id": "mercury-2.5",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "mercury-2-5"
+   ],
    "label": "Mercury 2.5",
    "prices": {
     "input": 0.0,
@@ -3153,21 +3461,13 @@
       "aa_terminalbench_hard": 0.0681818181818182,
       "aa_terminalbench_v2_1": 0.0786516853932584,
       "epoch_eci": 132.13,
-      "epoch_eci_software": 128.4245523941138
+      "epoch_eci_software": 128.42383131985127
      },
      "designarena": {},
      "display_name": "Llama 4 Maverick",
      "family_key": "llama-4-maverick",
      "id": "llama-4-maverick::default",
      "offers": [
-      {
-       "cache_read_per_1m": 0.05,
-       "context_length": 128000,
-       "input_per_1m": 0.1875,
-       "output_per_1m": 0.6525,
-       "platform": "OpenRouter",
-       "provider": "DigitalOcean"
-      },
       {
        "input_per_1m": 0.24,
        "output_per_1m": 0.97,
@@ -3179,6 +3479,14 @@
        "output_per_1m": 1,
        "platform": "Azure AI Foundry",
        "provider": "Azure AI Foundry"
+      },
+      {
+       "cache_read_per_1m": 0.17,
+       "context_length": 524288,
+       "input_per_1m": 0.35,
+       "output_per_1m": 1,
+       "platform": "OpenRouter",
+       "provider": "Parasail"
       }
      ],
      "open_weights": true,
@@ -3202,8 +3510,8 @@
    "irp_aliases": [],
    "label": "Llama 4 Maverick",
    "prices": {
-    "input": 0.1875,
-    "output": 0.6525
+    "input": 0.24,
+    "output": 0.97
    }
   },
   {
@@ -3229,7 +3537,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.764044943820225,
-      "epoch_eci": 155.42,
+      "epoch_eci": 155.41,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -3246,11 +3554,11 @@
       },
       {
        "cache_read_per_1m": 0.15,
-       "context_length": 1048576,
+       "context_length": 1000000,
        "input_per_1m": 1.25,
        "output_per_1m": 4.25,
        "platform": "OpenRouter",
-       "provider": "Fireworks"
+       "provider": "Modal"
       },
       {
        "cache_read_per_1m": 0.15,
@@ -3258,7 +3566,7 @@
        "input_per_1m": 1.25,
        "output_per_1m": 4.25,
        "platform": "OpenRouter",
-       "provider": "Makora"
+       "provider": "Together"
       }
      ],
      "open_weights": true,
@@ -3309,7 +3617,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 162.02,
+      "epoch_eci": 162.01,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -3317,6 +3625,14 @@
      "family_key": "muse-wonder",
      "id": "muse-wonder::max",
      "offers": [
+      {
+       "cache_read_per_1m": 0.2,
+       "context_length": 1048576,
+       "input_per_1m": 4,
+       "output_per_1m": 20,
+       "platform": "OpenRouter",
+       "provider": "Google"
+      },
       {
        "cache_read_per_1m": 0.2,
        "context_length": 1048576,
@@ -3707,6 +4023,14 @@
      "id": "minimax-m3.1-flash::default",
      "offers": [
       {
+       "cache_read_per_1m": 0.0075,
+       "context_length": 1048576,
+       "input_per_1m": 0.075,
+       "output_per_1m": 0.3,
+       "platform": "OpenRouter",
+       "provider": "Minimax"
+      },
+      {
        "cache_read_per_1m": 0.01125,
        "context_length": 1048576,
        "input_per_1m": 0.1125,
@@ -3721,13 +4045,6 @@
        "output_per_1m": 0.54,
        "platform": "OpenRouter",
        "provider": "StreamLake"
-      },
-      {
-       "context_length": 1048576,
-       "input_per_1m": 0.15,
-       "output_per_1m": 0.6,
-       "platform": "Nebius",
-       "provider": "Nebius"
       }
      ],
      "open_weights": true,
@@ -3751,8 +4068,8 @@
    "irp_aliases": [],
    "label": "MiniMax M3.1 Flash",
    "prices": {
-    "input": 0.1125,
-    "output": 0.45
+    "input": 0.075,
+    "output": 0.3
    }
   },
   {
@@ -3841,8 +4158,8 @@
       "aa_tau_banking": 0.150515463917526,
       "aa_terminalbench_hard": 0.333333333333333,
       "aa_terminalbench_v2_1": 0.50561797752809,
-      "epoch_eci": 141.64,
-      "epoch_eci_software": 142.7273966437942
+      "epoch_eci": 141.6,
+      "epoch_eci_software": 142.79381922735703
      },
      "designarena": {},
      "display_name": "Mistral Medium 3.5",
@@ -4044,19 +4361,19 @@
       "aa_tau_banking": 0.142268041237113,
       "aa_terminalbench_hard": 0.348484848484849,
       "aa_terminalbench_v2_1": 0.456928838951311,
-      "epoch_eci": 148.72,
-      "epoch_eci_software": 146.8238223065523
+      "epoch_eci": 148.75,
+      "epoch_eci_software": 146.84809036861168
      },
      "designarena": {
       "frontend": {
        "battles": 3436,
-       "elo": 1121,
+       "elo": 1120,
        "modelId": "kimi-k2.5",
        "winRate": 51.6
       },
       "fullstack": {
        "battles": 1787,
-       "elo": 1099,
+       "elo": 1094,
        "modelId": "kimi-k2.5",
        "winRate": 54.5
       }
@@ -4111,13 +4428,13 @@
     "model": {
      "benchmarks": {
       "aa_coding_agent_index": 33.9,
-      "epoch_eci": 151.56,
-      "epoch_eci_software": 149.79906123112525
+      "epoch_eci": 151.54,
+      "epoch_eci_software": 149.83530984764553
      },
      "designarena": {
       "fullstack": {
-       "battles": 5982,
-       "elo": 1140,
+       "battles": 5983,
+       "elo": 1136,
        "modelId": "kimi-k2.6",
        "winRate": 49.4
       }
@@ -4189,19 +4506,19 @@
       "aa_tau_banking": 0.202061855670103,
       "aa_terminalbench_hard": 0.446969696969697,
       "aa_terminalbench_v2_1": 0.674157303370786,
-      "epoch_eci": 151.16,
-      "epoch_eci_software": 150.3286303525711
+      "epoch_eci": 151.14,
+      "epoch_eci_software": 150.36505774485434
      },
      "designarena": {
       "frontend": {
        "battles": 4376,
-       "elo": 1162,
+       "elo": 1160,
        "modelId": "kimi-k2.7-code",
        "winRate": 46.9
       },
       "fullstack": {
        "battles": 2796,
-       "elo": 1161,
+       "elo": 1156,
        "modelId": "kimi-k2.7-code",
        "winRate": 50.9
       }
@@ -4275,9 +4592,9 @@
      "id": "kimi-k3::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.161,
+       "cache_read_per_1m": 0.152,
        "context_length": 1048576,
-       "input_per_1m": 0.162,
+       "input_per_1m": 0.153,
        "output_per_1m": 16,
        "platform": "OpenRouter",
        "provider": "Wafer"
@@ -4286,7 +4603,7 @@
        "cache_read_per_1m": 0.18,
        "context_length": 1048576,
        "input_per_1m": 0.1824,
-       "output_per_1m": 10.5539,
+       "output_per_1m": 9.3388,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
@@ -4309,7 +4626,7 @@
    ],
    "label": "Kimi K3",
    "prices": {
-    "input": 0.162,
+    "input": 0.153,
     "output": 16
    }
   },
@@ -4335,20 +4652,22 @@
       "aa_tau2": null,
       "aa_tau_banking": null,
       "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null
+      "aa_terminalbench_v2_1": null,
+      "epoch_eci": 162.02,
+      "epoch_eci_software": null
      },
      "designarena": {
       "frontend": {
-       "battles": 904,
-       "elo": 1302,
+       "battles": 930,
+       "elo": 1298,
        "modelId": "kimi-k3.1-pro",
-       "winRate": 59
+       "winRate": 58.8
       },
       "fullstack": {
-       "battles": 539,
-       "elo": 1337,
+       "battles": 555,
+       "elo": 1330,
        "modelId": "kimi-k3.1-pro",
-       "winRate": 62.1
+       "winRate": 62.2
       }
      },
      "display_name": "Kimi K3.1 Pro",
@@ -4356,26 +4675,26 @@
      "id": "kimi-k3.1-pro::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.17,
+       "cache_read_per_1m": 0.2,
        "context_length": 1048576,
-       "input_per_1m": 0.1795,
-       "output_per_1m": 9.7224,
+       "input_per_1m": 0.266,
+       "output_per_1m": 8.3188,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
       {
-       "cache_read_per_1m": 0.17,
+       "cache_read_per_1m": 0.18,
        "context_length": 1048576,
-       "input_per_1m": 0.18,
+       "input_per_1m": 0.4,
        "output_per_1m": 10,
        "platform": "OpenRouter",
        "provider": "Wafer"
       },
       {
-       "cache_read_per_1m": 0.2,
+       "cache_read_per_1m": 0.22,
        "context_length": 1048576,
-       "input_per_1m": 1.1,
-       "output_per_1m": 10,
+       "input_per_1m": 1.21,
+       "output_per_1m": 11,
        "platform": "OpenRouter",
        "provider": "Sail Research"
       }
@@ -4401,8 +4720,8 @@
    "irp_aliases": [],
    "label": "Kimi K3.1 Pro",
    "prices": {
-    "input": 0.1795,
-    "output": 9.7224
+    "input": 0.266,
+    "output": 8.3188
    }
   },
   {
@@ -4476,6 +4795,7 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
+    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -4586,8 +4906,8 @@
       "aa_tau_banking": 0.142268041237113,
       "aa_terminalbench_hard": 0.363636363636364,
       "aa_terminalbench_v2_1": 0.539325842696629,
-      "epoch_eci": 147.1,
-      "epoch_eci_software": 142.23423977766637
+      "epoch_eci": 147.11,
+      "epoch_eci_software": 142.22049455085178
      },
      "designarena": {},
      "display_name": "Nemotron 3 Ultra 550B A55B (Reasoning)",
@@ -4607,15 +4927,15 @@
        "input_per_1m": 0.5,
        "output_per_1m": 2.2,
        "platform": "OpenRouter",
-       "provider": "DeepInfra"
+       "provider": "KT"
       },
       {
-       "cache_read_per_1m": 0.12,
-       "context_length": 202800,
-       "input_per_1m": 0.6,
-       "output_per_1m": 2.4,
+       "cache_read_per_1m": 0.1,
+       "context_length": 262144,
+       "input_per_1m": 0.5,
+       "output_per_1m": 2.2,
        "platform": "OpenRouter",
-       "provider": "BaseTen"
+       "provider": "DeepInfra"
       }
      ],
      "open_weights": true,
@@ -4691,12 +5011,12 @@
        "provider": "Darkbloom"
       },
       {
-       "cache_read_per_1m": 0.02345,
+       "cache_read_per_1m": 0.01,
        "context_length": 262144,
-       "input_per_1m": 0.0469,
-       "output_per_1m": 0.134,
+       "input_per_1m": 0.05,
+       "output_per_1m": 0.2,
        "platform": "OpenRouter",
-       "provider": "Io Net"
+       "provider": "Fireworks"
       }
      ],
      "open_weights": true,
@@ -4828,8 +5148,8 @@
       "aa_tau_banking": 0.0536082474226804,
       "aa_terminalbench_hard": 0.0757575757575758,
       "aa_terminalbench_v2_1": 0.101123595505618,
-      "epoch_eci": 134.29,
-      "epoch_eci_software": 134.51216236493104
+      "epoch_eci": 134.27,
+      "epoch_eci_software": 134.53042818394403
      },
      "designarena": {},
      "display_name": "GPT-4.1 mini",
@@ -4895,8 +5215,8 @@
       "aa_tau_banking": 0.0288659793814433,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.0561797752808989,
-      "epoch_eci": 124.05,
-      "epoch_eci_software": 118.92596999571616
+      "epoch_eci": 124.02,
+      "epoch_eci_software": 118.90801163186188
      },
      "designarena": {},
      "display_name": "GPT-4o mini",
@@ -5092,19 +5412,19 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.431818181818182,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 154.42,
-      "epoch_eci_software": 154.11608575439107
+      "epoch_eci": 154.4,
+      "epoch_eci_software": 154.11399363205942
      },
      "designarena": {
       "frontend": {
        "battles": 3570,
-       "elo": 1071,
+       "elo": 1070,
        "modelId": "gpt-5.2",
        "winRate": 45.5
       },
       "fullstack": {
        "battles": 2165,
-       "elo": 1027,
+       "elo": 1023,
        "modelId": "gpt-5.2",
        "winRate": 44.3
       }
@@ -5176,13 +5496,13 @@
      "designarena": {
       "frontend": {
        "battles": 2246,
-       "elo": 1018,
+       "elo": 1016,
        "modelId": "gpt-5.3-codex",
        "winRate": 36.9
       },
       "fullstack": {
        "battles": 1111,
-       "elo": 968,
+       "elo": 964,
        "modelId": "gpt-5.3-codex",
        "winRate": 36.5
       }
@@ -5250,19 +5570,19 @@
       "aa_tau_banking": 0.395876288659794,
       "aa_terminalbench_hard": 0.575757575757576,
       "aa_terminalbench_v2_1": 0.782771535580524,
-      "epoch_eci": 157.82,
-      "epoch_eci_software": 156.67832401759816
+      "epoch_eci": 157.81,
+      "epoch_eci_software": 156.68862936275045
      },
      "designarena": {
       "frontend": {
        "battles": 3322,
-       "elo": 1044,
+       "elo": 1043,
        "modelId": "gpt-5.4",
        "winRate": 40.3
       },
       "fullstack": {
        "battles": 2152,
-       "elo": 1002,
+       "elo": 998,
        "modelId": "gpt-5.4",
        "winRate": 40.9
       }
@@ -5331,8 +5651,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.340909090909091,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 149.34,
-      "epoch_eci_software": 151.44888682410084
+      "epoch_eci": 149.33,
+      "epoch_eci_software": 151.4383118094953
      },
      "designarena": {},
      "display_name": "GPT-5.4 mini (Medium)",
@@ -5399,7 +5719,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.333333333333333,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 146.4,
+      "epoch_eci": 146.39,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -5953,8 +6273,8 @@
       "aa_tau_banking": 0.127835051546392,
       "aa_terminalbench_hard": 0.234848484848485,
       "aa_terminalbench_v2_1": 0.262172284644195,
-      "epoch_eci": 140.22,
-      "epoch_eci_software": 139.12458222649616
+      "epoch_eci": 140.21,
+      "epoch_eci_software": 139.17627935867378
      },
      "designarena": {},
      "display_name": "gpt-oss-120b (High)",
@@ -6035,8 +6355,8 @@
       "aa_tau_banking": 0.0701030927835052,
       "aa_terminalbench_hard": 0.106060606060606,
       "aa_terminalbench_v2_1": 0.138576779026217,
-      "epoch_eci": 135.01,
-      "epoch_eci_software": 136.851823309663
+      "epoch_eci": 135.04,
+      "epoch_eci_software": 136.8823842741536
      },
      "designarena": {},
      "display_name": "gpt-oss-20b (High)",
@@ -6052,19 +6372,20 @@
        "provider": "Darkbloom"
       },
       {
+       "cache_read_per_1m": 0.009,
+       "context_length": 131072,
+       "input_per_1m": 0.018,
+       "output_per_1m": 0.09,
+       "platform": "OpenRouter",
+       "provider": "AkashML"
+      },
+      {
        "cache_read_per_1m": 0.018,
        "context_length": 131072,
        "input_per_1m": 0.02,
        "output_per_1m": 0.03,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
-      },
-      {
-       "context_length": 131072,
-       "input_per_1m": 0.02,
-       "output_per_1m": 0.1,
-       "platform": "OpenRouter",
-       "provider": "AkashML"
       }
      ],
      "open_weights": true,
@@ -6115,8 +6436,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.371212121212121,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 146.99,
-      "epoch_eci_software": 147.1514369094203
+      "epoch_eci": 147.01,
+      "epoch_eci_software": 147.19256883736384
      },
      "designarena": {},
      "display_name": "o3",
@@ -6415,7 +6736,9 @@
     }
    },
    "id": "qwen/qwen3-235b-a22b-thinking-2507",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "qwen3-235b-thinking"
+   ],
    "label": "Qwen3 235B A22b Thinking 2507",
    "prices": {
     "input": 0.45,
@@ -6445,7 +6768,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.0227272727272727,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 134.26,
+      "epoch_eci": 134.24,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -6562,7 +6885,7 @@
       "aa_tau_banking": 0.0536082474226804,
       "aa_terminalbench_hard": 0.0303030303030303,
       "aa_terminalbench_v2_1": 0.052434456928839,
-      "epoch_eci": 136.94,
+      "epoch_eci": 136.97,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -6734,7 +7057,9 @@
     }
    },
    "id": "qwen/qwen3-coder-next",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "qwen3-coder-next-80b"
+   ],
    "label": "Qwen3 Coder Next",
    "prices": {
     "input": 0.12,
@@ -6937,6 +7262,56 @@
    }
   },
   {
+   "bench_id": "qwen3-vl-30b-a3b-thinking::reasoning",
+   "context_tokens": 256000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 256000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.72,
+      "aa_hle": 0.089,
+      "aa_intelligence_index": 4.3,
+      "aa_lcr": null,
+      "aa_livecodebench": 0.697,
+      "aa_math_index": 82.3,
+      "aa_mmlu_pro": 0.807,
+      "aa_scicode": null,
+      "aa_tau2": 0.198830409356725,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.053030303030303,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Qwen3 VL 30B A3B (Reasoning)",
+     "family_key": "qwen3-vl-30b-a3b-thinking",
+     "id": "qwen3-vl-30b-a3b-thinking::reasoning",
+     "offers": [
+      {
+       "context_length": 262144,
+       "input_per_1m": 0.29,
+       "output_per_1m": 1,
+       "platform": "OpenRouter",
+       "provider": "SiliconFlow"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2025-10-03",
+     "variant": "reasoning"
+    }
+   },
+   "id": "qwen/qwen3-vl-30b-a3b-thinking",
+   "irp_aliases": [],
+   "label": "Qwen3 Vl 30B A3b Thinking",
+   "prices": {
+    "input": 0.29,
+    "output": 1
+   }
+  },
+  {
    "bench_id": "qwen3.5-27b::reasoning",
    "context_tokens": 262144,
    "core": false,
@@ -7023,7 +7398,7 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.265151515151515,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 143.93,
+      "epoch_eci": 143.97,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -7093,7 +7468,7 @@
       "aa_tau_banking": 0.134020618556701,
       "aa_terminalbench_hard": 0.409090909090909,
       "aa_terminalbench_v2_1": 0.51310861423221,
-      "epoch_eci": 147.87,
+      "epoch_eci": 147.91,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -7175,7 +7550,7 @@
       "aa_tau_banking": 0.0701030927835052,
       "aa_terminalbench_hard": 0.242424242424242,
       "aa_terminalbench_v2_1": 0.292134831460674,
-      "epoch_eci": 139.33,
+      "epoch_eci": 139.35,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -7184,10 +7559,10 @@
      "id": "qwen3.5-9b::reasoning",
      "offers": [
       {
-       "cache_read_per_1m": 0.042,
+       "cache_read_per_1m": 0.036,
        "context_length": 262144,
-       "input_per_1m": 0.047,
-       "output_per_1m": 0.069,
+       "input_per_1m": 0.04,
+       "output_per_1m": 0.059,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -7228,8 +7603,8 @@
    "irp_aliases": [],
    "label": "Qwen3.5 9B",
    "prices": {
-    "input": 0.047,
-    "output": 0.069
+    "input": 0.04,
+    "output": 0.059
    }
   },
   {
@@ -7256,7 +7631,7 @@
       "aa_tau_banking": 0.167010309278351,
       "aa_terminalbench_hard": 0.348484848484849,
       "aa_terminalbench_v2_1": 0.606741573033708,
-      "epoch_eci": 146.71,
+      "epoch_eci": 146.72,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -7264,14 +7639,6 @@
      "family_key": "qwen3.6-27b",
      "id": "qwen3.6-27b::reasoning",
      "offers": [
-      {
-       "cache_read_per_1m": 0.2,
-       "context_length": 262144,
-       "input_per_1m": 0.2,
-       "output_per_1m": 3,
-       "platform": "OpenRouter",
-       "provider": "Reka"
-      },
       {
        "context_length": 262144,
        "input_per_1m": 0.3,
@@ -7285,6 +7652,13 @@
        "output_per_1m": 3.2,
        "platform": "OpenRouter",
        "provider": "DeepInfra"
+      },
+      {
+       "context_length": 256000,
+       "input_per_1m": 0.325,
+       "output_per_1m": 3.25,
+       "platform": "OpenRouter",
+       "provider": "Venice"
       }
      ],
      "open_weights": true,
@@ -7308,8 +7682,8 @@
    "irp_aliases": [],
    "label": "Qwen3.6 27B",
    "prices": {
-    "input": 0.2,
-    "output": 3
+    "input": 0.3,
+    "output": 3.2
    }
   },
   {
@@ -7336,8 +7710,8 @@
       "aa_tau_banking": 0.0927835051546392,
       "aa_terminalbench_hard": 0.348484848484849,
       "aa_terminalbench_v2_1": 0.449438202247191,
-      "epoch_eci": 144,
-      "epoch_eci_software": 144.36579109137116
+      "epoch_eci": 144.05,
+      "epoch_eci_software": 144.4272051214806
      },
      "designarena": {},
      "display_name": "Qwen3.6 35B A3B (Reasoning)",
@@ -7348,7 +7722,7 @@
        "cache_read_per_1m": 0.01,
        "context_length": 262144,
        "input_per_1m": 0.011,
-       "output_per_1m": 0.103,
+       "output_per_1m": 0.101,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -7393,7 +7767,7 @@
    "label": "Qwen3.6 35B A3b",
    "prices": {
     "input": 0.011,
-    "output": 0.103
+    "output": 0.101
    }
   },
   {
@@ -7419,7 +7793,7 @@
       "aa_tau_banking": 0.208247422680412,
       "aa_terminalbench_hard": 0.439393939393939,
       "aa_terminalbench_v2_1": 0.614232209737828,
-      "epoch_eci": 148.8,
+      "epoch_eci": 148.89,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -7478,14 +7852,14 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3184,
-       "elo": 1193,
+       "battles": 3206,
+       "elo": 1191,
        "modelId": "qwen3.7-max",
-       "winRate": 48
+       "winRate": 47.9
       },
       "fullstack": {
-       "battles": 1470,
-       "elo": 1178,
+       "battles": 1483,
+       "elo": 1174,
        "modelId": "qwen3.7-max",
        "winRate": 47.7
       }
@@ -7561,7 +7935,7 @@
       "aa_tau_banking": 0.175257731958763,
       "aa_terminalbench_hard": 0.46969696969697,
       "aa_terminalbench_v2_1": 0.610486891385768,
-      "epoch_eci": 147.84,
+      "epoch_eci": 147.87,
       "epoch_eci_software": null
      },
      "designarena": {},
@@ -7687,7 +8061,9 @@
     }
    },
    "id": "qwen/qwen3.8-2.4t-a95b",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "qwen-3.8-2.4t"
+   ],
    "label": "Qwen3.8 2.4T A95b",
    "prices": {
     "input": 2,
@@ -7805,14 +8181,6 @@
      "id": "qwen3-235b-a22b-2507-instruct::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.0175,
-       "context_length": 262144,
-       "input_per_1m": 0.0875,
-       "output_per_1m": 0.35,
-       "platform": "OpenRouter",
-       "provider": "GMICloud"
-      },
-      {
        "context_length": 262144,
        "input_per_1m": 0.09,
        "output_per_1m": 0.55,
@@ -7826,6 +8194,13 @@
        "output_per_1m": 0.8,
        "platform": "OpenRouter",
        "provider": "Parasail"
+      },
+      {
+       "context_length": 128000,
+       "input_per_1m": 0.15,
+       "output_per_1m": 0.75,
+       "platform": "OpenRouter",
+       "provider": "Venice"
       }
      ],
      "open_weights": true,
@@ -7835,12 +8210,100 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen-3-235b-a22b-instruct-2507"
+    "qwen-3-235b-a22b-instruct-2507",
+    "qwen3-235b-instruct"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
    "prices": {
-    "input": 0.0875,
-    "output": 0.35
+    "input": 0.09,
+    "output": 0.55
+   }
+  },
+  {
+   "bench_id": "qwen3-8b::reasoning",
+   "context_tokens": 131072,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 131072
+     },
+     "benchmarks": {
+      "aa_agentic_index": 0.8,
+      "aa_coding_index": 9,
+      "aa_gpqa": 0.589,
+      "aa_hle": 0.039,
+      "aa_intelligence_index": 2,
+      "aa_lcr": 0,
+      "aa_livecodebench": 0.406,
+      "aa_math_index": 19,
+      "aa_mmlu_pro": 0.743,
+      "aa_scicode": 0.279,
+      "aa_tau2": 0.277777777777778,
+      "aa_tau_banking": 0.0474226804123711,
+      "aa_terminalbench_hard": 0.0227272727272727,
+      "aa_terminalbench_v2_1": 0.0224719101123595,
+      "epoch_eci": 132.21,
+      "epoch_eci_software": null
+     },
+     "designarena": {},
+     "display_name": "Qwen3 8B (Reasoning)",
+     "family_key": "qwen3-8b",
+     "id": "qwen3-8b::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-04-28",
+     "variant": "reasoning"
+    }
+   },
+   "id": "qwen3-8b",
+   "irp_aliases": [],
+   "label": "Qwen3 8B",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
+   "bench_id": "qwen3-vl-235b-a22b-thinking::reasoning",
+   "context_tokens": 262144,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 262144
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.772,
+      "aa_hle": 0.119,
+      "aa_intelligence_index": 6.2,
+      "aa_lcr": 0.636666666666667,
+      "aa_livecodebench": 0.646,
+      "aa_math_index": 88.3,
+      "aa_mmlu_pro": 0.836,
+      "aa_scicode": null,
+      "aa_tau2": 0.54093567251462,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.113636363636364,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Qwen3 VL 235B A22B (Reasoning)",
+     "family_key": "qwen3-vl-235b-a22b-thinking",
+     "id": "qwen3-vl-235b-a22b-thinking::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-09-23",
+     "variant": "reasoning"
+    }
+   },
+   "id": "qwen3-vl-235b-a22b-thinking",
+   "irp_aliases": [],
+   "label": "Qwen3 Vl 235B A22b Thinking",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
    }
   },
   {
@@ -7982,19 +8445,19 @@
       "aa_tau_banking": 0.51340206185567,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.812734082397004,
-      "epoch_eci": 157.43,
+      "epoch_eci": 157.45,
       "epoch_eci_software": null
      },
      "designarena": {
       "frontend": {
-       "battles": 1886,
-       "elo": 1288,
+       "battles": 1901,
+       "elo": 1285,
        "modelId": "qwen3.8-max",
-       "winRate": 59.9
+       "winRate": 59.8
       },
       "fullstack": {
-       "battles": 1336,
-       "elo": 1289,
+       "battles": 1337,
+       "elo": 1285,
        "modelId": "qwen3.8-max",
        "winRate": 61.8
       }
@@ -8116,14 +8579,6 @@
      "family_key": "step-5-preview",
      "id": "step-5-preview::default",
      "offers": [
-      {
-       "cache_read_per_1m": 0.1,
-       "context_length": 1048576,
-       "input_per_1m": 1,
-       "output_per_1m": 2.7,
-       "platform": "OpenRouter",
-       "provider": "GMICloud"
-      },
       {
        "cache_read_per_1m": 0.1,
        "context_length": 262144,
@@ -8270,13 +8725,13 @@
       "aa_tau_banking": 0.290721649484536,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.550561797752809,
-      "epoch_eci": 148.39,
-      "epoch_eci_software": 137.57885979578728
+      "epoch_eci": 148.36,
+      "epoch_eci_software": 137.57325173426656
      },
      "designarena": {
       "frontend": {
        "battles": 1207,
-       "elo": 1181,
+       "elo": 1179,
        "modelId": "inkling",
        "winRate": 48.6
       }
@@ -8323,6 +8778,72 @@
    "prices": {
     "input": 1,
     "output": 4.05
+   }
+  },
+  {
+   "bench_id": "inkling-small::default",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_agentic_index": 25,
+      "aa_coding_index": 52.9,
+      "aa_gpqa": 0.895,
+      "aa_hle": 0.333,
+      "aa_intelligence_index": 12.9,
+      "aa_lcr": 0.756666666666667,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.497,
+      "aa_tau2": null,
+      "aa_tau_banking": 0.187628865979381,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": 0.550561797752809,
+      "epoch_eci": 150.76,
+      "epoch_eci_software": null
+     },
+     "designarena": {},
+     "display_name": "Inkling Small",
+     "family_key": "inkling-small",
+     "id": "inkling-small::default",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.1,
+       "context_length": 524288,
+       "input_per_1m": 0.45,
+       "output_per_1m": 1.2,
+       "platform": "OpenRouter",
+       "provider": "DeepInfra"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2026-07-30",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-11-04T08:51:51.964Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 36717.642099825745
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "thinkingmachines/inkling-small",
+   "irp_aliases": [],
+   "label": "Inkling Small",
+   "prices": {
+    "input": 0.45,
+    "output": 1.2
    }
   },
   {
@@ -8413,20 +8934,20 @@
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.816479400749064,
       "epoch_eci": 155.08,
-      "epoch_eci_software": 157.46911597765924
+      "epoch_eci_software": 157.4588434097711
      },
      "designarena": {
       "frontend": {
-       "battles": 6104,
-       "elo": 1203,
+       "battles": 6121,
+       "elo": 1202,
        "modelId": "yoda",
        "winRate": 52.9
       },
       "fullstack": {
-       "battles": 2841,
-       "elo": 1233,
+       "battles": 2855,
+       "elo": 1228,
        "modelId": "yoda",
-       "winRate": 60.2
+       "winRate": 60
       }
      },
      "display_name": "Grok 4.5 (High)",
@@ -8575,8 +9096,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 156.07,
-      "epoch_eci_software": 160.1453094779582
+      "epoch_eci": 156.05,
+      "epoch_eci_software": 160.16968433875925
      },
      "designarena": {},
      "display_name": "Grok 4.7 (High)",
@@ -8730,14 +9251,6 @@
      "id": "mimo-v2.5-pro::reasoning",
      "offers": [
       {
-       "cache_read_per_1m": 0.0028,
-       "context_length": 1050000,
-       "input_per_1m": 0.3045,
-       "output_per_1m": 0.609,
-       "platform": "OpenRouter",
-       "provider": "GMICloud"
-      },
-      {
        "cache_read_per_1m": 0.0036,
        "context_length": 1024000,
        "input_per_1m": 0.435,
@@ -8775,8 +9288,8 @@
    "irp_aliases": [],
    "label": "MiMo V2.5 Pro",
    "prices": {
-    "input": 0.3045,
-    "output": 0.609
+    "input": 0.435,
+    "output": 0.87
    }
   },
   {
@@ -8809,6 +9322,14 @@
      "id": "mimo-v2.6-flash::default",
      "offers": [
       {
+       "cache_read_per_1m": 0.003,
+       "context_length": 262144,
+       "input_per_1m": 0.1,
+       "output_per_1m": 0.28,
+       "platform": "OpenRouter",
+       "provider": "Io Net"
+      },
+      {
        "cache_read_per_1m": 0.05,
        "context_length": 1048576,
        "input_per_1m": 0.1,
@@ -8823,14 +9344,6 @@
        "output_per_1m": 0.224,
        "platform": "OpenRouter",
        "provider": "GMICloud"
-      },
-      {
-       "cache_read_per_1m": 0.003,
-       "context_length": 1048576,
-       "input_per_1m": 0.14,
-       "output_per_1m": 0.28,
-       "platform": "OpenRouter",
-       "provider": "Cohere"
       }
      ],
      "open_weights": true,
@@ -8887,7 +9400,7 @@
      "designarena": {
       "frontend": {
        "battles": 3261,
-       "elo": 1277,
+       "elo": 1275,
        "modelId": "hampshire",
        "winRate": 58.2
       }
@@ -9090,7 +9603,7 @@
      "designarena": {
       "fullstack": {
        "battles": 1885,
-       "elo": 1014,
+       "elo": 1009,
        "modelId": "glm-4.6",
        "winRate": 42.3
       }
@@ -9160,13 +9673,13 @@
       "aa_tau_banking": 0.121649484536082,
       "aa_terminalbench_hard": 0.318181818181818,
       "aa_terminalbench_v2_1": 0.453183520599251,
-      "epoch_eci": 143.24,
+      "epoch_eci": 143.27,
       "epoch_eci_software": null
      },
      "designarena": {
       "fullstack": {
        "battles": 1639,
-       "elo": 1034,
+       "elo": 1030,
        "modelId": "glm-4.7",
        "winRate": 45.1
       }
@@ -9298,13 +9811,13 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.431818181818182,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 146.43,
-      "epoch_eci_software": 148.9714406045978
+      "epoch_eci": 146.47,
+      "epoch_eci_software": 148.99094385947356
      },
      "designarena": {
       "fullstack": {
        "battles": 4766,
-       "elo": 1108,
+       "elo": 1103,
        "modelId": "glm-5",
        "winRate": 51.7
       }
@@ -9427,21 +9940,21 @@
       "aa_tau_banking": 0.136082474226804,
       "aa_terminalbench_hard": 0.431818181818182,
       "aa_terminalbench_v2_1": 0.617977528089888,
-      "epoch_eci": 150.67,
-      "epoch_eci_software": 150.11462753676358
+      "epoch_eci": 150.72,
+      "epoch_eci_software": 150.14793739657352
      },
      "designarena": {
       "frontend": {
-       "battles": 7344,
-       "elo": 1162,
+       "battles": 7366,
+       "elo": 1160,
        "modelId": "glm-5.1",
        "winRate": 50.4
       },
       "fullstack": {
-       "battles": 3923,
-       "elo": 1152,
+       "battles": 3928,
+       "elo": 1147,
        "modelId": "glm-5.1",
-       "winRate": 53.1
+       "winRate": 53
       }
      },
      "display_name": "GLM-5.1 (Reasoning)",
@@ -9465,12 +9978,12 @@
        "provider": "SiliconFlow"
       },
       {
-       "cache_read_per_1m": 0.6,
+       "cache_read_per_1m": 0.234,
        "context_length": 202752,
-       "input_per_1m": 1.21,
-       "output_per_1m": 4.2,
+       "input_per_1m": 1.26,
+       "output_per_1m": 3.96,
        "platform": "OpenRouter",
-       "provider": "Phala"
+       "provider": "AtlasCloud"
       }
      ],
      "open_weights": true,
@@ -9522,13 +10035,13 @@
       "aa_tau_banking": 0.503092783505155,
       "aa_terminalbench_hard": null,
       "aa_terminalbench_v2_1": 0.838951310861423,
-      "epoch_eci": 156.91,
-      "epoch_eci_software": 159.59965051480242
+      "epoch_eci": 156.94,
+      "epoch_eci_software": 159.6194452352055
      },
      "designarena": {
       "frontend": {
        "battles": 515,
-       "elo": 1274,
+       "elo": 1272,
        "modelId": "glm-5.3",
        "winRate": 54.2
       }
@@ -9614,13 +10127,13 @@
      "designarena": {
       "frontend": {
        "battles": 5385,
-       "elo": 1110,
+       "elo": 1109,
        "modelId": "glm-5v-turbo",
        "winRate": 44.7
       },
       "fullstack": {
        "battles": 3949,
-       "elo": 1134,
+       "elo": 1130,
        "modelId": "glm-5v-turbo",
        "winRate": 52.1
       }
