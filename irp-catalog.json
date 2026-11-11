@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-10T21:23:02Z",
+ "generated_at": "2026-11-11T03:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -147,8 +147,8 @@
       "aa_tau_banking": 0.0927835051546392,
       "aa_terminalbench_hard": 0.272727272727273,
       "aa_terminalbench_v2_1": 0.441947565543071,
-      "epoch_eci": 142.82,
-      "epoch_eci_software": 145.43138584744537
+      "epoch_eci": 142.86,
+      "epoch_eci_software": 145.46188504132758
      },
      "designarena": {},
      "display_name": "Claude 4.5 Haiku (Reasoning)",
@@ -391,21 +391,21 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.462121212121212,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 156.3,
-      "epoch_eci_software": 158.00568652341246
+      "epoch_eci": 156.31,
+      "epoch_eci_software": 158.02367928622007
      },
      "designarena": {
       "frontend": {
-       "battles": 4353,
-       "elo": 1191,
+       "battles": 4370,
+       "elo": 1189,
        "modelId": "claude-opus-4-6",
-       "winRate": 55.6
+       "winRate": 55.5
       },
       "fullstack": {
-       "battles": 2567,
-       "elo": 1205,
+       "battles": 2580,
+       "elo": 1200,
        "modelId": "claude-opus-4-6",
-       "winRate": 59.4
+       "winRate": 59.3
       }
      },
      "display_name": "Claude Opus 4.6 (Max)",
@@ -3548,20 +3548,11 @@
        "provider": "GMICloud"
       },
       {
-       "cache_read_per_1m": 0.054,
-       "context_length": 204800,
-       "input_per_1m": 0.27,
-       "output_per_1m": 1.08,
-       "platform": "OpenRouter",
-       "provider": "Novita"
-      },
-      {
-       "cache_read_per_1m": 0.06,
        "context_length": 196608,
-       "input_per_1m": 0.3,
-       "output_per_1m": 1.2,
+       "input_per_1m": 0.6,
+       "output_per_1m": 1.8,
        "platform": "OpenRouter",
-       "provider": "AtlasCloud"
+       "provider": "Groq"
       }
      ],
      "open_weights": true,
@@ -3615,21 +3606,21 @@
       "aa_tau_banking": 0.152577319587629,
       "aa_terminalbench_hard": 0.424242424242424,
       "aa_terminalbench_v2_1": 0.651685393258427,
-      "epoch_eci": 147.6,
-      "epoch_eci_software": 150.87476267201828
+      "epoch_eci": 147.77,
+      "epoch_eci_software": 150.92570111074835
      },
      "designarena": {
       "frontend": {
-       "battles": 4134,
-       "elo": 1196,
+       "battles": 4167,
+       "elo": 1194,
        "modelId": "minimax-m3",
-       "winRate": 47.6
+       "winRate": 47.7
       },
       "fullstack": {
-       "battles": 3763,
-       "elo": 1184,
+       "battles": 3783,
+       "elo": 1181,
        "modelId": "minimax-m3",
-       "winRate": 47.3
+       "winRate": 47.4
       }
      },
      "display_name": "MiniMax-M3",
