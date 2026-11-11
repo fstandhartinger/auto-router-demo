@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T15:23:02Z",
+ "generated_at": "2026-11-11T18:26:53Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -402,7 +402,7 @@
        "winRate": 55.5
       },
       "fullstack": {
-       "battles": 2580,
+       "battles": 2581,
        "elo": 1200,
        "modelId": "claude-opus-4-6",
        "winRate": 59.3
@@ -1893,60 +1893,6 @@
    }
   },
   {
-   "bench_id": "gemma-4-e4b::reasoning",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.576,
-      "aa_hle": 0.038,
-      "aa_intelligence_index": 4,
-      "aa_lcr": 0.32,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.244,
-      "aa_tau2": 0.207602339181287,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.0833333333333333,
-      "aa_terminalbench_v2_1": 0.0187265917602996
-     },
-     "designarena": {},
-     "display_name": "Gemma 4 E4B (Reasoning)",
-     "family_key": "gemma-4-e4b",
-     "id": "gemma-4-e4b::reasoning",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2026-04-03",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 8996.301954875533
-        }
-       }
-      }
-     },
-     "variant": "reasoning"
-    }
-   },
-   "id": "gemma-4-e4b",
-   "irp_aliases": [],
-   "label": "Gemma 4 E4b",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
-   }
-  },
-  {
    "bench_id": "gemini-2.5-flash::non-reasoning",
    "context_tokens": 1000000,
    "core": false,
@@ -2854,8 +2800,7 @@
    },
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
-    "gemma-4-26b",
-    "google-gemma-4-26b-a4b-instruct"
+    "gemma-4-26b"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -3057,78 +3002,6 @@
    }
   },
   {
-   "bench_id": "granite-4.2-8b::default",
-   "context_tokens": 131072,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 131072
-     },
-     "benchmarks": {
-      "aa_agentic_index": 3.7,
-      "aa_coding_index": 22.4,
-      "aa_gpqa": 0.631,
-      "aa_hle": 0.097,
-      "aa_intelligence_index": 5.1,
-      "aa_lcr": 0.45,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.315,
-      "aa_tau2": null,
-      "aa_tau_banking": 0.0762886597938144,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": 0.183520599250936
-     },
-     "designarena": {},
-     "display_name": "Granite 4.2 8B",
-     "family_key": "granite-4.2-8b",
-     "id": "granite-4.2-8b::default",
-     "offers": [
-      {
-       "cache_read_per_1m": 0.015,
-       "context_length": 131072,
-       "input_per_1m": 0.06,
-       "output_per_1m": 0.15,
-       "platform": "OpenRouter",
-       "provider": "CoreWeave"
-      },
-      {
-       "cache_read_per_1m": 0.015,
-       "context_length": 131072,
-       "input_per_1m": 0.06,
-       "output_per_1m": 0.25,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2026-08-25",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-11-04T08:51:51.964Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 51515.07023020724
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "ibm-granite/granite-4.2-8b",
-   "irp_aliases": [],
-   "label": "Granite 4.2 8B",
-   "prices": {
-    "input": 0.06,
-    "output": 0.15
-   }
-  },
-  {
    "bench_id": "ling-3.0-flash::default",
    "context_tokens": 262144,
    "core": false,
@@ -3201,61 +3074,6 @@
    }
   },
   {
-   "bench_id": "mercury-2::default",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_agentic_index": 4,
-      "aa_coding_index": 31.1,
-      "aa_gpqa": 0.77,
-      "aa_hle": 0.171,
-      "aa_intelligence_index": 4.9,
-      "aa_lcr": 0.436666666666667,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.377,
-      "aa_tau2": 0.707602339181287,
-      "aa_tau_banking": 0.0948453608247423,
-      "aa_terminalbench_hard": 0.265151515151515,
-      "aa_terminalbench_v2_1": 0.273408239700375
-     },
-     "designarena": {},
-     "display_name": "Mercury 2",
-     "family_key": "mercury-2",
-     "id": "mercury-2::default",
-     "offers": [],
-     "open_weights": false,
-     "release_date": "2026-02-20",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 26155.726977249793
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "mercury-2",
-   "irp_aliases": [],
-   "label": "Mercury 2",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
-   }
-  },
-  {
    "bench_id": "mercury-2.5::default",
    "context_tokens": 260000,
    "core": false,
@@ -3302,9 +3120,7 @@
     }
    },
    "id": "mercury-2.5",
-   "irp_aliases": [
-    "mercury-2-5"
-   ],
+   "irp_aliases": [],
    "label": "Mercury 2.5",
    "prices": {
     "input": 0.0,
@@ -3927,13 +3743,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4167,
+       "battles": 4168,
        "elo": 1194,
        "modelId": "minimax-m3",
        "winRate": 47.7
       },
       "fullstack": {
-       "battles": 3783,
+       "battles": 3785,
        "elo": 1181,
        "modelId": "minimax-m3",
        "winRate": 47.4
@@ -4795,7 +4611,6 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
-    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -6736,9 +6551,7 @@
     }
    },
    "id": "qwen/qwen3-235b-a22b-thinking-2507",
-   "irp_aliases": [
-    "qwen3-235b-thinking"
-   ],
+   "irp_aliases": [],
    "label": "Qwen3 235B A22b Thinking 2507",
    "prices": {
     "input": 0.45,
@@ -7057,9 +6870,7 @@
     }
    },
    "id": "qwen/qwen3-coder-next",
-   "irp_aliases": [
-    "qwen3-coder-next-80b"
-   ],
+   "irp_aliases": [],
    "label": "Qwen3 Coder Next",
    "prices": {
     "input": 0.12,
@@ -8061,9 +7872,7 @@
     }
    },
    "id": "qwen/qwen3.8-2.4t-a95b",
-   "irp_aliases": [
-    "qwen-3.8-2.4t"
-   ],
+   "irp_aliases": [],
    "label": "Qwen3.8 2.4T A95b",
    "prices": {
     "input": 2,
@@ -8210,8 +8019,7 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen-3-235b-a22b-instruct-2507",
-    "qwen3-235b-instruct"
+    "qwen-3-235b-a22b-instruct-2507"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
    "prices": {
@@ -8778,72 +8586,6 @@
    "prices": {
     "input": 1,
     "output": 4.05
-   }
-  },
-  {
-   "bench_id": "inkling-small::default",
-   "context_tokens": 1000000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 1000000
-     },
-     "benchmarks": {
-      "aa_agentic_index": 25,
-      "aa_coding_index": 52.9,
-      "aa_gpqa": 0.895,
-      "aa_hle": 0.333,
-      "aa_intelligence_index": 12.9,
-      "aa_lcr": 0.756666666666667,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.497,
-      "aa_tau2": null,
-      "aa_tau_banking": 0.187628865979381,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": 0.550561797752809,
-      "epoch_eci": 150.76,
-      "epoch_eci_software": null
-     },
-     "designarena": {},
-     "display_name": "Inkling Small",
-     "family_key": "inkling-small",
-     "id": "inkling-small::default",
-     "offers": [
-      {
-       "cache_read_per_1m": 0.1,
-       "context_length": 524288,
-       "input_per_1m": 0.45,
-       "output_per_1m": 1.2,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2026-07-30",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-11-04T08:51:51.964Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 36717.642099825745
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "thinkingmachines/inkling-small",
-   "irp_aliases": [],
-   "label": "Inkling Small",
-   "prices": {
-    "input": 0.45,
-    "output": 1.2
    }
   },
   {
