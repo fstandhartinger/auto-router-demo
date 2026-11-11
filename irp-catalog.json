@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T18:26:53Z",
+ "generated_at": "2026-11-11T21:23:03Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -2121,7 +2121,7 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 6790,
+       "battles": 6791,
        "elo": 1110,
        "modelId": "gemini-3.1-pro-preview",
        "winRate": 44.1
@@ -2360,10 +2360,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3142,
+       "battles": 3144,
        "elo": 1182,
        "modelId": "gemini-3.6-flash",
-       "winRate": 45.2
+       "winRate": 45.1
       },
       "fullstack": {
        "battles": 3011,
@@ -2777,10 +2777,10 @@
        "provider": "Google AI Studio"
       },
       {
-       "cache_read_per_1m": 0.005,
+       "cache_read_per_1m": 0.007,
        "context_length": 262144,
-       "input_per_1m": 0.01,
-       "output_per_1m": 0.031,
+       "input_per_1m": 0.014,
+       "output_per_1m": 0.042,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -3839,14 +3839,6 @@
      "id": "minimax-m3.1-flash::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.0075,
-       "context_length": 1048576,
-       "input_per_1m": 0.075,
-       "output_per_1m": 0.3,
-       "platform": "OpenRouter",
-       "provider": "Minimax"
-      },
-      {
        "cache_read_per_1m": 0.01125,
        "context_length": 1048576,
        "input_per_1m": 0.1125,
@@ -3861,6 +3853,13 @@
        "output_per_1m": 0.54,
        "platform": "OpenRouter",
        "provider": "StreamLake"
+      },
+      {
+       "context_length": 1048576,
+       "input_per_1m": 0.15,
+       "output_per_1m": 0.6,
+       "platform": "Nebius",
+       "provider": "Nebius"
       }
      ],
      "open_weights": true,
@@ -3884,8 +3883,8 @@
    "irp_aliases": [],
    "label": "MiniMax M3.1 Flash",
    "prices": {
-    "input": 0.075,
-    "output": 0.3
+    "input": 0.1125,
+    "output": 0.45
    }
   },
   {
@@ -4419,7 +4418,7 @@
        "cache_read_per_1m": 0.18,
        "context_length": 1048576,
        "input_per_1m": 0.1824,
-       "output_per_1m": 9.3388,
+       "output_per_1m": 11.0055,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
@@ -4493,24 +4492,24 @@
       {
        "cache_read_per_1m": 0.2,
        "context_length": 1048576,
-       "input_per_1m": 0.266,
-       "output_per_1m": 8.3188,
+       "input_per_1m": 0.304,
+       "output_per_1m": 8.1953,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
       {
        "cache_read_per_1m": 0.18,
        "context_length": 1048576,
-       "input_per_1m": 0.4,
+       "input_per_1m": 0.32,
        "output_per_1m": 10,
        "platform": "OpenRouter",
        "provider": "Wafer"
       },
       {
-       "cache_read_per_1m": 0.22,
+       "cache_read_per_1m": 0.187,
        "context_length": 1048576,
-       "input_per_1m": 1.21,
-       "output_per_1m": 11,
+       "input_per_1m": 1.0425,
+       "output_per_1m": 9.35,
        "platform": "OpenRouter",
        "provider": "Sail Research"
       }
@@ -4536,8 +4535,8 @@
    "irp_aliases": [],
    "label": "Kimi K3.1 Pro",
    "prices": {
-    "input": 0.266,
-    "output": 8.3188
+    "input": 0.304,
+    "output": 8.1953
    }
   },
   {
@@ -7370,14 +7369,6 @@
      "id": "qwen3.5-9b::reasoning",
      "offers": [
       {
-       "cache_read_per_1m": 0.036,
-       "context_length": 262144,
-       "input_per_1m": 0.04,
-       "output_per_1m": 0.059,
-       "platform": "OpenRouter",
-       "provider": "PrimeIntellect"
-      },
-      {
        "cache_read_per_1m": 0.04,
        "context_length": 262144,
        "input_per_1m": 0.08,
@@ -7391,6 +7382,13 @@
        "output_per_1m": 0.15,
        "platform": "OpenRouter",
        "provider": "SiliconFlow"
+      },
+      {
+       "context_length": 262144,
+       "input_per_1m": 0.1,
+       "output_per_1m": 0.15,
+       "platform": "OpenRouter",
+       "provider": "DeepInfra"
       }
      ],
      "open_weights": true,
@@ -7414,8 +7412,8 @@
    "irp_aliases": [],
    "label": "Qwen3.5 9B",
    "prices": {
-    "input": 0.04,
-    "output": 0.059
+    "input": 0.08,
+    "output": 0.13
    }
   },
   {
@@ -7530,10 +7528,10 @@
      "id": "qwen3.6-35b-a3b::reasoning",
      "offers": [
       {
-       "cache_read_per_1m": 0.01,
+       "cache_read_per_1m": 0.011,
        "context_length": 262144,
-       "input_per_1m": 0.011,
-       "output_per_1m": 0.101,
+       "input_per_1m": 0.012,
+       "output_per_1m": 0.108,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -7577,8 +7575,8 @@
    ],
    "label": "Qwen3.6 35B A3b",
    "prices": {
-    "input": 0.011,
-    "output": 0.101
+    "input": 0.012,
+    "output": 0.108
    }
   },
   {
@@ -7669,10 +7667,10 @@
        "winRate": 47.9
       },
       "fullstack": {
-       "battles": 1483,
+       "battles": 1484,
        "elo": 1174,
        "modelId": "qwen3.7-max",
-       "winRate": 47.7
+       "winRate": 47.6
       }
      },
      "display_name": "Qwen3.7 Max",
@@ -8258,8 +8256,8 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 1901,
-       "elo": 1285,
+       "battles": 1902,
+       "elo": 1286,
        "modelId": "qwen3.8-max",
        "winRate": 59.8
       },
@@ -8680,7 +8678,7 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 6121,
+       "battles": 6122,
        "elo": 1202,
        "modelId": "yoda",
        "winRate": 52.9
@@ -9142,7 +9140,7 @@
      "designarena": {
       "frontend": {
        "battles": 3261,
-       "elo": 1275,
+       "elo": 1276,
        "modelId": "hampshire",
        "winRate": 58.2
       }
