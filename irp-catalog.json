@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-13T06:27:07Z",
+ "generated_at": "2026-11-13T09:23:03Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -147,8 +147,8 @@
       "aa_tau_banking": 0.0927835051546392,
       "aa_terminalbench_hard": 0.272727272727273,
       "aa_terminalbench_v2_1": 0.441947565543071,
-      "epoch_eci": 142.86,
-      "epoch_eci_software": 145.46188504132758
+      "epoch_eci": 142.83,
+      "epoch_eci_software": 145.4643754186239
      },
      "designarena": {},
      "display_name": "Claude 4.5 Haiku (Reasoning)",
@@ -391,8 +391,8 @@
       "aa_tau_banking": null,
       "aa_terminalbench_hard": 0.462121212121212,
       "aa_terminalbench_v2_1": null,
-      "epoch_eci": 156.31,
-      "epoch_eci_software": 158.02367928622007
+      "epoch_eci": 156.34,
+      "epoch_eci_software": 157.05118129967613
      },
      "designarena": {
       "frontend": {
@@ -1576,28 +1576,28 @@
      "id": "deepseek-v4.1-flash-1017::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.005,
-       "context_length": 1048576,
-       "input_per_1m": 0.006,
-       "output_per_1m": 0.5,
-       "platform": "OpenRouter",
-       "provider": "Relace"
-      },
-      {
-       "cache_read_per_1m": 0.004,
-       "context_length": 1048576,
-       "input_per_1m": 0.022,
-       "output_per_1m": 0.4,
-       "platform": "OpenRouter",
-       "provider": "Morph"
-      },
-      {
        "cache_read_per_1m": 0.01,
        "context_length": 1048576,
        "input_per_1m": 0.038,
        "output_per_1m": 0.5,
        "platform": "OpenRouter",
        "provider": "Wafer"
+      },
+      {
+       "cache_read_per_1m": 0.007,
+       "context_length": 1048576,
+       "input_per_1m": 0.04,
+       "output_per_1m": 0.6,
+       "platform": "OpenRouter",
+       "provider": "Morph"
+      },
+      {
+       "cache_read_per_1m": 0.0024,
+       "context_length": 1048576,
+       "input_per_1m": 0.04368,
+       "output_per_1m": 0.7,
+       "platform": "OpenRouter",
+       "provider": "PrimeIntellect"
       }
      ],
      "open_weights": true,
@@ -1621,7 +1621,7 @@
    "irp_aliases": [],
    "label": "DeepSeek V4.1 Flash 1017",
    "prices": {
-    "input": 0.006,
+    "input": 0.038,
     "output": 0.5
    }
   },
@@ -3736,8 +3736,8 @@
       "aa_tau_banking": 0.152577319587629,
       "aa_terminalbench_hard": 0.424242424242424,
       "aa_terminalbench_v2_1": 0.651685393258427,
-      "epoch_eci": 147.77,
-      "epoch_eci_software": 150.92570111074835
+      "epoch_eci": 147.74,
+      "epoch_eci_software": 150.89341978647144
      },
      "designarena": {
       "frontend": {
