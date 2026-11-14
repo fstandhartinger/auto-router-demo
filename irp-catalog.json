@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T03:23:03Z",
+ "generated_at": "2026-11-14T06:29:08Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -628,7 +628,9 @@
     }
    },
    "id": "anthropic/claude-opus-5.5",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "claude-opus-5-5-fast"
+   ],
    "label": "Claude Opus 5.5",
    "prices": {
     "input": 4,
@@ -1892,6 +1894,61 @@
     "gemini-2.5-pro-preview-05.06"
    ],
    "label": "Gemini 2.5 Pro Preview May 25",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
+   "bench_id": "gemini-3-pro-preview::high",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.908,
+      "aa_hle": 0.397,
+      "aa_intelligence_index": 17.6,
+      "aa_lcr": 0.76,
+      "aa_livecodebench": 0.917,
+      "aa_math_index": 95.7,
+      "aa_mmlu_pro": 0.898,
+      "aa_scicode": null,
+      "aa_tau2": 0.871345029239766,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.416666666666667,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {
+      "frontend": {
+       "battles": 4076,
+       "elo": 1098,
+       "modelId": "gemini-3-pro-preview",
+       "winRate": 49.4
+      },
+      "fullstack": {
+       "battles": 2261,
+       "elo": 1055,
+       "modelId": "gemini-3-pro-preview",
+       "winRate": 48.8
+      }
+     },
+     "display_name": "Gemini 3 Pro Preview (High)",
+     "family_key": "gemini-3-pro-preview",
+     "id": "gemini-3-pro-preview::high",
+     "offers": [],
+     "open_weights": false,
+     "release_date": "2025-11-18",
+     "variant": "high"
+    }
+   },
+   "id": "gemini-3-pro-preview",
+   "irp_aliases": [],
+   "label": "Gemini 3 Pro Preview",
    "prices": {
     "input": 0.0,
     "output": 0.0
@@ -4005,86 +4062,6 @@
    }
   },
   {
-   "bench_id": "muse-spark-1.2::xhigh",
-   "context_tokens": 1048576,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 1048576
-     },
-     "benchmarks": {
-      "aa_agentic_index": 44,
-      "aa_coding_agent_index": 60.3,
-      "aa_coding_index": 72.2,
-      "aa_gpqa": 0.904,
-      "aa_hle": 0.455,
-      "aa_intelligence_index": 29.9,
-      "aa_lcr": 0.79,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.574,
-      "aa_tau2": null,
-      "aa_tau_banking": 0.348453608247423,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": 0.801498127340824,
-      "epoch_eci": 155.04,
-      "epoch_eci_software": 151.3247956723669
-     },
-     "designarena": {
-      "frontend": {
-       "battles": 2331,
-       "elo": 1206,
-       "modelId": "muse-spark-1.2",
-       "winRate": 49.6
-      },
-      "fullstack": {
-       "battles": 1983,
-       "elo": 1191,
-       "modelId": "muse-spark-1.2",
-       "winRate": 47.6
-      }
-     },
-     "display_name": "Muse Spark 1.2 (Xhigh)",
-     "family_key": "muse-spark-1.2",
-     "id": "muse-spark-1.2::xhigh",
-     "offers": [
-      {
-       "cache_read_per_1m": 0.15,
-       "context_length": 1048576,
-       "input_per_1m": 1.25,
-       "output_per_1m": 4.25,
-       "platform": "OpenRouter",
-       "provider": "Meta"
-      }
-     ],
-     "open_weights": false,
-     "release_date": "2026-08-05",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 47874.47420818148
-        }
-       }
-      }
-     },
-     "variant": "xhigh"
-    }
-   },
-   "id": "meta/muse-spark-1.2",
-   "irp_aliases": [],
-   "label": "Muse Spark 1.2",
-   "prices": {
-    "input": 1.25,
-    "output": 4.25
-   }
-  },
-  {
    "bench_id": "muse-spark-open::xhigh",
    "context_tokens": 1048576,
    "core": false,
@@ -6005,8 +5982,7 @@
    },
    "id": "nvidia/nemotron-3-ultra-550b-a55b",
    "irp_aliases": [
-    "nemotron-3-ultra-550b",
-    "nvidia-nemotron-3-ultra-550b-a55b"
+    "nemotron-3-ultra-550b"
    ],
    "label": "Nemotron 3 Ultra 550B A55b",
    "prices": {
@@ -6172,63 +6148,6 @@
    "prices": {
     "input": 0,
     "output": 0.0
-   }
-  },
-  {
-   "bench_id": "o1::default",
-   "context_tokens": 200000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 200000
-     },
-     "benchmarks": {
-      "aa_coding_index": 39.7,
-      "aa_gpqa": 0.747,
-      "aa_hle": 0.07,
-      "aa_intelligence_index": 6.2,
-      "aa_lcr": 0.65,
-      "aa_livecodebench": 0.679,
-      "aa_math_index": null,
-      "aa_mmlu_pro": 0.841,
-      "aa_scicode": null,
-      "aa_tau2": 0.625730994152047,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.128787878787879,
-      "aa_terminalbench_v2_1": null,
-      "epoch_eci": 141.16,
-      "epoch_eci_software": 141.16892041244017
-     },
-     "designarena": {},
-     "display_name": "o1",
-     "family_key": "o1",
-     "id": "o1::default",
-     "offers": [
-      {
-       "input_per_1m": 15,
-       "output_per_1m": 60,
-       "platform": "Azure AI Foundry",
-       "provider": "Azure AI Foundry"
-      },
-      {
-       "input_per_1m": 16.5,
-       "output_per_1m": 66,
-       "platform": "Azure AI Foundry",
-       "provider": "Azure AI Foundry"
-      }
-     ],
-     "open_weights": false,
-     "release_date": "2024-12-05",
-     "variant": "default"
-    }
-   },
-   "id": "o1",
-   "irp_aliases": [],
-   "label": "O1",
-   "prices": {
-    "input": 15,
-    "output": 60
    }
   },
   {
@@ -10531,7 +10450,9 @@
     }
    },
    "id": "xiaomi/mimo-v2.5",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "xiaomi-mimo-v2-5"
+   ],
    "label": "MiMo V2.5",
    "prices": {
     "input": 0.4,
@@ -10681,9 +10602,7 @@
     }
    },
    "id": "xiaomi/mimo-v2.6-flash",
-   "irp_aliases": [
-    "xiaomi-mimo-v2-6-flash"
-   ],
+   "irp_aliases": [],
    "label": "MiMo V2.6 Flash",
    "prices": {
     "input": 0.1,
