@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T06:29:08Z",
+ "generated_at": "2026-11-14T15:23:04Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1385,28 +1385,28 @@
      "id": "deepseek-v4-flash::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.05,
+       "cache_read_per_1m": 0.029,
        "context_length": 1048576,
-       "input_per_1m": 0.05,
+       "input_per_1m": 0.029,
        "output_per_1m": 0.45,
        "platform": "OpenRouter",
        "provider": "Relace"
       },
       {
-       "cache_read_per_1m": 0.0168,
+       "cache_read_per_1m": 0.005992,
        "context_length": 1024000,
-       "input_per_1m": 0.084,
-       "output_per_1m": 0.168,
+       "input_per_1m": 0.02996,
+       "output_per_1m": 0.05992,
        "platform": "OpenRouter",
        "provider": "StreamLake"
       },
       {
-       "cache_read_per_1m": 0.018,
+       "cache_read_per_1m": 0.006076,
        "context_length": 1048576,
-       "input_per_1m": 0.09,
-       "output_per_1m": 0.18,
+       "input_per_1m": 0.03038,
+       "output_per_1m": 0.06076,
        "platform": "OpenRouter",
-       "provider": "DeepInfra"
+       "provider": "Baidu"
       }
      ],
      "open_weights": true,
@@ -1432,7 +1432,7 @@
    ],
    "label": "DeepSeek V4 Flash",
    "prices": {
-    "input": 0.05,
+    "input": 0.029,
     "output": 0.45
    }
   },
@@ -1467,18 +1467,18 @@
      "id": "deepseek-v4-pro::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.0437755,
+       "cache_read_per_1m": 0.03364,
        "context_length": 1024000,
-       "input_per_1m": 0.525306,
-       "output_per_1m": 1.050612,
+       "input_per_1m": 0.40368,
+       "output_per_1m": 0.80736,
        "platform": "OpenRouter",
        "provider": "StreamLake"
       },
       {
-       "cache_read_per_1m": 0.04424,
+       "cache_read_per_1m": 0.03416,
        "context_length": 1048576,
-       "input_per_1m": 0.53404,
-       "output_per_1m": 1.06808,
+       "input_per_1m": 0.41236,
+       "output_per_1m": 0.82472,
        "platform": "OpenRouter",
        "provider": "Baidu"
       },
@@ -1500,8 +1500,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro",
    "prices": {
-    "input": 0.525306,
-    "output": 1.050612
+    "input": 0.40368,
+    "output": 0.80736
    }
   },
   {
@@ -1624,20 +1624,20 @@
        "provider": "Wafer"
       },
       {
-       "cache_read_per_1m": 0.007,
-       "context_length": 1048576,
-       "input_per_1m": 0.04,
-       "output_per_1m": 0.6,
-       "platform": "OpenRouter",
-       "provider": "Morph"
-      },
-      {
        "cache_read_per_1m": 0.0024,
        "context_length": 1048576,
        "input_per_1m": 0.04368,
        "output_per_1m": 0.7,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
+      },
+      {
+       "cache_read_per_1m": 0.01,
+       "context_length": 1048576,
+       "input_per_1m": 0.06,
+       "output_per_1m": 0.5,
+       "platform": "OpenRouter",
+       "provider": "Particle AI"
       }
      ],
      "open_weights": true,
@@ -3134,10 +3134,10 @@
        "provider": "Google AI Studio"
       },
       {
-       "cache_read_per_1m": 0.01,
+       "cache_read_per_1m": 0.018,
        "context_length": 262144,
-       "input_per_1m": 0.02,
-       "output_per_1m": 0.06,
+       "input_per_1m": 0.036,
+       "output_per_1m": 0.109,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -4398,20 +4398,20 @@
        "provider": "Venice"
       },
       {
-       "cache_read_per_1m": 0.027,
-       "context_length": 200000,
-       "input_per_1m": 0.27,
-       "output_per_1m": 1.08,
-       "platform": "OpenRouter",
-       "provider": "StreamLake"
-      },
-      {
        "cache_read_per_1m": 0.06,
        "context_length": 196608,
        "input_per_1m": 0.295,
        "output_per_1m": 1.2,
        "platform": "OpenRouter",
        "provider": "AtlasCloud"
+      },
+      {
+       "cache_read_per_1m": 0.03,
+       "context_length": 196608,
+       "input_per_1m": 0.3,
+       "output_per_1m": 1.2,
+       "platform": "OpenRouter",
+       "provider": "GMICloud"
       }
      ],
      "open_weights": true,
@@ -7470,10 +7470,10 @@
        "provider": "AkashML"
       },
       {
-       "cache_read_per_1m": 0.018,
+       "cache_read_per_1m": 0.023,
        "context_length": 131072,
-       "input_per_1m": 0.02,
-       "output_per_1m": 0.03,
+       "input_per_1m": 0.025,
+       "output_per_1m": 0.038,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       }
@@ -8886,10 +8886,10 @@
      "id": "qwen3.6-35b-a3b::reasoning",
      "offers": [
       {
-       "cache_read_per_1m": 0.014,
+       "cache_read_per_1m": 0.01,
        "context_length": 262144,
-       "input_per_1m": 0.016,
-       "output_per_1m": 0.143,
+       "input_per_1m": 0.011,
+       "output_per_1m": 0.102,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -8931,8 +8931,8 @@
    "irp_aliases": [],
    "label": "Qwen3.6 35B A3b",
    "prices": {
-    "input": 0.016,
-    "output": 0.143
+    "input": 0.011,
+    "output": 0.102
    }
   },
   {
