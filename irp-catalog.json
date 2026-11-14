@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T15:23:04Z",
+ "generated_at": "2026-11-14T18:29:04Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -2147,55 +2147,6 @@
    }
   },
   {
-   "bench_id": "gemma-4-e2b::reasoning",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": 7.2,
-      "aa_gpqa": 0.433,
-      "aa_hle": 0.048,
-      "aa_intelligence_index": 3.4,
-      "aa_lcr": 0.163333333333333,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": null,
-      "aa_tau2": 0.207602339181287,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.0303030303030303,
-      "aa_terminalbench_v2_1": 0.00374531835205993
-     },
-     "designarena": {},
-     "display_name": "Gemma 4 E2B (Reasoning)",
-     "family_key": "gemma-4-e2b",
-     "id": "gemma-4-e2b::reasoning",
-     "offers": [
-      {
-       "input_per_1m": 0.048,
-       "output_per_1m": 0.096,
-       "platform": "AWS Bedrock",
-       "provider": "AWS Bedrock"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2026-04-02",
-     "variant": "reasoning"
-    }
-   },
-   "id": "gemma-4-e2b",
-   "irp_aliases": [],
-   "label": "Gemma 4 E2b",
-   "prices": {
-    "input": 0.048,
-    "output": 0.096
-   }
-  },
-  {
    "bench_id": "gemma-4-e4b::reasoning",
    "context_tokens": 128000,
    "core": false,
@@ -3157,8 +3108,7 @@
    },
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
-    "gemma-4-26b-a4b",
-    "google-gemma-4-26b-a4b-instruct"
+    "gemma-4-26b-a4b"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -3494,7 +3444,7 @@
    },
    "id": "grok-build-0.1-0616",
    "irp_aliases": [
-    "grok-build-0-1"
+    "grok-build-0.1"
    ],
    "label": "Grok Build 0.1 0616",
    "prices": {
@@ -4635,20 +4585,19 @@
        "provider": "Inferact vLLM"
       },
       {
-       "cache_read_per_1m": 0.0075,
-       "context_length": 1048576,
-       "input_per_1m": 0.075,
-       "output_per_1m": 0.3,
-       "platform": "OpenRouter",
-       "provider": "Minimax"
-      },
-      {
        "cache_read_per_1m": 0.0135,
        "context_length": 1000000,
        "input_per_1m": 0.135,
        "output_per_1m": 0.54,
        "platform": "OpenRouter",
        "provider": "StreamLake"
+      },
+      {
+       "context_length": 1048576,
+       "input_per_1m": 0.15,
+       "output_per_1m": 0.6,
+       "platform": "Nebius",
+       "provider": "Nebius"
       }
      ],
      "open_weights": true,
@@ -5820,7 +5769,6 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
-    "nvidia-nemotron-3-nano-30b",
     "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
@@ -6148,6 +6096,118 @@
    "prices": {
     "input": 0,
     "output": 0.0
+   }
+  },
+  {
+   "bench_id": "o3-mini::default",
+   "context_tokens": 200000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 200000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.748,
+      "aa_hle": 0.079,
+      "aa_intelligence_index": 5.4,
+      "aa_lcr": null,
+      "aa_livecodebench": 0.717,
+      "aa_math_index": null,
+      "aa_mmlu_pro": 0.791,
+      "aa_scicode": null,
+      "aa_tau2": 0.286549707602339,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0681818181818182,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "o3-mini",
+     "family_key": "o3-mini",
+     "id": "o3-mini::default",
+     "offers": [
+      {
+       "input_per_1m": 1.1,
+       "output_per_1m": 4.4,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "input_per_1m": 1.21,
+       "output_per_1m": 4.84,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-01-31",
+     "variant": "default"
+    }
+   },
+   "id": "o3-mini",
+   "irp_aliases": [],
+   "label": "O3 Mini",
+   "prices": {
+    "input": 1.1,
+    "output": 4.4
+   }
+  },
+  {
+   "bench_id": "o4-mini::high",
+   "context_tokens": 200000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 200000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.784,
+      "aa_hle": 0.165,
+      "aa_intelligence_index": 6.3,
+      "aa_lcr": 0.61,
+      "aa_livecodebench": 0.859,
+      "aa_math_index": 90.7,
+      "aa_mmlu_pro": 0.832,
+      "aa_scicode": null,
+      "aa_tau2": 0.555555555555556,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.151515151515152,
+      "aa_terminalbench_v2_1": null,
+      "epoch_eci": 145.25,
+      "epoch_eci_software": 145.09196420179217
+     },
+     "designarena": {},
+     "display_name": "o4-mini (High)",
+     "family_key": "o4-mini",
+     "id": "o4-mini::high",
+     "offers": [
+      {
+       "input_per_1m": 1.1,
+       "output_per_1m": 4.4,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "input_per_1m": 1.21,
+       "output_per_1m": 4.84,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-04-16",
+     "variant": "high"
+    }
+   },
+   "id": "o4-mini",
+   "irp_aliases": [],
+   "label": "O4 Mini",
+   "prices": {
+    "input": 1.1,
+    "output": 4.4
    }
   },
   {
@@ -8735,18 +8795,19 @@
        "provider": "Darkbloom"
       },
       {
+       "cache_read_per_1m": 0.086,
        "context_length": 262144,
-       "input_per_1m": 0.1,
-       "output_per_1m": 0.15,
+       "input_per_1m": 0.096,
+       "output_per_1m": 0.141,
        "platform": "OpenRouter",
-       "provider": "SiliconFlow"
+       "provider": "PrimeIntellect"
       },
       {
        "context_length": 262144,
        "input_per_1m": 0.1,
        "output_per_1m": 0.15,
        "platform": "OpenRouter",
-       "provider": "DeepInfra"
+       "provider": "SiliconFlow"
       }
      ],
      "open_weights": true,
@@ -9448,7 +9509,7 @@
    },
    "id": "qwen3-235b-a22b-2507-instruct",
    "irp_aliases": [
-    "qwen-3-235b-a22b-instruct-2507",
+    "qwen3-235b-a22b-instruct-2507",
     "qwen3-235b-instruct"
    ],
    "label": "Qwen3 235B A22b 2507 Instruct",
