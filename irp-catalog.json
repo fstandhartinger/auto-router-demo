@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T06:29:05Z",
+ "generated_at": "2026-11-16T09:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -7365,56 +7365,6 @@
    }
   },
   {
-   "bench_id": "qwen3-vl-30b-a3b-thinking::reasoning",
-   "context_tokens": 256000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 256000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.72,
-      "aa_hle": 0.089,
-      "aa_intelligence_index": 4.3,
-      "aa_lcr": null,
-      "aa_livecodebench": 0.697,
-      "aa_math_index": 82.3,
-      "aa_mmlu_pro": 0.807,
-      "aa_scicode": null,
-      "aa_tau2": 0.198830409356725,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.053030303030303,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "Qwen3 VL 30B A3B (Reasoning)",
-     "family_key": "qwen3-vl-30b-a3b-thinking",
-     "id": "qwen3-vl-30b-a3b-thinking::reasoning",
-     "offers": [
-      {
-       "context_length": 262144,
-       "input_per_1m": 0.29,
-       "output_per_1m": 1,
-       "platform": "OpenRouter",
-       "provider": "SiliconFlow"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2025-10-03",
-     "variant": "reasoning"
-    }
-   },
-   "id": "qwen/qwen3-vl-30b-a3b-thinking",
-   "irp_aliases": [],
-   "label": "Qwen3 Vl 30B A3b Thinking",
-   "prices": {
-    "input": 0.29,
-    "output": 1
-   }
-  },
-  {
    "bench_id": "qwen3.5-27b::reasoning",
    "context_tokens": 262144,
    "core": false,
@@ -8403,6 +8353,56 @@
    "prices": {
     "input": 0.0,
     "output": 0.0
+   }
+  },
+  {
+   "bench_id": "qwen3-vl-30b-a3b-thinking::reasoning",
+   "context_tokens": 256000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 256000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.72,
+      "aa_hle": 0.089,
+      "aa_intelligence_index": 4.3,
+      "aa_lcr": null,
+      "aa_livecodebench": 0.697,
+      "aa_math_index": 82.3,
+      "aa_mmlu_pro": 0.807,
+      "aa_scicode": null,
+      "aa_tau2": 0.198830409356725,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.053030303030303,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Qwen3 VL 30B A3B (Reasoning)",
+     "family_key": "qwen3-vl-30b-a3b-thinking",
+     "id": "qwen3-vl-30b-a3b-thinking::reasoning",
+     "offers": [
+      {
+       "context_length": 262144,
+       "input_per_1m": 0.29,
+       "output_per_1m": 1,
+       "platform": "OpenRouter",
+       "provider": "SiliconFlow"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2025-10-03",
+     "variant": "reasoning"
+    }
+   },
+   "id": "qwen3-vl-30b-a3b-thinking",
+   "irp_aliases": [],
+   "label": "Qwen3 Vl 30B A3b Thinking",
+   "prices": {
+    "input": 0.29,
+    "output": 1
    }
   },
   {
