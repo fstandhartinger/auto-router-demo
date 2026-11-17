@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T15:23:02Z",
+ "generated_at": "2026-11-17T18:27:53Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1641,17 +1641,17 @@
        "provider": "Wafer"
       },
       {
-       "cache_read_per_1m": 0.0024,
+       "cache_read_per_1m": 0.007,
        "context_length": 1048576,
-       "input_per_1m": 0.04368,
-       "output_per_1m": 0.7,
+       "input_per_1m": 0.04,
+       "output_per_1m": 0.07,
        "platform": "OpenRouter",
-       "provider": "PrimeIntellect"
+       "provider": "Sail Research"
       },
       {
        "cache_read_per_1m": 0.007,
        "context_length": 1048576,
-       "input_per_1m": 0.05,
+       "input_per_1m": 0.04,
        "output_per_1m": 0.07,
        "platform": "OpenRouter",
        "provider": "Sail Research"
@@ -1996,7 +1996,6 @@
    },
    "id": "gemma-3-27b-instruct",
    "irp_aliases": [
-    "gemma-3-27b",
     "gemma-3-27b-it"
    ],
    "label": "Gemma 3 27B Instruct",
@@ -2052,60 +2051,6 @@
    "prices": {
     "input": 0.048,
     "output": 0.096
-   }
-  },
-  {
-   "bench_id": "gemma-4-e4b::reasoning",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.576,
-      "aa_hle": 0.038,
-      "aa_intelligence_index": 4,
-      "aa_lcr": 0.32,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.244,
-      "aa_tau2": 0.207602339181287,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.0833333333333333,
-      "aa_terminalbench_v2_1": 0.0187265917602996
-     },
-     "designarena": {},
-     "display_name": "Gemma 4 E4B (Reasoning)",
-     "family_key": "gemma-4-e4b",
-     "id": "gemma-4-e4b::reasoning",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2026-04-03",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 8996.301954875533
-        }
-       }
-      }
-     },
-     "variant": "reasoning"
-    }
-   },
-   "id": "gemma-4-e4b",
-   "irp_aliases": [],
-   "label": "Gemma 4 E4b",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
    }
   },
   {
@@ -3000,20 +2945,20 @@
        "provider": "Google AI Studio"
       },
       {
+       "cache_read_per_1m": 0.02,
+       "context_length": 262144,
+       "input_per_1m": 0.039,
+       "output_per_1m": 0.118,
+       "platform": "OpenRouter",
+       "provider": "PrimeIntellect"
+      },
+      {
        "cache_read_per_1m": 0.01,
        "context_length": 131072,
        "input_per_1m": 0.04,
        "output_per_1m": 0.15,
        "platform": "OpenRouter",
        "provider": "Darkbloom"
-      },
-      {
-       "cache_read_per_1m": 0.029,
-       "context_length": 262144,
-       "input_per_1m": 0.057,
-       "output_per_1m": 0.171,
-       "platform": "OpenRouter",
-       "provider": "PrimeIntellect"
       }
      ],
      "open_weights": true,
@@ -3069,10 +3014,10 @@
        "provider": "Google AI Studio"
       },
       {
-       "cache_read_per_1m": 0.041,
+       "cache_read_per_1m": 0.036,
        "context_length": 262144,
-       "input_per_1m": 0.081,
-       "output_per_1m": 0.136,
+       "input_per_1m": 0.072,
+       "output_per_1m": 0.12,
        "platform": "OpenRouter",
        "provider": "PrimeIntellect"
       },
@@ -3224,78 +3169,6 @@
    }
   },
   {
-   "bench_id": "granite-4.2-8b::default",
-   "context_tokens": 131072,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 131072
-     },
-     "benchmarks": {
-      "aa_agentic_index": 3.7,
-      "aa_coding_index": 22.4,
-      "aa_gpqa": 0.631,
-      "aa_hle": 0.097,
-      "aa_intelligence_index": 5.1,
-      "aa_lcr": 0.45,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.315,
-      "aa_tau2": null,
-      "aa_tau_banking": 0.0762886597938144,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": 0.183520599250936
-     },
-     "designarena": {},
-     "display_name": "Granite 4.2 8B",
-     "family_key": "granite-4.2-8b",
-     "id": "granite-4.2-8b::default",
-     "offers": [
-      {
-       "cache_read_per_1m": 0.015,
-       "context_length": 131072,
-       "input_per_1m": 0.06,
-       "output_per_1m": 0.15,
-       "platform": "OpenRouter",
-       "provider": "CoreWeave"
-      },
-      {
-       "cache_read_per_1m": 0.015,
-       "context_length": 131072,
-       "input_per_1m": 0.06,
-       "output_per_1m": 0.25,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2026-08-25",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-11-04T08:51:51.964Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 51515.07023020724
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "ibm-granite/granite-4.2-8b",
-   "irp_aliases": [],
-   "label": "Granite 4.2 8B",
-   "prices": {
-    "input": 0.06,
-    "output": 0.15
-   }
-  },
-  {
    "bench_id": "ling-3.0-flash::default",
    "context_tokens": 262144,
    "core": false,
@@ -3419,63 +3292,6 @@
    "prices": {
     "input": 0.0,
     "output": 0.0
-   }
-  },
-  {
-   "bench_id": "llama-3.2-3b-instruct::default",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.255,
-      "aa_hle": 0.053,
-      "aa_intelligence_index": 2.3,
-      "aa_lcr": 0.0433333333333333,
-      "aa_livecodebench": 0.083,
-      "aa_math_index": 3.3,
-      "aa_mmlu_pro": 0.347,
-      "aa_scicode": null,
-      "aa_tau2": 0.210526315789474,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "Llama 3.2 Instruct 3B",
-     "family_key": "llama-3.2-3b-instruct",
-     "id": "llama-3.2-3b-instruct::default",
-     "offers": [
-      {
-       "context_length": 131072,
-       "input_per_1m": 0.05,
-       "output_per_1m": 0.33,
-       "platform": "OpenRouter",
-       "provider": "Parasail"
-      },
-      {
-       "context_length": 80000,
-       "input_per_1m": 0.0509,
-       "output_per_1m": 0.335,
-       "platform": "OpenRouter",
-       "provider": "Cloudflare"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2024-09-25",
-     "variant": "default"
-    }
-   },
-   "id": "meta-llama/llama-3.2-3b-instruct",
-   "irp_aliases": [],
-   "label": "Llama 3.2 3B Instruct",
-   "prices": {
-    "input": 0.05,
-    "output": 0.33
    }
   },
   {
@@ -4435,20 +4251,20 @@
        "provider": "Inferact vLLM"
       },
       {
-       "cache_read_per_1m": 0.0075,
-       "context_length": 1048576,
-       "input_per_1m": 0.075,
-       "output_per_1m": 0.3,
-       "platform": "OpenRouter",
-       "provider": "Minimax"
-      },
-      {
        "cache_read_per_1m": 0.0135,
        "context_length": 1000000,
        "input_per_1m": 0.135,
        "output_per_1m": 0.54,
        "platform": "OpenRouter",
        "provider": "StreamLake"
+      },
+      {
+       "cache_read_per_1m": 0.0135,
+       "context_length": 1048576,
+       "input_per_1m": 0.135,
+       "output_per_1m": 0.54,
+       "platform": "OpenRouter",
+       "provider": "Wafer"
       }
      ],
      "open_weights": true,
@@ -4685,9 +4501,7 @@
     }
    },
    "id": "mistralai/mistral-small-3.2-24b-instruct",
-   "irp_aliases": [
-    "mistral-small-3.2-24b"
-   ],
+   "irp_aliases": [],
    "label": "Mistral Small 3.2 24B Instruct",
    "prices": {
     "input": 0.075,
@@ -5026,7 +4840,6 @@
    },
    "id": "moonshotai/kimi-k3",
    "irp_aliases": [
-    "kimi-k3-fast",
     "kimi-k3-fast-api"
    ],
    "label": "Kimi K3",
@@ -5096,10 +4909,10 @@
        "provider": "Wafer"
       },
       {
-       "cache_read_per_1m": 0.237,
+       "cache_read_per_1m": 0.264,
        "context_length": 1048576,
-       "input_per_1m": 0.744,
-       "output_per_1m": 11.165,
+       "input_per_1m": 0.83,
+       "output_per_1m": 12.456,
        "platform": "OpenRouter",
        "provider": "Morph"
       }
@@ -5361,7 +5174,6 @@
    },
    "id": "nvidia/nemotron-3-ultra-550b-a55b",
    "irp_aliases": [
-    "nemotron-3-ultra-550b",
     "nvidia-nemotron-3-ultra-550b-a55b"
    ],
    "label": "Nemotron 3 Ultra 550B A55b",
@@ -6850,12 +6662,12 @@
        "provider": "AkashML"
       },
       {
-       "cache_read_per_1m": 0.018,
+       "cache_read_per_1m": 0.029,
        "context_length": 131072,
-       "input_per_1m": 0.02,
-       "output_per_1m": 0.03,
+       "input_per_1m": 0.029,
+       "output_per_1m": 0.14,
        "platform": "OpenRouter",
-       "provider": "PrimeIntellect"
+       "provider": "DekaLLM"
       }
      ],
      "open_weights": true,
@@ -7518,9 +7330,7 @@
     }
    },
    "id": "qwen/qwen3-coder-next",
-   "irp_aliases": [
-    "qwen3-coder-next-80b"
-   ],
+   "irp_aliases": [],
    "label": "Qwen3 Coder Next",
    "prices": {
     "input": 0.12,
@@ -8129,20 +7939,20 @@
      "id": "qwen3.6-35b-a3b::reasoning",
      "offers": [
       {
-       "cache_read_per_1m": 0.034,
-       "context_length": 262144,
-       "input_per_1m": 0.037,
-       "output_per_1m": 0.344,
-       "platform": "OpenRouter",
-       "provider": "PrimeIntellect"
-      },
-      {
        "cache_read_per_1m": 0.025,
        "context_length": 262144,
        "input_per_1m": 0.05,
        "output_per_1m": 0.7,
        "platform": "OpenRouter",
        "provider": "Darkbloom"
+      },
+      {
+       "cache_read_per_1m": 0.083,
+       "context_length": 262144,
+       "input_per_1m": 0.092,
+       "output_per_1m": 0.844,
+       "platform": "OpenRouter",
+       "provider": "PrimeIntellect"
       },
       {
        "cache_read_per_1m": 0.035,
@@ -8174,8 +7984,8 @@
    "irp_aliases": [],
    "label": "Qwen3.6 35B A3b",
    "prices": {
-    "input": 0.037,
-    "output": 0.344
+    "input": 0.05,
+    "output": 0.7
    }
   },
   {
@@ -8469,9 +8279,7 @@
     }
    },
    "id": "qwen/qwen3.8-2.4t-a95b",
-   "irp_aliases": [
-    "qwen-3.8-2.4t"
-   ],
+   "irp_aliases": [],
    "label": "Qwen3.8 2.4T A95b",
    "prices": {
     "input": 2,
@@ -8633,71 +8441,45 @@
    }
   },
   {
-   "bench_id": "qwen3-235b-a22b-2507-instruct::default",
-   "context_tokens": 256000,
+   "bench_id": "qwen3-0.6b::reasoning",
+   "context_tokens": 32000,
    "core": false,
    "document": {
     "model": {
      "aa_metadata": {
-      "context_window_tokens": 256000
+      "context_window_tokens": 32000
      },
      "benchmarks": {
       "aa_coding_index": null,
-      "aa_gpqa": 0.753,
-      "aa_hle": 0.111,
-      "aa_intelligence_index": 5.2,
-      "aa_lcr": 0.339,
-      "aa_livecodebench": 0.524,
-      "aa_math_index": 71.7,
-      "aa_mmlu_pro": 0.828,
+      "aa_gpqa": 0.239,
+      "aa_hle": 0.056,
+      "aa_intelligence_index": 1.8,
+      "aa_lcr": 0,
+      "aa_livecodebench": 0.121,
+      "aa_math_index": 18,
+      "aa_mmlu_pro": 0.347,
       "aa_scicode": null,
-      "aa_tau2": 0.333333333333333,
+      "aa_tau2": 0.210526315789474,
       "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.151515151515152,
+      "aa_terminalbench_hard": 0,
       "aa_terminalbench_v2_1": null
      },
      "designarena": {},
-     "display_name": "Qwen3 235B A22B 2507 Instruct",
-     "family_key": "qwen3-235b-a22b-2507-instruct",
-     "id": "qwen3-235b-a22b-2507-instruct::default",
-     "offers": [
-      {
-       "context_length": 262144,
-       "input_per_1m": 0.09,
-       "output_per_1m": 0.55,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      },
-      {
-       "cache_read_per_1m": 0.05,
-       "context_length": 131072,
-       "input_per_1m": 0.14,
-       "output_per_1m": 0.8,
-       "platform": "OpenRouter",
-       "provider": "Parasail"
-      },
-      {
-       "context_length": 128000,
-       "input_per_1m": 0.15,
-       "output_per_1m": 0.75,
-       "platform": "OpenRouter",
-       "provider": "Venice"
-      }
-     ],
+     "display_name": "Qwen3 0.6B (Reasoning)",
+     "family_key": "qwen3-0.6b",
+     "id": "qwen3-0.6b::reasoning",
+     "offers": [],
      "open_weights": true,
-     "release_date": "2025-07-21",
-     "variant": "default"
+     "release_date": "2025-04-28",
+     "variant": "reasoning"
     }
    },
-   "id": "qwen3-235b-a22b-2507-instruct",
-   "irp_aliases": [
-    "qwen3-235b-a22b-instruct-2507",
-    "qwen3-235b-instruct"
-   ],
-   "label": "Qwen3 235B A22b 2507 Instruct",
+   "id": "qwen3-0.6b",
+   "irp_aliases": [],
+   "label": "Qwen3 0.6B",
    "prices": {
-    "input": 0.09,
-    "output": 0.55
+    "input": 0.0,
+    "output": 0.0
    }
   },
   {
@@ -9301,72 +9083,6 @@
    "prices": {
     "input": 1,
     "output": 4.05
-   }
-  },
-  {
-   "bench_id": "inkling-small::default",
-   "context_tokens": 1000000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 1000000
-     },
-     "benchmarks": {
-      "aa_agentic_index": 25,
-      "aa_coding_index": 52.9,
-      "aa_gpqa": 0.895,
-      "aa_hle": 0.333,
-      "aa_intelligence_index": 12.9,
-      "aa_lcr": 0.756666666666667,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.497,
-      "aa_tau2": null,
-      "aa_tau_banking": 0.187628865979381,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": 0.550561797752809,
-      "epoch_eci": 150.75,
-      "epoch_eci_software": null
-     },
-     "designarena": {},
-     "display_name": "Inkling Small",
-     "family_key": "inkling-small",
-     "id": "inkling-small::default",
-     "offers": [
-      {
-       "cache_read_per_1m": 0.1,
-       "context_length": 524288,
-       "input_per_1m": 0.45,
-       "output_per_1m": 1.2,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2026-07-30",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-11-04T08:51:51.964Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 36717.642099825745
-        }
-       }
-      }
-     },
-     "variant": "default"
-    }
-   },
-   "id": "thinkingmachines/inkling-small",
-   "irp_aliases": [],
-   "label": "Inkling Small",
-   "prices": {
-    "input": 0.45,
-    "output": 1.2
    }
   },
   {
