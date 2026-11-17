@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T06:29:05Z",
+ "generated_at": "2026-11-17T09:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -1785,13 +1785,13 @@
      "designarena": {
       "frontend": {
        "battles": 4077,
-       "elo": 1089,
+       "elo": 1096,
        "modelId": "gemini-3-pro-preview",
        "winRate": 49.4
       },
       "fullstack": {
        "battles": 2259,
-       "elo": 1047,
+       "elo": 1048,
        "modelId": "gemini-3-pro-preview",
        "winRate": 48.7
       }
