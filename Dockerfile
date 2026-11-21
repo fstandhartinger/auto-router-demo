@@ -34,10 +34,13 @@ ENV HF_HUB_OFFLINE=1
 
 COPY app /srv/app
 COPY static /srv/static
+# Structured JSON logs + request ids (logging standard, AGENTS.md; logkit/README.md). No IPs or user agents.
+COPY logkit/logkit.py logkit/logkit_asgi.py /srv/
 
 ENV PORT=8080 \
     PYTHONUNBUFFERED=1 \
-    AUTO_ROUTER_CACHE_DIR=/tmp/bench-cache
+    AUTO_ROUTER_CACHE_DIR=/tmp/bench-cache \
+    LOG_APP=whichmodel LOG_IP=0 LOG_UA=0 LOG_ASGI_TARGET=app.main:app
 
 EXPOSE 8080
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --no-access-log"]
+CMD ["sh", "-c", "uvicorn logkit_asgi:app --host 0.0.0.0 --port ${PORT} --no-access-log"]
