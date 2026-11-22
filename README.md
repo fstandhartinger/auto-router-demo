@@ -142,7 +142,7 @@ behind these projects.
 
 ## Credit
 
-Classifier: [s1-llm-auto-router](https://huggingface.co/decisionmodels/s1-llm-auto-router) by [Decision Models](https://decisionmodels.io) (MIT, open weights); answer check: **Jev** by [TypeSafe AI](https://typesafe.ai). Model data: **Benchmark Heaven**, which
+Classifier: [s1-llm-auto-router](https://huggingface.co/decisionmodels/s1-llm-auto-router) by [Decision Models](https://decisionmodels.io/?utm_source=github&utm_medium=readme&utm_campaign=auto-router-demo) (MIT, open weights); answer check: **Jev** by [TypeSafe AI](https://typesafe.ai). Model data: **Benchmark Heaven**, which
 serves numbers from [Artificial Analysis](https://artificialanalysis.ai) and
 [Epoch AI](https://epoch.ai). Router: [auto-model-router](https://github.com/fstandhartinger/auto-model-router), MIT.
 
