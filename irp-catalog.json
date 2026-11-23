@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-23T18:30:14Z",
+ "generated_at": "2026-11-23T21:23:03Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -133,10 +133,10 @@
      },
      "designarena": {
       "fullstack": {
-       "battles": 364,
-       "elo": 1411,
+       "battles": 369,
+       "elo": 1475,
        "modelId": "claude-fable-5-2",
-       "winRate": 73.3
+       "winRate": 72.9
       }
      },
      "display_name": "Claude Fable 5.2",
@@ -375,13 +375,13 @@
      "designarena": {
       "frontend": {
        "battles": 2698,
-       "elo": 1127,
+       "elo": 1126,
        "modelId": "claude-opus-4-5-20251101",
        "winRate": 55.1
       },
       "fullstack": {
        "battles": 1397,
-       "elo": 1134,
+       "elo": 1203,
        "modelId": "claude-opus-4-5-20251101",
        "winRate": 60.1
       }
@@ -734,7 +734,7 @@
       },
       "fullstack": {
        "battles": 629,
-       "elo": 1029,
+       "elo": 1097,
        "modelId": "claude-sonnet-4-5-20250929",
        "winRate": 43.7
       }
@@ -1536,18 +1536,18 @@
      "id": "deepseek-v4-pro::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.05474,
+       "cache_read_per_1m": 0.05096,
        "context_length": 1048576,
-       "input_per_1m": 0.66079,
-       "output_per_1m": 1.32158,
+       "input_per_1m": 0.61516,
+       "output_per_1m": 1.23032,
        "platform": "OpenRouter",
        "provider": "Baidu"
       },
       {
-       "cache_read_per_1m": 0.055187,
+       "cache_read_per_1m": 0.0514025,
        "context_length": 1024000,
-       "input_per_1m": 0.662244,
-       "output_per_1m": 1.324488,
+       "input_per_1m": 0.61683,
+       "output_per_1m": 1.23366,
        "platform": "OpenRouter",
        "provider": "StreamLake"
       },
@@ -1569,8 +1569,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro",
    "prices": {
-    "input": 0.66079,
-    "output": 1.32158
+    "input": 0.61516,
+    "output": 1.23032
    }
   },
   {
@@ -2276,13 +2276,13 @@
      "designarena": {
       "frontend": {
        "battles": 3979,
-       "elo": 1078,
+       "elo": 1077,
        "modelId": "gemini-3-flash-preview",
        "winRate": 48.5
       },
       "fullstack": {
        "battles": 2360,
-       "elo": 1041,
+       "elo": 1110,
        "modelId": "gemini-3-flash-preview",
        "winRate": 47.4
       }
@@ -2350,16 +2350,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 6809,
+       "battles": 6814,
        "elo": 1093,
        "modelId": "gemini-3.1-pro-preview",
        "winRate": 44
       },
       "fullstack": {
-       "battles": 4927,
-       "elo": 1046,
+       "battles": 4928,
+       "elo": 1115,
        "modelId": "gemini-3.1-pro-preview",
-       "winRate": 40.5
+       "winRate": 40.4
       }
      },
      "display_name": "Gemini 3.1 Pro Preview",
@@ -2589,14 +2589,14 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3197,
-       "elo": 1166,
+       "battles": 3206,
+       "elo": 1165,
        "modelId": "gemini-3.6-flash",
-       "winRate": 45.2
+       "winRate": 45.1
       },
       "fullstack": {
-       "battles": 3106,
-       "elo": 1157,
+       "battles": 3111,
+       "elo": 1226,
        "modelId": "gemini-3.6-flash",
        "winRate": 43.7
       }
@@ -3009,12 +3009,12 @@
        "provider": "Darkbloom"
       },
       {
-       "cache_read_per_1m": 0.04,
-       "context_length": 262144,
-       "input_per_1m": 0.06,
-       "output_per_1m": 0.33,
+       "cache_read_per_1m": 0.039,
+       "context_length": 262142,
+       "input_per_1m": 0.067,
+       "output_per_1m": 0.29,
        "platform": "OpenRouter",
-       "provider": "DekaLLM"
+       "provider": "Io Net"
       }
      ],
      "open_weights": true,
@@ -3875,13 +3875,13 @@
      "designarena": {
       "frontend": {
        "battles": 4029,
-       "elo": 1174,
+       "elo": 1173,
        "modelId": "evergreen",
        "winRate": 48.5
       },
       "fullstack": {
        "battles": 1602,
-       "elo": 1174,
+       "elo": 1242,
        "modelId": "evergreen",
        "winRate": 44.5
       }
@@ -3954,14 +3954,14 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 2306,
-       "elo": 1191,
+       "battles": 2307,
+       "elo": 1190,
        "modelId": "muse-spark-1.2",
        "winRate": 49.9
       },
       "fullstack": {
        "battles": 2047,
-       "elo": 1186,
+       "elo": 1255,
        "modelId": "muse-spark-1.2",
        "winRate": 47.1
       }
@@ -5108,8 +5108,8 @@
       },
       {
        "context_length": 256000,
-       "input_per_1m": 1.65,
-       "output_per_1m": 8.24,
+       "input_per_1m": 1.64,
+       "output_per_1m": 8.2,
        "platform": "Scaleway",
        "provider": "Scaleway"
       }
@@ -5362,13 +5362,13 @@
      "designarena": {
       "frontend": {
        "battles": 3437,
-       "elo": 1103,
+       "elo": 1102,
        "modelId": "kimi-k2.5",
        "winRate": 51.6
       },
       "fullstack": {
        "battles": 1788,
-       "elo": 1092,
+       "elo": 1160,
        "modelId": "kimi-k2.5",
        "winRate": 54.4
       }
@@ -5426,8 +5426,8 @@
      },
      "designarena": {
       "fullstack": {
-       "battles": 5986,
-       "elo": 1134,
+       "battles": 5985,
+       "elo": 1202,
        "modelId": "kimi-k2.6",
        "winRate": 49.4
       }
@@ -5445,7 +5445,7 @@
        "provider": "Baidu"
       },
       {
-       "cache_read_per_1m": 0.19,
+       "cache_read_per_1m": 0.15,
        "context_length": 262144,
        "input_per_1m": 0.5648,
        "output_per_1m": 2.788,
@@ -5876,17 +5876,17 @@
        "provider": "DeepInfra"
       },
       {
-       "context_length": 262144,
-       "input_per_1m": 0.08,
-       "output_per_1m": 0.45,
-       "platform": "OpenRouter",
-       "provider": "DekaLLM"
-      },
-      {
        "input_per_1m": 0.18,
        "output_per_1m": 0.78,
        "platform": "AWS Bedrock",
        "provider": "AWS Bedrock"
+      },
+      {
+       "context_length": 262144,
+       "input_per_1m": 0.3,
+       "output_per_1m": 0.9,
+       "platform": "Nebius",
+       "provider": "Nebius"
       }
      ],
      "open_weights": true,
@@ -6579,7 +6579,7 @@
       },
       "fullstack": {
        "battles": 2166,
-       "elo": 1021,
+       "elo": 1089,
        "modelId": "gpt-5.2",
        "winRate": 44.2
       }
@@ -6651,13 +6651,13 @@
      "designarena": {
       "frontend": {
        "battles": 2246,
-       "elo": 1000,
+       "elo": 999,
        "modelId": "gpt-5.3-codex",
        "winRate": 36.9
       },
       "fullstack": {
        "battles": 1111,
-       "elo": 962,
+       "elo": 1030,
        "modelId": "gpt-5.3-codex",
        "winRate": 36.5
       }
@@ -6737,7 +6737,7 @@
       },
       "fullstack": {
        "battles": 2152,
-       "elo": 996,
+       "elo": 1064,
        "modelId": "gpt-5.4",
        "winRate": 40.9
       }
@@ -7587,10 +7587,10 @@
      "id": "gpt-oss-20b::high",
      "offers": [
       {
-       "cache_read_per_1m": 0.0085,
+       "cache_read_per_1m": 0.00765,
        "context_length": 131072,
-       "input_per_1m": 0.017,
-       "output_per_1m": 0.085,
+       "input_per_1m": 0.0153,
+       "output_per_1m": 0.0765,
        "platform": "OpenRouter",
        "provider": "Darkbloom"
       },
@@ -7632,8 +7632,8 @@
    "irp_aliases": [],
    "label": "GPT OSS 20B",
    "prices": {
-    "input": 0.017,
-    "output": 0.085
+    "input": 0.0153,
+    "output": 0.0765
    }
   },
   {
@@ -8060,13 +8060,6 @@
        "input_per_1m": 0.09,
        "output_per_1m": 0.3,
        "platform": "OpenRouter",
-       "provider": "DekaLLM"
-      },
-      {
-       "context_length": 262144,
-       "input_per_1m": 0.09,
-       "output_per_1m": 0.3,
-       "platform": "OpenRouter",
        "provider": "SiliconFlow"
       },
       {
@@ -8074,6 +8067,14 @@
        "input_per_1m": 0.1,
        "output_per_1m": 0.3,
        "platform": "Nebius",
+       "provider": "Nebius"
+      },
+      {
+       "cache_read_per_1m": 0.1,
+       "context_length": 262144,
+       "input_per_1m": 0.1,
+       "output_per_1m": 0.3,
+       "platform": "OpenRouter",
        "provider": "Nebius"
       }
      ],
@@ -9101,16 +9102,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3191,
+       "battles": 3193,
        "elo": 1176,
        "modelId": "qwen3.7-max",
-       "winRate": 48.3
+       "winRate": 48.2
       },
       "fullstack": {
-       "battles": 1532,
-       "elo": 1172,
+       "battles": 1534,
+       "elo": 1241,
        "modelId": "qwen3.7-max",
-       "winRate": 47.4
+       "winRate": 47.5
       }
      },
      "display_name": "Qwen3.7 Max",
@@ -9760,14 +9761,14 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 1892,
+       "battles": 1894,
        "elo": 1269,
        "modelId": "qwen3.8-max",
        "winRate": 59.8
       },
       "fullstack": {
        "battles": 1342,
-       "elo": 1283,
+       "elo": 1351,
        "modelId": "qwen3.8-max",
        "winRate": 61.9
       }
@@ -10097,6 +10098,14 @@
        "output_per_1m": 4.46,
        "platform": "Azure AI Foundry",
        "provider": "Azure AI Foundry"
+      },
+      {
+       "cache_read_per_1m": 0.27,
+       "context_length": 1048576,
+       "input_per_1m": 1.2,
+       "output_per_1m": 5,
+       "platform": "OpenRouter",
+       "provider": "Modal"
       }
      ],
      "open_weights": true,
@@ -10271,16 +10280,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 6062,
-       "elo": 1185,
+       "battles": 6064,
+       "elo": 1184,
        "modelId": "yoda",
        "winRate": 52.9
       },
       "fullstack": {
-       "battles": 2896,
-       "elo": 1226,
+       "battles": 2900,
+       "elo": 1295,
        "modelId": "yoda",
-       "winRate": 59.9
+       "winRate": 60
       }
      },
      "display_name": "Grok 4.5 (High)",
@@ -10723,7 +10732,7 @@
      "designarena": {
       "frontend": {
        "battles": 3262,
-       "elo": 1260,
+       "elo": 1259,
        "modelId": "hampshire",
        "winRate": 58.2
       }
@@ -10926,7 +10935,7 @@
      "designarena": {
       "fullstack": {
        "battles": 1885,
-       "elo": 1007,
+       "elo": 1076,
        "modelId": "glm-4.6",
        "winRate": 42.3
       }
@@ -11061,7 +11070,7 @@
      "designarena": {
       "fullstack": {
        "battles": 1638,
-       "elo": 1028,
+       "elo": 1096,
        "modelId": "glm-4.7",
        "winRate": 45.1
       }
@@ -11199,7 +11208,7 @@
      "designarena": {
       "fullstack": {
        "battles": 4766,
-       "elo": 1101,
+       "elo": 1169,
        "modelId": "glm-5",
        "winRate": 51.7
       }
@@ -11508,7 +11517,7 @@
       },
       "fullstack": {
        "battles": 3949,
-       "elo": 1127,
+       "elo": 1196,
        "modelId": "glm-5v-turbo",
        "winRate": 52.1
       }
