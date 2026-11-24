@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-23T21:23:03Z",
+ "generated_at": "2026-11-24T03:23:02Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -455,16 +455,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4386,
+       "battles": 4387,
        "elo": 1172,
        "modelId": "claude-opus-4-6",
        "winRate": 55.4
       },
       "fullstack": {
-       "battles": 2645,
+       "battles": 2649,
        "elo": 1266,
        "modelId": "claude-opus-4-6",
-       "winRate": 59
+       "winRate": 58.9
       }
      },
      "display_name": "Claude Opus 4.6 (Max)",
@@ -1454,20 +1454,20 @@
      "id": "deepseek-v4-flash::high",
      "offers": [
       {
+       "cache_read_per_1m": 0.0138,
+       "context_length": 1048576,
+       "input_per_1m": 0.0138,
+       "output_per_1m": 0.45,
+       "platform": "OpenRouter",
+       "provider": "Relace"
+      },
+      {
        "cache_read_per_1m": 0.002912,
        "context_length": 1048576,
        "input_per_1m": 0.01456,
        "output_per_1m": 0.02912,
        "platform": "OpenRouter",
        "provider": "Baidu"
-      },
-      {
-       "cache_read_per_1m": 0.05,
-       "context_length": 1048576,
-       "input_per_1m": 0.05,
-       "output_per_1m": 0.45,
-       "platform": "OpenRouter",
-       "provider": "Relace"
       },
       {
        "cache_read_per_1m": 0.014,
@@ -1501,8 +1501,8 @@
    ],
    "label": "DeepSeek V4 Flash",
    "prices": {
-    "input": 0.01456,
-    "output": 0.02912
+    "input": 0.0138,
+    "output": 0.45
    }
   },
   {
@@ -1606,12 +1606,20 @@
      "id": "deepseek-v4-pro-0813::max",
      "offers": [
       {
-       "cache_read_per_1m": 0.12,
+       "cache_read_per_1m": 0.0999,
        "context_length": 1048576,
-       "input_per_1m": 0.1188,
+       "input_per_1m": 0.0999,
        "output_per_1m": 5,
        "platform": "OpenRouter",
        "provider": "Relace"
+      },
+      {
+       "cache_read_per_1m": 0.097,
+       "context_length": 1048576,
+       "input_per_1m": 0.111,
+       "output_per_1m": 4.44,
+       "platform": "OpenRouter",
+       "provider": "Wafer"
       },
       {
        "cache_read_per_1m": 0.0042,
@@ -1620,14 +1628,6 @@
        "output_per_1m": 0.396,
        "platform": "OpenRouter",
        "provider": "Baidu"
-      },
-      {
-       "cache_read_per_1m": 0.284,
-       "context_length": 1048576,
-       "input_per_1m": 0.285,
-       "output_per_1m": 4.3,
-       "platform": "OpenRouter",
-       "provider": "Wafer"
       }
      ],
      "open_weights": true,
@@ -1651,7 +1651,7 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro 0813",
    "prices": {
-    "input": 0.1188,
+    "input": 0.0999,
     "output": 5
    }
   },
@@ -1685,20 +1685,20 @@
      "id": "deepseek-v4.1-flash-1017::high",
      "offers": [
       {
+       "cache_read_per_1m": 0.001,
+       "context_length": 1048576,
+       "input_per_1m": 0.03,
+       "output_per_1m": 0.2,
+       "platform": "OpenRouter",
+       "provider": "Tenstorrent"
+      },
+      {
        "cache_read_per_1m": 0.01,
        "context_length": 1048576,
        "input_per_1m": 0.036,
        "output_per_1m": 0.5,
        "platform": "OpenRouter",
        "provider": "Wafer"
-      },
-      {
-       "cache_read_per_1m": 0.007,
-       "context_length": 1048576,
-       "input_per_1m": 0.04,
-       "output_per_1m": 0.1,
-       "platform": "OpenRouter",
-       "provider": "Sail Research"
       },
       {
        "cache_read_per_1m": 0.007,
@@ -1730,8 +1730,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4.1 Flash 1017",
    "prices": {
-    "input": 0.036,
-    "output": 0.5
+    "input": 0.03,
+    "output": 0.2
    }
   },
   {
@@ -2829,10 +2829,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 678,
+       "battles": 681,
        "elo": 1276,
        "modelId": "gemini-4-argon",
-       "winRate": 48.2
+       "winRate": 48.5
       }
      },
      "display_name": "Gemini 4 Argon (High)",
@@ -2858,8 +2858,8 @@
        "provider": "Google AI Studio"
       },
       {
-       "input_per_1m": 4.35,
-       "output_per_1m": 21.76,
+       "input_per_1m": 4.33,
+       "output_per_1m": 21.66,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
       }
@@ -4536,13 +4536,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4115,
+       "battles": 4124,
        "elo": 1177,
        "modelId": "minimax-m3",
        "winRate": 47.7
       },
       "fullstack": {
-       "battles": 3866,
+       "battles": 3871,
        "elo": 1248,
        "modelId": "minimax-m3",
        "winRate": 47.5
@@ -10005,10 +10005,10 @@
      "id": "hy3::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.033,
+       "cache_read_per_1m": 0.020625,
        "context_length": 262144,
-       "input_per_1m": 0.132,
-       "output_per_1m": 0.528,
+       "input_per_1m": 0.0825,
+       "output_per_1m": 0.33,
        "platform": "OpenRouter",
        "provider": "Tencent"
       },
@@ -10042,8 +10042,8 @@
    "irp_aliases": [],
    "label": "Hy3",
    "prices": {
-    "input": 0.132,
-    "output": 0.528
+    "input": 0.0825,
+    "output": 0.33
    }
   },
   {
@@ -11336,13 +11336,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 7343,
+       "battles": 7345,
        "elo": 1143,
        "modelId": "glm-5.1",
        "winRate": 50.4
       },
       "fullstack": {
-       "battles": 3952,
+       "battles": 3953,
        "elo": 1214,
        "modelId": "glm-5.1",
        "winRate": 53
