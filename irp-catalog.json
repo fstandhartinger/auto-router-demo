@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-26T06:30:11Z",
+ "generated_at": "2026-11-26T09:23:04Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -455,8 +455,8 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4389,
-       "elo": 1172,
+       "battles": 4390,
+       "elo": 1174,
        "modelId": "claude-opus-4-6",
        "winRate": 55.4
       },
@@ -722,7 +722,7 @@
      "designarena": {
       "frontend": {
        "battles": 1503,
-       "elo": 1026,
+       "elo": 1028,
        "modelId": "claude-sonnet-4-5-20250929",
        "winRate": 43.2
       },
@@ -801,7 +801,7 @@
      "designarena": {
       "frontend": {
        "battles": 2824,
-       "elo": 1157,
+       "elo": 1159,
        "modelId": "claude-sonnet-4-6",
        "winRate": 56.9
       },
@@ -1336,10 +1336,10 @@
        "provider": "Fireworks"
       },
       {
-       "cache_read_per_1m": 0.014,
+       "cache_read_per_1m": 0.01652,
        "context_length": 1024000,
-       "input_per_1m": 0.07,
-       "output_per_1m": 0.14,
+       "input_per_1m": 0.0826,
+       "output_per_1m": 0.1652,
        "platform": "OpenRouter",
        "provider": "StreamLake"
       }
@@ -1472,20 +1472,20 @@
      "id": "deepseek-v4-pro-0813::max",
      "offers": [
       {
-       "cache_read_per_1m": 0.0999,
-       "context_length": 1048576,
-       "input_per_1m": 0.0999,
-       "output_per_1m": 5,
-       "platform": "OpenRouter",
-       "provider": "Relace"
-      },
-      {
        "cache_read_per_1m": 0.097,
        "context_length": 1048576,
        "input_per_1m": 0.111,
        "output_per_1m": 4.44,
        "platform": "OpenRouter",
        "provider": "Wafer"
+      },
+      {
+       "cache_read_per_1m": 0.125,
+       "context_length": 1048576,
+       "input_per_1m": 0.25,
+       "output_per_1m": 5,
+       "platform": "OpenRouter",
+       "provider": "Relace"
       },
       {
        "cache_read_per_1m": 0.284,
@@ -1517,8 +1517,8 @@
    "irp_aliases": [],
    "label": "DeepSeek V4 Pro 0813",
    "prices": {
-    "input": 0.0999,
-    "output": 5
+    "input": 0.111,
+    "output": 4.44
    }
   },
   {
@@ -2196,7 +2196,7 @@
      "designarena": {
       "frontend": {
        "battles": 3979,
-       "elo": 1077,
+       "elo": 1079,
        "modelId": "gemini-3-flash-preview",
        "winRate": 48.5
       },
@@ -2509,13 +2509,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3216,
-       "elo": 1164,
+       "battles": 3226,
+       "elo": 1166,
        "modelId": "gemini-3.6-flash",
        "winRate": 45
       },
       "fullstack": {
-       "battles": 3117,
+       "battles": 3123,
        "elo": 1226,
        "modelId": "gemini-3.6-flash",
        "winRate": 43.7
@@ -2749,10 +2749,10 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 682,
+       "battles": 684,
        "elo": 1276,
        "modelId": "gemini-4-argon",
-       "winRate": 48.4
+       "winRate": 48.3
       }
      },
      "display_name": "Gemini 4 Argon (High)",
@@ -2778,8 +2778,8 @@
        "provider": "Google AI Studio"
       },
       {
-       "input_per_1m": 4.34,
-       "output_per_1m": 21.71,
+       "input_per_1m": 4.33,
+       "output_per_1m": 21.65,
        "platform": "T-Systems LLM Hub",
        "provider": "T-Systems LLM Hub"
       }
@@ -3189,7 +3189,7 @@
      "designarena": {
       "frontend": {
        "battles": 3434,
-       "elo": 1111,
+       "elo": 1113,
        "modelId": "grok-4.20-0309-reasoning",
        "winRate": 49.7
       },
@@ -3788,16 +3788,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4030,
-       "elo": 1173,
+       "battles": 4033,
+       "elo": 1175,
        "modelId": "evergreen",
        "winRate": 48.5
       },
       "fullstack": {
-       "battles": 1603,
+       "battles": 1605,
        "elo": 1242,
        "modelId": "evergreen",
-       "winRate": 44.5
+       "winRate": 44.4
       }
      },
      "display_name": "Muse Spark 1.1 (Xhigh)",
@@ -3869,12 +3869,12 @@
      "designarena": {
       "frontend": {
        "battles": 2308,
-       "elo": 1190,
+       "elo": 1192,
        "modelId": "muse-spark-1.2",
        "winRate": 49.8
       },
       "fullstack": {
-       "battles": 2047,
+       "battles": 2052,
        "elo": 1255,
        "modelId": "muse-spark-1.2",
        "winRate": 47.1
@@ -4513,13 +4513,13 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 4131,
-       "elo": 1178,
+       "battles": 4137,
+       "elo": 1180,
        "modelId": "minimax-m3",
        "winRate": 47.8
       },
       "fullstack": {
-       "battles": 3874,
+       "battles": 3876,
        "elo": 1249,
        "modelId": "minimax-m3",
        "winRate": 47.5
@@ -5225,7 +5225,7 @@
      "designarena": {
       "frontend": {
        "battles": 3437,
-       "elo": 1102,
+       "elo": 1104,
        "modelId": "kimi-k2.5",
        "winRate": 51.6
       },
@@ -6380,7 +6380,7 @@
      "designarena": {
       "frontend": {
        "battles": 3571,
-       "elo": 1052,
+       "elo": 1054,
        "modelId": "gpt-5.2",
        "winRate": 45.5
       },
@@ -6458,7 +6458,7 @@
      "designarena": {
       "frontend": {
        "battles": 2246,
-       "elo": 999,
+       "elo": 1001,
        "modelId": "gpt-5.3-codex",
        "winRate": 36.9
       },
@@ -8886,16 +8886,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 3194,
-       "elo": 1175,
+       "battles": 3195,
+       "elo": 1177,
        "modelId": "qwen3.7-max",
        "winRate": 48.2
       },
       "fullstack": {
-       "battles": 1534,
-       "elo": 1241,
+       "battles": 1538,
+       "elo": 1240,
        "modelId": "qwen3.7-max",
-       "winRate": 47.5
+       "winRate": 47.3
       }
      },
      "display_name": "Qwen3.7 Max",
@@ -9856,7 +9856,7 @@
      "designarena": {
       "frontend": {
        "battles": 1207,
-       "elo": 1162,
+       "elo": 1164,
        "modelId": "inkling",
        "winRate": 48.6
       }
@@ -9923,7 +9923,7 @@
      "designarena": {
       "frontend": {
        "battles": 2837,
-       "elo": 1281,
+       "elo": 1283,
        "modelId": "california",
        "winRate": 55.3
       }
@@ -10383,7 +10383,7 @@
      "designarena": {
       "frontend": {
        "battles": 3262,
-       "elo": 1259,
+       "elo": 1261,
        "modelId": "hampshire",
        "winRate": 58.2
       }
@@ -10523,14 +10523,6 @@
      "id": "glm-4.5-air::default",
      "offers": [
       {
-       "cache_read_per_1m": 0.025,
-       "context_length": 131072,
-       "input_per_1m": 0.13,
-       "output_per_1m": 0.85,
-       "platform": "OpenRouter",
-       "provider": "Novita"
-      },
-      {
        "context_length": 131072,
        "input_per_1m": 0.14,
        "output_per_1m": 0.86,
@@ -10555,8 +10547,8 @@
    "irp_aliases": [],
    "label": "GLM 4.5 Air",
    "prices": {
-    "input": 0.13,
-    "output": 0.85
+    "input": 0.14,
+    "output": 0.86
    }
   },
   {
@@ -10662,14 +10654,6 @@
      "family_key": "glm-4.6v",
      "id": "glm-4.6v::reasoning",
      "offers": [
-      {
-       "cache_read_per_1m": 0.055,
-       "context_length": 131072,
-       "input_per_1m": 0.3,
-       "output_per_1m": 0.9,
-       "platform": "OpenRouter",
-       "provider": "Novita"
-      },
       {
        "cache_read_per_1m": 0.05,
        "context_length": 131072,
@@ -10801,14 +10785,6 @@
        "output_per_1m": 0.4,
        "platform": "OpenRouter",
        "provider": "Cloudflare"
-      },
-      {
-       "cache_read_per_1m": 0.01,
-       "context_length": 200000,
-       "input_per_1m": 0.07,
-       "output_per_1m": 0.4,
-       "platform": "OpenRouter",
-       "provider": "Novita"
       },
       {
        "input_per_1m": 0.08,
@@ -10987,16 +10963,16 @@
      },
      "designarena": {
       "frontend": {
-       "battles": 7347,
-       "elo": 1143,
+       "battles": 7348,
+       "elo": 1145,
        "modelId": "glm-5.1",
        "winRate": 50.4
       },
       "fullstack": {
-       "battles": 3953,
+       "battles": 3954,
        "elo": 1214,
        "modelId": "glm-5.1",
-       "winRate": 53
+       "winRate": 52.9
       }
      },
      "display_name": "GLM-5.1 (Reasoning)",
@@ -11162,7 +11138,7 @@
      "designarena": {
       "frontend": {
        "battles": 5386,
-       "elo": 1091,
+       "elo": 1093,
        "modelId": "glm-5v-turbo",
        "winRate": 44.7
       },
