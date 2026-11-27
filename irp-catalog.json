@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T15:23:02Z",
+ "generated_at": "2026-11-27T18:29:13Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -12,7 +12,7 @@
    "core": true,
    "id": "anthropic/claude-opus-5",
    "irp_aliases": [
-    "claude-opus-5:fast"
+    "claude-opus-5-fast"
    ]
   },
   {
@@ -1074,6 +1074,48 @@
    }
   },
   {
+   "bench_id": "deepseek-r1-0528-qwen3-8b::default",
+   "context_tokens": 32768,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 32768
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.612,
+      "aa_hle": 0.059,
+      "aa_intelligence_index": 3.6,
+      "aa_lcr": 0.15,
+      "aa_livecodebench": 0.513,
+      "aa_math_index": 63.7,
+      "aa_mmlu_pro": 0.739,
+      "aa_scicode": null,
+      "aa_tau2": 0,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.0151515151515152,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "DeepSeek R1 0528 Qwen3 8B",
+     "family_key": "deepseek-r1-0528-qwen3-8b",
+     "id": "deepseek-r1-0528-qwen3-8b::default",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-05-29",
+     "variant": "default"
+    }
+   },
+   "id": "deepseek-r1-0528-qwen3-8b",
+   "irp_aliases": [],
+   "label": "DeepSeek R1 0528 Qwen3 8B",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "deepseek-r1-distill-llama-70b::default",
    "context_tokens": 128000,
    "core": false,
@@ -1631,6 +1673,82 @@
    }
   },
   {
+   "bench_id": "gemini-2.5-pro::default",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": 33.3,
+      "aa_gpqa": 0.844,
+      "aa_hle": 0.225,
+      "aa_intelligence_index": 6.2,
+      "aa_lcr": 0.69,
+      "aa_livecodebench": 0.801,
+      "aa_math_index": 87.7,
+      "aa_mmlu_pro": 0.862,
+      "aa_scicode": 0.463,
+      "aa_tau2": 0.54093567251462,
+      "aa_tau_banking": 0.0969072164948454,
+      "aa_terminalbench_hard": 0.265151515151515,
+      "aa_terminalbench_v2_1": 0.284644194756554
+     },
+     "designarena": {},
+     "display_name": "Gemini 2.5 Pro",
+     "family_key": "gemini-2.5-pro",
+     "id": "gemini-2.5-pro::default",
+     "offers": [
+      {
+       "input_per_1m": 1.25,
+       "output_per_1m": 10,
+       "platform": "Google Vertex AI",
+       "provider": "Google Vertex AI"
+      },
+      {
+       "input_per_1m": 1.25,
+       "output_per_1m": 10,
+       "platform": "Google Vertex AI",
+       "provider": "Google Vertex AI"
+      },
+      {
+       "cache_read_per_1m": 0.125,
+       "cache_write_per_1m": 0.375,
+       "context_length": 1048576,
+       "input_per_1m": 1.25,
+       "output_per_1m": 10,
+       "platform": "OpenRouter",
+       "provider": "Google AI Studio"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-06-05",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-10-27T05:29:24.667Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 10549.36492895319
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "gemini-2.5-pro",
+   "irp_aliases": [],
+   "label": "Gemini 2.5 Pro",
+   "prices": {
+    "input": 1.25,
+    "output": 10
+   }
+  },
+  {
    "bench_id": "gemini-3.1-flash-lite::default",
    "context_tokens": 1000000,
    "core": false,
@@ -1779,7 +1897,8 @@
    },
    "id": "gemma-3-27b-instruct",
    "irp_aliases": [
-    "gemma-3-27b"
+    "gemma-3-27b",
+    "gemma-3-27b-it"
    ],
    "label": "Gemma 3 27B Instruct",
    "prices": {
@@ -1834,6 +1953,70 @@
    "prices": {
     "input": 0.048,
     "output": 0.096
+   }
+  },
+  {
+   "bench_id": "gemini-2.5-flash::non-reasoning",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.683,
+      "aa_hle": 0.047,
+      "aa_intelligence_index": 4.5,
+      "aa_lcr": 0.499,
+      "aa_livecodebench": 0.495,
+      "aa_math_index": 60.3,
+      "aa_mmlu_pro": 0.809,
+      "aa_scicode": null,
+      "aa_tau2": 0.149122807017544,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.121212121212121,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Gemini 2.5 Flash (Non-reasoning)",
+     "family_key": "gemini-2.5-flash",
+     "id": "gemini-2.5-flash::non-reasoning",
+     "offers": [
+      {
+       "input_per_1m": 0.3,
+       "output_per_1m": 2.5,
+       "platform": "Google Vertex AI",
+       "provider": "Google Vertex AI"
+      },
+      {
+       "input_per_1m": 0.3,
+       "output_per_1m": 2.5,
+       "platform": "Google Vertex AI",
+       "provider": "Google Vertex AI"
+      },
+      {
+       "cache_read_per_1m": 0.03,
+       "cache_write_per_1m": 0.0833333333333333,
+       "context_length": 1048576,
+       "input_per_1m": 0.3,
+       "output_per_1m": 2.5,
+       "platform": "OpenRouter",
+       "provider": "Google AI Studio"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-05-20",
+     "variant": "non-reasoning"
+    }
+   },
+   "id": "google/gemini-2.5-flash",
+   "irp_aliases": [],
+   "label": "Gemini 2.5 Flash",
+   "prices": {
+    "input": 0.3,
+    "output": 2.5
    }
   },
   {
@@ -2611,8 +2794,7 @@
    },
    "id": "google/gemma-4-26b-a4b-it",
    "irp_aliases": [
-    "gemma-4-26b-a4b",
-    "google-gemma-4-26b-a4b-instruct"
+    "gemma-4-26b-a4b"
    ],
    "label": "Gemma 4 26B A4b It",
    "prices": {
@@ -2695,8 +2877,7 @@
    },
    "id": "google/gemma-4-31b-it",
    "irp_aliases": [
-    "gemma-4-31b",
-    "google-gemma-4-31b-instruct"
+    "gemma-4-31b"
    ],
    "label": "Gemma 4 31B It",
    "prices": {
@@ -2896,6 +3077,92 @@
    }
   },
   {
+   "bench_id": "grok-build-0.1-0616::default",
+   "context_tokens": 256000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 256000
+     },
+     "benchmarks": {
+      "aa_coding_index": 51.5,
+      "aa_gpqa": 0.895,
+      "aa_hle": 0.383,
+      "aa_intelligence_index": 16.6,
+      "aa_lcr": 0.746666666666667,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": null,
+      "aa_tau2": null,
+      "aa_tau_banking": 0.134020618556701,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": 0.52059925093633
+     },
+     "designarena": {},
+     "display_name": "Grok Build 0.1 0616",
+     "family_key": "grok-build-0.1-0616",
+     "id": "grok-build-0.1-0616::default",
+     "offers": [],
+     "open_weights": false,
+     "release_date": "2026-06-16",
+     "variant": "default"
+    }
+   },
+   "id": "grok-build-0.1-0616",
+   "irp_aliases": [
+    "grok-build-0-1"
+   ],
+   "label": "Grok Build 0.1 0616",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
+   "bench_id": "kimi-k2::default",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.766,
+      "aa_hle": 0.074,
+      "aa_intelligence_index": 5.4,
+      "aa_lcr": 0.53,
+      "aa_livecodebench": 0.556,
+      "aa_math_index": 57,
+      "aa_mmlu_pro": 0.824,
+      "aa_scicode": null,
+      "aa_tau2": 0.611111111111111,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.159090909090909,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Kimi K2",
+     "family_key": "kimi-k2",
+     "id": "kimi-k2::default",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-07-11",
+     "variant": "default"
+    }
+   },
+   "id": "kimi-k2",
+   "irp_aliases": [],
+   "label": "Kimi K2",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
    "bench_id": "kimi-k2-thinking::default",
    "context_tokens": 256000,
    "core": false,
@@ -3056,58 +3323,6 @@
    "prices": {
     "input": 0.6,
     "output": 1.8
-   }
-  },
-  {
-   "bench_id": "llama-3.2-3b-instruct::default",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.255,
-      "aa_hle": 0.053,
-      "aa_intelligence_index": 2.3,
-      "aa_lcr": 0.0433333333333333,
-      "aa_livecodebench": 0.083,
-      "aa_math_index": 3.3,
-      "aa_mmlu_pro": 0.347,
-      "aa_scicode": null,
-      "aa_tau2": 0.210526315789474,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": null,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "Llama 3.2 Instruct 3B",
-     "family_key": "llama-3.2-3b-instruct",
-     "id": "llama-3.2-3b-instruct::default",
-     "offers": [
-      {
-       "context_length": 131072,
-       "input_per_1m": 0.05,
-       "output_per_1m": 0.33,
-       "platform": "OpenRouter",
-       "provider": "Parasail"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2024-09-25",
-     "variant": "default"
-    }
-   },
-   "id": "meta-llama/llama-3.2-3b-instruct",
-   "irp_aliases": [
-    "llama-3.2-3b"
-   ],
-   "label": "Llama 3.2 3B Instruct",
-   "prices": {
-    "input": 0.05,
-    "output": 0.33
    }
   },
   {
@@ -3691,60 +3906,6 @@
    "id": "mimo-v2.5",
    "irp_aliases": [],
    "label": "MiMo V2.5",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
-   }
-  },
-  {
-   "bench_id": "mimo-v2.5-pro::reasoning",
-   "context_tokens": 1000000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 1000000
-     },
-     "benchmarks": {
-      "aa_coding_index": 60.2,
-      "aa_gpqa": 0.866,
-      "aa_hle": 0.357,
-      "aa_intelligence_index": 13.7,
-      "aa_lcr": 0.796666666666667,
-      "aa_livecodebench": null,
-      "aa_math_index": null,
-      "aa_mmlu_pro": null,
-      "aa_scicode": 0.506,
-      "aa_tau2": 0.941520467836257,
-      "aa_tau_banking": 0.0989690721649484,
-      "aa_terminalbench_hard": 0.431818181818182,
-      "aa_terminalbench_v2_1": 0.651685393258427
-     },
-     "designarena": {},
-     "display_name": "MiMo-V2.5-Pro (Reasoning)",
-     "family_key": "mimo-v2.5-pro",
-     "id": "mimo-v2.5-pro::reasoning",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2026-04-22",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 29884.92268012666
-        }
-       }
-      }
-     },
-     "variant": "reasoning"
-    }
-   },
-   "id": "mimo-v2.5-pro",
-   "irp_aliases": [],
-   "label": "MiMo V2.5 Pro",
    "prices": {
     "input": 0.0,
     "output": 0.0
@@ -4777,7 +4938,8 @@
    },
    "id": "moonshotai/kimi-k3",
    "irp_aliases": [
-    "kimi-k3-fast"
+    "kimi-k3-fast-api",
+    "kimi-k3:fast"
    ],
    "label": "Kimi K3",
    "prices": {
@@ -4992,7 +5154,7 @@
    },
    "id": "nvidia/nemotron-3-nano-30b-a3b",
    "irp_aliases": [
-    "nvidia-nemotron-3-nano-30b"
+    "nvidia-nemotron-3-nano-30b-a3b"
    ],
    "label": "Nemotron 3 Nano 30B A3b",
    "prices": {
@@ -5239,6 +5401,151 @@
    }
   },
   {
+   "bench_id": "nemotron-3.5-super-vl::default",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": null,
+      "aa_hle": 0.307,
+      "aa_intelligence_index": 13.6,
+      "aa_lcr": 0.69,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.478,
+      "aa_tau2": null,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Nemotron 3.5 Super VL",
+     "family_key": "nemotron-3.5-super-vl",
+     "id": "nemotron-3.5-super-vl::default",
+     "offers": [
+      {
+       "context_length": 1000000,
+       "input_per_1m": 0,
+       "output_per_1m": 0,
+       "platform": "OpenRouter",
+       "provider": "Nvidia"
+      },
+      {
+       "cache_read_per_1m": 0.01,
+       "context_length": 262144,
+       "input_per_1m": 0.06,
+       "output_per_1m": 0.35,
+       "platform": "OpenRouter",
+       "provider": "Darkbloom"
+      },
+      {
+       "cache_read_per_1m": 0.08,
+       "context_length": 1048576,
+       "input_per_1m": 0.1,
+       "output_per_1m": 0.4,
+       "platform": "OpenRouter",
+       "provider": "Crusoe"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2026-10-15",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-11-04T08:51:51.964Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 81434.63441391091
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "nvidia/nemotron-3.5-super-vl",
+   "irp_aliases": [],
+   "label": "Nemotron 3.5 Super Vl",
+   "prices": {
+    "input": 0,
+    "output": 0.0
+   }
+  },
+  {
+   "bench_id": "gpt-4.1::default",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.666,
+      "aa_hle": 0.042,
+      "aa_intelligence_index": 5.4,
+      "aa_lcr": 0.683333333333333,
+      "aa_livecodebench": 0.457,
+      "aa_math_index": 34.7,
+      "aa_mmlu_pro": 0.806,
+      "aa_scicode": null,
+      "aa_tau2": 0.470760233918129,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.136363636363636,
+      "aa_terminalbench_v2_1": null,
+      "epoch_eci": 136.14,
+      "epoch_eci_software": 138.95774091447157
+     },
+     "designarena": {},
+     "display_name": "GPT-4.1",
+     "family_key": "gpt-4.1",
+     "id": "gpt-4.1::default",
+     "offers": [
+      {
+       "input_per_1m": 2,
+       "output_per_1m": 8,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "cache_read_per_1m": 0.5,
+       "context_length": 1047576,
+       "input_per_1m": 2,
+       "output_per_1m": 8,
+       "platform": "OpenRouter",
+       "provider": "Azure"
+      },
+      {
+       "cache_read_per_1m": 0.5,
+       "context_length": 1047576,
+       "input_per_1m": 2,
+       "output_per_1m": 8,
+       "platform": "OpenRouter",
+       "provider": "OpenAI"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-04-14",
+     "variant": "default"
+    }
+   },
+   "id": "openai/gpt-4.1",
+   "irp_aliases": [],
+   "label": "GPT 4.1",
+   "prices": {
+    "input": 2,
+    "output": 8
+   }
+  },
+  {
    "bench_id": "gpt-4o-mini::default",
    "context_tokens": 128000,
    "core": false,
@@ -5303,6 +5610,71 @@
    "prices": {
     "input": 0.15,
     "output": 0.6
+   }
+  },
+  {
+   "bench_id": "gpt-5-mini::medium",
+   "context_tokens": 400000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 400000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.803,
+      "aa_hle": 0.159,
+      "aa_intelligence_index": 9.8,
+      "aa_lcr": 0.723333333333333,
+      "aa_livecodebench": 0.692,
+      "aa_math_index": 85,
+      "aa_mmlu_pro": 0.828,
+      "aa_scicode": null,
+      "aa_tau2": 0.710526315789474,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.287878787878788,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "GPT-5 mini (Medium)",
+     "family_key": "gpt-5-mini",
+     "id": "gpt-5-mini::medium",
+     "offers": [
+      {
+       "input_per_1m": 0.25,
+       "output_per_1m": 2,
+       "platform": "Azure AI Foundry",
+       "provider": "Azure AI Foundry"
+      },
+      {
+       "cache_read_per_1m": 0.03,
+       "context_length": 400000,
+       "input_per_1m": 0.25,
+       "output_per_1m": 2,
+       "platform": "OpenRouter",
+       "provider": "Azure"
+      },
+      {
+       "cache_read_per_1m": 0.025,
+       "context_length": 400000,
+       "input_per_1m": 0.25,
+       "output_per_1m": 2,
+       "platform": "OpenRouter",
+       "provider": "OpenAI"
+      }
+     ],
+     "open_weights": false,
+     "release_date": "2025-08-07",
+     "variant": "medium"
+    }
+   },
+   "id": "openai/gpt-5-mini",
+   "irp_aliases": [],
+   "label": "GPT 5 Mini",
+   "prices": {
+    "input": 0.25,
+    "output": 2
    }
   },
   {
@@ -6673,69 +7045,6 @@
    }
   },
   {
-   "bench_id": "qwen3-235b-a22b-thinking-2507::reasoning",
-   "context_tokens": 256000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 256000
-     },
-     "benchmarks": {
-      "aa_agentic_index": 1.3,
-      "aa_coding_index": 22.1,
-      "aa_gpqa": 0.79,
-      "aa_hle": 0.159,
-      "aa_intelligence_index": 5.4,
-      "aa_lcr": 0.72,
-      "aa_livecodebench": 0.788,
-      "aa_math_index": 91,
-      "aa_mmlu_pro": 0.843,
-      "aa_scicode": 0.414,
-      "aa_tau2": 0.532163742690059,
-      "aa_tau_banking": 0.0783505154639175,
-      "aa_terminalbench_hard": 0.136363636363636,
-      "aa_terminalbench_v2_1": 0.119850187265918
-     },
-     "designarena": {},
-     "display_name": "Qwen3 235B A22B 2507 (Reasoning)",
-     "family_key": "qwen3-235b-a22b-thinking-2507",
-     "id": "qwen3-235b-a22b-thinking-2507::reasoning",
-     "offers": [
-      {
-       "context_length": 128000,
-       "input_per_1m": 0.45,
-       "output_per_1m": 3.5,
-       "platform": "OpenRouter",
-       "provider": "Venice"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2025-07-25",
-     "token_efficiency": {
-      "aa": {
-       "tokens_per_task": {
-        "basis": "measured",
-        "collected_at": "2026-10-27T05:29:24.667Z",
-        "scope": "aa_intelligence_index_benchmark",
-        "value": {
-         "output": 24888.768976802337
-        }
-       }
-      }
-     },
-     "variant": "reasoning"
-    }
-   },
-   "id": "qwen/qwen3-235b-a22b-thinking-2507",
-   "irp_aliases": [],
-   "label": "Qwen3 235B A22b Thinking 2507",
-   "prices": {
-    "input": 0.45,
-    "output": 3.5
-   }
-  },
-  {
    "bench_id": "qwen3-32b::reasoning",
    "context_tokens": 32768,
    "core": false,
@@ -6929,68 +7238,13 @@
     }
    },
    "id": "qwen/qwen3-coder-next",
-   "irp_aliases": [],
+   "irp_aliases": [
+    "qwen3-coder-next-80b"
+   ],
    "label": "Qwen3 Coder Next",
    "prices": {
     "input": 0.12,
     "output": 0.8
-   }
-  },
-  {
-   "bench_id": "qwen3-vl-30b-a3b-instruct::default",
-   "context_tokens": 256000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 256000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.695,
-      "aa_hle": 0.063,
-      "aa_intelligence_index": 3.5,
-      "aa_lcr": null,
-      "aa_livecodebench": 0.476,
-      "aa_math_index": 72.3,
-      "aa_mmlu_pro": 0.764,
-      "aa_scicode": null,
-      "aa_tau2": 0.190058479532164,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.0606060606060606,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "Qwen3 VL 30B A3B Instruct",
-     "family_key": "qwen3-vl-30b-a3b-instruct",
-     "id": "qwen3-vl-30b-a3b-instruct::default",
-     "offers": [
-      {
-       "context_length": 262144,
-       "input_per_1m": 0.15,
-       "output_per_1m": 0.6,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      },
-      {
-       "context_length": 262144,
-       "input_per_1m": 0.29,
-       "output_per_1m": 1,
-       "platform": "OpenRouter",
-       "provider": "SiliconFlow"
-      }
-     ],
-     "open_weights": true,
-     "release_date": "2025-10-03",
-     "variant": "default"
-    }
-   },
-   "id": "qwen/qwen3-vl-30b-a3b-instruct",
-   "irp_aliases": [],
-   "label": "Qwen3 Vl 30B A3b Instruct",
-   "prices": {
-    "input": 0.15,
-    "output": 0.6
    }
   },
   {
@@ -7270,9 +7524,7 @@
     }
    },
    "id": "qwen/qwen3.5-397b-a17b",
-   "irp_aliases": [
-    "qwen-3.5-397b"
-   ],
+   "irp_aliases": [],
    "label": "Qwen3.5 397B A17b",
    "prices": {
     "input": 0.39,
@@ -8006,70 +8258,48 @@
    }
   },
   {
-   "bench_id": "qwen3-235b-a22b-2507-instruct::default",
-   "context_tokens": 256000,
+   "bench_id": "qwen3-8b::reasoning",
+   "context_tokens": 131072,
    "core": false,
    "document": {
     "model": {
      "aa_metadata": {
-      "context_window_tokens": 256000
+      "context_window_tokens": 131072
      },
      "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.753,
-      "aa_hle": 0.111,
-      "aa_intelligence_index": 5.2,
-      "aa_lcr": 0.339,
-      "aa_livecodebench": 0.524,
-      "aa_math_index": 71.7,
-      "aa_mmlu_pro": 0.828,
-      "aa_scicode": null,
-      "aa_tau2": 0.333333333333333,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.151515151515152,
-      "aa_terminalbench_v2_1": null
+      "aa_agentic_index": 0.8,
+      "aa_coding_index": 9,
+      "aa_gpqa": 0.589,
+      "aa_hle": 0.039,
+      "aa_intelligence_index": 2,
+      "aa_lcr": 0,
+      "aa_livecodebench": 0.406,
+      "aa_math_index": 19,
+      "aa_mmlu_pro": 0.743,
+      "aa_scicode": 0.279,
+      "aa_tau2": 0.277777777777778,
+      "aa_tau_banking": 0.0474226804123711,
+      "aa_terminalbench_hard": 0.0227272727272727,
+      "aa_terminalbench_v2_1": 0.0224719101123595,
+      "epoch_eci": 132.07,
+      "epoch_eci_software": null
      },
      "designarena": {},
-     "display_name": "Qwen3 235B A22B 2507 Instruct",
-     "family_key": "qwen3-235b-a22b-2507-instruct",
-     "id": "qwen3-235b-a22b-2507-instruct::default",
-     "offers": [
-      {
-       "context_length": 262144,
-       "input_per_1m": 0.09,
-       "output_per_1m": 0.55,
-       "platform": "OpenRouter",
-       "provider": "DeepInfra"
-      },
-      {
-       "cache_read_per_1m": 0.05,
-       "context_length": 131072,
-       "input_per_1m": 0.14,
-       "output_per_1m": 0.8,
-       "platform": "OpenRouter",
-       "provider": "Parasail"
-      },
-      {
-       "context_length": 128000,
-       "input_per_1m": 0.15,
-       "output_per_1m": 0.75,
-       "platform": "OpenRouter",
-       "provider": "Venice"
-      }
-     ],
+     "display_name": "Qwen3 8B (Reasoning)",
+     "family_key": "qwen3-8b",
+     "id": "qwen3-8b::reasoning",
+     "offers": [],
      "open_weights": true,
-     "release_date": "2025-07-21",
-     "variant": "default"
+     "release_date": "2025-04-28",
+     "variant": "reasoning"
     }
    },
-   "id": "qwen3-235b-a22b-2507-instruct",
-   "irp_aliases": [
-    "qwen-3-235b-a22b-instruct-2507"
-   ],
-   "label": "Qwen3 235B A22b 2507 Instruct",
+   "id": "qwen3-8b",
+   "irp_aliases": [],
+   "label": "Qwen3 8B",
    "prices": {
-    "input": 0.09,
-    "output": 0.55
+    "input": 0.0,
+    "output": 0.0
    }
   },
   {
@@ -8109,6 +8339,48 @@
    "id": "qwen3-vl-235b-a22b-thinking",
    "irp_aliases": [],
    "label": "Qwen3 Vl 235B A22b Thinking",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
+   }
+  },
+  {
+   "bench_id": "qwen3-vl-30b-a3b-thinking::reasoning",
+   "context_tokens": 256000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 256000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.72,
+      "aa_hle": 0.089,
+      "aa_intelligence_index": 4.3,
+      "aa_lcr": null,
+      "aa_livecodebench": 0.697,
+      "aa_math_index": 82.3,
+      "aa_mmlu_pro": 0.807,
+      "aa_scicode": null,
+      "aa_tau2": 0.198830409356725,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.053030303030303,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Qwen3 VL 30B A3B (Reasoning)",
+     "family_key": "qwen3-vl-30b-a3b-thinking",
+     "id": "qwen3-vl-30b-a3b-thinking::reasoning",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-10-03",
+     "variant": "reasoning"
+    }
+   },
+   "id": "qwen3-vl-30b-a3b-thinking",
+   "irp_aliases": [],
+   "label": "Qwen3 Vl 30B A3b Thinking",
    "prices": {
     "input": 0.0,
     "output": 0.0
@@ -8263,6 +8535,77 @@
    "prices": {
     "input": 0.0,
     "output": 0.0
+   }
+  },
+  {
+   "bench_id": "step-5-preview::default",
+   "context_tokens": 1000000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 1000000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": null,
+      "aa_hle": 0.465,
+      "aa_intelligence_index": 28.5,
+      "aa_lcr": 0.883333333333333,
+      "aa_livecodebench": null,
+      "aa_math_index": null,
+      "aa_mmlu_pro": null,
+      "aa_scicode": 0.589,
+      "aa_tau2": null,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": null,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Step 5 Preview",
+     "family_key": "step-5-preview",
+     "id": "step-5-preview::default",
+     "offers": [
+      {
+       "cache_read_per_1m": 0.1,
+       "context_length": 262144,
+       "input_per_1m": 1,
+       "output_per_1m": 2.7,
+       "platform": "OpenRouter",
+       "provider": "Featherless"
+      },
+      {
+       "cache_read_per_1m": 0.1,
+       "context_length": 1000000,
+       "input_per_1m": 1,
+       "output_per_1m": 2.7,
+       "platform": "OpenRouter",
+       "provider": "StepFun"
+      }
+     ],
+     "open_weights": true,
+     "release_date": "2026-09-18",
+     "token_efficiency": {
+      "aa": {
+       "tokens_per_task": {
+        "basis": "measured",
+        "collected_at": "2026-11-04T08:51:51.964Z",
+        "scope": "aa_intelligence_index_benchmark",
+        "value": {
+         "output": 113472.87772177807
+        }
+       }
+      }
+     },
+     "variant": "default"
+    }
+   },
+   "id": "stepfun/step-5-preview",
+   "irp_aliases": [],
+   "label": "Step 5 Preview",
+   "prices": {
+    "input": 1,
+    "output": 2.7
    }
   },
   {
