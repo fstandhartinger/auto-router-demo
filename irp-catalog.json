@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T18:29:13Z",
+ "generated_at": "2026-11-28T03:23:01Z",
  "models": [
   {
    "bench_id": "claude-fable-5.1::medium",
@@ -3121,48 +3121,6 @@
    }
   },
   {
-   "bench_id": "kimi-k2::default",
-   "context_tokens": 128000,
-   "core": false,
-   "document": {
-    "model": {
-     "aa_metadata": {
-      "context_window_tokens": 128000
-     },
-     "benchmarks": {
-      "aa_coding_index": null,
-      "aa_gpqa": 0.766,
-      "aa_hle": 0.074,
-      "aa_intelligence_index": 5.4,
-      "aa_lcr": 0.53,
-      "aa_livecodebench": 0.556,
-      "aa_math_index": 57,
-      "aa_mmlu_pro": 0.824,
-      "aa_scicode": null,
-      "aa_tau2": 0.611111111111111,
-      "aa_tau_banking": null,
-      "aa_terminalbench_hard": 0.159090909090909,
-      "aa_terminalbench_v2_1": null
-     },
-     "designarena": {},
-     "display_name": "Kimi K2",
-     "family_key": "kimi-k2",
-     "id": "kimi-k2::default",
-     "offers": [],
-     "open_weights": true,
-     "release_date": "2025-07-11",
-     "variant": "default"
-    }
-   },
-   "id": "kimi-k2",
-   "irp_aliases": [],
-   "label": "Kimi K2",
-   "prices": {
-    "input": 0.0,
-    "output": 0.0
-   }
-  },
-  {
    "bench_id": "kimi-k2-thinking::default",
    "context_tokens": 256000,
    "core": false,
@@ -4657,6 +4615,48 @@
    "prices": {
     "input": 0.075,
     "output": 0.2
+   }
+  },
+  {
+   "bench_id": "kimi-k2::default",
+   "context_tokens": 128000,
+   "core": false,
+   "document": {
+    "model": {
+     "aa_metadata": {
+      "context_window_tokens": 128000
+     },
+     "benchmarks": {
+      "aa_coding_index": null,
+      "aa_gpqa": 0.766,
+      "aa_hle": 0.074,
+      "aa_intelligence_index": 5.4,
+      "aa_lcr": 0.53,
+      "aa_livecodebench": 0.556,
+      "aa_math_index": 57,
+      "aa_mmlu_pro": 0.824,
+      "aa_scicode": null,
+      "aa_tau2": 0.611111111111111,
+      "aa_tau_banking": null,
+      "aa_terminalbench_hard": 0.159090909090909,
+      "aa_terminalbench_v2_1": null
+     },
+     "designarena": {},
+     "display_name": "Kimi K2",
+     "family_key": "kimi-k2",
+     "id": "kimi-k2::default",
+     "offers": [],
+     "open_weights": true,
+     "release_date": "2025-07-11",
+     "variant": "default"
+    }
+   },
+   "id": "moonshotai/kimi-k2",
+   "irp_aliases": [],
+   "label": "Kimi K2",
+   "prices": {
+    "input": 0.0,
+    "output": 0.0
    }
   },
   {
